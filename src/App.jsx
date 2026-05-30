@@ -6,7 +6,6 @@ function App() {
   return (
     <>
     <div className="poster">
-
     <div className="top">
 
         <div className="row align-items-center">
