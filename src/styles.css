@@ -1,0 +1,693 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#efefef;
+    overflow-x:hidden;
+}
+
+/* ================= MAIN POSTER ================= */
+
+.poster{
+    width:100%;
+    background:
+    linear-gradient(135deg,#ffffff 0%,#fafafa 45%,#f4f4f4 100%);
+    position:relative;
+    overflow:hidden;
+}
+
+.main-logo{
+    width:100%;
+    max-width:520px;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+/* GOLD CURVE */
+
+.poster::before{
+    content:"";
+    position:absolute;
+    left:-250px;
+    top:-250px;
+    width:650px;
+    height:650px;
+    border:32px solid #d7a03b;
+    border-radius:50%;
+    opacity:.20;
+}
+
+.poster::after{
+    content:"";
+    position:absolute;
+    right:-220px;
+    bottom:-220px;
+    width:620px;
+    height:620px;
+    border:32px solid #d7a03b;
+    border-radius:50%;
+    opacity:.20;
+}
+
+/* ================= TOP ================= */
+
+.top{
+    padding:30px 40px 10px;
+    position:relative;
+    z-index:2;
+}
+
+.logo-side{
+    position:relative;
+}
+
+/* LOGO AREA */
+
+.logo-wrapper{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.big-a{
+    font-size:220px;
+    font-weight:900;
+    line-height:1;
+    color:#07295c;
+    position:relative;
+}
+
+.big-a span{
+    color:#d59a2b;
+}
+
+.logo-text{
+    margin-top:-40px;
+}
+
+.brand{
+    font-size:90px;
+    font-weight:700;
+    color:#07295c;
+    line-height:1;
+}
+
+.brand span{
+    color:#d59a2b;
+}
+
+.small-links{
+    margin-top:10px;
+    color:#07295c;
+    font-size:14px;
+    letter-spacing:1px;
+    font-weight:600;
+}
+
+/* HERO */
+
+.hero-text{
+    text-align:center;
+}
+
+.hero-text h1{
+    font-size:72px;
+    line-height:1.05;
+    font-weight:900;
+    color:#08285d;
+    letter-spacing:1px;
+}
+
+.hero-text h1 span{
+    color:#d7a03b;
+}
+
+/* ================= HERO LINES ================= */
+
+.hero-line{
+    width:90%;
+    margin:14px auto;
+    height:3px;
+    background:#d7a03b;
+}
+
+
+.subtitle{
+    margin-top:18px;
+    background:#08285d;
+    color:#fff;
+    padding:24px 35px;
+    border-radius:16px;
+    font-size:30px;
+    font-weight:700;
+    line-height:1.4;
+    border:3px solid #d7a03b;
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+    position:relative;
+    overflow:hidden;
+}
+
+.subtitle span{
+    color:#f0b548;
+}
+
+.subtitle::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border:3px solid #d59a2b;
+    border-radius:14px;
+    pointer-events:none;
+}
+
+
+/* ================= ICONS ================= */
+
+.menu-icons{
+    padding:5px 40px 25px;
+}
+
+.icon-box{
+    text-align:center;
+}
+
+.circle{
+    width:86px;
+    height:86px;
+    border-radius:50%;
+    border:2px solid #d6d6d6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-size:34px;
+    color:#07295c;
+    background:white;
+}
+
+.icon-box p{
+    margin-top:12px;
+    font-size:16px;
+    font-weight:700;
+    color:#07295c;
+    line-height:1.3;
+}
+
+/* ================= SECTION TITLE ================= */
+
+.section-title{
+    width:420px;
+    margin:10px auto 35px;
+    background:#07295c;
+    color:white;
+    text-align:center;
+    padding:14px 20px;
+    border-radius:50px;
+    font-size:38px;
+    font-weight:800;
+    position:relative;
+    border:4px solid #d59a2b;
+    z-index:2;
+}
+
+.section-title::before,
+.section-title::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:120px;
+    height:3px;
+    background:#d59a2b;
+}
+
+.section-title::before{
+    left:-130px;
+}
+
+.section-title::after{
+    right:-130px;
+}
+
+/* ================= SERVICES ================= */
+
+.services-wrapper{
+    padding:0 40px 30px;
+    position:relative;
+    z-index:2;
+}
+
+.services-box{
+    border:2px solid #bfc3cf;
+    border-radius:25px;
+    padding:25px;
+    background:#fff;
+}
+
+.service-divider{
+    border-right:2px dashed #c9c9c9;
+}
+
+.service-item{
+    display:flex;
+    transition:.3s ease;
+    align-items:center;
+    gap:15px;
+    border:1px solid #e1e1e1;
+    border-radius:14px;
+    padding:10px 12px;
+    margin-bottom:12px;
+    min-height:78px;
+    background:#fff;
+}
+
+.service-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.service-icon{
+    width:60px;
+    height:60px;
+    border-radius:10px;
+    background:#f6f6f6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:#07295c;
+    flex-shrink:0;
+}
+
+.number{
+    width:42px;
+    height:42px;
+    background:#07295c;
+    color:#fff;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    font-weight:700;
+    flex-shrink:0;
+}
+
+.service-text{
+    font-size:24px;
+    font-weight:600;
+    color:#1f1f1f;
+    line-height:1.3;
+}
+
+/* ================= ADDITIONAL ================= */
+
+.assist{
+    padding:20px 40px 10px;
+}
+
+.assist-box-wrapper{
+    border:2px solid #d7b168;
+    border-radius:22px;
+    padding:35px 25px 25px;
+    position:relative;
+}
+
+.assist-title{
+    position:absolute;
+    top:-24px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#d59a2b;
+    color:#fff;
+    padding:10px 40px;
+    border-radius:30px;
+    font-size:30px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.assist-item{
+    text-align:center;
+    color:#07295c;
+    font-weight:700;
+    position:relative;
+}
+
+.assist-item::after{
+    content:"";
+    position:absolute;
+    right:-10px;
+    top:10px;
+    width:1px;
+    height:70px;
+    background:#d7b168;
+}
+
+.assist-item:last-child::after{
+    display:none;
+}
+
+.assist-icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* ================= WHY ================= */
+
+.why{
+    margin:40px;
+    background:#07295c;
+    border-radius:28px;
+    padding:35px 25px;
+    color:#fff;
+}
+
+.why h2{
+    text-align:center;
+    color:#f3b54b;
+    font-size:42px;
+    font-weight:800;
+    margin-bottom:35px;
+}
+
+.why-item{
+    text-align:center;
+    position:relative;
+}
+
+.why-item::after{
+    content:"";
+    position:absolute;
+    right:-10px;
+    top:20px;
+    width:1px;
+    height:80px;
+    background:#d7b168;
+}
+
+.why-item:last-child::after{
+    display:none;
+}
+
+.why-icon{
+    font-size:50px;
+    color:#f3b54b;
+    margin-bottom:14px;
+}
+
+.why-text{
+    font-size:18px;
+    line-height:1.5;
+    font-weight:500;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    padding:0 40px 40px;
+}
+
+.contact-title{
+    width:300px;
+    margin:auto;
+    background:#07295c;
+    color:#fff;
+    text-align:center;
+    padding:12px;
+    border-radius:40px;
+    font-size:38px;
+    font-weight:800;
+    border:4px solid #d59a2b;
+}
+
+.contact-box{
+    margin-top:25px;
+}
+
+.contact-left,
+.contact-right{
+    background:#fff;
+    border:2px solid #e1e1e1;
+    border-radius:22px;
+    padding:30px;
+    height:100%;
+}
+
+.phone-icon{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#07295c;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    flex-shrink:0;
+}
+
+.person{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:14px 0;
+    border-bottom:1px solid #ddd;
+    font-size:34px;
+    font-weight:700;
+    color:#07295c;
+}
+
+.person:last-child{
+    border-bottom:none;
+}
+
+.contact-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.support-icon{
+    font-size:60px;
+    color:#07295c;
+}
+
+.support-text{
+    font-size:32px;
+    font-weight:700;
+    color:#07295c;
+    line-height:1.6;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    background:#07295c;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.footer span{
+    color:#f3b54b;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1400px){
+
+    .service-text{
+        font-size:20px;
+    }
+
+    .hero-text h1{
+        font-size:58px;
+    }
+
+    .brand{
+        font-size:70px;
+    }
+
+}
+
+@media(max-width:991px){
+
+    .top{
+        text-align:center;
+    }
+
+    .logo-wrapper{
+        justify-content:center;
+    }
+
+    .hero-text{
+        margin-top:30px;
+    }
+
+    .services-box .row > div:first-child{
+        border-right:none;
+        margin-bottom:20px;
+    }
+
+    .service-divider{
+        border-right:none;
+    }
+
+    .assist-item::after,
+    .why-item::after{
+        display:none;
+    }
+
+    .assist .row,
+    .why .row{
+        row-gap:25px;
+    }
+
+    .person{
+        font-size:22px;
+    }
+
+    .support-text{
+        font-size:22px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .top,
+    .services-wrapper,
+    .assist,
+    .contact{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .hero-text h1{
+        font-size:42px;
+    }
+
+    .subtitle{
+        font-size:22px;
+    }
+
+    .big-a{
+        font-size:130px;
+    }
+
+    .brand{
+        font-size:52px;
+    }
+
+    .section-title{
+        width:90%;
+        font-size:26px;
+    }
+
+    .section-title::before,
+    .section-title::after{
+        display:none;
+    }
+
+    .service-item{
+        min-height:auto;
+    }
+
+    .service-text{
+        font-size:16px;
+    }
+
+    .assist-title{
+        font-size:20px;
+        padding:10px 25px;
+    }
+
+    .why h2{
+        font-size:28px;
+    }
+
+    .contact-title{
+        width:240px;
+        font-size:28px;
+    }
+
+    .contact-right{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .footer{
+        justify-content:center;
+        text-align:center;
+        font-size:18px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .top{
+        padding-top:25px;
+    }
+
+    .hero-text h1{
+        font-size:34px;
+    }
+
+    .subtitle{
+        font-size:18px;
+        padding:18px;
+    }
+
+    .circle{
+        width:70px;
+        height:70px;
+        font-size:28px;
+    }
+
+    .icon-box p{
+        font-size:13px;
+    }
+
+    .service-item{
+        gap:10px;
+        padding:10px;
+    }
+
+    .service-icon{
+        width:45px;
+        height:45px;
+        font-size:20px;
+    }
+
+    .number{
+        width:35px;
+        height:35px;
+        font-size:16px;
+    }
+
+    .service-text{
+        font-size:14px;
+    }
+
+    .person{
+        flex-direction:column;
+        font-size:18px;
+    }
+
+    .support-text{
+        font-size:18px;
+    }
+
+}
