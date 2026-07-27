@@ -1,0 +1,132 @@
+footer {
+  background: var(--navy-deep);
+  color: #B9C4DB;
+  padding: 64px 0 0;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.foot-col h5 {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+}
+
+.foot-col li {
+  margin-bottom: 11px;
+  font-size: 13.5px;
+}
+
+.foot-col a:hover {
+  color: var(--white);
+}
+
+.foot-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  font-size: 12px;
+  color: #7E8DAE;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.disclaimer-strip {
+  font-size: 11.5px;
+  color: #7E8DAE;
+  text-align: center;
+  padding: 16px 32px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  line-height: 1.6;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+
+  width: 64px;
+  height: 64px;
+
+  background: #25D366;
+  color: #fff;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 34px;
+
+  text-decoration: none;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  z-index: 9999;
+
+  transition: all .3s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  background: #1ebe5d;
+}
+
+.floating-whatsapp i {
+  line-height: 1;
+} 
+
+.social-links{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.social-links a{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#ffffff;
+    color:#E1306C;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    text-decoration:none;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.social-links a:hover{
+    background:#E1306C;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+
+@media(max-width:980px) {
+  .foot-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+  }
+}
