@@ -648,7 +648,7 @@ section {
   transform:none;
     transition:none;
     position: absolute;
-    right: -280px;
+    right: -90px;
     bottom: 0;
     z-index: 1;
 }

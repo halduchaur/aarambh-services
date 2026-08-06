@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./header.css";
+import logo from "../assets/images/aarambh_logo.jpeg";
 
 const Header = function () {
     return (<>
@@ -14,9 +15,11 @@ const Header = function () {
         <header>
             <div className="navbar">
                 <div className="brand">
-                    <div className="mark">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L21 20H3L12 3Z" stroke="#C9A227" strokeWidth="1.6" strokeLinejoin="round" /><path d="M7 20c2-5 3-8 5-13 2 5 3 8 5 13" stroke="#FAF7EF" strokeWidth="1.2" opacity=".6" /><circle cx="12" cy="12.5" r="1.6" fill="#C9A227" /></svg>
-                    </div>
+                    <img
+                        src={logo}
+                        alt="Aarambh Logo"
+                        className="brand-logo"
+                    />
                     <div className="brand-text">
                         <span className="name">Aarambh</span>
                         <span className="tagline">Guidance you can trust</span>

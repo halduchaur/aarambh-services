@@ -29,14 +29,6 @@ export default function Home() {
                     </div>
 
                     <div className="path-graphic">
-                        <svg viewBox="0 0 420 460" fill="none">
-                            <path d="M40 420 C 60 300, 120 260, 180 250 C 260 236, 300 180, 320 60" stroke="#C9A227" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 12" />
-                            <circle cx="40" cy="420" r="7" fill="#FAF7EF" />
-                            <circle cx="150" cy="272" r="7" fill="#FAF7EF" />
-                            <circle cx="255" cy="205" r="7" fill="#FAF7EF" />
-                            <circle cx="320" cy="60" r="9" fill="#C9A227" />
-                            <path d="M312 60 L320 44 L328 60 Z" fill="#C9A227" />
-                        </svg>
                         <div className="hero-image">
                             <img
                                 src={whatsappPreview}
@@ -44,10 +36,6 @@ export default function Home() {
                                 className="whatsapp-preview"
                             />
                         </div>
-                        <div className="milestone-label" style={{ left: "2%", bottom: "2%" }}><span className="dot"></span>Govt. Schemes</div>
-                        <div className="milestone-label" style={{ left: "26%", bottom: "38%" }}><span className="dot"></span>Documentation</div>
-                        <div className="milestone-label" style={{ left: "48%", bottom: "56%" }}><span className="dot"></span>Education Forms</div>
-                        <div className="milestone-label" style={{ right: "6%", top: "6%", background: "#C9A227", color: "#071B3F" }}>★ Better Future</div>
                     </div>
                 </div>
             </section>
