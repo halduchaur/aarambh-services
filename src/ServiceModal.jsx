@@ -39,14 +39,22 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
                         </details>
                     ))
                 }
-                <a
-                    className="services_view-btn"
-                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name}`}
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Apply on WhatsApp
-                </a>
+                <div className="services_action-buttons">
+                    {
+                        selectedService.apply_form ?
+                            <a className="services_apply_form-btn" onClick={() => window.location.href = selectedService.apply_form}>
+                                Apply via Form
+                            </a> : null
+                    }
+                    <a
+                        className="services_view-btn"
+                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name}`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Apply on WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     )

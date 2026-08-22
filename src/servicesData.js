@@ -40,6 +40,7 @@ const SERVICES = [
   // ---------------- IDENTITY & CARDS (10) ----------------
   {
     id: "aadhaar-address-update",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar Address Update",
     category: "identity",
     tag: "Popular",
@@ -52,13 +53,19 @@ const SERVICES = [
       "SMS/status tracking tak poora support"
     ],
     faqs: [
-      { q: "Address update mein kitna time lagta hai?", a: "Aam taur par 7–15 din mein UIDAI approve kar deta hai, document sahi hone par." },
-      { q: "Konse documents chahiye?", a: "Koi bhi valid address proof — electricity/water bill, rent agreement, passport, bank statement, etc." },
-      { q: "Kya main online hi kar sakta hoon?", a: "Haan, agar aapke paas registered mobile number hai to online update possible hai; warna hum center visit arrange karte hain." }
+      { q: "What is Aadhaar Address Update?", a: "Updating/correcting the current residential address in Aadhaar card." },
+      { q: "Who needs Aadhaar Address Update?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Aadhaar Address Update?", a: "The key documents typically required are: Address proof (electricity bill, rent agreement, passport, bank statement), Aadhaar number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Aadhaar Address Update?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal."},
+      { q: "How long does Aadhaar Address Update take to process?", a: "The typical processing time is 7-15 days (after online request). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee."},
+      { q: "What are the charges involved in Aadhaar Address Update?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding."},
+      { q: "What happens if my Aadhaar Address Update application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue."},
+      { q: "How does Aarambh India help with Aadhaar Address Update?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals."},
     ]
   },
   {
     id: "aadhaar-npci-link",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar NPCI Link",
     category: "identity",
     price: "₹99 onwards",
@@ -70,12 +77,14 @@ const SERVICES = [
       "LPG subsidy, PM-Kisan jaisi schemes ke liye zaroori"
     ],
     faqs: [
-      { q: "NPCI link na ho to kya hoga?", a: "DBT scheme ka paisa aapke account mein nahi aayega, chahe Aadhaar bank se linked ho." },
-      { q: "Kaise pata karein linked hai ya nahi?", a: "Hum aapke liye NPCI mapper status check karke confirm kar dete hain." }
+      { q: "What is Aadhaar NPCI Link?", a: "Linking Aadhaar with NPCI mapper so that DBT (Direct Benefit Transfer) subsidy and government payments can come directly into the bank account." },
+      { q: "Who needs Aadhaar NPCI Link?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Aadhaar NPCI Link?", a: "The key documents typically required are: Aadhaar number, Bank account passbook/statement. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
     ]
   },
   {
     id: "aadhaar-pan-link",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar–PAN Link",
     category: "identity",
     tag: "Popular",
@@ -94,6 +103,7 @@ const SERVICES = [
   },
   {
     id: "aadhaar-pvc-card",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar PVC Card",
     category: "identity",
     tag: "Fast",
@@ -112,6 +122,7 @@ const SERVICES = [
   },
   {
     id: "new-pan-card",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "New PAN Card",
     category: "identity",
     tag: "Popular",
@@ -130,6 +141,7 @@ const SERVICES = [
   },
   {
     id: "pan-card-correction",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "PAN Card Correction",
     category: "identity",
     price: "₹199 onwards",
@@ -147,6 +159,7 @@ const SERVICES = [
   },
   {
     id: "reprint-pan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Reprint PAN",
     category: "identity",
     price: "₹99 onwards",
@@ -163,6 +176,7 @@ const SERVICES = [
   },
   {
     id: "new-voter-card",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "New Voter Card",
     category: "identity",
     price: "₹149 onwards",
@@ -180,6 +194,7 @@ const SERVICES = [
   },
   {
     id: "voter-card-correction",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Voter Card Correction",
     category: "identity",
     price: "₹149 onwards",
@@ -196,6 +211,7 @@ const SERVICES = [
   },
   {
     id: "apaar-id",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Apaar ID",
     category: "identity",
     tag: "New",
@@ -216,6 +232,7 @@ const SERVICES = [
   // ---------------- CERTIFICATES (9) ----------------
   {
     id: "caste-certificate-haryana",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Caste Certificate – Haryana",
     category: "certificates",
     price: "₹299 onwards",
@@ -233,6 +250,7 @@ const SERVICES = [
   },
   {
     id: "caste-certificate-maharashtra",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Caste Certificate – Maharashtra",
     category: "certificates",
     price: "₹299 onwards",
@@ -249,6 +267,7 @@ const SERVICES = [
   },
   {
     id: "domicile-certificate-maharashtra",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Domicile Certificate – Maharashtra",
     category: "certificates",
     price: "₹249 onwards",
@@ -265,6 +284,7 @@ const SERVICES = [
   },
   {
     id: "income-certificate-haryana",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Income Certificate – Haryana",
     category: "certificates",
     price: "₹249 onwards",
@@ -281,6 +301,7 @@ const SERVICES = [
   },
   {
     id: "income-certificate-maharashtra",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Income Certificate – Maharashtra",
     category: "certificates",
     price: "₹249 onwards",
@@ -297,6 +318,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-ap",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Andhra Pradesh",
     category: "certificates",
     price: "₹199 onwards",
@@ -313,6 +335,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-assam",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Assam",
     category: "certificates",
     price: "₹199 onwards",
@@ -329,6 +352,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-karnataka",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Karnataka",
     category: "certificates",
     price: "₹199 onwards",
@@ -345,6 +369,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-maharashtra",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Maharashtra",
     category: "certificates",
     price: "₹199 onwards",
@@ -363,6 +388,7 @@ const SERVICES = [
   // ---------------- BUSINESS COMPLIANCE (6) ----------------
   {
     id: "fssai-new-license",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "FSSAI New Food License",
     category: "business",
     tag: "Popular",
@@ -381,6 +407,7 @@ const SERVICES = [
   },
   {
     id: "fssai-renewal",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "FSSAI Food License Renewal",
     category: "business",
     price: "₹999 onwards",
@@ -397,6 +424,7 @@ const SERVICES = [
   },
   {
     id: "gstin-verification",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "GSTIN Verification",
     category: "business",
     price: "₹99 onwards",
@@ -413,6 +441,7 @@ const SERVICES = [
   },
   {
     id: "gst-registration",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "GST Registration",
     category: "business",
     tag: "Popular",
@@ -431,6 +460,7 @@ const SERVICES = [
   },
   {
     id: "udyam-registration",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Udyam Registration",
     category: "business",
     tag: "Popular",
@@ -449,6 +479,7 @@ const SERVICES = [
   },
   {
     id: "itr-filing",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "ITR Filing",
     category: "business",
     tag: "Popular",
@@ -469,6 +500,7 @@ const SERVICES = [
   // ---------------- TRANSPORT & VEHICLE (12) ----------------
   {
     id: "dl-aadhaar-link",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "DL Aadhaar Link",
     category: "transport",
     price: "₹99 onwards",
@@ -485,6 +517,7 @@ const SERVICES = [
   },
   {
     id: "dl-address-change",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "DL Address Change",
     category: "transport",
     price: "₹299 onwards",
@@ -501,6 +534,7 @@ const SERVICES = [
   },
   {
     id: "duplicate-dl",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Duplicate Driving License",
     category: "transport",
     tag: "Fast",
@@ -518,6 +552,7 @@ const SERVICES = [
   },
   {
     id: "learners-license",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Learners License",
     category: "transport",
     tag: "Popular",
@@ -535,6 +570,7 @@ const SERVICES = [
   },
   {
     id: "permanent-dl",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Permanent DL",
     category: "transport",
     tag: "Popular",
@@ -552,6 +588,7 @@ const SERVICES = [
   },
   {
     id: "idp",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "International Driving License Permit (IDP)",
     category: "travel",
     price: "₹1,499 onwards",
@@ -569,6 +606,7 @@ const SERVICES = [
   },
   {
     id: "rc-aadhaar-link",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "RC Aadhaar Link",
     category: "transport",
     price: "₹99 onwards",
@@ -585,6 +623,7 @@ const SERVICES = [
   },
   {
     id: "hsrp",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "HSRP",
     category: "transport",
     tag: "Fast",
@@ -602,6 +641,7 @@ const SERVICES = [
   },
   {
     id: "color-code-sticker",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Color Code Sticker",
     category: "transport",
     tag: "Fast",
@@ -619,6 +659,7 @@ const SERVICES = [
   },
   {
     id: "vehicle-challan-payment",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Vehicle Challan Payment",
     category: "transport",
     price: "₹49 onwards service charge",
@@ -635,6 +676,7 @@ const SERVICES = [
   },
   {
     id: "vehicle-tax",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Vehicle Tax",
     category: "transport",
     price: "₹99 onwards service charge",
@@ -651,6 +693,7 @@ const SERVICES = [
   },
   {
     id: "fastag-kyv",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Fastag KYV",
     category: "transport",
     tag: "Fast",
@@ -668,6 +711,7 @@ const SERVICES = [
   },
   {
     id: "fastag-annual-pass",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "FASTag One Year Pass",
     category: "transport",
     tag: "New",
@@ -687,6 +731,7 @@ const SERVICES = [
   // ---------------- TRAVEL & PASSPORT (4) ----------------
   {
     id: "new-passport",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "New Passport",
     category: "travel",
     tag: "Popular",
@@ -705,6 +750,7 @@ const SERVICES = [
   },
   {
     id: "passport-renewal",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Passport Renewal",
     category: "travel",
     price: "₹699 onwards service charge",
@@ -721,6 +767,7 @@ const SERVICES = [
   },
   {
     id: "fti-ttp",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "FTI-TTP Registration",
     category: "travel",
     tag: "New",
@@ -740,6 +787,7 @@ const SERVICES = [
   // ---------------- INSURANCE & PENSION (3) ----------------
   {
     id: "atal-pension-yojana",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Atal Pension Yojana",
     category: "insurance",
     price: "₹99 onwards enrollment assistance",
@@ -757,6 +805,7 @@ const SERVICES = [
   },
   {
     id: "pmjjby",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "PMJJBY",
     category: "insurance",
     price: "₹49 onwards enrollment assistance",
@@ -774,6 +823,7 @@ const SERVICES = [
   },
   {
     id: "pmsby",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "PMSBY",
     category: "insurance",
     price: "₹49 onwards enrollment assistance",
@@ -792,6 +842,7 @@ const SERVICES = [
   // ---------------- EMPLOYMENT (3) ----------------
   {
     id: "e-shram-card",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "e-Shram Card",
     category: "employment",
     tag: "Popular",
@@ -810,6 +861,7 @@ const SERVICES = [
   },
   {
     id: "uan-activation",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "UAN Activation",
     category: "employment",
     price: "₹99 onwards",
@@ -826,6 +878,7 @@ const SERVICES = [
   },
   {
     id: "pm-internship",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "PM Internship Registration",
     category: "employment",
     tag: "New",
@@ -845,6 +898,7 @@ const SERVICES = [
   // ---------------- TEMPLE DARSHAN BOOKING (5) ----------------
   {
     id: "kashi-vishwanath-darshan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Kashi Vishwanath Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -861,6 +915,7 @@ const SERVICES = [
   },
   {
     id: "mahakaleshwar-darshan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Mahakaleshwar Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -877,6 +932,7 @@ const SERVICES = [
   },
   {
     id: "sai-baba-darshan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Sai Baba Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -893,6 +949,7 @@ const SERVICES = [
   },
   {
     id: "srisaila-darshan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Srisaila Devasthanam Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -909,6 +966,7 @@ const SERVICES = [
   },
   {
     id: "vitthal-rukmini-darshan",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Vitthal Rukmini Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -927,6 +985,7 @@ const SERVICES = [
   // ---------------- HEALTH & WELFARE (3) ----------------
   {
     id: "abha-service",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "ABHA Service",
     category: "health",
     tag: "New",
@@ -944,6 +1003,7 @@ const SERVICES = [
   },
   {
     id: "ayushman-service",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "Ayushman Service",
     category: "health",
     tag: "Popular",
@@ -962,6 +1022,7 @@ const SERVICES = [
   },
   {
     id: "udid-service",
+    apply_form: "/aarambh-aadhaar-form.html",
     name: "UDID Service",
     category: "health",
     price: "₹149 onwards",
