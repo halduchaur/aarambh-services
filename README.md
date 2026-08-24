@@ -54,3 +54,5 @@ docker push e3dfsdfs/aarambh-services (push local docker image to docker hub rep
 
 docker pull e3dfsdfs/aarambh-services:latest (pull docker image from remote docker hub)
 docker run -p 5173:5173 e3dfsdfs/aarambh-services:latest (run docker container)
+
+inside Dockerfile all commands rest (CMD) will execute during creating image, CMD command will execute during run container.
