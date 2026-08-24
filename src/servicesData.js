@@ -80,6 +80,11 @@ const SERVICES = [
       { q: "What is Aadhaar NPCI Link?", a: "Linking Aadhaar with NPCI mapper so that DBT (Direct Benefit Transfer) subsidy and government payments can come directly into the bank account." },
       { q: "Who needs Aadhaar NPCI Link?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
       { q: "What documents are required for Aadhaar NPCI Link?", a: "The key documents typically required are: Aadhaar number, Bank account passbook/statement. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Aadhaar NPCI Link?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Aadhaar NPCI Link take to process?", a: "The typical processing time is 3-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Aadhaar NPCI Link?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Aadhaar NPCI Link application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Aadhaar NPCI Link?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -97,8 +102,14 @@ const SERVICES = [
       "ITR filing se pehle zaroori compliance"
     ],
     faqs: [
-      { q: "Link nahi kiya to kya hoga?", a: "PAN inoperative ho sakta hai, jisse banking aur tax filing mein dikkat aayegi." },
-      { q: "Late fee kitni hai?", a: "Income Tax portal ke current rules ke hisaab se, hum aapko exact amount bata denge." }
+      { q: "What is Aadhaar-PAN Link?", a: "Linking Aadhaar with PAN card under Income Tax rules, so that PAN does not become inactive." },
+      { q: "Who needs Aadhaar-PAN Link?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Aadhaar-PAN Link?", a: "The key documents typically required are: Aadhaar card, PAN card. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Aadhaar-PAN Link?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Aadhaar–PAN Link take to process?", a: "The typical processing time is 24-48 hours (online), sometimes a few days extra. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Aadhaar–PAN Link?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Aadhaar–PAN Link application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Aadhaar-PAN Link?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -116,8 +127,14 @@ const SERVICES = [
       "Purane paper Aadhaar se zyada durable"
     ],
     faqs: [
-      { q: "Delivery kahan hoti hai?", a: "UIDAI registered address par speed post se, poore India mein." },
-      { q: "Kya mobile number registered hona zaroori hai?", a: "Nahi, unregistered mobile number se bhi order ho sakta hai — hum guide karenge." }
+      { q: "What is Aadhaar PVC Card?", a: "Ordering a durable, ATM-card-like PVC version of Aadhaar that is easy to carry." },
+      { q: "Who needs Aadhaar PVC Card?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Aadhaar PVC Card?", a: "The key documents typically required are: Aadhaar number or EID, registered mobile number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Aadhaar PVC Card?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Aadhaar PVC Card take to process?", a: "The typical processing time is 5-7 working days (including courier). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Aadhaar PVC Card?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Aadhaar PVC Card application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Aadhaar PVC Card?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -135,8 +152,14 @@ const SERVICES = [
       "Minors ke liye bhi apply ho sakta hai"
     ],
     faqs: [
-      { q: "Kaunse documents chahiye?", a: "Identity proof, address proof aur date of birth proof (Aadhaar, passport, etc.)." },
-      { q: "PAN card kitne din mein aayega?", a: "e-PAN 2–3 din mein email par, physical card 15 din mein address par." }
+      { q: "What is New PAN Card?", a: "Getting a new Permanent Account Number (PAN) card made, which is required for income tax and financial transactions." },
+      { q: "Who needs a new PAN card?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for New PAN Card?", a: "The key documents typically required are: Aadhaar card, Photo, Address proof, Date of birth proof. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for New PAN Card?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does New PAN Card take to process?", a: "The typical processing time is 10-15 working days (for physical cards). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in New PAN Card?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my New PAN Card application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with New PAN Card?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -153,8 +176,14 @@ const SERVICES = [
       "Correction status tracking support"
     ],
     faqs: [
-      { q: "Correction ke liye kitna time lagta hai?", a: "Typically 15–20 working days, physical card delivery samet." },
-      { q: "Kya PAN number badal jayega?", a: "Nahi, sirf details update hoti hain — PAN number same rehta hai." }
+      { q: "What is PAN Card Correction?", a: "To correct/update details like name, date of birth, photo, signature or address in PAN card." },
+      { q: "Who needs PAN Card Correction?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for PAN Card Correction?", a: "The key documents typically required are: Existing PAN card copy, Aadhaar, Supporting proof of correction. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for PAN Card Correction?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does PAN Card Correction take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in PAN Card Correction?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my PAN Card Correction application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with PAN Card Correction?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -171,7 +200,14 @@ const SERVICES = [
       "No fresh KYC ki zaroorat"
     ],
     faqs: [
-      { q: "Reprint aur correction mein kya farak hai?", a: "Reprint mein details same rehti hain, sirf naya card banta hai; correction mein details update hoti hain." }
+      { q: "What is Reprint PAN?", a: "To get a physical reprint of the PAN card after it is lost, damaged or updated." },
+      { q: "Who needs Reprint PAN?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Reprint PAN?", a: "The key documents typically required are: PAN number, Aadhaar-linked mobile number, Address proof. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Reprint PAN?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Reprint PAN take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Reprint PAN?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Reprint PAN application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Reprint PAN?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -188,8 +224,14 @@ const SERVICES = [
       "Physical card delivery tracking"
     ],
     faqs: [
-      { q: "Minimum age kya hai?", a: "Application ke saal 1 January tak 18 saal ki age honi chahiye." },
-      { q: "Card banne mein kitna time lagta hai?", a: "Typically 30–45 din, BLO verification ke baad." }
+      { q: "What is New Voter Card?", a: "First get a Voter ID (EPIC) card made so that you can vote in the elections." },
+      { q: "Who needs a new voter card?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for New Voter Card?", a: "The key documents typically required are: Age proof (18+), Address proof, Passport size photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for New Voter Card?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does New Voter Card take to process?", a: "The typical processing time is 3-4 weeks (after Form 6 process). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in New Voter Card?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my New Voter Card application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with New Voter Card?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -206,7 +248,14 @@ const SERVICES = [
       "End-to-end status tracking"
     ],
     faqs: [
-      { q: "Address change bhi ho sakta hai?", a: "Haan, naye address ke proof ke saath constituency transfer bhi karwa sakte hain." }
+      { q: "What is Voter Card Correction?", a: "To correct mistakes like name, address, photo or date of birth in the Voter ID card." },
+      { q: "Who needs Voter Card Correction?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Voter Card Correction?", a: "The key documents typically required are: Existing Voter ID, Correction proof, Address/age proof. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Voter Card Correction?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Voter Card Correction take to process?", a: "The typical processing time is 3-4 hours. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Voter Card Correction?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Voter Card Correction application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Voter Card Correction?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -224,8 +273,14 @@ const SERVICES = [
       "Future scholarships aur admissions ke liye useful"
     ],
     faqs: [
-      { q: "Apaar ID kis ke liye hai?", a: "School aur college students ke liye, unke academic records digitally track karne ke liye." },
-      { q: "Parent consent chahiye kya?", a: "Minor students ke liye parent/guardian consent zaroori hai." }
+      { q: "What is Appar ID?", a: "Automated Permanent Academic Account Registry ID - A unique education ID of students that tracks their academic history." },
+      { q: "Who needs Appar ID?", a: "Any Indian resident who needs to obtain, update, or correct this identity document, typically for KYC, banking, government scheme, or verification purposes." },
+      { q: "What documents are required for Apaar ID?", a: "The key documents typically required are: Aadhaar card, School/College enrollment detail, parent consent (for minors). Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Apaar ID?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Apaar ID take to process?", a: "The typical processing time is 5-10 days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Apaar ID?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Apaar ID application is rejected or delayed?", a: "If an application is rejected or returned for correction, the most common reasons are mismatched details, unclear document copies, or incomplete forms. In such cases, the application can usually be resubmitted after correcting the flagged issue." },
+      { q: "How does Aarambh India help with Apaar ID?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -244,8 +299,14 @@ const SERVICES = [
       "Digital + signed hard copy dono"
     ],
     faqs: [
-      { q: "Banne mein kitna time lagta hai?", a: "Typically 15–21 working days, tehsil verification ke baad." },
-      { q: "Documents kya chahiye?", a: "Aadhaar, address proof, family caste proof (parent's certificate ho to fast hota hai)." }
+      { q: "What is Caste Certificate – Haryana?", a: "To get SC/ST/OBC caste certificate made for Haryana state, which is necessary for reservation and schemes." },
+      { q: "Who needs Caste Certificate – Haryana?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Caste Certificate – Haryana?", a: "The key documents typically required are: Aadhaar, Domicile proof, Ration card, Family caste proof (if available). Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Caste Certificate – Haryana?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Caste Certificate – Haryana take to process?", a: "The typical processing time is 15-21 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Caste Certificate – Haryana?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Caste Certificate – Haryana application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Caste Certificate – Haryana?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -262,7 +323,14 @@ const SERVICES = [
       "Status tracking support"
     ],
     faqs: [
-      { q: "Kaunsa portal use hota hai?", a: "Maharashtra government ka Aaple Sarkar (aaplesarkar.mahaonline.gov.in) portal." }
+      { q: "What is Caste Certificate – Maharashtra?", a: "To get caste certificate made for Maharashtra state, useful for education and job reservation." },
+      { q: "Who needs Caste Certificate – Maharashtra?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Caste Certificate – Maharashtra?", a: "The key documents typically required are: Aadhaar, School leaving certificate, Domicile proof, Family caste record. Original documents are usually not required upfront; clear scanned or Photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Caste Certificate – Maharashtra?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Caste Certificate – Maharashtra take to process?", a: "The typical processing time is 21-30 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Caste Certificate – Maharashtra?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Caste Certificate – Maharashtra application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Caste Certificate – Maharashtra?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -279,7 +347,14 @@ const SERVICES = [
       "Digital copy jaldi milti hai"
     ],
     faqs: [
-      { q: "Eligibility kya hai?", a: "Aavedak Maharashtra mein minimum required years se reside karta ho, proof ke saath." }
+      { q: "What is Domicile Certificate – Maharashtra?", a: "To get a domicile certificate of being a resident of Maharashtra, which is required for state schemes/admissions." },
+      { q: "Who needs Domicile Certificate – Maharashtra?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Domicile Certificate – Maharashtra?", a: "The key documents typically required are: Aadhaar, Residence proof (15 years), School certificate. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Domicile Certificate – Maharashtra?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Domicile Certificate – Maharashtra take to process?", a: "The typical processing time is 15-21 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Domicile Certificate – Maharashtra?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the Current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Domicile Certificate – Maharashtra application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Domicile Certificate – Maharashtra?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -296,7 +371,14 @@ const SERVICES = [
       "1 saal validity ke saath fresh certificate"
     ],
     faqs: [
-      { q: "Validity kitni hoti hai?", a: "Aam taur par 1 saal, uske baad renewal karwana padta hai." }
+      { q: "What is Income Certificate – Haryana?", a: "Official certificate of annual family income from Haryana state, required for scholarship/schemes." },
+      { q: "Who needs Income Certificate – Haryana?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Income Certificate – Haryana?", a: "The key documents typically required are: Aadhaar, Salary slip/Form 16 or self-declaration, Address proof. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Income Certificate – Haryana?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Income Certificate – Haryana take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Income Certificate – Haryana?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Income Certificate – Haryana application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Income Certificate – Haryana?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -313,7 +395,14 @@ const SERVICES = [
       "Digital copy download support"
     ],
     faqs: [
-      { q: "Kaunse documents chahiye?", a: "Salary slip / Form 16 / self-declaration + Aadhaar aur address proof." }
+      { q: "What is Income Certificate – Maharashtra?", a: "Income certificate from Maharashtra state, which is used in schemes, scholarships and admissions." },
+      { q: "Who needs Income Certificate – Maharashtra?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Income Certificate – Maharashtra?", a: "The key documents typically required are: Aadhaar, Income proof, Ration card. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Income Certificate – Maharashtra?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Income Certificate – Maharashtra take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Income Certificate – Maharashtra?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Income Certificate – Maharashtra application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Income Certificate – Maharashtra?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -330,7 +419,14 @@ const SERVICES = [
       "Fast issuance support"
     ],
     faqs: [
-      { q: "Minimum age kya hai?", a: "60 saal ya usse zyada, valid age proof ke saath." }
+      { q: "What is Senior Citizen Card – Andhra Pradesh?", a: "Senior citizen identity card issued by the Andhra Pradesh government for citizens above 60 years of age, which entitles them to pension and discounts." },
+      { q: "Who needs Senior Citizen Card – Andhra Pradesh?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Senior Citizen Card – Andhra Pradesh?", a: "The key documents typically required are: Aadhaar, Age proof, Address proof, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Senior Citizen Card – Andhra Pradesh?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Senior Citizen Card – Andhra Pradesh take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Senior Citizen Card – Andhra Pradesh?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Senior Citizen Card – Andhra Pradesh application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Senior Citizen Card – Andhra Pradesh?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -347,7 +443,14 @@ const SERVICES = [
       "Fast turnaround"
     ],
     faqs: [
-      { q: "Kaunse documents lagenge?", a: "Age proof (Aadhaar/birth certificate) aur Assam address proof." }
+      { q: "What is Senior Citizen Card – Assam?", a: "Special identity card for senior citizens in Assam to access government benefits." },
+      { q: "Who needs Senior Citizen Card – Assam?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Senior Citizen Card – Assam?", a: "The key documents typically required are: Aadhaar, Age proof, Address proof, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Senior Citizen Card – Assam?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Senior Citizen Card – Assam take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Senior Citizen Card – Assam?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Senior Citizen Card – Assam application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Senior Citizen Card – Assam?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -364,7 +467,14 @@ const SERVICES = [
       "Digital + physical card"
     ],
     faqs: [
-      { q: "Portal kaunsa use hota hai?", a: "Karnataka government ka Seva Sindhu portal." }
+      { q: "What is Senior Citizen Card – Karnataka?", a: "Card for 60+ citizens in Karnataka, which is useful in travel concessions and welfare schemes." },
+      { q: "Who needs Senior Citizen Card – Karnataka?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Senior Citizen Card – Karnataka?", a: "The key documents typically required are: Aadhaar, Age proof, Address proof, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Senior Citizen Card – Karnataka?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Senior Citizen Card – Karnataka take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Senior Citizen Card – Karnataka?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Senior Citizen Card – Karnataka application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Senior Citizen Card – Karnataka?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -381,7 +491,14 @@ const SERVICES = [
       "Fast processing support"
     ],
     faqs: [
-      { q: "Minimum age kya hai?", a: "60 saal ya usse zyada." }
+      { q: "What is Senior Citizen Card – Maharashtra?", a: "Official identity card for senior citizens in Maharashtra, which provides various concessions." },
+      { q: "Who needs Senior Citizen Card – Maharashtra?", a: "Residents of the respective state who require this certificate for education, employment, reservation benefits, or eligibility verification under various government schemes." },
+      { q: "What documents are required for Senior Citizen Card – Maharashtra?", a: "The key documents typically required are: Aadhaar, Age proof, Address proof, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Senior Citizen Card – Maharashtra?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Senior Citizen Card – Maharashtra take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Senior Citizen Card – Maharashtra?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Senior Citizen Card – Maharashtra application is rejected or delayed?", a: "Applications are commonly rejected due to insufficient proof of residence, missing family records, or discrepancies between submitted documents. A corrected application can be resubmitted through the same department." },
+      { q: "How does Aarambh India help with Senior Citizen Card – Maharashtra?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -401,8 +518,14 @@ const SERVICES = [
       "Application status tracking tak support"
     ],
     faqs: [
-      { q: "Konsa license category chahiye mujhe?", a: "Turnover ke basis par — 12L tak Basic, 12L–20Cr State, usse zyada Central. Hum sahi category suggest karte hain." },
-      { q: "License banne mein kitna time lagta hai?", a: "Basic 7–10 din, State/Central 30–60 din tak le sakta hai." }
+      { q: "What is FSSAI New Food License?", a: "To start a new food business, you need to obtain FSSAI (Food Safety) registration or license, which is legally mandatory." },
+      { q: "Who needs FSSAI New Food License?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for FSSAI New Food License?", a: "The key documents typically required are: Aadhaar/PAN, Business address proof, Food business ka nature/photos, NOC (if applicable). Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for FSSAI New Food License?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does FSSAI New Food License take to process?", a: "The typical processing time is 7-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in FSSAI New Food License?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my FSSAI New Food License application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with FSSAI New Food License?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -419,7 +542,14 @@ const SERVICES = [
       "Renewed certificate digitally + hard copy"
     ],
     faqs: [
-      { q: "Renewal kab karwana chahiye?", a: "Expiry date se 30 din pehle apply karna best hai, taaki gap na aaye." }
+      { q: "What is FSSAI Food License Renewal?", a: "Get the existing FSSAI license/registration renewed before its validity expires, so that the business can run legally." },
+      { q: "Who needs FSSAI Food License Renewal?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for FSSAI Food License Renewal?", a: "The key documents typically required are: Existing FSSAI license, Aadhaar/PAN, Business details. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for FSSAI Food License Renewal?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does FSSAI Food License Renewal take to process?", a: "The typical processing time is 7-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in FSSAI Food License Renewal?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my FSSAI Food License Renewal application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with FSSAI Food License Renewal?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -436,7 +566,14 @@ const SERVICES = [
       "Turnaround same-day"
     ],
     faqs: [
-      { q: "Yeh service kis kaam aati hai?", a: "Naye vendor/supplier onboard karte waqt GSTIN genuine hai ya nahi, verify karne ke liye." }
+      { q: "What is GSTIN Verification?", a: "To verify the authenticity of any GST number and business details, which is used to check the vendor/partner." },
+      { q: "Who needs GSTIN Verification?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for GSTIN Verification?", a: "The key documents typically required are: GSTIN number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for GSTIN Verification?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does GSTIN Verification take to process?", a: "The typical processing time is usually 1-2 days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in GSTIN Verification?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my GSTIN Verification application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with GSTIN Verification?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -454,8 +591,14 @@ const SERVICES = [
       "GSTIN mile ke baad basic compliance guidance"
     ],
     faqs: [
-      { q: "Registration mandatory kab hota hai?", a: "Goods ke liye ₹40L aur services ke liye ₹20L turnover cross karne par (state ke hisaab se vary karta hai)." },
-      { q: "Registration mein kitna time lagta hai?", a: "Typically 7–15 working days, document verification ke baad." }
+      { q: "What is GST Registration?", a: "Getting Goods and Services Tax (GST) registration done for the business, which becomes mandatory once the turnover threshold is crossed." },
+      { q: "Who needs GST Registration?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for GST Registration?", a: "The key documents typically required are: PAN, Aadhaar, Business address proof, Bank account details, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for GST Registration?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does GST Registration take to process?", a: "The typical processing time is 5-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in GST Registration?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my GST Registration application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with GST Registration?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -473,8 +616,14 @@ const SERVICES = [
       "Instant e-certificate"
     ],
     faqs: [
-      { q: "Udyam registration free hai kya?", a: "Govt portal par free hai; hum aapke liye documentation aur filing handle karte hain taaki galti na ho." },
-      { q: "Certificate kab milta hai?", a: "Application submit hote hi e-certificate turant generate ho jaata hai." }
+      { q: "What is Udyam Registration?", a: "Getting MSME (Udyam) registration done, so that the business gets the benefit of government schemes, loans and subsidies." },
+      { q: "Who needs Udyam Registration?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for Udyam Registration?", a: "The key documents typically required are: Aadhaar, PAN, Business details, Bank account. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Udyam Registration?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Udyam Registration take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Udyam Registration?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Udyam Registration application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with Udyam Registration?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -492,8 +641,14 @@ const SERVICES = [
       "Form 16/26AS reconciliation included"
     ],
     faqs: [
-      { q: "ITR filing deadline kya hai?", a: "Aam taur par 31 July (non-audit cases), lekin govt notification ke hisaab se badal sakti hai — hum update karte rahenge." },
-      { q: "Late filing par kya penalty hai?", a: "Income Tax Act ke hisaab se late fee lagti hai; jitni jaldi file karein utna better." }
+      { q: "What is ITR (Income Tax Return)?", a: "Individual or business annual income tax return filing, which is required for income proof and loan/ visa applications." },
+      { q: "Who needs ITR (Income Tax Return)?", a: "Business owners, proprietors, and entities who need to meet statutory or regulatory requirements to legally operate, expand, or avail government benefits." },
+      { q: "What documents are required for ITR (Income Tax Return)?", a: "The key documents typically required are: PAN, Aadhaar, Form 16/income proof, Bank statements, Investment proofs. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for ITR (Income Tax Return)?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does ITR (Income Tax Return) take to process?", a: "The typical processing time is 3-7 working days (for filing). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in ITR (Income Tax Return)?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my ITR (Income Tax Return) application is rejected or delayed?", a: "Rejections typically occur due to mismatched business details, incomplete KYC, or missing supporting documents. These can be corrected and the application resubmitted." },
+      { q: "How does Aarambh India help with ITR (Income Tax Return)?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -512,7 +667,14 @@ const SERVICES = [
       "Linking confirmation SMS"
     ],
     faqs: [
-      { q: "Kyu zaroori hai yeh?", a: "Digital DL verification aur duplicate license fraud rokne ke liye." }
+      { q: "What is DL Aadhaar Link?", a: "Linking Driving License with Aadhaar, so that KYC is verified and records remain seamless." },
+      { q: "Who needs DL Aadhaar Link?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for DL Aadhaar Link?", a: "The key documents typically required are: DL number, Aadhaar number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for DL Aadhaar Link?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does DL Aadhaar Link take to process?", a: "The typical processing time is 3-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in DL Aadhaar Link?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my DL Aadhaar Link application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with DL Aadhaar Link?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -529,7 +691,14 @@ const SERVICES = [
       "Status tracking support"
     ],
     faqs: [
-      { q: "Kitne din lagte hain?", a: "Typically 15–20 working days, RTO processing ke hisaab se." }
+      { q: "What is DL Address Change?", a: "Getting the new address updated in the Driving License when you shift." },
+      { q: "Who needs DL Address Change?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for DL Address Change?", a: "The key documents typically required are: Old DL, New address proof, Aadhaar. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for DL Address Change?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does DL Address Change take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in DL Address Change?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my DL Address Change application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with DL Address Change?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -547,7 +716,14 @@ const SERVICES = [
       "RTO follow-up hum karte hain"
     ],
     faqs: [
-      { q: "Kya FIR zaroori hai license khone par?", a: "Kuch states mein required hota hai; hum aapko state-specific requirement bata denge." }
+      { q: "What is Duplicate Driving License?", a: "To get a duplicate copy of DL issued in case of loss, theft or damage." },
+      { q: "Who needs Duplicate Driving License?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Duplicate Driving License?", a: "The key documents typically required are: FIR/lost declaration, Aadhaar, Old DL number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Duplicate Driving License?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Duplicate Driving License take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Duplicate Driving License?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Duplicate Driving License application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Duplicate Driving License?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -565,7 +741,14 @@ const SERVICES = [
       "Approved LL digitally turant mil jaata hai"
     ],
     faqs: [
-      { q: "Minimum age kya hai?", a: "Gearless two-wheeler ke liye 16 saal (parent consent ke saath), baaki vehicles ke liye 18 saal." }
+      { q: "What is Learners License?", a: "For new drivers, get a Learner's License (LL), which is the first step before a permanent DL." },
+      { q: "Who needs Learners License?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Learners License?", a: "The key documents typically required are: Aadhaar, Age proof, Address proof, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Learners License?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Learners License take to process?", a: "The typical processing time is 3-7 working days (after testing). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Learners License?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Learners License application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Learners License?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -583,7 +766,14 @@ const SERVICES = [
       "Approved DL card home delivery"
     ],
     faqs: [
-      { q: "LL ke kitne din baad permanent DL apply kar sakte hain?", a: "Minimum 30 din baad, LL ki validity ke andar (typically 6 mahine)." }
+      { q: "What is Permanent DL?", a: "After getting Learner's License, get Permanent Driving License (DL) by passing the driving test." },
+      { q: "Who needs Permanent DL?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Permanent DL?", a: "The key documents typically required are: Learner's License, Aadhaar, Address proof, Driving test clearance. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Permanent DL?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Permanent DL take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Permanent DL?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Permanent DL application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Permanent DL?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -600,8 +790,14 @@ const SERVICES = [
       "Travel se pehle timely delivery"
     ],
     faqs: [
-      { q: "IDP kitne din chalta hai?", a: "Aam taur par issue date se 1 saal tak valid." },
-      { q: "Existing DL zaroori hai kya?", a: "Haan, valid Indian driving license hona mandatory hai." }
+      { q: "What is International Driving License Permit (IDP)?", a: "To drive abroad, get an International Driving Permit, which is valid along with the existing Indian DL." },
+      { q: "Who needs International Driving License Permit (IDP)?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for International Driving License Permit (IDP)?", a: "The key documents typically required are: Valid Indian DL, Passport, Visa/ticket copy, Photos. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for International Driving License Permit (IDP)?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does International Driving License Permit (IDP) take to process?", a: "The typical processing time is 5-10 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in International Driving License Permit (IDP)?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my International Driving License Permit (IDP) application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with International Driving License Permit (IDP)?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -618,7 +814,14 @@ const SERVICES = [
       "Confirmation status share kiya jaata hai"
     ],
     faqs: [
-      { q: "Yeh mandatory hai kya?", a: "Digital RC verification ko strengthen karne ke liye recommended hai." }
+      { q: "What is RC Aadhaar Link?", a: "Linking Vehicle Registration Certificate (RC) with Aadhaar, for records verification." },
+      { q: "Who needs RC Aadhaar Link?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for RC Aadhaar Link?", a: "The key documents typically required are: RC number, Aadhaar number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for RC Aadhaar Link?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does RC Aadhaar Link take to process?", a: "The typical processing time is 3-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in RC Aadhaar Link?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my RC Aadhaar Link application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with RC Aadhaar Link?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -636,7 +839,14 @@ const SERVICES = [
       "Old vs new vehicles dono ke liye eligible"
     ],
     faqs: [
-      { q: "HSRP kyu mandatory hai?", a: "Vehicle theft rokne aur uniform identification ke liye govt ne mandatory kiya hai." }
+      { q: "What is HSRP?", a: "Getting a High Security Registration Plate installed, which has now been made mandatory for old vehicles." },
+      { q: "Who needs HSRP?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for HSRP?", a: "The key documents typically required are: RC copy, Aadhaar, Vehicle chassis/engine number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for HSRP?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does HSRP take to process?", a: "The typical processing time is 7-15 working days (including fitment appointment). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in HSRP?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my HSRP application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with HSRP?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -654,7 +864,14 @@ const SERVICES = [
       "Fast issuance"
     ],
     faqs: [
-      { q: "Yeh alag se lagana zaroori hai?", a: "Haan, HSRP ke saath color-coded fuel sticker bhi mandatory hai." }
+      { q: "What is Color Coded Sticker?", a: "Affixing colour-coded stickers according to the fuel type of the vehicle (petrol/CNG - blue, diesel - orange), which is necessary for compliance." },
+      { q: "Who needs Color Coded Sticker?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Color Coded Sticker?", a: "The key documents typically required are: RC copy, Vehicle details. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Color Coded Sticker?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Color Coded Sticker take to process?", a: "The typical processing time is 5-10 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Color Coded Sticker?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Color Coded Sticker application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Color Coded Sticker?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -671,7 +888,14 @@ const SERVICES = [
       "Payment confirmation receipt"
     ],
     faqs: [
-      { q: "Sabhi challans online pay ho sakte hain?", a: "Zyadatar ho jaate hain; kuch court-referred cases mein physical hearing zaroori ho sakti hai — hum guide karenge." }
+      { q: "What is Vehicle Challan Payment?", a: "Check traffic challans and make online payment to avoid penalties/court cases." },
+      { q: "Who needs Vehicle Challan Payment?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Vehicle Challan Payment?", a: "The key documents typically required are: Vehicle number or challan number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Vehicle Challan Payment?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Vehicle Challan Payment take to process?", a: "The typical processing time is Turant. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Vehicle Challan Payment?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Vehicle Challan Payment application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Vehicle Challan Payment?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -688,7 +912,14 @@ const SERVICES = [
       "Payment receipt aur record"
     ],
     faqs: [
-      { q: "Tax na bharne par kya hota hai?", a: "Penalty aur vehicle-related services (RC transfer, fitness, etc.) mein rukavat aa sakti hai." }
+      { q: "What is Vehicle Tax?", a: "Road tax payment or renewal, which is mandatory as per RTO records." },
+      { q: "Who needs Vehicle Tax?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Vehicle Tax?", a: "The key documents typically required are: RC copy, Vehicle details, Previous tax receipt (for renewal). Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Vehicle Tax?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Vehicle Tax take to process?", a: "The typical processing time is 5-10 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Vehicle Tax?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the Current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Vehicle Tax application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Vehicle Tax?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -706,7 +937,14 @@ const SERVICES = [
       "Same-day processing"
     ],
     faqs: [
-      { q: "KYV pending kyu hota hai?", a: "Vehicle registration details FASTag issuer ke records se match na hone par." }
+      { q: "What is Fastag KYV?", a: "Get the Know Your Vehicle (KYV) of FASTag updated, so that the tag is active and toll payments remain smooth." },
+      { q: "Who needs Fastag KYV?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for Fastag KYV?", a: "The key documents typically required are: FASTag ID, RC copy, Aadhaar/PAN. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Fastag KYV?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Fastag KYV take to process?", a: "The typical processing time is 3-5 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Fastag KYV?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Fastag KYV application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with Fastag KYV?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -724,7 +962,14 @@ const SERVICES = [
       "Fast activation support"
     ],
     faqs: [
-      { q: "Yeh pass kaunse vehicles ke liye hai?", a: "Private, non-commercial vehicles (car/jeep/van) ke liye applicable, government scheme ke rules ke hisaab se." }
+      { q: "What is FASTag One Year Pass?", a: "Activate unlimited toll pass for one year (under the new annual pass scheme), so that frequent recharges can be avoided." },
+      { q: "Who needs FASTag One Year Pass?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for FASTag One Year Pass?", a: "The key documents typically required are: FASTag ID, RC copy, Vehicle details. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for FASTag One Year Pass?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does FASTag One Year Pass take to process?", a: "The typical processing time is 3-5 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in FASTag One Year Pass?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my FASTag One Year Pass application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with FASTag One Year Pass?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -744,8 +989,14 @@ const SERVICES = [
       "Police verification process guidance"
     ],
     faqs: [
-      { q: "Normal vs Tatkal mein kya farak hai?", a: "Tatkal mein passport jaldi milta hai (typically 1–3 din processing), lekin extra govt fee lagti hai." },
-      { q: "Documents kya chahiye?", a: "Address proof, DOB proof, aur Aadhaar — hum poori list share karte hain application se pehle." }
+      { q: "What is New Passport?", a: "First time getting a passport made, which is required for international travel, visa and ID proof." },
+      { q: "Who needs a new passport?", a: "Indian citizens who are planning domestic or international travel and require valid travel documentation." },
+      { q: "What documents are required for New Passport?", a: "The key documents typically required are: Aadhaar, Address proof, Date of birth proof, Photos. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for New Passport?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does New Passport take to process?", a: "The typical processing time is 15-30 working days (including police verification). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in New Passport?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my New Passport application is rejected or delayed?", a: "Applications may be delayed or rejected due to incomplete address proof, police verification issues, or document mismatches. These can typically be resolved with correct supporting evidence." },
+      { q: "How does Aarambh India help with New Passport?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -762,7 +1013,14 @@ const SERVICES = [
       "Tatkal renewal option available"
     ],
     faqs: [
-      { q: "Kitne pehle renewal karwana chahiye?", a: "Expiry se 6–12 mahine pehle apply karna best rehta hai, especially agar travel plan ho." }
+      { q: "What is Passport Renewal?", a: "To renew the passport which is about to expire or has already expired." },
+      { q: "Who needs Passport Renewal?", a: "Indian citizens who are planning domestic or international travel and require valid travel documentation." },
+      { q: "What documents are required for Passport Renewal?", a: "The key documents typically required are: Old passport, Aadhaar, Address proof, Photos. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Passport Renewal?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Passport Renewal take to process?", a: "The typical processing time is 15-30 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Passport Renewal?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Passport Renewal application is rejected or delayed?", a: "Applications may be delayed or rejected due to incomplete address proof, police verification issues, or document mismatches. These can typically be resolved with correct supporting evidence." },
+      { q: "How does Aarambh India help with Passport Renewal?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -780,7 +1038,14 @@ const SERVICES = [
       "Frequent international travellers ke liye ideal"
     ],
     faqs: [
-      { q: "Yeh kis ke liye useful hai?", a: "Frequent flyers jo baar-baar international travel karte hain, unke liye immigration process fast ho jaata hai." }
+      { q: "What is FTI-TTP Registration?", a: "Registering with the Fast Track Immigration - Trusted Traveller Programme, which speeds up immigration clearance at airports." },
+      { q: "Who needs FTI-TTP Registration?", a: "Indian citizens who are planning domestic or international travel and require valid travel documentation." },
+      { q: "What documents are required for FTI-TTP Registration?", a: "The key documents typically required are: Passport, Aadhaar, Biometric enrolment. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for FTI-TTP Registration?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does FTI-TTP Registration take to process?", a: "The typical processing time is 10-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in FTI-TTP Registration?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my FTI-TTP Registration application is rejected or delayed?", a: "Applications may be delayed or rejected due to incomplete address proof, police verification issues, or document mismatches. These can typically be resolved with correct supporting evidence." },
+      { q: "How does Aarambh India help with FTI-TTP Registration?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -799,8 +1064,14 @@ const SERVICES = [
       "Government co-contribution eligibility check"
     ],
     faqs: [
-      { q: "Age eligibility kya hai?", a: "18 se 40 saal ke beech koi bhi bank account holder enroll kar sakta hai." },
-      { q: "Pension kab se milna shuru hoti hai?", a: "60 saal ki age poori hone ke baad, guaranteed monthly pension." }
+      { q: "What is Atal Pension Yojana?", a: "A government-backed pension scheme for people in the 18-40 age group, which provides a fixed monthly pension after 60 years." },
+      { q: "Who needs Atal Pension Yojana?", a: "Individuals, typically within the scheme's specified age bracket, who want affordable government-backed insurance or pension coverage." },
+      { q: "What documents are required for Atal Pension Yojana?", a: "The key documents typically required are: Aadhaar, Bank account, Age proof. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Atal Pension Yojana?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Atal Pension Yojana take to process?", a: "The typical processing time is 7-10 working days (through bank enrollment). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Atal Pension Yojana?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Atal Pension Yojana application is rejected or delayed?", a: "Enrollment may fail due to incorrect bank details or KYC mismatch. This can be corrected and the enrollment reattempted through the linked bank." },
+      { q: "How does Aarambh India help with Atal Pension Yojana?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -817,8 +1088,14 @@ const SERVICES = [
       "Nominee details filing support"
     ],
     faqs: [
-      { q: "Age eligibility kya hai?", a: "18 se 50 saal, bank account ke saath enroll kar sakte hain." },
-      { q: "Claim process kaisa hai?", a: "Nominee ko bank branch mein required documents ke saath claim file karna hota hai; hum guide kar sakte hain." }
+      { q: "What is PMJJBY?", a: "Pradhan Mantri Jeevan Jyoti Bima Yojana - A low-premium life insurance cover of one year, in which the nominee gets a fixed amount on death." },
+      { q: "Who needs PMJJBY?", a: "Individuals, typically within the scheme's specified age bracket, who want affordable government-backed insurance or pension coverage." },
+      { q: "What documents are required for PMJJBY?", a: "The key documents typically required are: Aadhaar, Bank account (for auto-debit). Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for PMJJBY?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does PMJJBY take to process?", a: "The typical processing time is 3-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in PMJJBY?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my PMJJBY application is rejected or delayed?", a: "Enrollment may fail due to incorrect bank details or KYC mismatch. This can be corrected and the enrollment reattempted through the linked bank." },
+      { q: "How does Aarambh India help with PMJJBY?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -835,7 +1112,14 @@ const SERVICES = [
       "Nominee details filing support"
     ],
     faqs: [
-      { q: "PMJJBY aur PMSBY mein kya farak hai?", a: "PMJJBY life insurance hai (kisi bhi reason se death), PMSBY accidental insurance hai (accident se hone wali death/disability)." }
+      { q: "What is PMSBY?", a: "Pradhan Mantri Suraksha Bima Yojana - low-premium insurance scheme for accidental death/disability." },
+      { q: "Who needs PMSBY?", a: "Individuals, typically within the scheme's specified age bracket, who want affordable government-backed insurance or pension coverage." },
+      { q: "What documents are required for PMSBY?", a: "The key documents typically required are: Aadhaar, Bank account (for auto-debit). Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for PMSBY?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does PMSBY take to process?", a: "The typical processing time is 3-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in PMSBY?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my PMSBY application is rejected or delayed?", a: "Enrollment may fail due to incorrect bank details or KYC mismatch. This can be corrected and the enrollment reattempted through the linked bank." },
+      { q: "How does Aarambh India help with PMSBY?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -855,8 +1139,14 @@ const SERVICES = [
       "Instant UAN-based card generation"
     ],
     faqs: [
-      { q: "Kaun eligible hai?", a: "16–59 age ke unorganised sector workers (daily wage, gig workers, etc.)." },
-      { q: "Card se kya benefit milta hai?", a: "Accident insurance cover aur future government welfare schemes ka access." }
+      { q: "What is e-Shram Card?", a: "Registration in the national database for unorganized sector workers, which provides benefits of social security schemes." },
+      { q: "Who needs e-Shram Card?", a: "Workers, job seekers, and employees who need this registration for social security benefits, provident fund access, or employment scheme participation." },
+      { q: "What documents are required for e-Shram Card?", a: "The key documents typically required are: Aadhaar, Bank account, Mobile number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for e-Shram Card?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does e-Shram Card take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in e-Shram Card?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my e-Shram Card application is rejected or delayed?", a: "Registration issues usually arise from Aadhaar-mobile mismatch or incomplete KYC, and can be resolved by updating the relevant linked details." },
+      { q: "How does Aarambh India help with e-Shram Card?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -873,7 +1163,14 @@ const SERVICES = [
       "Withdrawal/transfer ke liye pre-requisite complete"
     ],
     faqs: [
-      { q: "UAN activate na ho to kya problem hai?", a: "PF balance check, online claim aur transfer jaisi services access nahi ho paatin." }
+      { q: "What is UAN Activation?", a: "To activate Universal Account Number (UAN) of EPFO, so that PF balance check and withdrawal can be done online." },
+      { q: "Who needs UAN Activation?", a: "Workers, job seekers, and employees who need this registration for social security benefits, provident fund access, or employment scheme participation." },
+      { q: "What documents are required for UAN Activation?", a: "The key documents typically required are: UAN number, Aadhaar, Registered mobile number. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for UAN Activation?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does UAN Activation take to process?", a: "The typical processing time is 1-2 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in UAN Activation?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my UAN Activation application is rejected or delayed?", a: "Registration issues usually arise from Aadhaar-mobile mismatch or incomplete KYC, and can be resolved by updating the relevant linked details." },
+      { q: "How does Aarambh India help with UAN Activation?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -891,7 +1188,14 @@ const SERVICES = [
       "Status tracking support"
     ],
     faqs: [
-      { q: "Eligibility kya hai?", a: "21–24 age group, non-working, non-studying full-time — exact criteria scheme guidelines ke hisaab se." }
+      { q: "What is PM Internship Registration?", a: "Registration on the portal under PM Internship Scheme, through which youth get the opportunity to do internship in top companies." },
+      { q: "Who needs PM Internship Registration?", a: "Workers, job seekers, and employees who need this registration for social security benefits, provident fund access, or employment scheme participation." },
+      { q: "What documents are required for PM Internship Registration?", a: "The key documents typically required are: Aadhaar, Educational certificates, Bank account. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for PM Internship Registration?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does PM Internship Registration take to process?", a: "The typical processing time is 5-7 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in PM Internship Registration?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my PM Internship Registration application is rejected or delayed?", a: "Registration issues usually arise from Aadhaar-mobile mismatch or incomplete KYC, and can be resolved by updating the relevant linked details." },
+      { q: "How does Aarambh India help with PM Internship Registration?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -910,7 +1214,14 @@ const SERVICES = [
       "Booking confirmation instantly share"
     ],
     faqs: [
-      { q: "Advance booking kitne din pehle karni chahiye?", a: "Peak season (Shravan, festivals) mein kam se kam 2–3 hafte pehle recommend karte hain." }
+      { q: "What is Kashi Vishwanath Darshan Booking?", a: "Book VIP/Sugaam darshan slot in advance at Kashi Vishwanath temple in Varanasi to avoid long queues." },
+      { q: "Who needs Kashi Vishwanath Darshan Booking?", a: "Devotees and pilgrims who wish to visit the temple and prefer a confirmed, queue-free time slot instead of a walk-in visit." },
+      { q: "What documents are required for Kashi Vishwanath Darshan Booking?", a: "The key documents typically required are: Aadhaar/ID proof, Visit date preference. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Kashi Vishwanath Darshan Booking?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Kashi Vishwanath Darshan Booking take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Kashi Vishwanath Darshan Booking?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Kashi Vishwanath Darshan Booking application is rejected or delayed?", a: "Slot bookings may fail during high-demand periods (festivals) due to limited availability. In such cases, alternate dates or time slots are suggested." },
+      { q: "How does Aarambh India help with Kashi Vishwanath Darshan Booking?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -927,7 +1238,14 @@ const SERVICES = [
       "Booking confirmation share instantly"
     ],
     faqs: [
-      { q: "Bhasma Aarti ke liye kitne pehle book karein?", a: "Bhasma Aarti demand zyada hone se, hum recommend karte hain minimum 1 mahina pehle." }
+      { q: "What is Mahakaleshwar Darshan Booking?", a: "To book a Shighra darshan or Bhasma Aarti slot at Mahakaleshwar Jyotirlinga in Ujjain." },
+      { q: "Who needs Mahakaleshwar Darshan Booking?", a: "Devotees and pilgrims who wish to visit the temple and prefer a confirmed, queue-free time slot instead of a walk-in visit." },
+      { q: "What documents are required for Mahakaleshwar Darshan Booking?", a: "The key documents typically required are: Aadhaar/ID proof, Visit date preference. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Mahakaleshwar Darshan Booking?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Mahakaleshwar Darshan Booking take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Mahakaleshwar Darshan Booking?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Mahakaleshwar Darshan Booking application is rejected or delayed?", a: "Slot bookings may fail during high-demand periods (festivals) due to limited availability. In such cases, alternate dates or time slots are suggested." },
+      { q: "How does Aarambh India help with Mahakaleshwar Darshan Booking?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -944,7 +1262,14 @@ const SERVICES = [
       "Confirmation instantly share"
     ],
     faqs: [
-      { q: "VIP pass ka charge alag hai kya?", a: "Haan, mandir trust ke rules ke hisaab se VIP pass ka alag donation/charge hota hai — hum details share karte hain." }
+      { q: "What is Sai Baba Darshan Booking?", a: "Advance booking of darshan slot or VIP pass in Shirdi Sai Baba temple." },
+      { q: "Who needs Sai Baba Darshan Booking?", a: "Devotees and pilgrims who wish to visit the temple and prefer a confirmed, queue-free time slot instead of a walk-in visit." },
+      { q: "What documents are required for Sai Baba Darshan Booking?", a: "The key documents typically required are: Aadhaar/ID proof, Visit date preference. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Sai Baba Darshan Booking?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Sai Baba Darshan Booking take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Sai Baba Darshan Booking?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Sai Baba Darshan Booking application is rejected or delayed?", a: "Slot bookings may fail during high-demand periods (festivals) due to limited availability. In such cases, alternate dates or time slots are suggested." },
+      { q: "How does Aarambh India help with Sai Baba Darshan Booking?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -961,7 +1286,14 @@ const SERVICES = [
       "Confirmation instantly share"
     ],
     faqs: [
-      { q: "Booking kitne pehle karni chahiye?", a: "Weekends aur festival season mein 2–3 hafte pehle recommend karte hain." }
+      { q: "What is Srisaila Devasthanam Darshan Booking?", a: "Darshan slot booking in Srisailam Mallikarjuna temple (Andhra Pradesh)." },
+      { q: "Who needs Srisaila Devasthanam Darshan Booking?", a: "Devotees and pilgrims who wish to visit the temple and prefer a confirmed, queue-free time slot instead of a walk-in visit." },
+      { q: "What documents are required for Srisaila Devasthanam Darshan Booking?", a: "The key documents typically required are: Aadhaar/ID proof, Visit date preference. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Srisaila Devasthanam Darshan Booking?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Srisaila Devasthanam Darshan Booking take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Srisaila Devasthanam Darshan Booking?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Srisaila Devasthanam Darshan Booking application is rejected or delayed?", a: "Slot bookings may fail during high-demand periods (festivals) due to limited availability. In such cases, alternate dates or time slots are suggested." },
+      { q: "How does Aarambh India help with Srisaila Devasthanam Darshan Booking?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -978,7 +1310,14 @@ const SERVICES = [
       "Confirmation instantly share"
     ],
     faqs: [
-      { q: "Ekadashi ke time booking mushkil hoti hai kya?", a: "Haan, bahut bheed hoti hai — hum jitni jaldi ho sake advance booking recommend karte hain." }
+      { q: "What is Vitthal Rukmini Darshan Booking?", a: "Advance booking of darshan slot in Vitthal Rukmini temple of Pandharpur." },
+      { q: "Who needs Vitthal Rukmini Darshan Booking?", a: "Devotees and pilgrims who wish to visit the temple and prefer a confirmed, queue-free time slot instead of a walk-in visit." },
+      { q: "What documents are required for Vitthal Rukmini Darshan Booking?", a: "The key documents typically required are: Aadhaar/ID proof, Visit date preference. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Vitthal Rukmini Darshan Booking?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Vitthal Rukmini Darshan Booking take to process?", a: "The typical processing time is 1-3 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Vitthal Rukmini Darshan Booking?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Vitthal Rukmini Darshan Booking application is rejected or delayed?", a: "Slot bookings may fail during high-demand periods (festivals) due to limited availability. In such cases, alternate dates or time slots are suggested." },
+      { q: "How does Aarambh India help with Vitthal Rukmini Darshan Booking?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 
@@ -998,7 +1337,14 @@ const SERVICES = [
       "ABHA card download support"
     ],
     faqs: [
-      { q: "ABHA ID kis kaam aati hai?", a: "Aapke health records ek digital ID se link hote hain, jise hospitals easily access kar paate hain (aapki permission se)." }
+      { q: "What is ABHA Service?", a: "Creating an Ayushman Bharat Health Account (ABHA), which links digital health records into one place." },
+      { q: "Who needs ABHA Service?", a: "Eligible individuals and families seeking healthcare benefits or welfare identification under government health schemes." },
+      { q: "What documents are required for ABHA Service?", a: "The key documents typically required are: Aadhaar, Mobile number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for ABHA Service?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does ABHA Service take to process?", a: "The typical processing time is usually 1-2 days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in ABHA Service?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my ABHA Service application is rejected or delayed?", a: "Applications may require additional verification if family or income details do not match existing records; these can be corrected and resubmitted." },
+      { q: "How does Aarambh India help with ABHA Service?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -1016,8 +1362,14 @@ const SERVICES = [
       "Family member addition support"
     ],
     faqs: [
-      { q: "Eligibility kaise check hoti hai?", a: "SECC 2011 database ke basis par; hum aapka Aadhaar/ration card number se eligibility check kar dete hain." },
-      { q: "Cover kitna milta hai?", a: "Prati parivaar per year ₹5 lakh tak ka cashless treatment cover." }
+      { q: "What is Ayushman Service?", a: "Making Ayushman Bharat (PM-JAY) card, through which eligible families get free treatment up to Rs 5 lakh." },
+      { q: "Who needs Ayushman Service?", a: "Eligible individuals and families seeking healthcare benefits or welfare identification under government health schemes." },
+      { q: "What documents are required for Ayushman Service?", a: "The key documents typically required are: Aadhaar, Ration card/family ID, Income proof (if required). Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for Ayushman Service?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does Ayushman Service take to process?", a: "The typical processing time is 7-15 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in Ayushman Service?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my Ayushman Service application is rejected or delayed?", a: "Applications may require additional verification if family or income details do not match existing records; these can be corrected and resubmitted." },
+      { q: "How does Aarambh India help with Ayushman Service?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
   {
@@ -1034,8 +1386,14 @@ const SERVICES = [
       "Govt scheme aur reservation eligibility"
     ],
     faqs: [
-      { q: "UDID card se kya benefit milta hai?", a: "Disability certificate as proof, govt job reservation, scholarship, aur travel concessions ke liye." },
-      { q: "Medical board verification zaroori hai kya?", a: "Haan, disability certify karne ke liye government medical board assessment hota hai." }
+      { q: "What is UDID Service?", a: "Making a Unique Disability ID card for Divyang (Persons with Disabilities), which is necessary for government benefits." },
+      { q: "Who needs UDID Service?", a: "Eligible individuals and families seeking healthcare benefits or welfare identification under government health schemes." },
+      { q: "What documents are required for UDID Service?", a: "The key documents typically required are: Aadhaar, Disability certificate, Photo. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for UDID Service?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does UDID Service take to process?", a: "The typical processing time is 15-21 working days. This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in UDID Service?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my UDID Service application is rejected or delayed?", a: "Applications may require additional verification if family or income details do not match existing records; these can be corrected and resubmitted." },
+      { q: "How does Aarambh India help with UDID Service?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
     ]
   },
 ];
