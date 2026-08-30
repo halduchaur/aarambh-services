@@ -4,7 +4,7 @@ const ServiceCard = function ({ service, setSelectedService }) {
     return (
         <div className="services_service-card" onClick={() => setSelectedService(service)} >
             <div className="services_card-media" style={{
-                backgroundImage:`url(${service.image})`
+                backgroundImage: `url(${service.image})`
             }}>
                 {service.tag && (
                     <span className={`services_card-tag ${service.tag === "New"
