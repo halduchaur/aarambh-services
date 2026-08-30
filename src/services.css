@@ -343,10 +343,19 @@ transform:translateY(-8px);
 }
 .services_card-media {
   height: 118px;
+
   background: linear-gradient(135deg, var(--navy) 0%, #1A3963 100%);
+
+  background-size: 120px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   position: relative;
 }
 .services_card-media svg { width: 44px; height: 44px; color: var(--gold-light); }

@@ -1,16 +1,5 @@
-/* ==========================================================================
-   AARAMBH — Services Data
-   --------------------------------------------------------------------------
-   Edit this file to add / remove / update services. Every card on the
-   services page is generated from this array, so you don't need to touch
-   the HTML to change content.
-
-   IMPORTANT — before going live, replace:
-   1) WHATSAPP_NUMBER below with your real WhatsApp Business number
-      (with country code, no + or spaces, e.g. "919876543210")
-   ========================================================================== */
-
 const WHATSAPP_NUMBER = "919999999999"; // TODO: replace with real number
+import aarambhLogo from "./assets/images/aarambh_logo.jpeg";
 
 /* Categories shown as filter chips, in display order */
 const SERVICE_CATEGORIES = [
@@ -41,6 +30,7 @@ const SERVICES = [
   {
     id: "aadhaar-address-update",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Aadhaar Address Update",
     category: "identity",
     tag: "Popular",
@@ -66,6 +56,7 @@ const SERVICES = [
   {
     id: "aadhaar-npci-link",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Aadhaar NPCI Link",
     category: "identity",
     price: "₹99 onwards",
@@ -90,6 +81,7 @@ const SERVICES = [
   {
     id: "aadhaar-pan-link",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Aadhaar–PAN Link",
     category: "identity",
     tag: "Popular",
@@ -115,6 +107,7 @@ const SERVICES = [
   {
     id: "aadhaar-pvc-card",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Aadhaar PVC Card",
     category: "identity",
     tag: "Fast",
@@ -140,6 +133,7 @@ const SERVICES = [
   {
     id: "new-pan-card",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "New PAN Card",
     category: "identity",
     tag: "Popular",
@@ -165,6 +159,7 @@ const SERVICES = [
   {
     id: "pan-card-correction",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "PAN Card Correction",
     category: "identity",
     price: "₹199 onwards",
@@ -189,6 +184,7 @@ const SERVICES = [
   {
     id: "reprint-pan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Reprint PAN",
     category: "identity",
     price: "₹99 onwards",
@@ -213,6 +209,7 @@ const SERVICES = [
   {
     id: "new-voter-card",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "New Voter Card",
     category: "identity",
     price: "₹149 onwards",
@@ -237,6 +234,7 @@ const SERVICES = [
   {
     id: "voter-card-correction",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Voter Card Correction",
     category: "identity",
     price: "₹149 onwards",
@@ -261,6 +259,7 @@ const SERVICES = [
   {
     id: "apaar-id",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Apaar ID",
     category: "identity",
     tag: "New",
@@ -288,6 +287,7 @@ const SERVICES = [
   {
     id: "caste-certificate-haryana",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Caste Certificate – Haryana",
     category: "certificates",
     price: "₹299 onwards",
@@ -312,6 +312,7 @@ const SERVICES = [
   {
     id: "caste-certificate-maharashtra",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Caste Certificate – Maharashtra",
     category: "certificates",
     price: "₹299 onwards",
@@ -336,6 +337,7 @@ const SERVICES = [
   {
     id: "domicile-certificate-maharashtra",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Domicile Certificate – Maharashtra",
     category: "certificates",
     price: "₹249 onwards",
@@ -360,6 +362,7 @@ const SERVICES = [
   {
     id: "income-certificate-haryana",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Income Certificate – Haryana",
     category: "certificates",
     price: "₹249 onwards",
@@ -384,6 +387,7 @@ const SERVICES = [
   {
     id: "income-certificate-maharashtra",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Income Certificate – Maharashtra",
     category: "certificates",
     price: "₹249 onwards",
@@ -408,6 +412,7 @@ const SERVICES = [
   {
     id: "senior-citizen-card-ap",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Senior Citizen Card – Andhra Pradesh",
     category: "certificates",
     price: "₹199 onwards",
@@ -432,6 +437,7 @@ const SERVICES = [
   {
     id: "senior-citizen-card-assam",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Senior Citizen Card – Assam",
     category: "certificates",
     price: "₹199 onwards",
@@ -456,6 +462,7 @@ const SERVICES = [
   {
     id: "senior-citizen-card-karnataka",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Senior Citizen Card – Karnataka",
     category: "certificates",
     price: "₹199 onwards",
@@ -480,6 +487,7 @@ const SERVICES = [
   {
     id: "senior-citizen-card-maharashtra",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Senior Citizen Card – Maharashtra",
     category: "certificates",
     price: "₹199 onwards",
@@ -506,6 +514,7 @@ const SERVICES = [
   {
     id: "fssai-new-license",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "FSSAI New Food License",
     category: "business",
     tag: "Popular",
@@ -531,6 +540,7 @@ const SERVICES = [
   {
     id: "fssai-renewal",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "FSSAI Food License Renewal",
     category: "business",
     price: "₹999 onwards",
@@ -555,6 +565,7 @@ const SERVICES = [
   {
     id: "gstin-verification",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "GSTIN Verification",
     category: "business",
     price: "₹99 onwards",
@@ -579,6 +590,7 @@ const SERVICES = [
   {
     id: "gst-registration",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "GST Registration",
     category: "business",
     tag: "Popular",
@@ -604,6 +616,7 @@ const SERVICES = [
   {
     id: "udyam-registration",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Udyam Registration",
     category: "business",
     tag: "Popular",
@@ -629,6 +642,7 @@ const SERVICES = [
   {
     id: "itr-filing",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "ITR Filing",
     category: "business",
     tag: "Popular",
@@ -656,6 +670,7 @@ const SERVICES = [
   {
     id: "dl-aadhaar-link",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "DL Aadhaar Link",
     category: "transport",
     price: "₹99 onwards",
@@ -680,6 +695,7 @@ const SERVICES = [
   {
     id: "dl-address-change",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "DL Address Change",
     category: "transport",
     price: "₹299 onwards",
@@ -704,6 +720,7 @@ const SERVICES = [
   {
     id: "duplicate-dl",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Duplicate Driving License",
     category: "transport",
     tag: "Fast",
@@ -729,6 +746,7 @@ const SERVICES = [
   {
     id: "learners-license",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Learners License",
     category: "transport",
     tag: "Popular",
@@ -754,6 +772,7 @@ const SERVICES = [
   {
     id: "permanent-dl",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Permanent DL",
     category: "transport",
     tag: "Popular",
@@ -779,6 +798,7 @@ const SERVICES = [
   {
     id: "idp",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "International Driving License Permit (IDP)",
     category: "travel",
     price: "₹1,499 onwards",
@@ -803,6 +823,7 @@ const SERVICES = [
   {
     id: "rc-aadhaar-link",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "RC Aadhaar Link",
     category: "transport",
     price: "₹99 onwards",
@@ -827,6 +848,7 @@ const SERVICES = [
   {
     id: "hsrp",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "HSRP",
     category: "transport",
     tag: "Fast",
@@ -852,6 +874,7 @@ const SERVICES = [
   {
     id: "color-code-sticker",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Color Code Sticker",
     category: "transport",
     tag: "Fast",
@@ -877,6 +900,7 @@ const SERVICES = [
   {
     id: "vehicle-challan-payment",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Vehicle Challan Payment",
     category: "transport",
     price: "₹49 onwards service charge",
@@ -901,6 +925,7 @@ const SERVICES = [
   {
     id: "vehicle-tax",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Vehicle Tax",
     category: "transport",
     price: "₹99 onwards service charge",
@@ -925,6 +950,7 @@ const SERVICES = [
   {
     id: "fastag-kyv",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Fastag KYV",
     category: "transport",
     tag: "Fast",
@@ -950,6 +976,7 @@ const SERVICES = [
   {
     id: "fastag-annual-pass",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "FASTag One Year Pass",
     category: "transport",
     tag: "New",
@@ -977,6 +1004,7 @@ const SERVICES = [
   {
     id: "new-passport",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "New Passport",
     category: "travel",
     tag: "Popular",
@@ -1002,6 +1030,7 @@ const SERVICES = [
   {
     id: "passport-renewal",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Passport Renewal",
     category: "travel",
     price: "₹699 onwards service charge",
@@ -1026,6 +1055,7 @@ const SERVICES = [
   {
     id: "fti-ttp",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "FTI-TTP Registration",
     category: "travel",
     tag: "New",
@@ -1053,6 +1083,7 @@ const SERVICES = [
   {
     id: "atal-pension-yojana",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Atal Pension Yojana",
     category: "insurance",
     price: "₹99 onwards enrollment assistance",
@@ -1077,6 +1108,7 @@ const SERVICES = [
   {
     id: "pmjjby",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "PMJJBY",
     category: "insurance",
     price: "₹49 onwards enrollment assistance",
@@ -1101,6 +1133,7 @@ const SERVICES = [
   {
     id: "pmsby",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "PMSBY",
     category: "insurance",
     price: "₹49 onwards enrollment assistance",
@@ -1127,6 +1160,7 @@ const SERVICES = [
   {
     id: "e-shram-card",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "e-Shram Card",
     category: "employment",
     tag: "Popular",
@@ -1152,6 +1186,7 @@ const SERVICES = [
   {
     id: "uan-activation",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "UAN Activation",
     category: "employment",
     price: "₹99 onwards",
@@ -1176,6 +1211,7 @@ const SERVICES = [
   {
     id: "pm-internship",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "PM Internship Registration",
     category: "employment",
     tag: "New",
@@ -1203,6 +1239,7 @@ const SERVICES = [
   {
     id: "kashi-vishwanath-darshan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Kashi Vishwanath Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -1227,6 +1264,7 @@ const SERVICES = [
   {
     id: "mahakaleshwar-darshan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Mahakaleshwar Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -1251,6 +1289,7 @@ const SERVICES = [
   {
     id: "sai-baba-darshan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Sai Baba Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -1275,6 +1314,7 @@ const SERVICES = [
   {
     id: "srisaila-darshan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Srisaila Devasthanam Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -1299,6 +1339,7 @@ const SERVICES = [
   {
     id: "vitthal-rukmini-darshan",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Vitthal Rukmini Darshan Booking",
     category: "darshan",
     price: "₹99 onwards service charge",
@@ -1325,6 +1366,7 @@ const SERVICES = [
   {
     id: "abha-service",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "ABHA Service",
     category: "health",
     tag: "New",
@@ -1350,6 +1392,7 @@ const SERVICES = [
   {
     id: "ayushman-service",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "Ayushman Service",
     category: "health",
     tag: "Popular",
@@ -1375,6 +1418,7 @@ const SERVICES = [
   {
     id: "udid-service",
     apply_form: "/aarambh-aadhaar-form.html",
+    image:aarambhLogo,
     name: "UDID Service",
     category: "health",
     price: "₹149 onwards",
