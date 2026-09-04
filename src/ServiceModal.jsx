@@ -1,4 +1,5 @@
 import ServiceIcon from './ServiceIcon';
+import { memo } from "react";
 
 const ServiceModal = ({ selectedService, setSelectedService }) => {
     return (
@@ -60,4 +61,4 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
     )
 }
 
-export default ServiceModal
+export default memo(ServiceModal)

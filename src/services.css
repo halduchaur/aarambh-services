@@ -427,6 +427,14 @@ transform:translateY(-8px);
   color: var(--ink-soft);
   display: none;
 }
+
+.services_card-image {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 15px;
+}
 .services_no-results.services_show { display: block; }
 .services_no-results svg { width: 46px; height: 46px; color: var(--line); margin-bottom: 14px; }
 .services_no-results h3 { font-family: 'Fraunces', serif; color: var(--navy); margin: 0 0 6px; }

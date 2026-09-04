@@ -1,11 +1,10 @@
 import ServiceIcon from './ServiceIcon';
+import { memo } from "react";
 
 const ServiceCard = function ({ service, setSelectedService }) {
     return (
         <div className="services_service-card" onClick={() => setSelectedService(service)} >
-            <div className="services_card-media" style={{
-                backgroundImage: `url(${service.image})`
-            }}>
+            {/* <div className="services_card-media" style={{backgroundImage: `url(${service.image})`}}>
                 {service.tag && (
                     <span className={`services_card-tag ${service.tag === "New"
                         ? "services_tag-new"
@@ -14,9 +13,10 @@ const ServiceCard = function ({ service, setSelectedService }) {
                     </span>
                 )}
                 <ServiceIcon category={service.category} />
-            </div>
+            </div> */}
 
             <div className="services_card-body">
+                <img src={service.image} alt={service.name} className="services_card-image"/>
                 <h3>{service.name}</h3>
                 <p>{service.summary}</p>
                 <div className="services_card-foot">
@@ -33,4 +33,4 @@ const ServiceCard = function ({ service, setSelectedService }) {
     )
 }
 
-export default ServiceCard;
+export default memo(ServiceCard);
