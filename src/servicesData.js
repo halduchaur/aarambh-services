@@ -14,6 +14,7 @@ const WHATSAPP_NUMBER = "919096759855"; // TODO: replace with real number
 
 import aadhar from "./assets/service_images/aadhar.png";
 import aadhar_pan from "./assets/service_images/aadhar_pan.jpg";
+import abha from "./assets/service_images/ABHA.jpg";
 import aadhar_pvc from "./assets/service_images/aadhar_pvc.jpg";
 import aayushman from "./assets/service_images/aayushman.jpg";
 import apaar from "./assets/service_images/apaar.jpg";
@@ -106,7 +107,7 @@ const SERVICES = [
   },
   {
     id: "aadhaar-npci-link",
-    image:aadhar_pan,
+    image:npci,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar NPCI Link",
     category: "identity",
@@ -133,7 +134,7 @@ const SERVICES = [
   },
   {
     id: "aadhaar-pan-link",
-    image:aadhar_pvc,
+    image:aadhar_pan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar–PAN Link",
     category: "identity",
@@ -161,7 +162,7 @@ const SERVICES = [
   },
   {
     id: "aadhaar-pvc-card",
-    image:aayushman,
+    image:aadhar_pvc,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Aadhaar PVC Card",
     category: "identity",
@@ -189,7 +190,7 @@ const SERVICES = [
   },
   {
     id: "new-pan-card",
-    image:apaar,
+    image:pan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "New PAN Card",
     category: "identity",
@@ -217,7 +218,7 @@ const SERVICES = [
   },
   {
     id: "pan-card-correction",
-    image:atalpension,
+    image:pan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "PAN Card Correction",
     category: "identity",
@@ -244,7 +245,7 @@ const SERVICES = [
   },
   {
     id: "reprint-pan",
-    image:caste,
+    image:pan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Reprint PAN",
     category: "identity",
@@ -271,7 +272,7 @@ const SERVICES = [
   },
   {
     id: "new-voter-card",
-    image:colour_sticker,
+    image:voter,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "New Voter Card",
     category: "identity",
@@ -298,7 +299,7 @@ const SERVICES = [
   },
   {
     id: "voter-card-correction",
-    image:dl,
+    image:voter,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Voter Card Correction",
     category: "identity",
@@ -325,7 +326,7 @@ const SERVICES = [
   },
   {
     id: "apaar-id",
-    image:dl_aadhar,
+    image:apaar,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Apaar ID",
     category: "identity",
@@ -355,7 +356,7 @@ const SERVICES = [
   // ---------------- CERTIFICATES (9) ----------------
   {
     id: "caste-certificate-haryana",
-    image:domicile,
+    image:caste,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Caste Certificate – Haryana",
     category: "certificates",
@@ -382,7 +383,7 @@ const SERVICES = [
   },
   {
     id: "caste-certificate-maharashtra",
-    image:eshram,
+    image:caste,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Caste Certificate – Maharashtra",
     category: "certificates",
@@ -409,7 +410,7 @@ const SERVICES = [
   },
   {
     id: "domicile-certificate-maharashtra",
-    image:fastag,
+    image:domicile,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Domicile Certificate – Maharashtra",
     category: "certificates",
@@ -436,7 +437,7 @@ const SERVICES = [
   },
   {
     id: "income-certificate-haryana",
-    image:fssai,
+    image:income,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Income Certificate – Haryana",
     category: "certificates",
@@ -463,7 +464,7 @@ const SERVICES = [
   },
   {
     id: "income-certificate-maharashtra",
-    image:ftittp,
+    image:income,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Income Certificate – Maharashtra",
     category: "certificates",
@@ -490,7 +491,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-ap",
-    image:gst_collections,
+    image:senior_citizen,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Andhra Pradesh",
     category: "certificates",
@@ -517,7 +518,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-assam",
-    image:hsrp,
+    image:senior_citizen,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Assam",
     category: "certificates",
@@ -544,7 +545,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-karnataka",
-    image:idp,
+    image:senior_citizen,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Karnataka",
     category: "certificates",
@@ -571,7 +572,7 @@ const SERVICES = [
   },
   {
     id: "senior-citizen-card-maharashtra",
-    image:income,
+    image:senior_citizen,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Senior Citizen Card – Maharashtra",
     category: "certificates",
@@ -600,7 +601,7 @@ const SERVICES = [
   // ---------------- BUSINESS COMPLIANCE (6) ----------------
   {
     id: "fssai-new-license",
-    image:itr_blog,
+    image:fssai,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "FSSAI New Food License",
     category: "business",
@@ -628,7 +629,7 @@ const SERVICES = [
   },
   {
     id: "fssai-renewal",
-    image:ll,
+    image:fssai,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "FSSAI Food License Renewal",
     category: "business",
@@ -655,7 +656,7 @@ const SERVICES = [
   },
   {
     id: "gstin-verification",
-    image:npci,
+    image:gst_collections,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "GSTIN Verification",
     category: "business",
@@ -682,7 +683,7 @@ const SERVICES = [
   },
   {
     id: "gst-registration",
-    image:pan,
+    image:gst_collections,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "GST Registration",
     category: "business",
@@ -710,7 +711,7 @@ const SERVICES = [
   },
   {
     id: "udyam-registration",
-    image:passport,
+    image:udyam,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Udyam Registration",
     category: "business",
@@ -738,7 +739,7 @@ const SERVICES = [
   },
   {
     id: "itr-filing",
-    image:pmintern,
+    image:itr_blog,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "ITR Filing",
     category: "business",
@@ -768,7 +769,7 @@ const SERVICES = [
   // ---------------- TRANSPORT & VEHICLE (12) ----------------
   {
     id: "dl-aadhaar-link",
-    image:pmjjby,
+    image:dl_aadhar,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "DL Aadhaar Link",
     category: "transport",
@@ -795,7 +796,7 @@ const SERVICES = [
   },
   {
     id: "dl-address-change",
-    image:pmsby,
+    image:dl,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "DL Address Change",
     category: "transport",
@@ -822,7 +823,7 @@ const SERVICES = [
   },
   {
     id: "duplicate-dl",
-    image:rc_aadhar,
+    image:dl,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Duplicate Driving License",
     category: "transport",
@@ -850,7 +851,7 @@ const SERVICES = [
   },
   {
     id: "learners-license",
-    image:senior_citizen,
+    image:ll,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Learners License",
     category: "transport",
@@ -878,7 +879,7 @@ const SERVICES = [
   },
   {
     id: "permanent-dl",
-    image:temple_darshan,
+    image:dl,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Permanent DL",
     category: "transport",
@@ -906,7 +907,7 @@ const SERVICES = [
   },
   {
     id: "idp",
-    image:uan,
+    image:idp,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "International Driving License Permit (IDP)",
     category: "travel",
@@ -933,7 +934,7 @@ const SERVICES = [
   },
   {
     id: "rc-aadhaar-link",
-    image:udid,
+    image:rc_aadhar,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "RC Aadhaar Link",
     category: "transport",
@@ -960,9 +961,9 @@ const SERVICES = [
   },
   {
     id: "hsrp",
-    image:udyam,
+    image:hsrp,
     apply_form: "/aarambh-aadhaar-form.html",
-    name: "HSRP",
+    name: "2 Wheeler HSRP",
     category: "transport",
     tag: "Fast",
     price: "₹649 onwards",
@@ -987,8 +988,36 @@ const SERVICES = [
     ]
   },
   {
+    id: "hsrp",
+    image:hsrp,
+    apply_form: "/aarambh-aadhaar-form.html",
+    name: "4 Wheeler HSRP",
+    category: "transport",
+    tag: "Fast",
+    price: "₹999 onwards",
+    summary: "Get Your High-Security Registration Plate (HSRP) — Mandatory compliance for eligible 2-wheelers and 4-wheelers.",
+    benefits: [
+      "Issues the High Security Registration Plate mandatory for both two- and four-wheelers.",
+      "Guidance on the applicable HSRP rules and deadlines for your state.",
+      "Assistance booking your fitment appointment at a convenient centre.",
+      "Careful, accurate application filing using your existing RC details.",
+      "Regular status updates from booking to plate fitment.",
+      "Support ensuring compliance to avoid fines for a missing or invalid HSRP."
+    ],
+    faqs: [
+      { q: "What is HSRP?", a: "Getting a High Security Registration Plate installed, which has now been made mandatory for old vehicles." },
+      { q: "Who needs HSRP?", a: "Vehicle owners and drivers who need to complete this requirement to remain compliant with Road Transport Office (RTO) and traffic regulations." },
+      { q: "What documents are required for HSRP?", a: "The key documents typically required are: RC copy, Aadhaar, Vehicle chassis/engine number. Original documents are usually not required upfront; Clear scanned or photographed copies are generally sufficient for application submission." },
+      { q: "What is the process for HSRP?", a: "The process involves submitting the required documents, filling out the relevant application form accurately, and tracking the application until it is approved or issued by the concerned department or portal." },
+      { q: "How long does HSRP take to process?", a: "The typical processing time is 7-15 working days (including fitment appointment). This can vary depending on document verification speed and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee." },
+      { q: "What are the charges involved in HSRP?", a: "There is an official government fee (where applicable) set by the concerned department, which is separate from the service facilitation charge. Since government fees are revised periodically, the current applicable amount is shared with the client before proceeding." },
+      { q: "What happens if my HSRP application is rejected or delayed?", a: "Common reasons for rejection include mismatched RC/DL details, unclear document scans, or unpaid dues. These issues can be resolved and the request resubmitted." },
+      { q: "How does Aarambh India help with HSRP?", a: "Aarambh India verifies that all documents are complete and correctly formatted, accurately fills and submits the application on the client's behalf, and provides regular status updates over WhatsApp until the process is completed - saving the client repeated visits to offices or portals." },
+    ]
+  },
+  {
     id: "color-code-sticker",
-    image:vehicle_challan,
+    image:colour_sticker,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Color Code Sticker",
     category: "transport",
@@ -1016,7 +1045,7 @@ const SERVICES = [
   },
   {
     id: "vehicle-challan-payment",
-    image:vehicle_tax,
+    image:vehicle_challan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Vehicle Challan Payment",
     category: "transport",
@@ -1043,7 +1072,7 @@ const SERVICES = [
   },
   {
     id: "vehicle-tax",
-    image:vitthal,
+    image:vehicle_tax,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Vehicle Tax",
     category: "transport",
@@ -1070,7 +1099,7 @@ const SERVICES = [
   },
   {
     id: "fastag-kyv",
-    image:voter,
+    image:fastag,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Fastag KYV",
     category: "transport",
@@ -1098,7 +1127,7 @@ const SERVICES = [
   },
   {
     id: "fastag-annual-pass",
-    image:voter,
+    image:fastag,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "FASTag One Year Pass",
     category: "transport",
@@ -1128,7 +1157,7 @@ const SERVICES = [
   // ---------------- TRAVEL & PASSPORT (4) ----------------
   {
     id: "new-passport",
-    image:voter,
+    image:passport,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "New Passport",
     category: "travel",
@@ -1156,7 +1185,7 @@ const SERVICES = [
   },
   {
     id: "passport-renewal",
-    image:voter,
+    image:passport,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Passport Renewal",
     category: "travel",
@@ -1183,7 +1212,7 @@ const SERVICES = [
   },
   {
     id: "fti-ttp",
-    image:voter,
+    image:ftittp,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "FTI-TTP Registration",
     category: "travel",
@@ -1213,7 +1242,7 @@ const SERVICES = [
   // ---------------- INSURANCE & PENSION (3) ----------------
   {
     id: "atal-pension-yojana",
-    image:voter,
+    image:atalpension,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Atal Pension Yojana",
     category: "insurance",
@@ -1240,7 +1269,7 @@ const SERVICES = [
   },
   {
     id: "pmjjby",
-    image:voter,
+    image:pmjjby,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "PMJJBY",
     category: "insurance",
@@ -1267,7 +1296,7 @@ const SERVICES = [
   },
   {
     id: "pmsby",
-    image:voter,
+    image:pmsby,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "PMSBY",
     category: "insurance",
@@ -1296,7 +1325,7 @@ const SERVICES = [
   // ---------------- EMPLOYMENT (3) ----------------
   {
     id: "e-shram-card",
-    image:voter,
+    image:eshram,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "e-Shram Card",
     category: "employment",
@@ -1324,7 +1353,7 @@ const SERVICES = [
   },
   {
     id: "uan-activation",
-    image:voter,
+    image:uan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "UAN Activation",
     category: "employment",
@@ -1351,7 +1380,7 @@ const SERVICES = [
   },
   {
     id: "pm-internship",
-    image:voter,
+    image:pmintern,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "PM Internship Registration",
     category: "employment",
@@ -1381,7 +1410,7 @@ const SERVICES = [
   // ---------------- TEMPLE DARSHAN BOOKING (5) ----------------
   {
     id: "kashi-vishwanath-darshan",
-    image:voter,
+    image:temple_darshan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Kashi Vishwanath Darshan Booking",
     category: "darshan",
@@ -1408,7 +1437,7 @@ const SERVICES = [
   },
   {
     id: "mahakaleshwar-darshan",
-    image:voter,
+    image:temple_darshan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Mahakaleshwar Darshan Booking",
     category: "darshan",
@@ -1435,7 +1464,7 @@ const SERVICES = [
   },
   {
     id: "sai-baba-darshan",
-    image:voter,
+    image:temple_darshan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Sai Baba Darshan Booking",
     category: "darshan",
@@ -1462,7 +1491,7 @@ const SERVICES = [
   },
   {
     id: "srisaila-darshan",
-    image:voter,
+    image:temple_darshan,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Srisaila Devasthanam Darshan Booking",
     category: "darshan",
@@ -1489,7 +1518,7 @@ const SERVICES = [
   },
   {
     id: "vitthal-rukmini-darshan",
-    image:voter,
+    image:vitthal,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Vitthal Rukmini Darshan Booking",
     category: "darshan",
@@ -1518,7 +1547,7 @@ const SERVICES = [
   // ---------------- HEALTH & WELFARE (3) ----------------
   {
     id: "abha-service",
-    image:voter,
+    image:abha,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "ABHA Service",
     category: "health",
@@ -1546,7 +1575,7 @@ const SERVICES = [
   },
   {
     id: "ayushman-service",
-    image:voter,
+    image:aayushman,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "Ayushman Service",
     category: "health",
@@ -1574,7 +1603,7 @@ const SERVICES = [
   },
   {
     id: "udid-service",
-    image:voter,
+    image:udid,
     apply_form: "/aarambh-aadhaar-form.html",
     name: "UDID Service",
     category: "health",

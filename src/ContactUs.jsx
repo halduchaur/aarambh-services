@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import { memo } from "react";
 import logo from "./assets/images/aarambh_logo.jpeg";
 
-const ContactUs = function() {
+const ContactUs = function () {
     return (
         <>
             <section className="contact_us-hero contact_us_heading">
@@ -22,7 +22,10 @@ const ContactUs = function() {
                         </div>
                         <div>
                             <div className="contact_us-label">CALL US</div>
-                            <div className="contact_us-value">+91 90967 59855</div>
+                            <div className="contact_us-value">+{import.meta.env.VITE_WHATSAPP_NUMBER.replace(
+                                /^(\d{2})(\d{5})(\d{5})$/,
+                                "$1 $2 $3"
+                            )}</div>
                             <div className="contact_us-sub">Available 24×7</div>
                         </div>
                     </div>
@@ -32,13 +35,16 @@ const ContactUs = function() {
                         </div>
                         <div>
                             <div className="contact_us-label">EMAIL US</div>
-                            <div className="contact_us-value">aarambhindia89@gmail.com</div>
+                            <div className="contact_us-value">{import.meta.env.VITE_AARAMBH_EMAIL}</div>
                             <div className="contact_us-sub">We reply the same day</div>
                         </div>
                     </div>
                     <div className="contact_us-c-card">
                         <div className="contact_us-c-icon">
-                            <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">
+                                <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+                            </a>
                         </div>
                         <div>
                             <div className="contact_us-label">WHATSAPP</div>
@@ -107,14 +113,17 @@ const ContactUs = function() {
                                 <div className="contact_us-oi"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></svg></div>
                                 <div>
                                     <div className="contact_us-label">EMAIL</div>
-                                    <div className="contact_us-val">aarambhindia89@gmail.com</div>
+                                    <div className="contact_us-val">{import.meta.env.VITE_AARAMBH_EMAIL}</div>
                                 </div>
                             </div>
                             <div className="contact_us-office-row">
                                 <div className="contact_us-oi"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg></div>
                                 <div>
                                     <div className="contact_us-label">PHONE</div>
-                                    <div className="contact_us-val">+91 90967 59855</div>
+                                    <div className="contact_us-val">+{import.meta.env.VITE_WHATSAPP_NUMBER.replace(
+                                        /^(\d{2})(\d{5})(\d{5})$/,
+                                        "$1 $2 $3"
+                                    )}</div>
                                 </div>
                             </div>
                         </div>

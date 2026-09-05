@@ -31,9 +31,12 @@ export default function Footer() {
                     <div className="foot-col">
                         <h5>Contact</h5>
                         <ul>
-                            <li>aarambhindia89@gmail.com</li>
-                            <li>+91 8796589855</li>
-                            <li>Jalna, Maharashtra, India</li>
+                            <li>{import.meta.env.VITE_AARAMBH_EMAIL}</li>
+                            <li>+{import.meta.env.VITE_WHATSAPP_NUMBER.replace(
+                                /^(\d{2})(\d{5})(\d{5})$/,
+                                "$1 $2 $3"
+                            )}</li>
+                            <li>{import.meta.env.VITE_AARAMBH_ADDRESS}</li>
                         </ul>
                     </div>
                 </div>
