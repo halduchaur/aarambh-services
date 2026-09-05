@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout";
 import Services from "./Services";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
+import Privacy from "./Privacy";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Route>
         </Routes>
       </BrowserRouter>

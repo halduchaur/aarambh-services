@@ -23,7 +23,7 @@ export default function Footer() {
                     <div className="foot-col">
                         <h5>Legal</h5>
                         <ul>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><NavLink to="/privacy" end className={({ isActive }) => isActive ? "active" : ""}>Privacy Policy</NavLink></li>
                             <li><a href="#">Terms of Service</a></li>
                             <li><a href="#">Refund Policy</a></li>
                         </ul>
