@@ -24,8 +24,9 @@ export default function Footer() {
                         <h5>Legal</h5>
                         <ul>
                             <li><NavLink to="/privacy" end className={({ isActive }) => isActive ? "active" : ""}>Privacy Policy</NavLink></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Refund Policy</a></li>
+                            <li><NavLink to="/terms" end className={({ isActive }) => isActive ? "active" : ""}>Terms of Service</NavLink></li>
+                            <li><NavLink to="/refund" end className={({ isActive }) => isActive ? "active" : ""}>Refund Policy</NavLink></li>
+                            <li><NavLink to="/delivery" end className={({ isActive }) => isActive ? "active" : ""}>Delivery Policy</NavLink></li>
                         </ul>
                     </div>
                     <div className="foot-col">

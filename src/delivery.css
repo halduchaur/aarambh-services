@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600&display=swap');
+
+  :root{
+    --navy: #12294a;
+    --navy-deep: #0c1d38;
+    --gold: #c1852c;
+    --gold-soft: #e8b467;
+    --cream: #faf7f1;
+    --cream-2: #f2ecdf;
+    --ink: #22314a;
+    --ink-soft: #56637a;
+    --rule: #dcd3bd;
+    --amber: #9a6a1f;
+    --amber-bg: #f6ecd8;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Work Sans', 'Noto Sans Devanagari', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .delivery-wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Hero ---------- */
+  header.delivery-hero{
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: #f4ede0;
+    padding: 56px 0 0;
+    overflow: hidden;
+  }
+
+  .delivery-hero-inner{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .delivery-hero img.delivery-logo{
+    width: 148px;
+    height: 148px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+    margin-bottom: 6px;
+  }
+
+  .delivery-hero .delivery-word{
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #fbf3e2;
+    margin: 4px 0 2px;
+  }
+  .delivery-hero .delivery-word .delivery-india{ color: var(--gold-soft); }
+
+  .delivery-hero .delivery-tagline{
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.95rem;
+    color: #cbb98a;
+    margin: 0 0 22px;
+    letter-spacing: 0.02em;
+  }
+
+  .delivery-hero h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.9rem;
+    margin: 0 0 10px;
+    color: #ffffff;
+  }
+
+  .delivery-hero p.delivery-lede{
+    max-width: 480px;
+    color: #c7d0de;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  /* Digital-delivery strip */
+  .delivery-assurance{
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+  .delivery-assurance-inner{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .delivery-assurance .delivery-label{
+    font-weight: 600;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+  .delivery-assurance .delivery-detail{
+    font-size: 0.88rem;
+    color: #3a2a0f;
+    opacity: 0.85;
+  }
+
+  /* ---------- Body ---------- */
+  main{ padding: 52px 0 40px; }
+
+  .delivery-effective-note{
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  div.delivery-clause{ margin: 0 0 44px; }
+
+  .delivery-clause-head{
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .delivery-clause-num{
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 26px;
+  }
+
+  .delivery-clause h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.32rem;
+    margin: 0;
+    color: var(--navy);
+  }
+
+  .delivery-clause .delivery-body-text{ margin-left: 40px; }
+
+  .delivery-clause p{ margin: 0 0 12px; color: var(--ink); }
+
+  .delivery-clause ul{ margin: 0 0 12px; padding-left: 20px; }
+  .delivery-clause li{ margin-bottom: 8px; }
+  .delivery-clause li strong{ color: var(--navy); }
+
+  /* Delivery channel rows — two-channel comparison, not generic icon cards */
+  .delivery-channels{
+    margin-left: 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .delivery-channel-row{
+    display: flex;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .delivery-channel-row:last-child{ border-bottom: none; }
+  .delivery-channel-row .delivery-via{
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    min-width: 150px;
+    flex-shrink: 0;
+  }
+  .delivery-channel-row p{ margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+  .delivery-turnaround{
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--amber-bg);
+    color: var(--amber);
+    border-left: 3px solid var(--gold);
+    padding: 8px 14px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .delivery-callout{
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 16px;
+    margin: 4px 0 14px;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+
+  hr.delivery-section-rule{
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 44px 0;
+  }
+
+  @media (max-width: 560px){
+    .delivery-hero .delivery-word{ font-size: 1.9rem; }
+    .delivery-hero h1{ font-size: 1.5rem; }
+    .delivery-clause .delivery-body-text, .delivery-channels{ margin-left: 0; margin-top: 8px; }
+    .delivery-clause-head{ flex-direction: column; gap: 2px; }
+    .delivery-hero img.logo{ width: 116px; height: 116px; }
+    .delivery-channel-row{ flex-direction: column; gap: 4px; }
+    .delivery-channel-row .delivery-via{ min-width: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }

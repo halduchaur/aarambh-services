@@ -5,6 +5,9 @@ import Services from "./Services";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import Privacy from "./Privacy";
+import TermsOfService from "./TermsOfService";
+import RefundPolicy from "./RefundPolicy";
+import DeliveryPolicy from "./DeliveryPolicy";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/refund" element={<RefundPolicy />} />
+            <Route path="/delivery" element={<DeliveryPolicy />} />
           </Route>
         </Routes>
       </BrowserRouter>
