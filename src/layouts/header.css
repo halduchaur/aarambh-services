@@ -190,6 +190,36 @@ nav.links a.partner {
   margin-top: 4px;
 }
 
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 15px;
+}
+
+.language-switch button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 2px;
+    color: #10233F;
+}
+
+.language-switch button:hover {
+    color: #C79A44;
+}
+
+.language-switch .language-active {
+    color: #C79A44;
+    font-weight: 700;
+}
+
+.language-switch span {
+    color: #999;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

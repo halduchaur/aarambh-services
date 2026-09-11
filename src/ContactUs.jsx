@@ -1,9 +1,13 @@
 import "./contact_us.css";
 import { Route, Link } from "react-router-dom";
 import { memo } from "react";
-import logo from "./assets/images/aarambh_logo.jpeg";
+import emailjs from "@emailjs/browser";
 
 const ContactUs = function () {
+
+    const sendEmail = function() {
+        console.log("sdfsdfsdfs");
+    }
     return (
         <>
             <section className="contact_us-hero contact_us_heading">
@@ -63,34 +67,34 @@ const ContactUs = function () {
                         <div className="contact_us-form-grid">
                             <div className="contact_us-field">
                                 <label>Full Name <span className="contact_us-req">*</span></label>
-                                <input type="text" placeholder="Enter your full name" />
+                                <input type="text" name="user_name" placeholder="Enter your full name" />
                             </div>
                             <div className="contact_us-field">
                                 <label>Phone Number <span className="contact_us-req">*</span></label>
-                                <input type="tel" placeholder="+91 XXXXX XXXXX" />
+                                <input type="tel" name="user_mobile" placeholder="+91 XXXXX XXXXX" />
                             </div>
                             <div className="contact_us-field">
                                 <label>Email Address <span className="contact_us-req">*</span></label>
-                                <input type="email" placeholder="you@example.com" />
+                                <input type="email" name="user_email" placeholder="you@example.com" />
                             </div>
                             <div className="contact_us-field">
                                 <label>What do you need help with?</label>
-                                <select>
+                                <select name="service_name">
                                     <option>Select an option</option>
-                                    <option>Government Scheme</option>
-                                    <option>Essential Service / Document</option>
-                                    <option>Education Form</option>
-                                    <option>Job Application</option>
-                                    <option>Career Guidance</option>
-                                    <option>Something else</option>
+                                    <option value="Government Scheme">Government Scheme</option>
+                                    <option value="Essential Service / Document">Essential Service / Document</option>
+                                    <option value="Education Form">Education Form</option>
+                                    <option value="Job Application">Job Application</option>
+                                    <option value="Career Guidance">Career Guidance</option>
+                                    <option value="Something else">Something else</option>
                                 </select>
                             </div>
                             <div className="contact_us-field full">
                                 <label>Your Message <span className="contact_us-req">*</span></label>
-                                <textarea placeholder="Describe what you need help with..."></textarea>
+                                <textarea name="message" placeholder="Describe what you need help with..."></textarea>
                             </div>
                         </div>
-                        <button className="contact_us-submit-btn" type="button">
+                        <button className="contact_us-submit-btn" type="button" onClick={sendEmail}>
                             Send Message
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
                         </button>

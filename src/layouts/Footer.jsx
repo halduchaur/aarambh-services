@@ -1,36 +1,40 @@
 import "./footer.css";
 import { NavLink, Link } from "react-router-dom";
+import { LanguageContext } from "../LanguageContext";
+import { useContext } from "react";
 
 export default function Footer() {
+    const { language, setLanguage, translations } = useContext(LanguageContext);
+
     return (<>
         <footer>
             <div className="wrap">
                 <div className="foot-grid">
                     <div className="foot-brand">
-                        <div className="name">Aarambh</div>
+                        <div className="name">{translations.header.aarambh}</div>
                         <p className="hindi">सही जानकारी | सही दिशा | बेहतर भविष्य</p>
-                        <p>India's guidance platform for government schemes, documentation, education and career direction.</p>
+                        <p>{translations.footer.desc}</p>
                     </div>
                     <div className="foot-col">
-                        <h5>Quick Links</h5>
+                        <h5>{translations.footer.quick_links}</h5>
                         <ul>
-                            <li><NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink></li>
-                            <li><NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>Services</NavLink></li>
-                            <li><NavLink to="/about-us" className={({ isActive }) => isActive ? "active" : ""}>About Us</NavLink></li>
-                            <li><NavLink to="/contact-us" className={({ isActive }) => isActive ? "active" : ""}>Contact Us</NavLink></li>
+                            <li><NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>{translations.header.nav_home}</NavLink></li>
+                            <li><NavLink to="/services" className={({ isActive }) => isActive ? "active" : ""}>{translations.header.nav_services}</NavLink></li>
+                            <li><NavLink to="/about-us" className={({ isActive }) => isActive ? "active" : ""}>{translations.header.nav_about}</NavLink></li>
+                            <li><NavLink to="/contact-us" className={({ isActive }) => isActive ? "active" : ""}>{translations.header.nav_contact}</NavLink></li>
                         </ul>
                     </div>
                     <div className="foot-col">
-                        <h5>Legal</h5>
+                        <h5>{translations.footer.legal}</h5>
                         <ul>
-                            <li><NavLink to="/privacy" end className={({ isActive }) => isActive ? "active" : ""}>Privacy Policy</NavLink></li>
-                            <li><NavLink to="/terms" end className={({ isActive }) => isActive ? "active" : ""}>Terms of Service</NavLink></li>
-                            <li><NavLink to="/refund" end className={({ isActive }) => isActive ? "active" : ""}>Refund Policy</NavLink></li>
-                            <li><NavLink to="/delivery" end className={({ isActive }) => isActive ? "active" : ""}>Delivery Policy</NavLink></li>
+                            <li><NavLink to="/privacy" end className={({ isActive }) => isActive ? "active" : ""}>{translations.footer.privacy}</NavLink></li>
+                            <li><NavLink to="/terms" end className={({ isActive }) => isActive ? "active" : ""}>{translations.footer.terms}</NavLink></li>
+                            <li><NavLink to="/refund" end className={({ isActive }) => isActive ? "active" : ""}>{translations.footer.refund}</NavLink></li>
+                            <li><NavLink to="/delivery" end className={({ isActive }) => isActive ? "active" : ""}>{translations.footer.delivery}</NavLink></li>
                         </ul>
                     </div>
                     <div className="foot-col">
-                        <h5>Contact</h5>
+                        <h5>{translations.footer.contact}</h5>
                         <ul>
                             <li>{import.meta.env.VITE_AARAMBH_EMAIL}</li>
                             <li>+{import.meta.env.VITE_WHATSAPP_NUMBER.replace(
@@ -42,7 +46,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="foot-bottom social-links">
-                    <span>© 2026 Aarambh. All rights reserved.</span>
+                    <span>{translations.footer.copyright}</span>
                     <a
                         href={import.meta.env.VITE_INSTAGRAM_URL}
                         target="_blank"
@@ -54,7 +58,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="disclaimer-strip">
-                Disclaimer: Aarambh is an independent private guidance and documentation consultancy. We are not affiliated with any government body. Official services are available on respective government portals.
+                {translations.footer.disclaimer}
             </div>
             <a
                 href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE}`}

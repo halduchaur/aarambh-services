@@ -1,7 +1,10 @@
 import ServiceIcon from './ServiceIcon';
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { LanguageContext } from "./LanguageContext";
 
-const ServiceModal = ({ selectedService, setSelectedService }) => {
+const ServiceModal = ({ selectedService, language, setSelectedService }) => {
+    const { translations } = useContext(LanguageContext);
+
     return (
         <div
             className="services_modal-overlay"
@@ -22,15 +25,15 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
                 {/* SCROLLABLE CONTENT */}
                 <div className="services_modal-content">
 
-                    <h2>{selectedService.name}</h2>
+                    <h2>{selectedService.name?.[language]}</h2>
 
-                    <p>{selectedService.summary}</p>
+                    <p>{selectedService.summary?.[language]}</p>
 
-                    <h3>Benefits</h3>
+                    <h3>{translations.modal.benefits}</h3>
 
                     <ul className="benefits">
                         {
-                            selectedService.benefits.map((benefit, index) => (
+                            selectedService.benefits?.[language].map((benefit, index) => (
                                 <li key={index}>
                                     ✔ {benefit}
                                 </li>
@@ -38,10 +41,10 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
                         }
                     </ul>
 
-                    <h3>Frequently Asked Questions</h3>
+                    <h3>{translations.modal.faqs}</h3>
 
                     {
-                        selectedService.faqs.map((faq, index) => (
+                        selectedService.faqs?.[language].map((faq, index) => (
                             <details key={index}>
                                 <summary>{faq.q}</summary>
                                 <p>{faq.a}</p>
@@ -51,7 +54,6 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
 
                 </div>
 
-                {/* ALWAYS VISIBLE */}
                 <div className="services_action-buttons">
 
                     {
@@ -63,18 +65,18 @@ const ServiceModal = ({ selectedService, setSelectedService }) => {
                                     selectedService.apply_form
                                 }
                             >
-                                Apply via Form
+                                {translations.modal.apply_form}
                             </a>
                             : null
                     }
 
                     <a
                         className="services_view-btn"
-                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name}`}
+                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name?.[language]}`}
                         target="_blank"
                         rel="noreferrer"
                     >
-                        Apply on WhatsApp
+                        {translations.modal.apply_whatsapp}
                     </a>
 
                 </div>

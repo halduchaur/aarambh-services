@@ -1,6 +1,8 @@
 import logo from "./assets/logo.png";
 import "./home.css";
+import { useContext } from "react";
 import { Route, Link } from "react-router-dom";
+import { LanguageContext } from "./LanguageContext";
 import whatsappPreview from "./assets/images/whatsapp-preview.jpeg";
 import how_it_works1 from "./assets/images/how_it_works1.png";
 import how_it_works2 from "./assets/images/how_it_works2.png";
@@ -8,23 +10,25 @@ import how_it_works3 from "./assets/images/how_it_works3.png";
 
 
 export default function Home() {
+    const { language, setLanguage, translations } = useContext(LanguageContext);
+
     return (
         <>
             <section className="hero">
                 <div className="wrap">
                     <div className="hero-copy">
-                        <span className="eyebrow">🇮🇳 India's Trusted Guidance Platform</span>
-                        <h1>Every citizen's <span className="accent">Aarambh</span> — <br />to schemes, services &amp; a better future.</h1>
-                        <p className="sub">From government scheme enrolment to education forms, job applications to career direction — Aarambh gives you accurate information and expert hand-holding, end to end.</p>
+                        <span className="eyebrow">{translations.home.eyebrow}</span>
+                        <h1>{translations.home.hero_title_pre} <span className="accent">{translations.header.aarambh}</span> — <br />{translations.home.hero_title_post}</h1>
+                        <p className="sub">{translations.home.hero_sub}</p>
                         <div className="hero-ctas">
-                            <Link to="/services" className="btn btn-gold">Explore Services →</Link>
-                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">Talk to an Expert</a>
+                            <Link to="/services" className="btn btn-gold">{translations.home.cta_explore}</Link>
+                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">{translations.home.cta_talk_expert}</a>
                         </div>
                         <div className="stat-row">
-                            <div className="stat"><b>85K+</b><span>Citizens Guided</span></div>
-                            <div className="stat"><b>40+</b><span>Schemes &amp; Services</span></div>
-                            <div className="stat"><b>22</b><span>States Covered</span></div>
-                            <div className="stat"><b>4.8★</b><span>Average Rating</span></div>
+                            <div className="stat"><b>85K+</b><span>{translations.home.stat_1_label}</span></div>
+                            <div className="stat"><b>40+</b><span>{translations.home.stat_2_label}</span></div>
+                            <div className="stat"><b>22</b><span>{translations.home.stat_3_label}</span></div>
+                            <div className="stat"><b>4.8★</b><span>{translations.home.stat_4_label}</span></div>
                         </div>
                     </div>
 
@@ -44,30 +48,29 @@ export default function Home() {
                 <div className="wrap">
                     <div className="trust-item">
                         <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z" stroke="#0A2A5E" strokeWidth="1.6" /></svg></div>
-                        <div><h4>Accurate Information</h4><p>Guidance cross-checked against the latest official notifications.</p></div>
+                        <div><h4>{translations.home.trust_1_title}</h4><p>{translations.home.trust_1_desc}</p></div>
                     </div>
                     <div className="trust-item">
                         <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="#0A2A5E" strokeWidth="1.6" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="#0A2A5E" strokeWidth="1.6" /></svg></div>
-                        <div><h4>Expert Guidance</h4><p>Trained counsellors and documentation specialists at every step.</p></div>
+                        <div><h4>{translations.home.trust_2_title}</h4><p>{translations.home.trust_2_desc}</p></div>
                     </div>
                     <div className="trust-item">
                         <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#0A2A5E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
-                        <div><h4>Verified Process</h4><p>Every form and filing is reviewed twice before submission.</p></div>
+                        <div><h4>{translations.home.trust_3_title}</h4><p>{translations.home.trust_3_desc}</p></div>
                     </div>
                     <div className="trust-item">
                         <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9-9.5C1 7 3.5 3.5 7 4c2 .3 3.7 1.9 5 4 1.3-2.1 3-3.7 5-4 3.5-.5 6 3 4 7.5-2 5-9 9.5-9 9.5Z" stroke="#0A2A5E" strokeWidth="1.5" /></svg></div>
-                        <div><h4>Pan-India Reach</h4><p>Support across 22 states in Hindi, English and regional languages.</p></div>
+                        <div><h4>{translations.home.trust_4_title}</h4><p>{translations.home.trust_4_desc}</p></div>
                     </div>
                 </div>
             </div>
 
             <section className="how-it-works">
                 <div className="section-top">
-                    <span className="badge">SIMPLE PROCESS</span>
-                    <h2>How It Works</h2>
+                    <span className="badge">{translations.home.hiw_badge}</span>
+                    <h2>{translations.home.hiw_title}</h2>
                     <p>
-                        Apply for any government service from your home in just
-                        3 simple steps.
+                        {translations.home.hiw_sub}
                     </p>
                 </div>
 
@@ -82,12 +85,12 @@ export default function Home() {
                         <div className="step-content">
                             <div className="title-row">
                                 <span className="number how_works_blue">1</span>
-                                <h3>Browse Services</h3>
+                                <h3>{translations.home.step1_title}</h3>
                             </div>
 
                             <p>
-                                Pick from 55+ government services.<br />
-                                Select, pay later & proceed instantly.
+                                {translations.home.step1_desc_1}<br />
+                                {translations.home.step1_desc_2}
                             </p>
                         </div>
 
@@ -120,12 +123,12 @@ export default function Home() {
                         <div className="step-content">
                             <div className="title-row">
                                 <span className="number how_works_green">2</span>
-                                <h3>Chat on WhatsApp</h3>
+                                <h3>{translations.home.step2_title}</h3>
                             </div>
 
                             <p>
-                                Share documents securely on WhatsApp.<br />
-                                Our experts verify everything.
+                                {translations.home.step2_desc_1}<br />
+                                {translations.home.step2_desc_2}
                             </p>
                         </div>
 
@@ -158,13 +161,12 @@ export default function Home() {
                         <div className="step-content">
                             <div className="title-row">
                                 <span className="number how_works_purple">3</span>
-                                <h3>Get Delivered</h3>
+                                <h3>{translations.home.step3_title}</h3>
                             </div>
 
                             <p>
-                                Your verified document / service arrives
-                                at your doorstep.<br />
-                                Rate us!
+                                {translations.home.step3_desc_1}<br />
+                                {translations.home.step3_desc_2}
                             </p>
                         </div>
 
@@ -176,7 +178,7 @@ export default function Home() {
             <section className="trust-section">
                 <div className="section-title">
                     <span></span>
-                    <h4>WHY CITIZENS TRUST AARAMBH</h4>
+                    <h4>{translations.home.why_title}</h4>
                     <span></span>
                 </div>
                 <div className="trust-container">
@@ -184,10 +186,9 @@ export default function Home() {
                         <div className="icon blue">
                             <i className="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3>100% Secure Documentation</h3>
+                        <h3>{translations.home.why_1_title}</h3>
                         <p>
-                            Your personal documents are protected with bank-level
-                            SSL encryption and strict privacy standards.
+                            {translations.home.why_1_desc}
                         </p>
                     </div>
 
@@ -195,10 +196,9 @@ export default function Home() {
                         <div className="icon green">
                             <i className="fa-solid fa-user-check"></i>
                         </div>
-                        <h3>Verified Expert Team</h3>
+                        <h3>{translations.home.why_2_title}</h3>
                         <p>
-                            Every application is handled by experienced professionals
-                            to ensure fast and accurate processing.
+                            {translations.home.why_2_desc}
                         </p>
                     </div>
 
@@ -206,10 +206,9 @@ export default function Home() {
                         <div className="icon gold">
                             <i className="fa-solid fa-building-columns"></i>
                         </div>
-                        <h3>Government Portal Processing</h3>
+                        <h3>{translations.home.why_3_title}</h3>
                         <p>
-                            Applications are processed through official government
-                            portals with complete transparency.
+                            {translations.home.why_3_desc}
                         </p>
                     </div>
 
@@ -217,10 +216,9 @@ export default function Home() {
                         <div className="icon purple">
                             <i className="fa-solid fa-rotate"></i>
                         </div>
-                        <h3>Service First, Payment Later*</h3>
+                        <h3>{translations.home.why_4_title}</h3>
                         <p>
-                            Experience our trusted service first. Pay only after
-                            successful completion of eligible services.
+                            {translations.home.why_4_desc}
                         </p>
                     </div>
                 </div>
@@ -229,35 +227,35 @@ export default function Home() {
             <section style={{ background: "var(--cream)" }}>
                 <div className="wrap">
                     <div className="section-head">
-                        <span className="section-eyebrow">Real Stories</span>
-                        <h2>What people say after their Aarambh</h2>
+                        <span className="section-eyebrow">{translations.home.testimonials_eyebrow}</span>
+                        <h2>{translations.home.testimonials_title}</h2>
                     </div>
                     <div className="testimonials-grid">
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>"I had no idea I was eligible for a state scholarship until Aarambh's counsellor walked me through it. The form was filed within a week."</p>
-                            <div className="tperson"><div className="avatar">S</div><div><div className="who">Sneha Kulkarni</div><div className="role">Student, Sholapur</div></div></div>
+                            <p>{translations.home.t1_text}</p>
+                            <div className="tperson"><div className="avatar">S</div><div><div className="who">{translations.home.t1_name}</div><div className="role">{translations.home.t1_role}</div></div></div>
                         </div>
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>"Udyam registration for my workshop was done fully online. No agents, no running around offices — just clear steps."</p>
-                            <div className="tperson"><div className="avatar">R</div><div><div className="who">Ramesh Patil</div><div className="role">Small Business Owner</div></div></div>
+                            <p>{translations.home.t2_text}</p>
+                            <div className="tperson"><div className="avatar">R</div><div><div className="who">{translations.home.t2_name}</div><div className="role">{translations.home.t2_role}</div></div></div>
                         </div>
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>"The career guidance session actually helped my son choose a stream he was genuinely excited about — not just the popular one."</p>
-                            <div className="tperson"><div className="avatar">A</div><div><div className="who">Anita Deshmukh</div><div className="role">Parent</div></div></div>
+                            <p>{translations.home.t3_text}</p>
+                            <div className="tperson"><div className="avatar">A</div><div><div className="who">{translations.home.t3_name}</div><div className="role">{translations.home.t3_role}</div></div></div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <div className="ctaband">
-                <h2>Ready to begin your Aarambh?</h2>
-                <p>Talk to a counsellor today — accurate information, the right direction, and a better future, one step closer.</p>
+                <h2>{translations.home.cta_band_title}</h2>
+                <p>{translations.home.cta_band_sub}</p>
                 <div className="hero-ctas" style={{ justifyContent: "center" }}>
-                    <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">Chat on WhatsApp</a>
-                    <Link to="/services" className="btn btn-outline-cream">Browse All Services →</Link>
+                    <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">{translations.home.cta_band_whatsapp}</a>
+                    <Link to="/services" className="btn btn-outline-cream">{translations.home.cta_band_browse}</Link>
                 </div>
             </div>
         </>
