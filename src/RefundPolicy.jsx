@@ -1,32 +1,35 @@
 import "./refund.css";
 import { Route, Link } from "react-router-dom";
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { LanguageContext } from "./LanguageContext";
 
 const RefundPolicy = function () {
+    const { language, setLanguage, translations } = useContext(LanguageContext);
+
     return (
         <>
             <div className="refund-assurance">
                 <div className="refund-assurance-inner">
-                    <span className="refund-label">Refund Guarantee</span>
-                    <span className="refund-detail">We treat your documentation as our own. If we fail to file your application due to a verified platform error on our part, we provide a full reversal of professional fees.</span>
+                    <span className="refund-label">{translations.refund.badge}</span>
+                    <span className="refund-detail">{translations.refund.badge_detail}</span>
                 </div>
             </div>
 
             <main>
                 <div className="refund-wrap">
 
-                    <p className="refund-effective-note">This policy applies to all documentation and filing services booked through Aarambh India.</p>
+                    <p className="refund-effective-note">{translations.refund.intro}</p>
 
                     <div className="refund-clause" id="overview">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">1</span>
-                            <h2>Policy Overview</h2>
+                            <h2>{translations.refund.c1_title}</h2>
                         </div>
                         <div className="refund-body-text">
-                            <p>Aarambh India is a private consultancy that simplifies complex government paperwork. Our fees consist of two distinct parts:</p>
+                            <p>{translations.refund.c1_intro}</p>
                             <ul>
-                                <li><strong>Government Fees</strong> — paid directly to the official state/central portals <span className="refund-tag refund-non-refundable">Non-Refundable</span></li>
-                                <li><strong>Professional Service Fees</strong> — charges for document audit, expert guidance, and filing assistance.</li>
+                                <li><strong>{translations.refund.c1_i1_b}</strong> {translations.refund.c1_i1} <span className="refund-tag refund-non-refundable">{translations.refund.c1_i1_tag}</span></li>
+                                <li><strong>{translations.refund.c1_i2_b}</strong> {translations.refund.c1_i2}</li>
                             </ul>
                         </div>
                     </div>
@@ -34,21 +37,21 @@ const RefundPolicy = function () {
                     <div className="refund-clause" id="full-refund">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">2</span>
-                            <h2>Eligibility for Full Refund</h2>
+                            <h2>{translations.refund.c2_title}</h2>
                         </div>
                         <div className="refund-body-text">
-                            <p>You are eligible for a 100% refund of the professional service fee under these conditions:</p>
+                            <p>{translations.refund.c2_intro}</p>
                             <div className="refund-scenario refund-full">
-                                <span className="refund-title">2-Hour Grace Period</span>
-                                <p>Cancellation within 120 minutes of payment, provided no document audit has started.</p>
+                                <span className="refund-title">{translations.refund.c2_s1_title}</span>
+                                <p>{translations.refund.c2_s1_desc}</p>
                             </div>
                             <div className="refund-scenario refund-full">
-                                <span className="refund-title">Duplicate Orders</span>
-                                <p>If you accidentally pay twice for the same service ID/transaction.</p>
+                                <span className="refund-title">{translations.refund.c2_s2_title}</span>
+                                <p>{translations.refund.c2_s2_desc}</p>
                             </div>
                             <div className="refund-scenario refund-full">
-                                <span className="refund-title">Execution Failure</span>
-                                <p>If our delivery desk is unable to initiate the filing process due to internal technical limitations.</p>
+                                <span className="refund-title">{translations.refund.c2_s3_title}</span>
+                                <p>{translations.refund.c2_s3_desc}</p>
                             </div>
                         </div>
                     </div>
@@ -56,17 +59,17 @@ const RefundPolicy = function () {
                     <div className="refund-clause" id="partial-refund">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">3</span>
-                            <h2>Partial Refund Scenarios</h2>
+                            <h2>{translations.refund.c3_title}</h2>
                         </div>
                         <div className="refund-body-text">
-                            <p>In cases where partial work has been performed, we offer filtered refundability:</p>
+                            <p>{translations.refund.c3_intro}</p>
                             <div className="refund-scenario refund-partial">
-                                <span className="refund-title">Post-Audit Cancellation</span>
-                                <p>If documents are audited but you cancel before portal submission, 50% of the service fee is refunded.</p>
+                                <span className="refund-title">{translations.refund.c3_s1_title}</span>
+                                <p>{translations.refund.c3_s1_desc}</p>
                             </div>
                             <div className="refund-scenario refund-partial">
-                                <span className="refund-title">Government Rejections</span>
-                                <p>If an application is rejected for a minor fixable error, we refile for free. If you choose not to refile, the service fee remains non-refundable as the work was completed.</p>
+                                <span className="refund-title">{translations.refund.c3_s2_title}</span>
+                                <p>{translations.refund.c3_s2_desc}</p>
                             </div>
                         </div>
                     </div>
@@ -74,25 +77,25 @@ const RefundPolicy = function () {
                     <div className="refund-clause" id="non-refundable">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">4</span>
-                            <h2>Strictly Non-Refundable Scenarios</h2>
+                            <h2>{translations.refund.c4_title}</h2>
                         </div>
                         <div className="refund-body-text">
-                            <p>We cannot offer any refunds in the following scenarios:</p>
+                            <p>{translations.refund.c4_intro}</p>
                             <div className="refund-scenario refund-none">
-                                <span className="refund-title">Portal Submission</span>
-                                <p>Once the "Successfully Filed" status is generated on the government portal.</p>
+                                <span className="refund-title">{translations.refund.c4_s1_title}</span>
+                                <p>{translations.refund.c4_s1_desc}</p>
                             </div>
                             <div className="refund-scenario refund-none">
-                                <span className="refund-title">Document Fraud</span>
-                                <p>If the government body identifies submitted documents as fake, forged, or altered.</p>
+                                <span className="refund-title">{translations.refund.c4_s2_title}</span>
+                                <p>{translations.refund.c4_s2_desc}</p>
                             </div>
                             <div className="refund-scenario refund-none">
-                                <span className="refund-title">User Inactivity</span>
-                                <p>Orders pending for 15+ days due to the user not providing requested documents.</p>
+                                <span className="refund-title">{translations.refund.c4_s3_title}</span>
+                                <p>{translations.refund.c4_s3_desc}</p>
                             </div>
                             <div className="refund-scenario refund-none">
-                                <span className="refund-title">Change of Mind</span>
-                                <p>Any request made after the document has been processed and delivered.</p>
+                                <span className="refund-title">{translations.refund.c4_s4_title}</span>
+                                <p>{translations.refund.c4_s4_desc}</p>
                             </div>
                         </div>
                     </div>
@@ -100,20 +103,20 @@ const RefundPolicy = function () {
                     <div className="refund-clause" id="timeline">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">5</span>
-                            <h2>Timeline &amp; Method</h2>
+                            <h2>{translations.refund.c5_title}</h2>
                         </div>
                         <div className="refund-timeline">
                             <div className="refund-step">
-                                <span className="refund-k">Verification Window</span>
-                                <p className="refund-v">Requests are reviewed within 48 business hours by our billing desk.</p>
+                                <span className="refund-k">{translations.refund.c5_i1_label}</span>
+                                <p className="refund-v">{translations.refund.c5_i1_value}</p>
                             </div>
                             <div className="refund-step">
-                                <span className="refund-k">Reversal Method</span>
-                                <p className="refund-v">Refunds are processed to the original payment mode (Bank/UPI/Card).</p>
+                                <span className="refund-k">{translations.refund.c5_i2_label}</span>
+                                <p className="refund-v">{translations.refund.c5_i2_value}</p>
                             </div>
                             <div className="refund-step">
-                                <span className="refund-k">Credit Completion</span>
-                                <p className="refund-v">Funds typically reflect in your account within 5-7 working days.</p>
+                                <span className="refund-k">{translations.refund.c5_i3_label}</span>
+                                <p className="refund-v">{translations.refund.c5_i3_value}</p>
                             </div>
                         </div>
                     </div>
@@ -121,14 +124,14 @@ const RefundPolicy = function () {
                     <div className="refund-clause" id="how-to-file">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">6</span>
-                            <h2>How to File a Request</h2>
+                            <h2>{translations.refund.c6_title}</h2>
                         </div>
                         <div className="refund-body-text">
-                            <p>To ensure a fast resolution, please follow this protocol:</p>
+                            <p>{translations.refund.c6_intro}</p>
                             <ol className="refund-filing-steps">
-                                <li>Note your Order ID from the confirmation WhatsApp/Email.</li>
-                                <li>Message our billing desk with the reason for the refund request.</li>
-                                <li>Attach the payment receipt or transaction ID for faster tracking.</li>
+                                <li>{translations.refund.c6_s1}</li>
+                                <li>{translations.refund.c6_s2}</li>
+                                <li>{translations.refund.c6_s3}</li>
                             </ol>
                         </div>
                     </div>

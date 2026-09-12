@@ -1,69 +1,72 @@
 import "./terms_of_service.css";
 import { Route, Link } from "react-router-dom";
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { LanguageContext } from "./LanguageContext";
 
 const TermsOfService = () => {
+    const { language, setLanguage, translations } = useContext(LanguageContext);
+
     return (
         <>
             <div className="terms-assurance terms_heading">
                 <div className="terms-assurance-inner">
-                    <span className="terms-label">A Legally Binding Agreement</span>
-                    <span className="terms-detail">By using Aarambh India, you agree to comply with these terms and conditions. If you do not agree, please do not use our services.</span>
+                    <span className="terms-label">{translations.terms.badge}</span>
+                    <span className="terms-detail">{translations.terms.badge_detail}</span>
                 </div>
             </div>
 
             <main>
                 <div className="terms-wrap terms_heading">
 
-                    <p className="terms-effective-note">These terms govern your use of all documentation and filing services offered through Aarambh India.</p>
+                    <p className="terms-effective-note">{translations.terms.intro}</p>
 
                     <div className="terms-clause" id="services-description">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">1</span>
-                            <h2>Services Description</h2>
+                            <h2>{translations.terms.c1_title}</h2>
                         </div>
                         <div className="terms-body-text">
-                            <p>Aarambh India provides documentation assistance and filing services for various government applications in India. We act as a private consultancy and are <strong>NOT</strong> affiliated with any government body. Our services include form filing, document verification, and official portal submission.</p>
+                            <p>{translations.terms.c1_body_pre} <strong>{translations.terms.c1_body_not}</strong> {translations.terms.c1_body_post}</p>
                         </div>
                     </div>
 
                     <div className="terms-clause" id="user-representations">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">2</span>
-                            <h2>User Representations</h2>
+                            <h2>{translations.terms.c2_title}</h2>
                         </div>
                         <div className="terms-body-text">
-                            <p>By using our services, you represent and warrant that:</p>
+                            <p>{translations.terms.c2_intro}</p>
                             <ul>
-                                <li>You are at least 18 years of age and have the legal capacity to enter into this agreement.</li>
-                                <li><strong>Accuracy:</strong> All information and documents you provide are accurate, current, and true.</li>
-                                <li><strong>Legality:</strong> The documents you provide are genuine and issued by the respective authorities.</li>
+                                <li>{translations.terms.c2_i1}</li>
+                                <li><strong>{translations.terms.c2_i2_b}</strong> {translations.terms.c2_i2}</li>
+                                <li><strong>{translations.terms.c2_i3_b}</strong> {translations.terms.c2_i3}</li>
                             </ul>
-                            <div className="terms-callout">You agree that Aarambh India shall not be liable for any rejections or legal issues arising from the submission of false or inaccurate information by you.</div>
+                            <div className="terms-callout">{translations.terms.c2_callout}</div>
                         </div>
                     </div>
 
                     <div className="terms-clause" id="payment-fees">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">3</span>
-                            <h2>Payment &amp; Fees</h2>
+                            <h2>{translations.terms.c3_title}</h2>
                         </div>
                         <div className="terms-body-text">
-                            <p>All fees for our services are listed on the respective service pages. Payment must be made in full before we initiate the filing process. Fees include our professional service charges and, where applicable, the government portal fees.</p>
+                            <p>{translations.terms.c3_body}</p>
                         </div>
                     </div>
 
                     <div className="terms-clause" id="limitation-of-liability">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">4</span>
-                            <h2>Limitation of Liability</h2>
+                            <h2>{translations.terms.c4_title}</h2>
                         </div>
                         <div className="terms-body-text">
-                            <p>Aarambh India acts as an intermediary for official document filing. While we take every precaution to ensure success, we are <span className="terms-not-liable">NOT liable</span> for:</p>
+                            <p>{translations.terms.c4_intro_pre} <span className="terms-not-liable">{translations.terms.c4_intro_em}</span> {translations.terms.c4_intro_post}</p>
                             <ul>
-                                <li>Delays caused by government portal maintenance or server outages.</li>
-                                <li>Final decisions made by government authorities regarding your application.</li>
-                                <li>Technical glitches on the respective official government websites.</li>
+                                <li>{translations.terms.c4_i1}</li>
+                                <li>{translations.terms.c4_i2}</li>
+                                <li>{translations.terms.c4_i3}</li>
                             </ul>
                         </div>
                     </div>
@@ -71,26 +74,26 @@ const TermsOfService = () => {
                     <div className="terms-clause" id="intellectual-property">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">5</span>
-                            <h2>Intellectual Property</h2>
+                            <h2>{translations.terms.c5_title}</h2>
                         </div>
                         <div className="terms-body-text">
-                            <p>The content on Aarambh India, including the logo, design, text, and graphics, is the intellectual property of Aarambh India and is protected by copyright laws. No part of this portal may be reproduced without our written permission.</p>
+                            <p>{translations.terms.c5_body}</p>
                         </div>
                     </div>
 
                     <div className="terms-clause" id="governing-law">
                         <div className="terms-clause-head">
                             <span className="terms-clause-num">6</span>
-                            <h2>Governing Law</h2>
+                            <h2>{translations.terms.c6_title}</h2>
                         </div>
                         <div className="terms-jurisdiction">
                             <div className="terms-item">
-                                <span className="terms-k">Applicable Law</span>
-                                <p className="terms-v">Republic of India</p>
+                                <span className="terms-k">{translations.terms.c6_law_label}</span>
+                                <p className="terms-v">{translations.terms.c6_law_value}</p>
                             </div>
                             <div className="terms-item">
-                                <span className="terms-k">Jurisdiction</span>
-                                <p className="terms-v">Courts of Pune, Maharashtra</p>
+                                <span className="terms-k">{translations.terms.c6_juris_label}</span>
+                                <p className="terms-v">{translations.terms.c6_juris_value}</p>
                             </div>
                         </div>
                     </div>
