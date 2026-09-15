@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aarambh Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F2A24;
+    --paper:#F6F2E9;
+    --teal-900:#123832;
+    --teal-700:#1B4B43;
+    --teal-500:#2C6E62;
+    --gold:#E8A33D;
+    --gold-soft:#FBEBCF;
+    --line:#E4DDC9;
+    --white:#FFFFFF;
+    --danger:#C0503A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Manrope','Noto Sans Devanagari',system-ui,sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, #ffffff22, transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 12px;
+  }
+
+  .phone{
+    width:400px;
+    max-width:100%;
+    height:780px;
+    max-height:92vh;
+    background:var(--white);
+    border-radius:28px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 30px 60px -20px rgba(18,56,50,0.35), 0 0 0 1px var(--line);
+    position:relative;
+  }
+
+  .header{
+    background:linear-gradient(135deg,var(--teal-900),var(--teal-700));
+    color:#fff;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+  }
+  .header .mark{
+    width:38px;height:38px;border-radius:10px;
+    background:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:700;color:var(--teal-900);
+    font-size:16px;flex-shrink:0;
+  }
+  .header .brand{flex:1;min-width:0;}
+  .header .brand-name{
+    font-family:'Poppins',sans-serif;
+    font-weight:700; font-size:16px; line-height:1.2;
+    display:flex; align-items:center; gap:6px;
+  }
+  .header .status{font-size:12px;color:#CFE3DE;margin-top:1px;}
+  .header .status::before{
+    content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:#5BD68A;margin-right:5px;
+  }
+
+  .stepper{
+    display:flex; align-items:center;
+    padding:14px 14px 10px;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .stepper.hidden{display:none;}
+  .step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;}
+  .step .dot{
+    width:22px;height:22px;border-radius:50%;
+    background:#E9E4D4; color:#9C9482;
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;
+    border:2px solid #E9E4D4;
+    transition:all .25s ease;
+    z-index:1;
+  }
+  .step .label{font-size:9.5px;color:#9C9482;font-weight:600;letter-spacing:.2px;text-align:center;}
+  .step::after{
+    content:'';position:absolute;top:10px;left:50%;width:100%;height:2px;
+    background:#E9E4D4; z-index:0;
+  }
+  .step:last-child::after{display:none;}
+  .step.done .dot{background:var(--teal-500);border-color:var(--teal-500);color:#fff;}
+  .step.done::after{background:var(--teal-500);}
+  .step.done .label{color:var(--teal-700);}
+  .step.active .dot{background:var(--gold);border-color:var(--gold);color:var(--teal-900);}
+  .step.active .label{color:var(--teal-900);}
+
+  .chat{
+    flex:1;
+    overflow-y:auto;
+    padding:16px 14px 10px;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, #00000004 40px),
+      var(--paper);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .chat::-webkit-scrollbar{width:6px;}
+  .chat::-webkit-scrollbar-thumb{background:#D8CFB4;border-radius:10px;}
+
+  .row{display:flex;}
+  .row.bot{justify-content:flex-start;}
+  .row.user{justify-content:flex-end;}
+
+  .bubble{
+    max-width:82%;
+    padding:11px 14px;
+    border-radius:14px;
+    font-size:13.5px;
+    line-height:1.6;
+    box-shadow:0 1px 2px rgba(18,56,50,0.06);
+    animation:pop .22s ease;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .bubble.bot{background:#fff;border:1px solid var(--line);border-top-left-radius:4px;}
+  .bubble.user{background:var(--gold-soft);border:1px solid #F1DCA8;border-top-right-radius:4px;color:var(--teal-900);font-weight:600;}
+  .bubble b{color:var(--teal-900);}
+  .bubble .time{display:block;font-size:10px;color:#A69B7E;margin-top:4px;text-align:right;}
+
+  .typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:14px;border-top-left-radius:4px;width:fit-content;}
+  .typing span{width:6px;height:6px;background:#B9AF90;border-radius:50%;animation:blink 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:.2s;}
+  .typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes blink{0%,80%,100%{opacity:.25;}40%{opacity:1;}}
+
+  .quick-replies{display:flex;flex-direction:column;gap:8px;margin-top:2px;max-height:340px;overflow-y:auto;padding-right:2px;}
+  .quick-replies::-webkit-scrollbar{width:5px;}
+  .quick-replies::-webkit-scrollbar-thumb{background:#D8CFB4;border-radius:10px;}
+  .qr-btn{
+    background:#fff; border:1px solid var(--teal-500); color:var(--teal-700);
+    font-family:inherit; font-weight:700; font-size:13px;
+    padding:10px 14px; border-radius:12px; cursor:pointer; text-align:left;
+    transition:.15s ease;
+  }
+  .qr-btn .sub{display:block;font-weight:500;font-size:11px;color:#8A8265;margin-top:2px;}
+  .qr-btn:hover{background:var(--teal-700);color:#fff;}
+  .qr-btn:hover .sub{color:#CFE3DE;}
+  .qr-btn:disabled{opacity:.45;cursor:default;background:#fff;color:var(--teal-700);}
+  .qr-btn:disabled .sub{color:#8A8265;}
+  .qr-btn.primary{background:var(--teal-700);color:#fff;border-color:var(--teal-700);}
+  .qr-btn.primary:hover{background:var(--teal-900);}
+
+  .summary-card, .pay-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;font-size:13px;line-height:1.7;
+  }
+  .summary-card h4, .pay-card h4{margin:0 0 8px;font-family:'Poppins',sans-serif;font-size:13.5px;color:var(--teal-900);}
+  .summary-card .row-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0;}
+  .summary-card .row-item span:first-child{color:#83795F;flex-shrink:0;}
+  .summary-card .row-item span:last-child{font-weight:700;color:var(--ink);text-align:right;}
+
+  .pay-card .fee{font-family:'Poppins',sans-serif;font-size:22px;color:var(--teal-900);font-weight:700;}
+  .pay-card .tag{
+    display:inline-block;background:var(--gold-soft);color:#8A5E12;font-size:10.5px;font-weight:700;
+    padding:3px 8px;border-radius:20px;margin-top:6px;
+  }
+
+  .inputbar{
+    flex-shrink:0;
+    padding:10px 12px;
+    background:#fff;
+    border-top:1px solid var(--line);
+    display:flex; gap:8px; align-items:center;
+  }
+  .inputbar input{
+    flex:1; border:1px solid var(--line); background:var(--paper);
+    border-radius:22px; padding:11px 16px; font-size:13.5px; font-family:inherit;
+    outline:none; color:var(--ink);
+  }
+  .inputbar input:focus{border-color:var(--teal-500);}
+  .inputbar button{
+    width:40px;height:40px;border-radius:50%;border:none;
+    background:var(--teal-700); color:#fff; display:flex;align-items:center;justify-content:center;
+    cursor:pointer; flex-shrink:0;
+  }
+  .inputbar button:disabled{background:#C9C2AC;cursor:not-allowed;}
+  .inputbar.hidden{display:none;}
+  .err{color:var(--danger);font-size:11.5px;padding:0 4px;min-height:14px;}
+
+  .file-row{
+    display:flex; flex-direction:column; gap:8px; background:#fff; border:1px solid var(--line);
+    border-radius:14px; padding:12px 14px; max-width:86%;
+  }
+  .file-row input[type=file]{font-size:12px;}
+  .file-list{font-size:11.5px;color:#5F7168;}
+  .file-row .qr-btn{margin-top:2px;}
+
+  .footer-credit{
+    text-align:center;font-size:10px;color:#B7AE94;padding:6px 0 10px;
+    flex-shrink:0; background:#fff;
+  }
+
+  @media (max-width:420px){
+    .phone{height:100vh;max-height:100vh;border-radius:0;}
+    body{padding:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="header">
+    <div class="mark">A</div>
+    <div class="brand">
+      <div class="brand-name">
+        Aarambh Services
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#3AA0FF"><circle cx="12" cy="12" r="12"/><path d="M7 12.5l3 3 7-7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="status">Online</div>
+    </div>
+  </div>
+
+  <div class="stepper hidden" id="stepper">
+    <div class="step active" data-step="info"><div class="dot">1</div><div class="label" id="lbl-info">Info</div></div>
+    <div class="step" data-step="confirm"><div class="dot">2</div><div class="label" id="lbl-confirm">Confirm</div></div>
+    <div class="step" data-step="payment"><div class="dot">3</div><div class="label" id="lbl-payment">Payment</div></div>
+    <div class="step" data-step="docs"><div class="dot">4</div><div class="label" id="lbl-docs">Documents</div></div>
+  </div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="err" id="err"></div>
+  <div class="inputbar hidden" id="inputbar">
+    <input type="text" id="textInput" placeholder="Type here…" autocomplete="off">
+    <button id="sendBtn" aria-label="Send">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M3 12L21 3L14 21L11 13L3 12Z" fill="#fff"/></svg>
+    </button>
+  </div>
+
+  <div class="footer-credit">🔒 Your details are kept private &amp; used only to help you</div>
+</div>
+
+<script>
+/* ====================== CONFIG ====================== */
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyA1WpjH9rMHkFwNooNcftIM1dREatyu4auLZnvM0faf_WTjKC34ucczvd3Lv5SdgXaQQ/exec";
+const MAX_FILES = 5;
+const MAX_FILE_MB = 3;
+
+const SERVICES_DATA = [{"category": "Aadhaar Services", "service": "Aadhaar Address Update", "price": 299, "turnaround": "3-5 working days", "fields": ["Full Name", "Aadhaar Number", "New Address", "Mobile linked"], "docs": "Aadhaar copy, Address proof (electricity bill/rent agreement/bank passbook)", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar NPCI Link", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Bank Account Number", "IFSC"], "docs": "Aadhaar copy, Bank passbook/statement first page", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar-PAN Link", "price": null, "turnaround": null, "fields": ["Aadhaar Number", "PAN Number", "Full Name", "DOB"], "docs": "Aadhaar copy, PAN copy", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar PVC Card", "price": null, "turnaround": null, "fields": ["Aadhaar Number", "Full Name", "Mobile Number"], "docs": "Aadhaar copy", "active": true}, {"category": "PAN Card Services", "service": "New PAN Card", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": "Aadhaar copy, Passport size photo, Signature", "active": true}, {"category": "PAN Card Services", "service": "PAN Card Correction", "price": null, "turnaround": null, "fields": ["PAN Number", "Field to correct", "Correct details"], "docs": "PAN copy, Aadhaar copy, Supporting proof for correction", "active": true}, {"category": "PAN Card Services", "service": "Reprint PAN Card", "price": null, "turnaround": null, "fields": ["PAN Number", "Full Name", "Mobile Number", "Address"], "docs": "Aadhaar copy, PAN copy (if available)", "active": true}, {"category": "Voter Card Services", "service": "New Voter Card", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Father's/Husband's Name", "Mobile"], "docs": "Aadhaar copy, Passport size photo, Address proof", "active": true}, {"category": "Voter Card Services", "service": "Voter Card Correction", "price": null, "turnaround": null, "fields": ["Voter ID Number", "Field to correct", "Correct details"], "docs": "Voter ID copy, Aadhaar copy, Supporting proof", "active": true}, {"category": "Driving License & Vehicle", "service": "Learners License", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Blood Group", "Vehicle Class"], "docs": "Aadhaar copy, Passport size photo, Address proof", "active": true}, {"category": "Driving License & Vehicle", "service": "Permanent DL", "price": null, "turnaround": null, "fields": ["Learner's License Number", "Full Name", "DOB", "Address"], "docs": "Learner's License copy, Aadhaar copy, Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "Duplicate Driving License", "price": null, "turnaround": null, "fields": ["DL Number", "Full Name", "Reason for duplicate"], "docs": "Aadhaar copy, Old DL copy (if any), Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "DL Aadhaar Link", "price": null, "turnaround": null, "fields": ["DL Number", "Aadhaar Number", "Full Name"], "docs": "DL copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "DL Address Change", "price": null, "turnaround": null, "fields": ["DL Number", "New Address", "Full Name"], "docs": "DL copy, New address proof", "active": true}, {"category": "Driving License & Vehicle", "service": "International Driving License Permit (IDP)", "price": null, "turnaround": null, "fields": ["DL Number", "Passport Number", "Travel Country", "Travel Date"], "docs": "DL copy, Passport copy, Visa copy, Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "RC Aadhaar Link", "price": null, "turnaround": null, "fields": ["RC Number", "Aadhaar Number", "Full Name"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "HSRP", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "Full Name", "Mobile", "Address"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Aadhaar PVC Colour Code Sticker", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "Full Name", "Mobile"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Vehicle Challan Payment", "price": null, "turnaround": null, "fields": ["Vehicle Number / Challan Number"], "docs": "None (only vehicle/challan number needed)", "active": true}, {"category": "Driving License & Vehicle", "service": "Vehicle Tax", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "State"], "docs": "RC copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Fastag KYV", "price": null, "turnaround": null, "fields": ["Vehicle Number", "RC Number", "Mobile Number"], "docs": "RC copy, Aadhaar copy, Vehicle photo", "active": true}, {"category": "Driving License & Vehicle", "service": "FASTag One Year Pass", "price": null, "turnaround": null, "fields": ["Vehicle Number", "FASTag ID", "Mobile Number"], "docs": "RC copy, FASTag details", "active": true}, {"category": "Driving License & Vehicle", "service": "FTI-TTP Registration", "price": null, "turnaround": null, "fields": ["Full Name", "Passport Number", "Travel Details"], "docs": "Passport copy, Photo", "active": true}, {"category": "Passport Services", "service": "New Passport", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile"], "docs": "Aadhaar copy, Birth certificate, Address proof, Photo", "active": true}, {"category": "Passport Services", "service": "Passport Renewal", "price": null, "turnaround": null, "fields": ["Old Passport Number", "Full Name", "DOB", "Address"], "docs": "Old Passport copy, Aadhaar copy, Photo", "active": true}, {"category": "State Certificates", "service": "Caste Certificate - Haryana", "price": null, "turnaround": null, "fields": ["Full Name", "Father's Name", "Caste", "Address"], "docs": "Aadhaar copy, Domicile/residence proof, Old caste certificate (if any)", "active": true}, {"category": "State Certificates", "service": "Caste Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Father's Name", "Caste", "Address"], "docs": "Aadhaar copy, Domicile/residence proof, Old caste certificate (if any)", "active": true}, {"category": "State Certificates", "service": "Domicile Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Address", "Years of Residence"], "docs": "Aadhaar copy, Residence proof, School leaving certificate", "active": true}, {"category": "State Certificates", "service": "Income Certificate - Haryana", "price": null, "turnaround": null, "fields": ["Full Name", "Family Income", "Occupation", "Address"], "docs": "Aadhaar copy, Income proof/salary slip, Address proof", "active": true}, {"category": "State Certificates", "service": "Income Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Family Income", "Occupation", "Address"], "docs": "Aadhaar copy, Income proof/salary slip, Address proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Andhra Pradesh", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Assam", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Karnataka", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Business & Tax", "service": "GST Registration", "price": null, "turnaround": null, "fields": ["Business Name", "Business Address", "PAN", "Business Type"], "docs": "PAN copy, Aadhaar copy, Business address proof, Bank details, Photo", "active": true}, {"category": "Business & Tax", "service": "GSTIN Verification", "price": null, "turnaround": null, "fields": ["GSTIN Number"], "docs": "None", "active": true}, {"category": "Business & Tax", "service": "Udyam Registration", "price": null, "turnaround": null, "fields": ["Business Name", "Aadhaar Number", "PAN", "Business Address"], "docs": "Aadhaar copy, PAN copy, Business address proof", "active": true}, {"category": "Business & Tax", "service": "FSSAI New Food License", "price": null, "turnaround": null, "fields": ["Business Name", "Address", "Type of Food Business"], "docs": "PAN copy, Aadhaar copy, Business address proof, Photo", "active": true}, {"category": "Business & Tax", "service": "FSSAI Food License Renewal", "price": null, "turnaround": null, "fields": ["FSSAI License Number", "Business Name"], "docs": "Old FSSAI license copy, PAN copy", "active": true}, {"category": "Business & Tax", "service": "ITR (Income Tax Return)", "price": null, "turnaround": null, "fields": ["PAN Number", "Aadhaar Number", "Income Source", "Financial Year"], "docs": "PAN copy, Aadhaar copy, Form 16/Income proof, Bank statement", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Atal Pension Yojana", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PMJJBY", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PMSBY", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Ayushman Service", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Family Details", "Address"], "docs": "Aadhaar copy, Ration card, Income proof (if required)", "active": true}, {"category": "Govt Schemes & Social Security", "service": "e-Shram Card", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Occupation", "Mobile"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "UAN Activation", "price": null, "turnaround": null, "fields": ["UAN Number", "Aadhaar Number", "Mobile Number"], "docs": "Aadhaar copy, UAN details/salary slip", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PM Internship Registration", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Qualification", "Aadhaar Number"], "docs": "Aadhaar copy, Educational certificates, Photo", "active": true}, {"category": "Govt Schemes & Social Security", "service": "ABHA Service", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Mobile"], "docs": "Aadhaar copy", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Apaar ID", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "School/College Name", "Aadhaar Number"], "docs": "Aadhaar copy, School/College ID", "active": true}, {"category": "Govt Schemes & Social Security", "service": "UDID Service (Disability ID)", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Disability Type/Percentage", "Address"], "docs": "Aadhaar copy, Medical certificate, Photo", "active": true}, {"category": "Darshan Booking", "service": "Kashi Vishwanath Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Mahakaleshwar Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Sai Baba Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Srisaila Devasthanam Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Vitthal Rukmini Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}];
+
+
+const FIELD_TRANSLATIONS = {
+  "Aadhaar Number": {hi:"आधार नंबर", mr:"आधार क्रमांक"},
+  "Address": {hi:"पता", mr:"पत्ता"},
+  "Bank Account": {hi:"बैंक खाता", mr:"बँक खाते"},
+  "Bank Account Number": {hi:"बैंक खाता संख्या", mr:"बँक खाते क्रमांक"},
+  "Blood Group": {hi:"रक्त समूह", mr:"रक्तगट"},
+  "Business Address": {hi:"व्यवसाय का पता", mr:"व्यवसायाचा पत्ता"},
+  "Business Name": {hi:"व्यवसाय का नाम", mr:"व्यवसायाचे नाव"},
+  "Business Type": {hi:"व्यवसाय का प्रकार", mr:"व्यवसायाचा प्रकार"},
+  "Caste": {hi:"जाति", mr:"जात"},
+  "Correct details": {hi:"सही विवरण", mr:"योग्य तपशील"},
+  "DL Number": {hi:"ड्राइविंग लाइसेंस नंबर", mr:"ड्रायव्हिंग लायसन्स क्रमांक"},
+  "DOB": {hi:"जन्म तिथि (DD-MM-YYYY)", mr:"जन्मतारीख (DD-MM-YYYY)"},
+  "Disability Type/Percentage": {hi:"दिव्यांगता का प्रकार/प्रतिशत", mr:"अपंगत्वाचा प्रकार/टक्केवारी"},
+  "Email": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "FASTag ID": {hi:"फास्टैग आईडी", mr:"फास्टॅग आयडी"},
+  "FSSAI License Number": {hi:"एफएसएसएआई लाइसेंस नंबर", mr:"एफएसएसएआय परवाना क्रमांक"},
+  "Family Details": {hi:"परिवार का विवरण", mr:"कुटुंबाचा तपशील"},
+  "Family Income": {hi:"पारिवारिक आय", mr:"कौटुंबिक उत्पन्न"},
+  "Father's Name": {hi:"पिता का नाम", mr:"वडिलांचे नाव"},
+  "Father's/Husband's Name": {hi:"पिता/पति का नाम", mr:"वडील/पतीचे नाव"},
+  "Father's/Mother's Name": {hi:"माता-पिता का नाम", mr:"आई-वडिलांचे नाव"},
+  "Field to correct": {hi:"सुधारी जाने वाली जानकारी", mr:"दुरुस्त करायची माहिती"},
+  "Financial Year": {hi:"वित्तीय वर्ष", mr:"आर्थिक वर्ष"},
+  "Full Name": {hi:"पूरा नाम", mr:"पूर्ण नाव"},
+  "Full Name(s)": {hi:"पूरा नाम (सभी व्यक्तियों का)", mr:"पूर्ण नाव (सर्व व्यक्तींचे)"},
+  "GSTIN Number": {hi:"जीएसटीआईएन नंबर", mr:"जीएसटीआयएन क्रमांक"},
+  "ID Proof Number": {hi:"पहचान पत्र संख्या", mr:"ओळखपत्र क्रमांक"},
+  "IFSC": {hi:"आईएफएससी कोड", mr:"आयएफएससी कोड"},
+  "Income Source": {hi:"आय का स्रोत", mr:"उत्पन्नाचा स्रोत"},
+  "Learner's License Number": {hi:"लर्निंग लाइसेंस नंबर", mr:"लर्निंग लायसन्स क्रमांक"},
+  "Mobile": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile Number": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile linked": {hi:"लिंक्ड मोबाइल नंबर", mr:"लिंक केलेला मोबाइल क्रमांक"},
+  "New Address": {hi:"नया पता", mr:"नवीन पत्ता"},
+  "No. of Persons": {hi:"व्यक्तियों की संख्या", mr:"व्यक्तींची संख्या"},
+  "Occupation": {hi:"व्यवसाय/पेशा", mr:"व्यवसाय"},
+  "Old Passport Number": {hi:"पुराना पासपोर्ट नंबर", mr:"जुना पासपोर्ट क्रमांक"},
+  "PAN": {hi:"पैन नंबर", mr:"पॅन क्रमांक"},
+  "PAN Number": {hi:"पैन नंबर", mr:"पॅन क्रमांक"},
+  "Passport Number": {hi:"पासपोर्ट नंबर", mr:"पासपोर्ट क्रमांक"},
+  "Qualification": {hi:"शैक्षणिक योग्यता", mr:"शैक्षणिक पात्रता"},
+  "RC Number": {hi:"आरसी नंबर", mr:"आरसी क्रमांक"},
+  "Reason for duplicate": {hi:"डुप्लीकेट का कारण", mr:"डुप्लिकेटचे कारण"},
+  "School/College Name": {hi:"स्कूल/कॉलेज का नाम", mr:"शाळा/महाविद्यालयाचे नाव"},
+  "State": {hi:"राज्य", mr:"राज्य"},
+  "Travel Country": {hi:"यात्रा देश", mr:"प्रवास देश"},
+  "Travel Date": {hi:"यात्रा तिथि", mr:"प्रवासाची तारीख"},
+  "Travel Details": {hi:"यात्रा विवरण", mr:"प्रवास तपशील"},
+  "Type of Food Business": {hi:"खाद्य व्यवसाय का प्रकार", mr:"अन्न व्यवसायाचा प्रकार"},
+  "UAN Number": {hi:"यूएएन नंबर", mr:"यूएएन क्रमांक"},
+  "Vehicle Class": {hi:"वाहन श्रेणी", mr:"वाहन प्रकार"},
+  "Vehicle Number": {hi:"वाहन नंबर", mr:"वाहन क्रमांक"},
+  "Vehicle Number / Challan Number": {hi:"वाहन नंबर / चालान नंबर", mr:"वाहन क्रमांक / चलन क्रमांक"},
+  "Visit Date": {hi:"यात्रा तिथि", mr:"भेटीची तारीख"},
+  "Voter ID Number": {hi:"वोटर आईडी नंबर", mr:"वोटर आयडी क्रमांक"},
+  "Years of Residence": {hi:"निवास के वर्ष", mr:"वास्तव्याची वर्षे"}
+};
+
+function translateField(field, lang){
+  if (lang === 'en') return field;
+  const t = FIELD_TRANSLATIONS[field];
+  return t && t[lang] ? t[lang] : field;
+}
+
+
+const STRINGS = {
+  en: {
+    stepInfo:"Info", stepConfirm:"Confirm", stepPayment:"Payment", stepDocs:"Documents",
+    welcome:"👋 <b>Welcome to Aarambh!</b><br>We assist with government documents and services — Aadhaar, PAN, Passport, Driving Licence, GST and many more — in a simple and reliable manner.",
+    askName:"Let's get started. May I have your <b>full name</b>, please?",
+    namePlaceholder:"Enter your full name…",
+    nameError:"Please enter your name",
+    thanksAskPhone:(n)=>`Thank you, <b>${n}</b>. Could you share your <b>10-digit mobile number</b>?`,
+    phonePlaceholder:"Enter 10-digit number…",
+    phoneError:"Please enter a valid 10-digit mobile number",
+    askCategory:"Which <b>category</b> would you like assistance with?",
+    askService:(c)=>`Please select a <b>service</b> under <b>${c}</b>:`,
+    priceLabel:(p)=>p?`₹${p}`:"Price: to be confirmed",
+    turnaroundLabel:(t)=>t||"Turnaround: to be confirmed",
+    fieldError:"Please provide this information",
+    summaryIntro:"✅ We have all the required details. Please review your application:",
+    summaryTitle:"📋 Application Summary",
+    labelName:"Name", labelPhone:"Phone", labelService:"Service",
+    labelFee:"Processing Fee", labelTurnaround:"Turnaround Time",
+    feeTBD:"To be confirmed",
+    confirmBtn:"✅ Confirm — Looks Good",
+    startOverBtn:"✏️ Start Over",
+    paymentIntro:"💳 Let's proceed to the payment step.",
+    payCardTitle:"Processing Fee",
+    payForService:(s)=>`for <b>${s}</b>`,
+    payTag:"🔧 Online payment — coming soon",
+    payNote:(hasPrice)=>`For now, our team will collect the payment${hasPrice?" (UPI/Cash)":""} at the time of processing your application.`,
+    continuePayLater:"➡️ Continue (Pay Later)",
+    docsIntro:(d)=>`📎 Documents required: <b>${d}</b>`,
+    docsWhen:"When would you like to submit your documents?",
+    docsNow:"📤 Upload Now",
+    docsLater:"🕐 At the time of processing",
+    docsLaterSub:"Our team will collect it from you later",
+    fileChooseLabel:(max,mb)=>`Please select your documents (photo/PDF, max ${max} files, up to ${mb}MB each):`,
+    uploadSubmitBtn:"Upload & Submit",
+    skipUploadBtn:"Skip — submit later instead",
+    fileTooBig:(name,mb)=>`${name} is too large (max ${mb}MB)`,
+    filesAttached:(n)=>`📎 ${n} file(s) attached`,
+    noFilesAttached:"No files attached",
+    uploading:"Uploading your documents…",
+    finalTitle:(n)=>`🎉 <b>Thank you, ${n}!</b>`,
+    finalBody:(id)=>`Your application has been received.<br><b>Application ID: ${id}</b><br>Our team will contact you within <b>24–48 hours</b> to complete the process.`,
+    exploreBtn:"🔎 Explore Other Services",
+    submitError:"⚠️ There was an issue submitting your application. Please try again in a moment.",
+    langPrompt:"👋 Welcome! Please choose your preferred language to continue.",
+  },
+  hi: {
+    stepInfo:"जानकारी", stepConfirm:"पुष्टि", stepPayment:"भुगतान", stepDocs:"दस्तावेज़",
+    welcome:"👋 <b>आरंभ में आपका स्वागत है!</b><br>हम सरकारी दस्तावेज़ों और सेवाओं — आधार, पैन, पासपोर्ट, ड्राइविंग लाइसेंस, जीएसटी और अन्य कई सेवाओं — में सरल एवं भरोसेमंद तरीके से आपकी सहायता करते हैं।",
+    askName:"चलिए शुरुआत करते हैं। कृपया अपना <b>पूरा नाम</b> बताइए।",
+    namePlaceholder:"अपना पूरा नाम लिखें…",
+    nameError:"कृपया अपना नाम दर्ज करें",
+    thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>। कृपया अपना <b>10 अंकों का मोबाइल नंबर</b> साझा करें।`,
+    phonePlaceholder:"10 अंकों का नंबर लिखें…",
+    phoneError:"कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें",
+    askCategory:"आपको किस <b>श्रेणी</b> में सहायता चाहिए?",
+    askService:(c)=>`<b>${c}</b> में से कृपया अपनी <b>सेवा</b> चुनें:`,
+    priceLabel:(p)=>p?`₹${p}`:"शुल्क: शीघ्र सूचित किया जाएगा",
+    turnaroundLabel:(t)=>t||"समयावधि: शीघ्र सूचित की जाएगी",
+    fieldError:"कृपया यह जानकारी दर्ज करें",
+    summaryIntro:"✅ सभी आवश्यक जानकारी प्राप्त हो गई है। कृपया अपना आवेदन जाँच लें:",
+    summaryTitle:"📋 आवेदन सारांश",
+    labelName:"नाम", labelPhone:"फ़ोन नंबर", labelService:"सेवा",
+    labelFee:"प्रोसेसिंग शुल्क", labelTurnaround:"समयावधि",
+    feeTBD:"शीघ्र पुष्टि की जाएगी",
+    confirmBtn:"✅ पुष्टि करें — सही है",
+    startOverBtn:"✏️ पुनः आरंभ करें",
+    paymentIntro:"💳 अब हम भुगतान चरण की ओर बढ़ते हैं।",
+    payCardTitle:"प्रोसेसिंग शुल्क",
+    payForService:(s)=>`<b>${s}</b> हेतु`,
+    payTag:"🔧 ऑनलाइन भुगतान — शीघ्र उपलब्ध होगा",
+    payNote:(hasPrice)=>`अभी के लिए, आपका आवेदन प्रोसेस करते समय हमारी टीम स्वयं भुगतान${hasPrice?" (यूपीआई/नकद)":""} प्राप्त करेगी।`,
+    continuePayLater:"➡️ आगे बढ़ें (भुगतान बाद में)",
+    docsIntro:(d)=>`📎 आवश्यक दस्तावेज़: <b>${d}</b>`,
+    docsWhen:"आप अपने दस्तावेज़ कब जमा करना चाहेंगे?",
+    docsNow:"📤 अभी अपलोड करें",
+    docsLater:"🕐 प्रोसेसिंग के समय",
+    docsLaterSub:"हमारी टीम बाद में आपसे संपर्क कर प्राप्त करेगी",
+    fileChooseLabel:(max,mb)=>`कृपया अपने दस्तावेज़ चुनें (फ़ोटो/PDF, अधिकतम ${max} फ़ाइलें, प्रत्येक ${mb}MB तक):`,
+    uploadSubmitBtn:"अपलोड करें और सबमिट करें",
+    skipUploadBtn:"छोड़ें — बाद में जमा करेंगे",
+    fileTooBig:(name,mb)=>`${name} फ़ाइल बहुत बड़ी है (अधिकतम ${mb}MB)`,
+    filesAttached:(n)=>`📎 ${n} फ़ाइल(एं) संलग्न`,
+    noFilesAttached:"कोई फ़ाइल संलग्न नहीं की गई",
+    uploading:"आपके दस्तावेज़ अपलोड हो रहे हैं…",
+    finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
+    finalBody:(id)=>`आपका आवेदन प्राप्त हो गया है।<br><b>आवेदन आईडी: ${id}</b><br>हमारी टीम <b>24–48 घंटों</b> के भीतर आपसे संपर्क कर प्रक्रिया पूर्ण करेगी।`,
+    exploreBtn:"🔎 अन्य सेवाएं देखें",
+    submitError:"⚠️ आवेदन सबमिट करते समय एक समस्या उत्पन्न हुई। कृपया कुछ समय बाद पुनः प्रयास करें।",
+    langPrompt:"👋 स्वागत है! जारी रखने हेतु कृपया अपनी पसंदीदा भाषा चुनें।",
+  },
+  mr: {
+    stepInfo:"माहिती", stepConfirm:"पुष्टी", stepPayment:"पेमेंट", stepDocs:"कागदपत्रे",
+    welcome:"👋 <b>आरंभ मध्ये आपले स्वागत आहे!</b><br>आम्ही सरकारी कागदपत्रे आणि सेवा — आधार, पॅन, पासपोर्ट, ड्रायव्हिंग लायसन्स, जीएसटी आणि इतर अनेक सेवा — यामध्ये सोप्या आणि विश्वासार्ह पद्धतीने मदत करतो.",
+    askName:"चला सुरुवात करूया. कृपया तुमचे <b>पूर्ण नाव</b> सांगा.",
+    namePlaceholder:"तुमचे पूर्ण नाव लिहा…",
+    nameError:"कृपया तुमचे नाव नोंदवा",
+    thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>. कृपया तुमचा <b>10 अंकी मोबाइल क्रमांक</b> सांगा.`,
+    phonePlaceholder:"10 अंकी क्रमांक लिहा…",
+    phoneError:"कृपया योग्य 10 अंकी मोबाइल क्रमांक टाका",
+    askCategory:"तुम्हाला कोणत्या <b>श्रेणी</b>मध्ये मदत हवी आहे?",
+    askService:(c)=>`<b>${c}</b> मधून कृपया तुमची <b>सेवा</b> निवडा:`,
+    priceLabel:(p)=>p?`₹${p}`:"शुल्क: लवकरच कळवले जाईल",
+    turnaroundLabel:(t)=>t||"कालावधी: लवकरच कळवला जाईल",
+    fieldError:"कृपया ही माहिती नोंदवा",
+    summaryIntro:"✅ सर्व आवश्यक माहिती मिळाली आहे. कृपया तुमचा अर्ज तपासा:",
+    summaryTitle:"📋 अर्ज सारांश",
+    labelName:"नाव", labelPhone:"फोन नंबर", labelService:"सेवा",
+    labelFee:"प्रक्रिया शुल्क", labelTurnaround:"कालावधी",
+    feeTBD:"लवकरच निश्चित केले जाईल",
+    confirmBtn:"✅ पुष्टी करा — बरोबर आहे",
+    startOverBtn:"✏️ पुन्हा सुरू करा",
+    paymentIntro:"💳 आता आपण पेमेंट टप्प्याकडे जाऊया.",
+    payCardTitle:"प्रक्रिया शुल्क",
+    payForService:(s)=>`<b>${s}</b> साठी`,
+    payTag:"🔧 ऑनलाइन पेमेंट — लवकरच उपलब्ध",
+    payNote:(hasPrice)=>`सध्या, तुमचा अर्ज प्रक्रिया करताना आमची टीम स्वतः पेमेंट${hasPrice?" (UPI/रोख)":""} घेईल.`,
+    continuePayLater:"➡️ पुढे जा (पेमेंट नंतर)",
+    docsIntro:(d)=>`📎 आवश्यक कागदपत्रे: <b>${d}</b>`,
+    docsWhen:"तुम्ही तुमची कागदपत्रे कधी सादर करू इच्छिता?",
+    docsNow:"📤 आत्ता अपलोड करा",
+    docsLater:"🕐 प्रक्रिया करतेवेळी",
+    docsLaterSub:"आमची टीम नंतर संपर्क करून घेईल",
+    fileChooseLabel:(max,mb)=>`कृपया तुमची कागदपत्रे निवडा (फोटो/PDF, जास्तीत जास्त ${max} फाइल्स, प्रत्येकी ${mb}MB पर्यंत):`,
+    uploadSubmitBtn:"अपलोड करा आणि सबमिट करा",
+    skipUploadBtn:"वगळा — नंतर सादर करू",
+    fileTooBig:(name,mb)=>`${name} ही फाइल खूप मोठी आहे (जास्तीत जास्त ${mb}MB)`,
+    filesAttached:(n)=>`📎 ${n} फाइल(ली) जोडली`,
+    noFilesAttached:"कोणतीही फाइल जोडलेली नाही",
+    uploading:"तुमची कागदपत्रे अपलोड होत आहेत…",
+    finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
+    finalBody:(id)=>`तुमचा अर्ज प्राप्त झाला आहे.<br><b>अर्ज आयडी: ${id}</b><br>आमची टीम <b>24–48 तासांत</b> तुमच्याशी संपर्क साधून प्रक्रिया पूर्ण करेल.`,
+    exploreBtn:"🔎 इतर सेवा पहा",
+    submitError:"⚠️ अर्ज सबमिट करताना अडचण आली. कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.",
+    langPrompt:"👋 स्वागत आहे! सुरू ठेवण्यासाठी कृपया तुमची आवडती भाषा निवडा.",
+  }
+};
+let LANG = 'en';
+function T(key, ...args){
+  const entry = STRINGS[LANG][key];
+  return typeof entry === 'function' ? entry(...args) : entry;
+}
+
+
+/* ====================== STATE ====================== */
+const lead = {
+  name:"", phone:"",
+  category:"", service:"", price:null, turnaround:"",
+  extraFields:{}, paymentStatus:"", docsChoice:"", files:[]
+};
+
+const chat = document.getElementById('chat');
+const inputbar = document.getElementById('inputbar');
+const textInput = document.getElementById('textInput');
+const sendBtn = document.getElementById('sendBtn');
+const errBox = document.getElementById('err');
+const stepperEl = document.getElementById('stepper');
+
+function nowTime(){
+  const d = new Date();
+  let h = d.getHours(), m = d.getMinutes();
+  const ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${h}:${m.toString().padStart(2,'0')} ${ap}`;
+}
+function scrollDown(){ chat.scrollTop = chat.scrollHeight; }
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function addBubble(text, who){
+  const row = document.createElement('div');
+  row.className = 'row ' + (who === 'bot' ? 'bot' : 'user');
+  const b = document.createElement('div');
+  b.className = 'bubble ' + (who === 'bot' ? 'bot' : 'user');
+  b.innerHTML = text + `<span class="time">${nowTime()}</span>`;
+  row.appendChild(b);
+  chat.appendChild(row);
+  scrollDown();
+  return row;
+}
+
+function addQuickReplies(options, onPick){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  wrap.style.maxWidth = '86%';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'qr-btn' + (opt.primary ? ' primary' : '');
+    btn.innerHTML = opt.label + (opt.sub ? `<span class="sub">${opt.sub}</span>` : '');
+    btn.onclick = () => {
+      Array.from(wrap.children).forEach(c => c.disabled = true);
+      addBubble(opt.label.replace(/<[^>]*>/g,''), 'user');
+      onPick(opt.value !== undefined ? opt.value : opt.label);
+    };
+    wrap.appendChild(btn);
+  });
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+}
+
+function botTyping(delay=550){
+  return new Promise(resolve => {
+    const row = document.createElement('div');
+    row.className = 'row bot';
+    row.id = 'typingRow';
+    row.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+    chat.appendChild(row);
+    scrollDown();
+    setTimeout(() => {
+      const el = document.getElementById('typingRow');
+      if (el) el.remove();
+      resolve();
+    }, delay);
+  });
+}
+async function botSay(text, delay=550){
+  await botTyping(delay);
+  addBubble(text, 'bot');
+}
+
+function refreshStepperLabels(){
+  document.getElementById('lbl-info').textContent = T('stepInfo');
+  document.getElementById('lbl-confirm').textContent = T('stepConfirm');
+  document.getElementById('lbl-payment').textContent = T('stepPayment');
+  document.getElementById('lbl-docs').textContent = T('stepDocs');
+}
+function setStepper(activeKey, doneKeys){
+  document.querySelectorAll('.step').forEach(el => {
+    const key = el.dataset.step;
+    el.classList.remove('active','done');
+    if (doneKeys.includes(key)) el.classList.add('done');
+    else if (key === activeKey) el.classList.add('active');
+  });
+}
+
+function showTextInput(placeholder, validator, onSubmit){
+  errBox.textContent = '';
+  inputbar.classList.remove('hidden');
+  textInput.value = '';
+  textInput.placeholder = placeholder;
+  textInput.disabled = false;
+  sendBtn.disabled = false;
+  textInput.focus();
+
+  const handler = () => {
+    const val = textInput.value.trim();
+    const error = validator(val);
+    if (error){ errBox.textContent = error; return; }
+    errBox.textContent = '';
+    textInput.disabled = true; sendBtn.disabled = true;
+    inputbar.classList.add('hidden');
+    addBubble(escapeHtml(val), 'user');
+    sendBtn.removeEventListener('click', handler);
+    textInput.removeEventListener('keydown', keyHandler);
+    onSubmit(val);
+  };
+  const keyHandler = (e) => { if (e.key === 'Enter') handler(); };
+  sendBtn.addEventListener('click', handler);
+  textInput.addEventListener('keydown', keyHandler);
+}
+function hideTextInput(){
+  inputbar.classList.add('hidden');
+  errBox.textContent = '';
+}
+
+/* ====================== HELPERS ====================== */
+function fieldIsDuplicate(fieldName){
+  const f = fieldName.toLowerCase();
+  return f.startsWith('full name') || f.includes('mobile');
+}
+function getActiveCategories(){
+  const seen = [];
+  SERVICES_DATA.forEach(s => {
+    if (s.active && !seen.includes(s.category)) seen.push(s.category);
+  });
+  return seen;
+}
+function getServicesInCategory(cat){
+  return SERVICES_DATA.filter(s => s.active && s.category === cat);
+}
+function genAppId(){
+  const d = new Date();
+  const pad = n => n.toString().padStart(2,'0');
+  return 'AAR' + d.getFullYear().toString().slice(-2) + pad(d.getMonth()+1) + pad(d.getDate())
+    + pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds());
+}
+
+/* ====================== FLOW ====================== */
+async function start(){
+  await botSay("👋 Welcome / नमस्ते / नमस्कार", 400);
+  await botSay("Please choose your preferred language / कृपया अपनी भाषा चुनें / कृपया तुमची भाषा निवडा", 500);
+  addQuickReplies([
+    {label:"🇬🇧 English", value:"en"},
+    {label:"🇮🇳 हिंदी", value:"hi"},
+    {label:"🇮🇳 मराठी", value:"mr"},
+  ], (langCode) => {
+    LANG = langCode;
+    stepperEl.classList.remove('hidden');
+    refreshStepperLabels();
+    setStepper('info', []);
+    askName();
+  });
+}
+
+async function askName(){
+  await botSay(T('welcome'));
+  await botSay(T('askName'), 700);
+  showTextInput(T('namePlaceholder'), v => v.length < 2 ? T('nameError') : null, v => {
+    lead.name = v;
+    askPhone();
+  });
+}
+
+async function askPhone(){
+  await botSay(T('thanksAskPhone', escapeHtml(lead.name)));
+  showTextInput(T('phonePlaceholder'), v => /^[6-9]\d{9}$/.test(v) ? null : T('phoneError'), v => {
+    lead.phone = v;
+    askCategory();
+  });
+}
+
+async function askCategory(){
+  await botSay(T('askCategory'));
+  const cats = getActiveCategories();
+  addQuickReplies(cats.map(c => ({label:c})), (cat) => {
+    lead.category = cat;
+    askService();
+  });
+}
+
+async function askService(){
+  await botSay(T('askService', escapeHtml(lead.category)));
+  const services = getServicesInCategory(lead.category);
+  addQuickReplies(services.map(s => ({
+    label: s.service,
+    sub: T('priceLabel', s.price) + ' · ' + T('turnaroundLabel', s.turnaround),
+    value: s.service
+  })), (serviceName) => {
+    const svc = services.find(s => s.service === serviceName);
+    lead.service = svc.service;
+    lead.price = svc.price;
+    lead.turnaround = svc.turnaround || T('feeTBD');
+    lead._fieldsToAsk = svc.fields.filter(f => !fieldIsDuplicate(f));
+    lead._docsNote = svc.docs;
+    lead.extraFields = {};
+    askNextField(0);
+  });
+}
+
+async function askNextField(idx){
+  const fields = lead._fieldsToAsk || [];
+  if (idx >= fields.length){
+    showSummary();
+    return;
+  }
+  const field = fields[idx];
+  const label = translateField(field, LANG);
+  await botSay(`${escapeHtml(label)}?`);
+  showTextInput(`${label}…`, v => v.length < 1 ? T('fieldError') : null, v => {
+    lead.extraFields[label] = v;
+    askNextField(idx + 1);
+  });
+}
+
+async function showSummary(){
+  setStepper('confirm', ['info']);
+  await botSay(T('summaryIntro'));
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  let extraRows = Object.entries(lead.extraFields).map(([k,v]) =>
+    `<div class="row-item"><span>${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></div>`
+  ).join('');
+  row.innerHTML = `
+    <div class="summary-card" style="max-width:88%">
+      <h4>${T('summaryTitle')}</h4>
+      <div class="row-item"><span>${T('labelName')}</span><span>${escapeHtml(lead.name)}</span></div>
+      <div class="row-item"><span>${T('labelPhone')}</span><span>${escapeHtml(lead.phone)}</span></div>
+      <div class="row-item"><span>${T('labelService')}</span><span>${escapeHtml(lead.service)}</span></div>
+      ${extraRows}
+      <div class="row-item"><span>${T('labelFee')}</span><span>${lead.price ? '₹'+lead.price : T('feeTBD')}</span></div>
+      <div class="row-item"><span>${T('labelTurnaround')}</span><span>${escapeHtml(lead.turnaround)}</span></div>
+    </div>`;
+  chat.appendChild(row);
+  scrollDown();
+  addQuickReplies([
+    {label:T('confirmBtn'), primary:true, value:"confirm"},
+    {label:T('startOverBtn')}
+  ], (choice) => {
+    if (choice === 'confirm') goToPayment();
+    else location.reload();
+  });
+}
+
+async function goToPayment(){
+  setStepper('payment', ['info','confirm']);
+  await botSay(T('paymentIntro'));
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  row.innerHTML = `
+    <div class="pay-card" style="max-width:88%">
+      <h4>${T('payCardTitle')}</h4>
+      <div class="fee">${lead.price ? '₹'+lead.price : T('feeTBD')}</div>
+      <div>${T('payForService', escapeHtml(lead.service))}</div>
+      <span class="tag">${T('payTag')}</span>
+      <div style="margin-top:8px;color:#5F7168;">${T('payNote', !!lead.price)}</div>
+    </div>`;
+  chat.appendChild(row);
+  scrollDown();
+  addQuickReplies([
+    {label:T('continuePayLater'), primary:true, value:"pending"}
+  ], () => {
+    lead.paymentStatus = "Pending (Pay Later — online payment coming soon)";
+    askDocsChoice();
+  });
+}
+
+async function askDocsChoice(){
+  setStepper('docs', ['info','confirm','payment']);
+  await botSay(T('docsIntro', escapeHtml(lead._docsNote || '')));
+  await botSay(T('docsWhen'), 600);
+  addQuickReplies([
+    {label:T('docsNow'), value:"now"},
+    {label:T('docsLater'), sub:T('docsLaterSub'), value:"later"}
+  ], (choice) => {
+    lead.docsChoice = choice;
+    if (choice === 'now') showFileUpload();
+    else finalize();
+  });
+}
+
+function showFileUpload(){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'file-row';
+  wrap.style.maxWidth = '88%';
+  wrap.innerHTML = `
+    <div>${T('fileChooseLabel', MAX_FILES, MAX_FILE_MB)}</div>
+    <input type="file" id="fileInput" multiple accept="image/*,application/pdf">
+    <div class="file-list" id="fileList"></div>
+    <button class="qr-btn primary" id="uploadBtn">${T('uploadSubmitBtn')}</button>
+    <button class="qr-btn" id="skipUploadBtn">${T('skipUploadBtn')}</button>
+  `;
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+
+  const fileInput = wrap.querySelector('#fileInput');
+  const fileList = wrap.querySelector('#fileList');
+  fileInput.addEventListener('change', () => {
+    const files = Array.from(fileInput.files).slice(0, MAX_FILES);
+    fileList.textContent = files.map(f => `${f.name} (${(f.size/1024/1024).toFixed(1)}MB)`).join(', ');
+  });
+
+  wrap.querySelector('#uploadBtn').onclick = async () => {
+    const files = Array.from(fileInput.files).slice(0, MAX_FILES);
+    const oversized = files.find(f => f.size > MAX_FILE_MB * 1024 * 1024);
+    if (oversized){ fileList.innerHTML = `<span style="color:#C0503A">${T('fileTooBig', oversized.name, MAX_FILE_MB)}</span>`; return; }
+    wrap.querySelectorAll('button').forEach(b => b.disabled = true);
+    addBubble(files.length ? T('filesAttached', files.length) : T('noFilesAttached'), 'user');
+    if (files.length){
+      await botSay(T('uploading'), 400);
+      try{
+        lead.files = await Promise.all(files.map(fileToBase64));
+      }catch(err){
+        lead.files = [];
+      }
+    }
+    finalize();
+  };
+  wrap.querySelector('#skipUploadBtn').onclick = () => {
+    wrap.querySelectorAll('button').forEach(b => b.disabled = true);
+    addBubble(T('docsLater'), 'user');
+    lead.docsChoice = 'later';
+    finalize();
+  };
+}
+
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result.split(',')[1];
+      resolve({ name: file.name, mimeType: file.type || 'application/octet-stream', data: base64 });
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function finalize(){
+  await botTyping(700);
+  const appId = genAppId();
+  const fieldsProvided = Object.entries(lead.extraFields).map(([k,v]) => `${k}: ${v}`).join('; ');
+  const payload = {
+    leadId: appId,
+    name: lead.name,
+    phone: lead.phone,
+    category: lead.category,
+    service: lead.service,
+    price: lead.price,
+    fieldsProvided: fieldsProvided,
+    paymentStatus: lead.paymentStatus,
+    language: LANG,
+    files: lead.docsChoice === 'now' ? lead.files : []
+  };
+  try{
+    if (SHEET_ENDPOINT && !SHEET_ENDPOINT.includes("PASTE_YOUR")){
+      await fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+    }
+    addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody', appId)}`, 'bot');
+  }catch(err){
+    addBubble(T('submitError'), 'bot');
+  }
+  hideTextInput();
+  addQuickReplies([
+    {label:T('exploreBtn'), primary:true, value:"explore"}
+  ], () => {
+    resetForNextService();
+  });
+}
+
+function resetForNextService(){
+  lead.category = ""; lead.service = ""; lead.price = null; lead.turnaround = "";
+  lead.extraFields = {}; lead.paymentStatus = ""; lead.docsChoice = ""; lead.files = [];
+  setStepper('info', []);
+  askCategory();
+}
+
+start();
+</script>
+</body>
+</html>

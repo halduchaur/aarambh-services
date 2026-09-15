@@ -61,13 +61,22 @@ export default function Footer() {
                 {translations.footer.disclaimer}
             </div>
             <a
+                href="/aarambh-chatbot.html"
+                className="floating-whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Aarambh Chatbot"
+            >
+                <i className="fab fa-whatsapp"></i>
+            </a>
+            {/* <a
                 href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE}`}
                 className="floating-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <i className="fab fa-whatsapp"></i>
-            </a>
+            </a> */}
         </footer>
     </>);
 }

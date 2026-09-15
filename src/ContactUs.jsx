@@ -1,15 +1,40 @@
 import "./contact_us.css";
 import { Route, Link } from "react-router-dom";
-import { memo, useContext } from "react";
+import { memo, useContext, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { LanguageContext } from "./LanguageContext";
 
 const ContactUs = function () {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
-    const sendEmail = function() {
-        console.log("sdfsdfsdfs");
-    }
+    const formRef = useRef();
+    const [sending, setSending] = useState(false);
+    const [status, setStatus] = useState("");
+
+    const sendEmail = async function (e) {
+        e.preventDefault();
+        if (sending) {
+            return;
+        }
+        setSending(true);
+        setStatus("");
+        try {
+            await emailjs.sendForm(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                formRef.current,
+                { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY, }
+            );
+            setStatus("success");
+            formRef.current.reset();
+        } catch (error) {
+            console.error("EmailJS Error:", error);
+            setStatus("error");
+        } finally {
+            setSending(false);
+        }
+    };
+
     return (
         <>
             <section className="contact_us-hero contact_us_heading">
@@ -66,40 +91,44 @@ const ContactUs = function () {
                     <div className="contact_us-form-card" id="form">
                         <h2>{translations.contact.form_title}</h2>
                         <p>{translations.contact.form_sub}</p>
-                        <div className="contact_us-form-grid">
-                            <div className="contact_us-field">
-                                <label>{translations.contact.field_name} <span className="contact_us-req">*</span></label>
-                                <input type="text" name="user_name" placeholder={translations.contact.placeholder_name} />
+                        <form ref={formRef} onSubmit={sendEmail}>
+                            <div className="contact_us-form-grid">
+                                <div className="contact_us-field">
+                                    <label>{translations.contact.field_name} <span className="contact_us-req">*</span></label>
+                                    <input type="text" required name="user_name" placeholder={translations.contact.placeholder_name} />
+                                </div>
+                                <div className="contact_us-field">
+                                    <label>{translations.contact.field_phone} <span className="contact_us-req">*</span></label>
+                                    <input type="tel" required name="user_mobile" placeholder={translations.contact.placeholder_phone} />
+                                </div>
+                                <div className="contact_us-field">
+                                    <label>{translations.contact.field_email} <span className="contact_us-req">*</span></label>
+                                    <input type="email" required name="user_email" placeholder={translations.contact.placeholder_email} />
+                                </div>
+                                <div className="contact_us-field">
+                                    <label>{translations.contact.field_help}</label>
+                                    <select name="service_name" defaultValue="">
+                                        <option>{translations.contact.opt_select}</option>
+                                        <option value="Government Scheme">{translations.contact.opt_scheme}</option>
+                                        <option value="Essential Service / Document">{translations.contact.opt_service}</option>
+                                        <option value="Education Form">{translations.contact.opt_edu}</option>
+                                        <option value="Job Application">{translations.contact.opt_job}</option>
+                                        <option value="Career Guidance">{translations.contact.opt_career}</option>
+                                        <option value="Something else">{translations.contact.opt_other}</option>
+                                    </select>
+                                </div>
+                                <div className="contact_us-field full">
+                                    <label>{translations.contact.field_message} <span className="contact_us-req">*</span></label>
+                                    <textarea name="message" required placeholder={translations.contact.placeholder_message}></textarea>
+                                </div>
                             </div>
-                            <div className="contact_us-field">
-                                <label>{translations.contact.field_phone} <span className="contact_us-req">*</span></label>
-                                <input type="tel" name="user_mobile" placeholder={translations.contact.placeholder_phone} />
-                            </div>
-                            <div className="contact_us-field">
-                                <label>{translations.contact.field_email} <span className="contact_us-req">*</span></label>
-                                <input type="email" name="user_email" placeholder={translations.contact.placeholder_email} />
-                            </div>
-                            <div className="contact_us-field">
-                                <label>{translations.contact.field_help}</label>
-                                <select name="service_name">
-                                    <option>{translations.contact.opt_select}</option>
-                                    <option value="Government Scheme">{translations.contact.opt_scheme}</option>
-                                    <option value="Essential Service / Document">{translations.contact.opt_service}</option>
-                                    <option value="Education Form">{translations.contact.opt_edu}</option>
-                                    <option value="Job Application">{translations.contact.opt_job}</option>
-                                    <option value="Career Guidance">{translations.contact.opt_career}</option>
-                                    <option value="Something else">{translations.contact.opt_other}</option>
-                                </select>
-                            </div>
-                            <div className="contact_us-field full">
-                                <label>{translations.contact.field_message} <span className="contact_us-req">*</span></label>
-                                <textarea name="message" placeholder={translations.contact.placeholder_message}></textarea>
-                            </div>
-                        </div>
-                        <button className="contact_us-submit-btn" type="button" onClick={sendEmail}>
-                            {translations.contact.submit_btn}
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
-                        </button>
+                            <button className="contact_us-submit-btn" type="submit" disabled={sending}>
+                                {sending ? "Sending..." : translations.contact.submit_btn}
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
+                            </button>
+                            {status === "success" && (<p className="contact_us-success"> Message sent successfully! </p>)}
+                            {status === "error" && (<p className="contact_us-error"> Failed to send message. Please try again. </p>)}
+                        </form>
                     </div>
 
                     <div className="contact_us-side-col">
