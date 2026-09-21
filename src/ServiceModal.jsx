@@ -57,17 +57,17 @@ const ServiceModal = ({ selectedService, language, setSelectedService }) => {
                 <div className="services_action-buttons">
 
                     {
-                        selectedService.apply_form ?
-                            <a
-                                className="services_apply_form-btn"
-                                onClick={() =>
-                                    window.location.href =
-                                    selectedService.apply_form
-                                }
-                            >
-                                {translations.modal.apply_form}
-                            </a>
-                            : null
+                        // selectedService.apply_form ?
+                        //     <a
+                        //         className="services_apply_form-btn"
+                        //         onClick={() =>
+                        //             window.location.href =
+                        //             selectedService.apply_form
+                        //         }
+                        //     >
+                        //         {translations.modal.apply_form}
+                        //     </a>
+                        //     : null
                     }
 
                     <a
