@@ -42,7 +42,7 @@ const Header = function () {
                             className={language === "en" ? "language-active" : ""}
                             onClick={() => setLanguage("en")}
                         >
-                            English
+                            Englishmmm
                         </button>
 
                         <span>|</span>
