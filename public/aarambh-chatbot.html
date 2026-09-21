@@ -24,29 +24,83 @@
     margin:0;
     font-family:'Manrope','Noto Sans Devanagari',system-ui,sans-serif;
     background:
-      radial-gradient(circle at 15% 0%, #ffffff22, transparent 40%),
+      radial-gradient(circle at 20% 10%, #ffffff 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, #e9dfc6 0%, transparent 40%),
       var(--paper);
     color:var(--ink);
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px 12px;
+    position:relative;
   }
+
+  .widget-anchor{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:14px;
+    z-index:999;
+  }
+
+  /* ---- Floating launcher button ---- */
+  .launcher{
+    width:66px;height:66px;border-radius:50%;
+    border:none; cursor:pointer; position:relative;
+    background:linear-gradient(145deg,var(--teal-700),var(--teal-900));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 28px -6px rgba(18,56,50,0.55), 0 0 0 4px #fff, 0 0 0 6px var(--gold);
+    transition:transform .2s ease;
+  }
+  .launcher:hover{transform:scale(1.06);}
+  .launcher-logo{width:40px;height:40px;object-fit:contain;border-radius:50%;background:#fff;padding:4px;}
+  .launcher-ring{
+    position:absolute; inset:-8px; border-radius:50%;
+    border:2px solid var(--gold);
+    animation:ringPulse 2.4s ease-out infinite;
+  }
+  @keyframes ringPulse{
+    0%{transform:scale(0.9);opacity:.9;}
+    70%{transform:scale(1.35);opacity:0;}
+    100%{opacity:0;}
+  }
+  .launcher-badge{
+    position:absolute; top:-2px; right:-2px;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--gold); color:var(--teal-900);
+    font-size:11px; font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid #fff;
+    animation:badgeBounce 1.8s ease-in-out infinite;
+  }
+  @keyframes badgeBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+  .launcher-tip{
+    max-width:200px; background:#fff; color:var(--ink);
+    border:1px solid var(--line); border-radius:14px; border-bottom-right-radius:4px;
+    padding:10px 13px; font-size:12.5px; font-weight:600; line-height:1.4;
+    box-shadow:0 10px 24px -8px rgba(18,56,50,0.25);
+    animation:tipFloat 3s ease-in-out infinite, tipShow .3s ease 1.2s both;
+  }
+  @keyframes tipShow{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes tipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .widget-anchor.open .launcher, .widget-anchor.open .launcher-tip, .widget-anchor.open .launcher-ring, .widget-anchor.open .launcher-badge{display:none;}
 
   .phone{
     width:400px;
-    max-width:100%;
-    height:780px;
-    max-height:92vh;
+    max-width:calc(100vw - 24px);
+    height:700px;
+    max-height:80vh;
     background:var(--white);
-    border-radius:28px;
+    border-radius:24px;
     overflow:hidden;
     display:flex;
     flex-direction:column;
-    box-shadow:0 30px 60px -20px rgba(18,56,50,0.35), 0 0 0 1px var(--line);
+    box-shadow:0 30px 60px -20px rgba(18,56,50,0.4), 0 0 0 1px var(--line);
     position:relative;
+    animation:panelIn .28s cubic-bezier(.2,.9,.3,1.2);
   }
+  .phone.hidden{display:none;}
+  @keyframes panelIn{from{opacity:0;transform:translateY(18px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
 
   .header{
     background:linear-gradient(135deg,var(--teal-900),var(--teal-700));
@@ -57,12 +111,11 @@
     gap:12px;
     flex-shrink:0;
   }
-  .header .mark{
-    width:38px;height:38px;border-radius:10px;
-    background:var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Poppins',sans-serif;font-weight:700;color:var(--teal-900);
-    font-size:16px;flex-shrink:0;
+  .mark-logo{
+    width:40px;height:40px;border-radius:12px;
+    background:#fff; padding:4px; object-fit:contain;
+    box-shadow:0 2px 6px rgba(0,0,0,0.18);
+    flex-shrink:0;
   }
   .header .brand{flex:1;min-width:0;}
   .header .brand-name{
@@ -74,6 +127,34 @@
   .header .status::before{
     content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
     background:#5BD68A;margin-right:5px;
+  }
+  .closeBtn{
+    background:rgba(255,255,255,0.15); border:none; color:#fff;
+    width:30px;height:30px;border-radius:50%; cursor:pointer;
+    font-size:14px; display:flex;align-items:center;justify-content:center;
+    flex-shrink:0; transition:.15s ease;
+  }
+  .closeBtn:hover{background:rgba(255,255,255,0.3);}
+
+  .hero-banner{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    background:linear-gradient(180deg,#fff,#FCFAF3);
+    border:1px solid var(--line); border-radius:16px;
+    padding:18px 16px; margin:0 auto 4px; max-width:92%;
+    box-shadow:0 8px 20px -10px rgba(18,56,50,0.15);
+  }
+  .hero-banner img{width:110px;height:auto;margin-bottom:2px;}
+  .hero-banner .tagline{
+    font-size:10.5px; font-weight:700; color:var(--teal-700); letter-spacing:.3px;
+    background:var(--gold-soft); padding:4px 10px; border-radius:20px; margin-top:8px;
+  }
+  .hero-strip{
+    display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; justify-content:center;
+  }
+  .hero-strip span{
+    font-size:9.5px; font-weight:700; color:var(--teal-700);
+    background:#EAF5F0; padding:4px 9px; border-radius:20px;
+    display:inline-flex; align-items:center; gap:3px;
   }
 
   .stepper{
@@ -174,6 +255,30 @@
     display:inline-block;background:var(--gold-soft);color:#8A5E12;font-size:10.5px;font-weight:700;
     padding:3px 8px;border-radius:20px;margin-top:6px;
   }
+  .trust-badge{
+    display:inline-flex; align-items:center; gap:4px;
+    background:#EAF5F0; color:var(--teal-700); font-size:10.5px; font-weight:700;
+    padding:4px 10px; border-radius:20px; margin-top:8px;
+  }
+  .pay-tabs{
+    display:flex; gap:6px; margin-top:14px; background:var(--paper);
+    border-radius:12px; padding:4px;
+  }
+  .pay-tab{
+    flex:1; border:none; background:transparent; color:#83795F;
+    font-family:inherit; font-weight:700; font-size:12px; padding:8px 6px;
+    border-radius:9px; cursor:pointer; transition:.15s ease;
+  }
+  .pay-tab.active{background:#fff; color:var(--teal-900); box-shadow:0 2px 6px rgba(18,56,50,0.12);}
+  .pay-tab-panel{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    padding:14px 4px 4px; gap:6px;
+  }
+  .pay-tab-panel.hidden{display:none;}
+  .upi-qr{width:150px;height:150px;border-radius:12px;border:1px solid var(--line);padding:6px;background:#fff;}
+  .pay-instruction{font-size:11.5px;color:#5F7168;line-height:1.5;max-width:230px;}
+  .upi-id-row{font-size:12px;color:var(--ink);background:var(--paper);padding:6px 12px;border-radius:20px;}
+  .upi-app-link{display:block;text-align:center;text-decoration:none;width:100%;}
 
   .inputbar{
     flex-shrink:0;
@@ -218,9 +323,18 @@
 </head>
 <body>
 
-<div class="phone">
+<div class="widget-anchor">
+
+  <button class="launcher" id="launcherBtn" aria-label="Open Aarambh chat">
+    <span class="launcher-ring"></span>
+    <img src="data:image/png;base64,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" alt="Aarambh" class="launcher-logo">
+    <span class="launcher-badge">1</span>
+  </button>
+  <div class="launcher-tip" id="launcherTip">👋 <b>Namaste!</b> Sarkari services me madad chahiye?</div>
+
+  <div class="phone hidden" id="phonePanel">
   <div class="header">
-    <div class="mark">A</div>
+    <img src="data:image/png;base64,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" alt="Aarambh" class="mark-logo">
     <div class="brand">
       <div class="brand-name">
         Aarambh Services
@@ -228,6 +342,7 @@
       </div>
       <div class="status">Online</div>
     </div>
+    <button class="closeBtn" id="closeBtn" aria-label="Close chat">✕</button>
   </div>
 
   <div class="stepper hidden" id="stepper">
@@ -248,36 +363,53 @@
   </div>
 
   <div class="footer-credit">🔒 Your details are kept private &amp; used only to help you</div>
+  </div>
+
 </div>
 
 <script>
-/* ====================== CONFIG ====================== */
 const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyA1WpjH9rMHkFwNooNcftIM1dREatyu4auLZnvM0faf_WTjKC34ucczvd3Lv5SdgXaQQ/exec";
 const MAX_FILES = 5;
 const MAX_FILE_MB = 3;
+const UPI_ID = "sudhirhiraskar46@oksbi";
+const UPI_PAYEE_NAME = "Aarambh India";
+const AUTHORISED_PHONE = "+91 9096759855";
+const LOGO_HERO_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcwAAAFYCAMAAADp8jzhAAADAFBMVEX9/PoJKEoDGDMUMlkaO2XRhzMACSkAAhQeQW7o6OknRG4IITzYmEjkpkvHeivalDovOFHGx80CG0TV1tlPVm2VmKalp7L15tOGiJVxd4q3usPLdhaRkpju1bTHh0Xb3eJmaHaztLtHSVdZYnbu3MhGS2W5ZhLqxpXoyqjbpFbaqG7juoslK0c5Qlrd4eXEaw/mtXJ8gpK5ekTgnUOcoq+yWQe9wckkJjTqslXjmjfctoxmbIK8cyu2ayVwc3vRnGdXZ4TirGkxMzspPGT41pHVgxv85bOgnqhRUlrjojvzxHMPEh2FjaP+9tXUrYXdsXsmGyfg3uK6gEbXxq89UnKOWinljCgFLGBTQTpHXIVoRyluVkmaajSKaUiIfHGbqMO+chy6gTPFfEXNvrDAvsQ1WoVMOS1APUhcdpd1UjCQdlG1bUTnhhv90nwAD0EgDyA9JB0/aJRAHQJHJhBFLCRWMhljORFhOyBkRBhgXmF+gnp9jayMTxiUUBubez+Bf4KZgXKqTA6pjWWokHClnoywp5Wqr8DCbybZ0b784J0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABI68ulAAABAHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////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";
+const LOGO_ICON_URI = "data:image/png;base64,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";
 
-const SERVICES_DATA = [{"category": "Aadhaar Services", "service": "Aadhaar Address Update", "price": 299, "turnaround": "3-5 working days", "fields": ["Full Name", "Aadhaar Number", "New Address", "Mobile linked"], "docs": "Aadhaar copy, Address proof (electricity bill/rent agreement/bank passbook)", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar NPCI Link", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Bank Account Number", "IFSC"], "docs": "Aadhaar copy, Bank passbook/statement first page", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar-PAN Link", "price": null, "turnaround": null, "fields": ["Aadhaar Number", "PAN Number", "Full Name", "DOB"], "docs": "Aadhaar copy, PAN copy", "active": true}, {"category": "Aadhaar Services", "service": "Aadhaar PVC Card", "price": null, "turnaround": null, "fields": ["Aadhaar Number", "Full Name", "Mobile Number"], "docs": "Aadhaar copy", "active": true}, {"category": "PAN Card Services", "service": "New PAN Card", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": "Aadhaar copy, Passport size photo, Signature", "active": true}, {"category": "PAN Card Services", "service": "PAN Card Correction", "price": null, "turnaround": null, "fields": ["PAN Number", "Field to correct", "Correct details"], "docs": "PAN copy, Aadhaar copy, Supporting proof for correction", "active": true}, {"category": "PAN Card Services", "service": "Reprint PAN Card", "price": null, "turnaround": null, "fields": ["PAN Number", "Full Name", "Mobile Number", "Address"], "docs": "Aadhaar copy, PAN copy (if available)", "active": true}, {"category": "Voter Card Services", "service": "New Voter Card", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Father's/Husband's Name", "Mobile"], "docs": "Aadhaar copy, Passport size photo, Address proof", "active": true}, {"category": "Voter Card Services", "service": "Voter Card Correction", "price": null, "turnaround": null, "fields": ["Voter ID Number", "Field to correct", "Correct details"], "docs": "Voter ID copy, Aadhaar copy, Supporting proof", "active": true}, {"category": "Driving License & Vehicle", "service": "Learners License", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Blood Group", "Vehicle Class"], "docs": "Aadhaar copy, Passport size photo, Address proof", "active": true}, {"category": "Driving License & Vehicle", "service": "Permanent DL", "price": null, "turnaround": null, "fields": ["Learner's License Number", "Full Name", "DOB", "Address"], "docs": "Learner's License copy, Aadhaar copy, Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "Duplicate Driving License", "price": null, "turnaround": null, "fields": ["DL Number", "Full Name", "Reason for duplicate"], "docs": "Aadhaar copy, Old DL copy (if any), Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "DL Aadhaar Link", "price": null, "turnaround": null, "fields": ["DL Number", "Aadhaar Number", "Full Name"], "docs": "DL copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "DL Address Change", "price": null, "turnaround": null, "fields": ["DL Number", "New Address", "Full Name"], "docs": "DL copy, New address proof", "active": true}, {"category": "Driving License & Vehicle", "service": "International Driving License Permit (IDP)", "price": null, "turnaround": null, "fields": ["DL Number", "Passport Number", "Travel Country", "Travel Date"], "docs": "DL copy, Passport copy, Visa copy, Photo", "active": true}, {"category": "Driving License & Vehicle", "service": "RC Aadhaar Link", "price": null, "turnaround": null, "fields": ["RC Number", "Aadhaar Number", "Full Name"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "HSRP", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "Full Name", "Mobile", "Address"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Aadhaar PVC Colour Code Sticker", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "Full Name", "Mobile"], "docs": "RC copy, Aadhaar copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Vehicle Challan Payment", "price": null, "turnaround": null, "fields": ["Vehicle Number / Challan Number"], "docs": "None (only vehicle/challan number needed)", "active": true}, {"category": "Driving License & Vehicle", "service": "Vehicle Tax", "price": null, "turnaround": null, "fields": ["RC Number", "Vehicle Number", "State"], "docs": "RC copy", "active": true}, {"category": "Driving License & Vehicle", "service": "Fastag KYV", "price": null, "turnaround": null, "fields": ["Vehicle Number", "RC Number", "Mobile Number"], "docs": "RC copy, Aadhaar copy, Vehicle photo", "active": true}, {"category": "Driving License & Vehicle", "service": "FASTag One Year Pass", "price": null, "turnaround": null, "fields": ["Vehicle Number", "FASTag ID", "Mobile Number"], "docs": "RC copy, FASTag details", "active": true}, {"category": "Driving License & Vehicle", "service": "FTI-TTP Registration", "price": null, "turnaround": null, "fields": ["Full Name", "Passport Number", "Travel Details"], "docs": "Passport copy, Photo", "active": true}, {"category": "Passport Services", "service": "New Passport", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile"], "docs": "Aadhaar copy, Birth certificate, Address proof, Photo", "active": true}, {"category": "Passport Services", "service": "Passport Renewal", "price": null, "turnaround": null, "fields": ["Old Passport Number", "Full Name", "DOB", "Address"], "docs": "Old Passport copy, Aadhaar copy, Photo", "active": true}, {"category": "State Certificates", "service": "Caste Certificate - Haryana", "price": null, "turnaround": null, "fields": ["Full Name", "Father's Name", "Caste", "Address"], "docs": "Aadhaar copy, Domicile/residence proof, Old caste certificate (if any)", "active": true}, {"category": "State Certificates", "service": "Caste Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Father's Name", "Caste", "Address"], "docs": "Aadhaar copy, Domicile/residence proof, Old caste certificate (if any)", "active": true}, {"category": "State Certificates", "service": "Domicile Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Address", "Years of Residence"], "docs": "Aadhaar copy, Residence proof, School leaving certificate", "active": true}, {"category": "State Certificates", "service": "Income Certificate - Haryana", "price": null, "turnaround": null, "fields": ["Full Name", "Family Income", "Occupation", "Address"], "docs": "Aadhaar copy, Income proof/salary slip, Address proof", "active": true}, {"category": "State Certificates", "service": "Income Certificate - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "Family Income", "Occupation", "Address"], "docs": "Aadhaar copy, Income proof/salary slip, Address proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Andhra Pradesh", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Assam", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Karnataka", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Maharashtra", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Address", "Mobile"], "docs": "Aadhaar copy, Photo, Age proof", "active": true}, {"category": "Business & Tax", "service": "GST Registration", "price": null, "turnaround": null, "fields": ["Business Name", "Business Address", "PAN", "Business Type"], "docs": "PAN copy, Aadhaar copy, Business address proof, Bank details, Photo", "active": true}, {"category": "Business & Tax", "service": "GSTIN Verification", "price": null, "turnaround": null, "fields": ["GSTIN Number"], "docs": "None", "active": true}, {"category": "Business & Tax", "service": "Udyam Registration", "price": null, "turnaround": null, "fields": ["Business Name", "Aadhaar Number", "PAN", "Business Address"], "docs": "Aadhaar copy, PAN copy, Business address proof", "active": true}, {"category": "Business & Tax", "service": "FSSAI New Food License", "price": null, "turnaround": null, "fields": ["Business Name", "Address", "Type of Food Business"], "docs": "PAN copy, Aadhaar copy, Business address proof, Photo", "active": true}, {"category": "Business & Tax", "service": "FSSAI Food License Renewal", "price": null, "turnaround": null, "fields": ["FSSAI License Number", "Business Name"], "docs": "Old FSSAI license copy, PAN copy", "active": true}, {"category": "Business & Tax", "service": "ITR (Income Tax Return)", "price": null, "turnaround": null, "fields": ["PAN Number", "Aadhaar Number", "Income Source", "Financial Year"], "docs": "PAN copy, Aadhaar copy, Form 16/Income proof, Bank statement", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Atal Pension Yojana", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PMJJBY", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PMSBY", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Ayushman Service", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Family Details", "Address"], "docs": "Aadhaar copy, Ration card, Income proof (if required)", "active": true}, {"category": "Govt Schemes & Social Security", "service": "e-Shram Card", "price": null, "turnaround": null, "fields": ["Full Name", "Aadhaar Number", "Occupation", "Mobile"], "docs": "Aadhaar copy, Bank passbook", "active": true}, {"category": "Govt Schemes & Social Security", "service": "UAN Activation", "price": null, "turnaround": null, "fields": ["UAN Number", "Aadhaar Number", "Mobile Number"], "docs": "Aadhaar copy, UAN details/salary slip", "active": true}, {"category": "Govt Schemes & Social Security", "service": "PM Internship Registration", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Qualification", "Aadhaar Number"], "docs": "Aadhaar copy, Educational certificates, Photo", "active": true}, {"category": "Govt Schemes & Social Security", "service": "ABHA Service", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Aadhaar Number", "Mobile"], "docs": "Aadhaar copy", "active": true}, {"category": "Govt Schemes & Social Security", "service": "Apaar ID", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "School/College Name", "Aadhaar Number"], "docs": "Aadhaar copy, School/College ID", "active": true}, {"category": "Govt Schemes & Social Security", "service": "UDID Service (Disability ID)", "price": null, "turnaround": null, "fields": ["Full Name", "DOB", "Disability Type/Percentage", "Address"], "docs": "Aadhaar copy, Medical certificate, Photo", "active": true}, {"category": "Darshan Booking", "service": "Kashi Vishwanath Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Mahakaleshwar Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Sai Baba Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Srisaila Devasthanam Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}, {"category": "Darshan Booking", "service": "Vitthal Rukmini Darshan Booking", "price": null, "turnaround": null, "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": "Aadhaar/ID copy of all visitors", "active": true}];
-
+const SERVICES_DATA = [{"category": "Aadhaar Services", "service": "Aadhaar Address Update", "govtCharge": 75, "aarambhCharge": 74, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "Email ID", "Aadhaar Number", "New Address", "Aadhar linked Mobile Number"], "docs": ["Address proof (Any One from the Following - electricity bill/rent agreement/bank passbook)"], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar NPCI Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Email ID", "Aadhaar Number", "Banke Name", "Bank Account Number", "IFSC Code"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar-PAN Link", "govtCharge": 1000, "aarambhCharge": 99, "price": 1099, "turnaround": "24-48 Hours", "fields": ["Aadhaar Number", "PAN Number", "Full Name", "Email ID", "Date of Birth", "Aadhar Linked Mobile Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar PVC Card", "govtCharge": 75, "aarambhCharge": 74, "price": 149, "turnaround": "24-48 Hours", "fields": ["Aadhaar Number", "Full Name", "Email ID", "Mobile Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "New PAN Card", "govtCharge": 106, "aarambhCharge": 143, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Signature", "Date of Birth Proof - School Leaving Certificate/Voter iD/ Birth Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "PAN Card Correction", "govtCharge": 106, "aarambhCharge": 143, "price": 249, "turnaround": "24-48 Hours", "fields": ["PAN Number", "Field to correct", "Correct details Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Signature", "Date of Birth Proof - School Leaving Certificate/Voter iD/ Birth Certificate", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "Reprint PAN Card", "govtCharge": 50, "aarambhCharge": 99, "price": 149, "turnaround": "24-48 Hours", "fields": ["Aadhar Number", "PAN Number", "Full Name", "Mobile Number", "Email ID"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Voter Card Services", "service": "New Voter Card", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Husband's Name", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Address proof", "Parents Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Voter Card Services", "service": "Voter Card Correction", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Voter ID Number", "Field to correct", "Correct details"], "docs": ["Voter ID copy", "Aadhaar copy", "Supporting proof"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Learners License", "govtCharge": 350, "aarambhCharge": 149, "price": 499, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Blood Group", "Vehicle Class", "Education Qualification", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Passport size photo", "Address proof", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "Permanent DL", "govtCharge": 300, "aarambhCharge": 199, "price": 499, "turnaround": "24-48 Hours", "fields": ["Learner's License Number", "Full Name", "DOB", "Address", "Mobile Number", "Email ID"], "docs": ["Learner's License copy", "Aadhaar copy", "Photo", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "Duplicate Driving License", "govtCharge": 300, "aarambhCharge": 199, "price": 499, "turnaround": "24-48 Hours", "fields": ["DL Number", "Full Name", "Reason for duplicate", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Old DL copy (if any)", "Photo"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "DL Aadhaar Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["DL Number", "Aadhaar Number", "Full Name", "Mobile Number", "Email ID"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "DL Address Change", "govtCharge": 300, "aarambhCharge": 199, "price": 499, "turnaround": "24-48 Hours", "fields": ["DL Number", "New Address", "Full Name", "Mobile Number", "Email id"], "docs": ["DL copy", "New address proof - Aadhar card/Electricity Bill/Rent Agreement/Bank Passbook"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "International Driving License Permit (IDP)", "govtCharge": 300, "aarambhCharge": 199, "price": 499, "turnaround": "24-48 Hours", "fields": ["DL Number", "Passport Number", "Travel Country", "Full Name", "Mobile Number", "Email id"], "docs": ["DL copy", "Passport copy", "Aadhar card", "Photo", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "RC Aadhaar Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Vehicle RC Number", "Aadhaar Number", "Full Name", "Mobile Number", "Email ID"], "docs": ["RC copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "2 Wheeler HSRP Number Plate", "govtCharge": 531, "aarambhCharge": 118, "price": 649, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "4 Wheeler HSRP Number Plate", "govtCharge": 880, "aarambhCharge": 119, "price": 999, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "HSRP Colour Coded Fuel Sticker", "govtCharge": 290, "aarambhCharge": 109, "price": 399, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy", "Front Number photo", "Rear Number plate photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Vehicle Challan Payment", "govtCharge": 0, "aarambhCharge": 49, "price": 49, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Vehicle Tax", "govtCharge": 0, "aarambhCharge": 49, "price": 49, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Fastag KYV", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", ""], "docs": ["RC copy", "Aadhaar copy", "Vehicle photo from Front", "Vehicle photo from Side"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "FASTag One Year Pass", "govtCharge": 400, "aarambhCharge": 199, "price": 599, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", ""], "docs": ["RC copy", "Aadhaar copy", "Vehicle photo from Front", "Vehicle photo from Side"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "FTI-TTP Registration", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Passport Number", "Date of Birth", "Address", "Mobile Number", "Email id"], "docs": ["Passport copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Passport Services", "service": "New Passport", "govtCharge": 2500, "aarambhCharge": 199, "price": 2699, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile Number", "Email ID", "Emergency Contact Name and Number"], "docs": ["Aadhaar copy", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "Passport Services", "service": "Passport Renewal", "govtCharge": 2500, "aarambhCharge": 199, "price": 2699, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile Number", "Email ID", "Emergency Contact Name and Number"], "docs": ["Aadhaar copy", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Caste Certificate - Haryana", "govtCharge": 0, "aarambhCharge": 0, "price": 399, "turnaround": "24-48 Hours", "fields": ["Full Name", "Father's Name", "Family ID Number Caste", "Address", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Domicile/residence proof", "Old caste certificate (if any)", "School Leaving Certificate", "Family ID card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Caste Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 0, "price": 399, "turnaround": "24-48 Hours", "fields": ["Full Name", "Father's Name", "Caste", "Address", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Domicile/residence proof", "Old caste certificate (if any)", "School Leaving Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Domicile Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 0, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Address", "DOB", "Mobile Number", "Email id", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Residence proof", "School leaving certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Income Certificate - Haryana", "govtCharge": 0, "aarambhCharge": 0, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Emaild ID", "Family ID", "Family Annual Income", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Income proof/salary slip", "Address proof", "Photo", "Signature", "Family ID Card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Income Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 0, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Emaild ID", "Family Annual Income", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Income proof/salary slip", "Address proof", "Photo", "Signature"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Andhra Pradesh", "govtCharge": 0, "aarambhCharge": 0, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Assam", "govtCharge": 0, "aarambhCharge": 0, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate", "Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Karnataka", "govtCharge": 0, "aarambhCharge": 0, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Maharashtra", "govtCharge": 0, "aarambhCharge": 0, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate", "Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "GST Registration", "govtCharge": 0, "aarambhCharge": 499, "price": 499, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email id", "Business Name", "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP", "Business Address", "Business Starting Date", "Nature of Business"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Electricity Bill/Rent Agreement/Consent Letter", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "GSTIN Verification", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["GSTIN Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "Udyam Registration", "govtCharge": 0, "aarambhCharge": 249, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email id", "Business Name", "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP", "Business Address", "Business Starting Date", "Nature of Business"], "docs": ["Aadhaar copy", "PAN copy", "Bank Passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "FSSAI New Food License", "govtCharge": 0, "aarambhCharge": 149, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email ID", "Business Name", "Address", "Turnover", "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop", "Number of Year want to apply"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Rent Agreement/Electricity Bill", "Photo"], "active": true, "noteType": "per_year", "noteText": "Isme jitne mene per year ka price mention kiya hai so customer jitne saal ka bole uska multiple hoga govt charges but Aarambh services charges same rahenge"}, {"category": "Business & Tax", "service": "FSSAI Food License Renewal", "govtCharge": 0, "aarambhCharge": 149, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email ID", "Old FSSAI License Number", "Business Name", "Address", "Turnover", "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop", "Number of Year want to apply"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Rent Agreement/Electricity Bill", "Photo", "Old FSSAI License Number"], "active": true, "noteType": "per_year", "noteText": "Isme jitne mene per year ka price mention kiya hai so customer jitne saal ka bole uska multiple hoga govt charges but Aarambh services charges same rahenge"}, {"category": "Business & Tax", "service": "ITR (Income Tax Return)", "govtCharge": 0, "aarambhCharge": 999, "price": 999, "turnaround": "24-48 Hours", "fields": ["PAN Number", "Aadhaar Number", "Income Source", "Financial Year"], "docs": ["PAN copy", "Aadhaar copy", "Form 16/Income proof", "Bank statement"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Atal Pension Yojana", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PMJJBY", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PMSBY", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Ayushman Service", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Aadhaar Number", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Ration card"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "e-Shram Card", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Aadhaar Number", "Occupation", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PM Internship Registration", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Qualification", "Aadhaar Number", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "ABHA Service", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Mobile number", "Email ID"], "docs": ["Aadhaar copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Apaar ID", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "School/College Name", "Aadhaar Number", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "UDID Service (Disability ID)", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Disability Type/Percentage", "Address", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Kashi Vishwanath Darshan Booking", "govtCharge": 300, "aarambhCharge": 99, "price": 399, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Mahakaleshwar Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Sai Baba Darshan Booking", "govtCharge": 200, "aarambhCharge": 99, "price": 299, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Srisailam Devasthanam Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Vitthal Rukmini Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}];
 
 const FIELD_TRANSLATIONS = {
   "Aadhaar Number": {hi:"आधार नंबर", mr:"आधार क्रमांक"},
+  "Aadhar Number": {hi:"आधार नंबर", mr:"आधार क्रमांक"},
+  "Aadhar Linked Mobile Number": {hi:"आधार से लिंक्ड मोबाइल नंबर", mr:"आधार लिंक केलेला मोबाइल क्रमांक"},
+  "Aadhar linked Mobile Number": {hi:"आधार से लिंक्ड मोबाइल नंबर", mr:"आधार लिंक केलेला मोबाइल क्रमांक"},
   "Address": {hi:"पता", mr:"पत्ता"},
   "Bank Account": {hi:"बैंक खाता", mr:"बँक खाते"},
   "Bank Account Number": {hi:"बैंक खाता संख्या", mr:"बँक खाते क्रमांक"},
+  "Banke Name": {hi:"बैंक का नाम", mr:"बँकेचे नाव"},
   "Blood Group": {hi:"रक्त समूह", mr:"रक्तगट"},
   "Business Address": {hi:"व्यवसाय का पता", mr:"व्यवसायाचा पत्ता"},
   "Business Name": {hi:"व्यवसाय का नाम", mr:"व्यवसायाचे नाव"},
+  "Business Starting Date": {hi:"व्यवसाय शुरू होने की तिथि", mr:"व्यवसाय सुरू झाल्याची तारीख"},
   "Business Type": {hi:"व्यवसाय का प्रकार", mr:"व्यवसायाचा प्रकार"},
   "Caste": {hi:"जाति", mr:"जात"},
   "Correct details": {hi:"सही विवरण", mr:"योग्य तपशील"},
+  "Correct details Full Name": {hi:"सही विवरण (पूरा नाम)", mr:"योग्य तपशील (पूर्ण नाव)"},
+  "Current City Pincode": {hi:"वर्तमान शहर का पिन कोड", mr:"सध्याच्या शहराचा पिन कोड"},
   "DL Number": {hi:"ड्राइविंग लाइसेंस नंबर", mr:"ड्रायव्हिंग लायसन्स क्रमांक"},
   "DOB": {hi:"जन्म तिथि (DD-MM-YYYY)", mr:"जन्मतारीख (DD-MM-YYYY)"},
+  "Date of Birth": {hi:"जन्म तिथि (DD-MM-YYYY)", mr:"जन्मतारीख (DD-MM-YYYY)"},
   "Disability Type/Percentage": {hi:"दिव्यांगता का प्रकार/प्रतिशत", mr:"अपंगत्वाचा प्रकार/टक्केवारी"},
+  "Education Qualification": {hi:"शैक्षणिक योग्यता", mr:"शैक्षणिक पात्रता"},
   "Email": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
-  "FASTag ID": {hi:"फास्टैग आईडी", mr:"फास्टॅग आयडी"},
-  "FSSAI License Number": {hi:"एफएसएसएआई लाइसेंस नंबर", mr:"एफएसएसएआय परवाना क्रमांक"},
-  "Family Details": {hi:"परिवार का विवरण", mr:"कुटुंबाचा तपशील"},
-  "Family Income": {hi:"पारिवारिक आय", mr:"कौटुंबिक उत्पन्न"},
+  "Email ID": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Email id": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Emaild ID": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Emergency Contact Name and Number": {hi:"आपातकालीन संपर्क नाम एवं नंबर", mr:"आपत्कालीन संपर्क नाव व क्रमांक"},
+  "Family Annual Income": {hi:"पारिवारिक वार्षिक आय", mr:"कौटुंबिक वार्षिक उत्पन्न"},
+  "Family ID": {hi:"फैमिली आईडी", mr:"फॅमिली आयडी"},
+  "Family ID Number Caste": {hi:"फैमिली आईडी नंबर / जाति", mr:"फॅमिली आयडी क्रमांक / जात"},
   "Father's Name": {hi:"पिता का नाम", mr:"वडिलांचे नाव"},
   "Father's/Husband's Name": {hi:"पिता/पति का नाम", mr:"वडील/पतीचे नाव"},
   "Father's/Mother's Name": {hi:"माता-पिता का नाम", mr:"आई-वडिलांचे नाव"},
@@ -288,34 +420,36 @@ const FIELD_TRANSLATIONS = {
   "GSTIN Number": {hi:"जीएसटीआईएन नंबर", mr:"जीएसटीआयएन क्रमांक"},
   "ID Proof Number": {hi:"पहचान पत्र संख्या", mr:"ओळखपत्र क्रमांक"},
   "IFSC": {hi:"आईएफएससी कोड", mr:"आयएफएससी कोड"},
+  "IFSC Code": {hi:"आईएफएससी कोड", mr:"आयएफएससी कोड"},
   "Income Source": {hi:"आय का स्रोत", mr:"उत्पन्नाचा स्रोत"},
+  "Last 5 digit of Chassis Number": {hi:"चेसिस नंबर के अंतिम 5 अंक", mr:"चेसिस क्रमांकाचे शेवटचे 5 अंक"},
+  "Last 5 digit of Engine Number": {hi:"इंजन नंबर के अंतिम 5 अंक", mr:"इंजिन क्रमांकाचे शेवटचे 5 अंक"},
   "Learner's License Number": {hi:"लर्निंग लाइसेंस नंबर", mr:"लर्निंग लायसन्स क्रमांक"},
   "Mobile": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
   "Mobile Number": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile number": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
   "Mobile linked": {hi:"लिंक्ड मोबाइल नंबर", mr:"लिंक केलेला मोबाइल क्रमांक"},
+  "Nature of Business": {hi:"व्यवसाय की प्रकृति", mr:"व्यवसायाचे स्वरूप"},
   "New Address": {hi:"नया पता", mr:"नवीन पत्ता"},
   "No. of Persons": {hi:"व्यक्तियों की संख्या", mr:"व्यक्तींची संख्या"},
+  "Number of Year want to apply": {hi:"आप कितने वर्षों के लिए आवेदन करना चाहते हैं", mr:"तुम्हाला किती वर्षांसाठी अर्ज करायचा आहे"},
   "Occupation": {hi:"व्यवसाय/पेशा", mr:"व्यवसाय"},
-  "Old Passport Number": {hi:"पुराना पासपोर्ट नंबर", mr:"जुना पासपोर्ट क्रमांक"},
-  "PAN": {hi:"पैन नंबर", mr:"पॅन क्रमांक"},
+  "Old FSSAI License Number": {hi:"पुराना एफएसएसएआई लाइसेंस नंबर", mr:"जुना एफएसएसएआय परवाना क्रमांक"},
   "PAN Number": {hi:"पैन नंबर", mr:"पॅन क्रमांक"},
   "Passport Number": {hi:"पासपोर्ट नंबर", mr:"पासपोर्ट क्रमांक"},
+  "Purpose of Certificate": {hi:"प्रमाणपत्र का उद्देश्य", mr:"प्रमाणपत्राचा उद्देश"},
   "Qualification": {hi:"शैक्षणिक योग्यता", mr:"शैक्षणिक पात्रता"},
-  "RC Number": {hi:"आरसी नंबर", mr:"आरसी क्रमांक"},
   "Reason for duplicate": {hi:"डुप्लीकेट का कारण", mr:"डुप्लिकेटचे कारण"},
   "School/College Name": {hi:"स्कूल/कॉलेज का नाम", mr:"शाळा/महाविद्यालयाचे नाव"},
-  "State": {hi:"राज्य", mr:"राज्य"},
   "Travel Country": {hi:"यात्रा देश", mr:"प्रवास देश"},
-  "Travel Date": {hi:"यात्रा तिथि", mr:"प्रवासाची तारीख"},
-  "Travel Details": {hi:"यात्रा विवरण", mr:"प्रवास तपशील"},
-  "Type of Food Business": {hi:"खाद्य व्यवसाय का प्रकार", mr:"अन्न व्यवसायाचा प्रकार"},
-  "UAN Number": {hi:"यूएएन नंबर", mr:"यूएएन क्रमांक"},
+  "Turnover": {hi:"वार्षिक टर्नओवर", mr:"वार्षिक उलाढाल"},
+  "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop": {hi:"व्यवसाय का प्रकार - होटल/क्लाउड किचन/रेस्टोरेंट/ट्रेडर/रिटेलर/हॉकर/टी एंड स्नैक शॉप", mr:"व्यवसायाचा प्रकार - हॉटेल/क्लाउड किचन/रेस्टॉरंट/ट्रेडर/रिटेलर/हॉकर/टी अँड स्नॅक शॉप"},
+  "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP": {hi:"संस्था का प्रकार - प्रोप्राइटरशिप/पार्टनरशिप/प्राइवेट लिमिटेड/पब्लिक लिमिटेड/एलएलपी", mr:"संस्थेचा प्रकार - प्रोप्रायटरशिप/पार्टनरशिप/प्रायव्हेट लिमिटेड/पब्लिक लिमिटेड/एलएलपी"},
   "Vehicle Class": {hi:"वाहन श्रेणी", mr:"वाहन प्रकार"},
-  "Vehicle Number": {hi:"वाहन नंबर", mr:"वाहन क्रमांक"},
-  "Vehicle Number / Challan Number": {hi:"वाहन नंबर / चालान नंबर", mr:"वाहन क्रमांक / चलन क्रमांक"},
+  "Vehicle RC Number": {hi:"वाहन आरसी नंबर", mr:"वाहन आरसी क्रमांक"},
+  "Vehicle Registration Number": {hi:"वाहन पंजीकरण क्रमांक", mr:"वाहन नोंदणी क्रमांक"},
   "Visit Date": {hi:"यात्रा तिथि", mr:"भेटीची तारीख"},
-  "Voter ID Number": {hi:"वोटर आईडी नंबर", mr:"वोटर आयडी क्रमांक"},
-  "Years of Residence": {hi:"निवास के वर्ष", mr:"वास्तव्याची वर्षे"}
+  "Voter ID Number": {hi:"वोटर आईडी नंबर", mr:"वोटर आयडी क्रमांक"}
 };
 
 function translateField(field, lang){
@@ -335,38 +469,55 @@ const STRINGS = {
     thanksAskPhone:(n)=>`Thank you, <b>${n}</b>. Could you share your <b>10-digit mobile number</b>?`,
     phonePlaceholder:"Enter 10-digit number…",
     phoneError:"Please enter a valid 10-digit mobile number",
-    askCategory:"Which <b>category</b> would you like assistance with?",
+    askCategoryOrService:"Which <b>category</b> would you like assistance with? Or simply type what you need — for example, <i>\"Aadhaar PVC Card\"</i>.",
+    directInputPlaceholder:"Type a category or a service name…",
+    noDirectMatch:"I couldn't quite find that. Please choose a category below, or try typing the service name again.",
+    directMatchAck:(s)=>`Got it! Let's proceed with <b>${s}</b>.`,
     askService:(c)=>`Please select a <b>service</b> under <b>${c}</b>:`,
     priceLabel:(p)=>p?`₹${p}`:"Price: to be confirmed",
     turnaroundLabel:(t)=>t||"Turnaround: to be confirmed",
     fieldError:"Please provide this information",
+    yearsError:"Please enter a valid number of years (1–10)",
+    noteInfoText:"ℹ️ Please note: Government charges vary by state, and additional charges may apply during processing.",
+    notePerYearText:"ℹ️ The price shown is per year — government charges will be multiplied by the number of years you need, while our service charge stays fixed.",
     summaryIntro:"✅ We have all the required details. Please review your application:",
     summaryTitle:"📋 Application Summary",
     labelName:"Name", labelPhone:"Phone", labelService:"Service",
     labelFee:"Processing Fee", labelTurnaround:"Turnaround Time",
+    labelGovtCharges:(y)=>`Government Charges (${y} yr${y>1?'s':''})`,
+    labelAarambhCharges:"Aarambh Service Charges",
     feeTBD:"To be confirmed",
     confirmBtn:"✅ Confirm — Looks Good",
     startOverBtn:"✏️ Start Over",
     paymentIntro:"💳 Let's proceed to the payment step.",
-    payCardTitle:"Processing Fee",
+    payCardTitle:"Amount Payable",
     payForService:(s)=>`for <b>${s}</b>`,
-    payTag:"🔧 Online payment — coming soon",
-    payNote:(hasPrice)=>`For now, our team will collect the payment${hasPrice?" (UPI/Cash)":""} at the time of processing your application.`,
-    continuePayLater:"➡️ Continue (Pay Later)",
-    docsIntro:(d)=>`📎 Documents required: <b>${d}</b>`,
-    docsWhen:"When would you like to submit your documents?",
-    docsNow:"📤 Upload Now",
-    docsLater:"🕐 At the time of processing",
-    docsLaterSub:"Our team will collect it from you later",
-    fileChooseLabel:(max,mb)=>`Please select your documents (photo/PDF, max ${max} files, up to ${mb}MB each):`,
-    uploadSubmitBtn:"Upload & Submit",
-    skipUploadBtn:"Skip — submit later instead",
-    fileTooBig:(name,mb)=>`${name} is too large (max ${mb}MB)`,
-    filesAttached:(n)=>`📎 ${n} file(s) attached`,
-    noFilesAttached:"No files attached",
-    uploading:"Uploading your documents…",
+    payTrustBadge:"🔒 Secure · Verified Business",
+    payScanTab:"📱 Scan QR",
+    payAppTab:"👆 Pay via App",
+    payScanInstruction:"Scan this QR code with any UPI app (GPay, PhonePe, Paytm) to pay.",
+    payAppInstruction:"Tap below to open your UPI app with the amount pre-filled.",
+    payAppBtn:(amt)=>`Pay ${amt} via UPI App`,
+    payUpiIdLabel:"UPI ID",
+    paidBtn:"✅ I've Paid — Upload Screenshot",
+    paymentProofPrompt:"Please upload a screenshot of your successful payment so we can confirm it.",
+    paymentProofRequired:"Please attach your payment screenshot to continue",
+    paymentProofUpload:"Upload & Verify Payment",
+    verifyingPayment:"Verifying your payment…",
+    continuePayLater:"➡️ Continue",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`✅ <b>Payment Received — Your ${service} is Confirmed</b><br><br>Hi <b>${name}</b>, your <b>₹${amount}</b> has been received, and your <b>${service}</b> request is now registered with <b>Aarambh India</b>.<br><br><b>Transaction ID:</b> ${txnId}<br><b>Status:</b> 🟢 Payment Received → ⏳ Verification &amp; Application Pending<br><br><b>What happens next?</b><br>Our representative will contact you within 24–48 hours to verify your details, confirm the required documents and begin processing your application.<br>📞 <b>Authorised Number:</b> ${AUTHORISED_PHONE}<br><br>🔐 Please upload your documents below to proceed.<br>💰 No additional payment is required beyond <b>₹${amount}</b>, unless we inform you here first and explain the reason.<br><br>Your request is safely registered with <b>Aarambh India</b>. We'll keep you updated.<br><br>Thank you,<br><b>Team Aarambh India</b>`,
+    docUploadPrompt:(d)=>`📎 Please provide: <b>${d}</b>`,
+    docChoiceNow:"📤 Upload Now",
+    docChoiceLater:"🕐 At the time of processing",
+    docSingleFileLabel:(mb)=>`Select this document (photo/PDF, up to ${mb}MB):`,
+    docUploadSubmitBtn:"Upload & Continue",
+    docTooBig:(mb)=>`File too large (max ${mb}MB). Please choose a smaller file.`,
+    docFileAttached:"📎 Document attached",
+    docFileNone:"No file selected — will submit later",
+    uploading:"Uploading…",
+    noDocsNeededMsg:"✅ No documents are required for this service.",
     finalTitle:(n)=>`🎉 <b>Thank you, ${n}!</b>`,
-    finalBody:(id)=>`Your application has been received.<br><b>Application ID: ${id}</b><br>Our team will contact you within <b>24–48 hours</b> to complete the process.`,
+    finalBody:"Your application has been received. Our team will contact you within <b>24–48 hours</b> to complete the process.",
     exploreBtn:"🔎 Explore Other Services",
     submitError:"⚠️ There was an issue submitting your application. Please try again in a moment.",
     langPrompt:"👋 Welcome! Please choose your preferred language to continue.",
@@ -380,38 +531,55 @@ const STRINGS = {
     thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>। कृपया अपना <b>10 अंकों का मोबाइल नंबर</b> साझा करें।`,
     phonePlaceholder:"10 अंकों का नंबर लिखें…",
     phoneError:"कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें",
-    askCategory:"आपको किस <b>श्रेणी</b> में सहायता चाहिए?",
+    askCategoryOrService:"आपको किस <b>श्रेणी</b> में सहायता चाहिए? या सीधे अपनी आवश्यकता लिखें — जैसे, <i>\"Aadhaar PVC Card\"</i>।",
+    directInputPlaceholder:"श्रेणी चुनें या सेवा का नाम लिखें…",
+    noDirectMatch:"माफ़ कीजिए, हमें यह समझ नहीं आया। कृपया नीचे दी गई श्रेणी में से चुनें, या सेवा का नाम दोबारा लिखने की कोशिश करें।",
+    directMatchAck:(s)=>`बिल्कुल! चलिए <b>${s}</b> के लिए आगे बढ़ते हैं।`,
     askService:(c)=>`<b>${c}</b> में से कृपया अपनी <b>सेवा</b> चुनें:`,
     priceLabel:(p)=>p?`₹${p}`:"शुल्क: शीघ्र सूचित किया जाएगा",
     turnaroundLabel:(t)=>t||"समयावधि: शीघ्र सूचित की जाएगी",
     fieldError:"कृपया यह जानकारी दर्ज करें",
+    yearsError:"कृपया सही वर्षों की संख्या दर्ज करें (1–10)",
+    noteInfoText:"ℹ️ कृपया ध्यान दें: सरकारी शुल्क राज्य के अनुसार भिन्न हो सकते हैं, और प्रक्रिया के दौरान अतिरिक्त शुल्क लागू हो सकता है।",
+    notePerYearText:"ℹ️ दिखाया गया मूल्य प्रति वर्ष है — आवश्यक वर्षों की संख्या के अनुसार सरकारी शुल्क बढ़ेगा, जबकि हमारा सेवा शुल्क स्थिर रहेगा।",
     summaryIntro:"✅ सभी आवश्यक जानकारी प्राप्त हो गई है। कृपया अपना आवेदन जाँच लें:",
     summaryTitle:"📋 आवेदन सारांश",
     labelName:"नाम", labelPhone:"फ़ोन नंबर", labelService:"सेवा",
     labelFee:"प्रोसेसिंग शुल्क", labelTurnaround:"समयावधि",
+    labelGovtCharges:(y)=>`सरकारी शुल्क (${y} वर्ष)`,
+    labelAarambhCharges:"आरंभ सेवा शुल्क",
     feeTBD:"शीघ्र पुष्टि की जाएगी",
     confirmBtn:"✅ पुष्टि करें — सही है",
     startOverBtn:"✏️ पुनः आरंभ करें",
     paymentIntro:"💳 अब हम भुगतान चरण की ओर बढ़ते हैं।",
-    payCardTitle:"प्रोसेसिंग शुल्क",
+    payCardTitle:"देय राशि",
     payForService:(s)=>`<b>${s}</b> हेतु`,
-    payTag:"🔧 ऑनलाइन भुगतान — शीघ्र उपलब्ध होगा",
-    payNote:(hasPrice)=>`अभी के लिए, आपका आवेदन प्रोसेस करते समय हमारी टीम स्वयं भुगतान${hasPrice?" (यूपीआई/नकद)":""} प्राप्त करेगी।`,
-    continuePayLater:"➡️ आगे बढ़ें (भुगतान बाद में)",
-    docsIntro:(d)=>`📎 आवश्यक दस्तावेज़: <b>${d}</b>`,
-    docsWhen:"आप अपने दस्तावेज़ कब जमा करना चाहेंगे?",
-    docsNow:"📤 अभी अपलोड करें",
-    docsLater:"🕐 प्रोसेसिंग के समय",
-    docsLaterSub:"हमारी टीम बाद में आपसे संपर्क कर प्राप्त करेगी",
-    fileChooseLabel:(max,mb)=>`कृपया अपने दस्तावेज़ चुनें (फ़ोटो/PDF, अधिकतम ${max} फ़ाइलें, प्रत्येक ${mb}MB तक):`,
-    uploadSubmitBtn:"अपलोड करें और सबमिट करें",
-    skipUploadBtn:"छोड़ें — बाद में जमा करेंगे",
-    fileTooBig:(name,mb)=>`${name} फ़ाइल बहुत बड़ी है (अधिकतम ${mb}MB)`,
-    filesAttached:(n)=>`📎 ${n} फ़ाइल(एं) संलग्न`,
-    noFilesAttached:"कोई फ़ाइल संलग्न नहीं की गई",
-    uploading:"आपके दस्तावेज़ अपलोड हो रहे हैं…",
+    payTrustBadge:"🔒 सुरक्षित · सत्यापित व्यवसाय",
+    payScanTab:"📱 QR स्कैन करें",
+    payAppTab:"👆 ऐप से भुगतान करें",
+    payScanInstruction:"भुगतान हेतु किसी भी UPI ऐप (GPay, PhonePe, Paytm) से यह QR कोड स्कैन करें।",
+    payAppInstruction:"राशि पहले से भरी हुई अपने UPI ऐप में खोलने के लिए नीचे टैप करें।",
+    payAppBtn:(amt)=>`${amt} UPI ऐप से भुगतान करें`,
+    payUpiIdLabel:"UPI आईडी",
+    paidBtn:"✅ भुगतान कर दिया है — स्क्रीनशॉट अपलोड करें",
+    paymentProofPrompt:"कृपया अपने सफल भुगतान का स्क्रीनशॉट अपलोड करें ताकि हम इसकी पुष्टि कर सकें।",
+    paymentProofRequired:"आगे बढ़ने हेतु कृपया अपना भुगतान स्क्रीनशॉट संलग्न करें",
+    paymentProofUpload:"अपलोड करें और सत्यापित करें",
+    verifyingPayment:"आपका भुगतान सत्यापित किया जा रहा है…",
+    continuePayLater:"➡️ आगे बढ़ें",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`✅ <b>भुगतान प्राप्त हुआ — आपकी ${service} की पुष्टि हो गई है</b><br><br>नमस्ते <b>${name}</b>, आपका <b>₹${amount}</b> प्राप्त हो गया है, और आपकी <b>${service}</b> संबंधी अर्ज़ी अब <b>Aarambh India</b> के पास पंजीकृत हो गई है।<br><br><b>ट्रांज़ैक्शन आईडी:</b> ${txnId}<br><b>स्थिति:</b> 🟢 भुगतान प्राप्त → ⏳ सत्यापन एवं आवेदन प्रक्रिया लंबित<br><br><b>आगे क्या होगा?</b><br>हमारा प्रतिनिधि 24–48 घंटों के भीतर आपसे संपर्क कर आपकी जानकारी सत्यापित करेगा, आवश्यक दस्तावेज़ों की पुष्टि करेगा और आपके आवेदन की प्रक्रिया शुरू करेगा।<br>📞 <b>अधिकृत नंबर:</b> ${AUTHORISED_PHONE}<br><br>🔐 कृपया आगे बढ़ने हेतु अपने दस्तावेज़ नीचे अपलोड करें।<br>💰 <b>₹${amount}</b> के अतिरिक्त कोई भुगतान आवश्यक नहीं है, जब तक हम पहले सूचित न करें और कारण न बताएं।<br><br>आपकी अर्ज़ी <b>Aarambh India</b> के पास सुरक्षित रूप से पंजीकृत है। हम आपको अपडेट करते रहेंगे।<br><br>धन्यवाद,<br><b>टीम आरंभ इंडिया</b>`,
+    docUploadPrompt:(d)=>`📎 कृपया प्रदान करें: <b>${d}</b>`,
+    docChoiceNow:"📤 अभी अपलोड करें",
+    docChoiceLater:"🕐 प्रोसेसिंग के समय",
+    docSingleFileLabel:(mb)=>`यह दस्तावेज़ चुनें (फ़ोटो/PDF, अधिकतम ${mb}MB):`,
+    docUploadSubmitBtn:"अपलोड करें और आगे बढ़ें",
+    docTooBig:(mb)=>`फ़ाइल बहुत बड़ी है (अधिकतम ${mb}MB)। कृपया छोटी फ़ाइल चुनें।`,
+    docFileAttached:"📎 दस्तावेज़ संलग्न",
+    docFileNone:"कोई फ़ाइल नहीं चुनी गई — बाद में जमा करेंगे",
+    uploading:"अपलोड हो रहा है…",
+    noDocsNeededMsg:"✅ इस सेवा के लिए फ़िलहाल कोई दस्तावेज़ आवश्यक नहीं है।",
     finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
-    finalBody:(id)=>`आपका आवेदन प्राप्त हो गया है।<br><b>आवेदन आईडी: ${id}</b><br>हमारी टीम <b>24–48 घंटों</b> के भीतर आपसे संपर्क कर प्रक्रिया पूर्ण करेगी।`,
+    finalBody:"आपका आवेदन प्राप्त हो गया है। हमारी टीम <b>24–48 घंटों</b> के भीतर आपसे संपर्क कर प्रक्रिया पूर्ण करेगी।",
     exploreBtn:"🔎 अन्य सेवाएं देखें",
     submitError:"⚠️ आवेदन सबमिट करते समय एक समस्या उत्पन्न हुई। कृपया कुछ समय बाद पुनः प्रयास करें।",
     langPrompt:"👋 स्वागत है! जारी रखने हेतु कृपया अपनी पसंदीदा भाषा चुनें।",
@@ -425,38 +593,55 @@ const STRINGS = {
     thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>. कृपया तुमचा <b>10 अंकी मोबाइल क्रमांक</b> सांगा.`,
     phonePlaceholder:"10 अंकी क्रमांक लिहा…",
     phoneError:"कृपया योग्य 10 अंकी मोबाइल क्रमांक टाका",
-    askCategory:"तुम्हाला कोणत्या <b>श्रेणी</b>मध्ये मदत हवी आहे?",
+    askCategoryOrService:"तुम्हाला कोणत्या <b>श्रेणी</b>मध्ये मदत हवी आहे? किंवा थेट तुमची गरज लिहा — उदा., <i>\"Aadhaar PVC Card\"</i>.",
+    directInputPlaceholder:"श्रेणी निवडा किंवा सेवेचे नाव लिहा…",
+    noDirectMatch:"माफ करा, आम्हाला हे समजले नाही. कृपया खालील श्रेणीतून निवडा, किंवा सेवेचे नाव पुन्हा लिहून पहा.",
+    directMatchAck:(s)=>`नक्कीच! चला <b>${s}</b> साठी पुढे जाऊया.`,
     askService:(c)=>`<b>${c}</b> मधून कृपया तुमची <b>सेवा</b> निवडा:`,
     priceLabel:(p)=>p?`₹${p}`:"शुल्क: लवकरच कळवले जाईल",
     turnaroundLabel:(t)=>t||"कालावधी: लवकरच कळवला जाईल",
     fieldError:"कृपया ही माहिती नोंदवा",
+    yearsError:"कृपया योग्य वर्षांची संख्या टाका (1–10)",
+    noteInfoText:"ℹ️ कृपया लक्षात घ्या: सरकारी शुल्क राज्यानुसार वेगवेगळे असू शकतात, आणि प्रक्रियेदरम्यान अतिरिक्त शुल्क लागू होऊ शकते.",
+    notePerYearText:"ℹ️ दाखवलेली किंमत दरवर्षीची आहे — आवश्यक वर्षांच्या संख्येनुसार सरकारी शुल्क वाढेल, तर आमचे सेवा शुल्क स्थिर राहील.",
     summaryIntro:"✅ सर्व आवश्यक माहिती मिळाली आहे. कृपया तुमचा अर्ज तपासा:",
     summaryTitle:"📋 अर्ज सारांश",
     labelName:"नाव", labelPhone:"फोन नंबर", labelService:"सेवा",
     labelFee:"प्रक्रिया शुल्क", labelTurnaround:"कालावधी",
+    labelGovtCharges:(y)=>`सरकारी शुल्क (${y} वर्षे)`,
+    labelAarambhCharges:"आरंभ सेवा शुल्क",
     feeTBD:"लवकरच निश्चित केले जाईल",
     confirmBtn:"✅ पुष्टी करा — बरोबर आहे",
     startOverBtn:"✏️ पुन्हा सुरू करा",
     paymentIntro:"💳 आता आपण पेमेंट टप्प्याकडे जाऊया.",
-    payCardTitle:"प्रक्रिया शुल्क",
+    payCardTitle:"देय रक्कम",
     payForService:(s)=>`<b>${s}</b> साठी`,
-    payTag:"🔧 ऑनलाइन पेमेंट — लवकरच उपलब्ध",
-    payNote:(hasPrice)=>`सध्या, तुमचा अर्ज प्रक्रिया करताना आमची टीम स्वतः पेमेंट${hasPrice?" (UPI/रोख)":""} घेईल.`,
-    continuePayLater:"➡️ पुढे जा (पेमेंट नंतर)",
-    docsIntro:(d)=>`📎 आवश्यक कागदपत्रे: <b>${d}</b>`,
-    docsWhen:"तुम्ही तुमची कागदपत्रे कधी सादर करू इच्छिता?",
-    docsNow:"📤 आत्ता अपलोड करा",
-    docsLater:"🕐 प्रक्रिया करतेवेळी",
-    docsLaterSub:"आमची टीम नंतर संपर्क करून घेईल",
-    fileChooseLabel:(max,mb)=>`कृपया तुमची कागदपत्रे निवडा (फोटो/PDF, जास्तीत जास्त ${max} फाइल्स, प्रत्येकी ${mb}MB पर्यंत):`,
-    uploadSubmitBtn:"अपलोड करा आणि सबमिट करा",
-    skipUploadBtn:"वगळा — नंतर सादर करू",
-    fileTooBig:(name,mb)=>`${name} ही फाइल खूप मोठी आहे (जास्तीत जास्त ${mb}MB)`,
-    filesAttached:(n)=>`📎 ${n} फाइल(ली) जोडली`,
-    noFilesAttached:"कोणतीही फाइल जोडलेली नाही",
-    uploading:"तुमची कागदपत्रे अपलोड होत आहेत…",
+    payTrustBadge:"🔒 सुरक्षित · सत्यापित व्यवसाय",
+    payScanTab:"📱 QR स्कॅन करा",
+    payAppTab:"👆 अॅपने पेमेंट करा",
+    payScanInstruction:"पेमेंटसाठी कोणत्याही UPI अॅपने (GPay, PhonePe, Paytm) हा QR कोड स्कॅन करा.",
+    payAppInstruction:"रक्कम आधीच भरलेल्या तुमच्या UPI अॅपमध्ये उघडण्यासाठी खाली टॅप करा.",
+    payAppBtn:(amt)=>`${amt} UPI अॅपने भरा`,
+    payUpiIdLabel:"UPI आयडी",
+    paidBtn:"✅ पेमेंट केले — स्क्रीनशॉट अपलोड करा",
+    paymentProofPrompt:"कृपया तुमच्या यशस्वी पेमेंटचा स्क्रीनशॉट अपलोड करा जेणेकरून आम्ही त्याची पुष्टी करू शकू.",
+    paymentProofRequired:"पुढे जाण्यासाठी कृपया तुमचा पेमेंट स्क्रीनशॉट जोडा",
+    paymentProofUpload:"अपलोड करा आणि पडताळणी करा",
+    verifyingPayment:"तुमचे पेमेंट पडताळले जात आहे…",
+    continuePayLater:"➡️ पुढे जा",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`✅ <b>पेमेंट मिळाले — तुमची ${service} निश्चित झाली आहे</b><br><br>नमस्कार <b>${name}</b>, तुमचे <b>₹${amount}</b> मिळाले आहे, आणि तुमची <b>${service}</b> विनंती आता <b>Aarambh India</b> कडे नोंदवली गेली आहे.<br><br><b>ट्रान्झॅक्शन आयडी:</b> ${txnId}<br><b>स्थिती:</b> 🟢 पेमेंट मिळाले → ⏳ पडताळणी व अर्ज प्रक्रिया प्रलंबित<br><br><b>पुढे काय होईल?</b><br>आमचा प्रतिनिधी 24–48 तासांत तुमच्याशी संपर्क करून तुमची माहिती पडताळेल, आवश्यक कागदपत्रांची पुष्टी करेल आणि तुमचा अर्ज प्रक्रिया सुरू करेल.<br>📞 <b>अधिकृत क्रमांक:</b> ${AUTHORISED_PHONE}<br><br>🔐 पुढे जाण्यासाठी कृपया खाली तुमची कागदपत्रे अपलोड करा.<br>💰 <b>₹${amount}</b> व्यतिरिक्त कोणतेही अतिरिक्त पेमेंट आवश्यक नाही, जोपर्यंत आम्ही आधी कळवून कारण सांगत नाही.<br><br>तुमची विनंती <b>Aarambh India</b> कडे सुरक्षितपणे नोंदवली आहे. आम्ही तुम्हाला अद्ययावत ठेवू.<br><br>धन्यवाद,<br><b>टीम आरंभ इंडिया</b>`,
+    docUploadPrompt:(d)=>`📎 कृपया द्या: <b>${d}</b>`,
+    docChoiceNow:"📤 आत्ता अपलोड करा",
+    docChoiceLater:"🕐 प्रक्रिया करतेवेळी",
+    docSingleFileLabel:(mb)=>`हे कागदपत्र निवडा (फोटो/PDF, जास्तीत जास्त ${mb}MB):`,
+    docUploadSubmitBtn:"अपलोड करा आणि पुढे जा",
+    docTooBig:(mb)=>`फाइल खूप मोठी आहे (जास्तीत जास्त ${mb}MB). कृपया लहान फाइल निवडा.`,
+    docFileAttached:"📎 कागदपत्र जोडले",
+    docFileNone:"कोणतीही फाइल निवडली नाही — नंतर सादर करू",
+    uploading:"अपलोड होत आहे…",
+    noDocsNeededMsg:"✅ या सेवेसाठी सध्या कोणतेही कागदपत्र आवश्यक नाही.",
     finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
-    finalBody:(id)=>`तुमचा अर्ज प्राप्त झाला आहे.<br><b>अर्ज आयडी: ${id}</b><br>आमची टीम <b>24–48 तासांत</b> तुमच्याशी संपर्क साधून प्रक्रिया पूर्ण करेल.`,
+    finalBody:"तुमचा अर्ज प्राप्त झाला आहे. आमची टीम <b>24–48 तासांत</b> तुमच्याशी संपर्क साधून प्रक्रिया पूर्ण करेल.",
     exploreBtn:"🔎 इतर सेवा पहा",
     submitError:"⚠️ अर्ज सबमिट करताना अडचण आली. कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.",
     langPrompt:"👋 स्वागत आहे! सुरू ठेवण्यासाठी कृपया तुमची आवडती भाषा निवडा.",
@@ -471,9 +656,9 @@ function T(key, ...args){
 
 /* ====================== STATE ====================== */
 const lead = {
-  name:"", phone:"",
-  category:"", service:"", price:null, turnaround:"",
-  extraFields:{}, paymentStatus:"", docsChoice:"", files:[]
+  name:"", phone:"", appId:"", txnId:"",
+  category:"", service:"", govtCharge:0, aarambhCharge:0, price:null, turnaround:"",
+  years:null, extraFields:{}, paymentStatus:"", paymentProof:null, paymentVerified:false, docsStatus:[]
 };
 
 const chat = document.getElementById('chat');
@@ -529,6 +714,7 @@ function addQuickReplies(options, onPick){
   row.appendChild(wrap);
   chat.appendChild(row);
   scrollDown();
+  return wrap;
 }
 
 function botTyping(delay=550){
@@ -601,6 +787,9 @@ function fieldIsDuplicate(fieldName){
   const f = fieldName.toLowerCase();
   return f.startsWith('full name') || f.includes('mobile');
 }
+function isYearsField(fieldName){
+  return /number of year/i.test(fieldName);
+}
 function getActiveCategories(){
   const seen = [];
   SERVICES_DATA.forEach(s => {
@@ -618,9 +807,66 @@ function genAppId(){
     + pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds());
 }
 
+/* ====================== DIRECT SERVICE MATCHING ====================== */
+const FILLER_WORDS = new Set(['mujhe','muje','mujhy','chahiye','chaiye','please','i','want','need',
+  'karna','karwana','banwana','banana','hai','ka','ke','ki','the','a','an','for','apply',
+  'application','get','my','me','to','karo','kardo','kar','do','is','it']);
+
+function normalizeText(s){
+  return s.toLowerCase()
+    .replace(/aadhar/g,'aadhaar')
+    .replace(/licence/g,'license')
+    .replace(/[^a-z0-9\u0900-\u097F\s]/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+function extractKeywords(s){
+  return normalizeText(s).split(' ').filter(w => w.length>1 && !FILLER_WORDS.has(w));
+}
+function matchService(query){
+  const qWords = extractKeywords(query);
+  if (qWords.length === 0) return null;
+  const active = SERVICES_DATA.filter(s => s.active);
+  let scored = active.map(s => {
+    const sWords = extractKeywords(s.service + ' ' + s.category);
+    let score = 0;
+    qWords.forEach(qw => {
+      if (sWords.some(sw => sw === qw || sw.includes(qw) || qw.includes(sw))) score++;
+    });
+    const ratio = sWords.length ? score / sWords.length : 0;
+    return { s, score, ratio };
+  }).filter(x => x.score > 0);
+
+  if (scored.length === 0) return null;
+  const maxScore = Math.max(...scored.map(x => x.score));
+  const top = scored.filter(x => x.score === maxScore);
+
+  const qualifies = maxScore >= 2 || (maxScore === 1 && qWords.length <= 2);
+  if (!qualifies) return null;
+
+  if (top.length === 1) return top[0].s;
+  // tie-break by ratio (more specific / shorter service name wins)
+  top.sort((a,b) => b.ratio - a.ratio);
+  if (top[0].ratio > top[1].ratio) return top[0].s;
+  return null; // genuinely ambiguous
+}
+
 /* ====================== FLOW ====================== */
 async function start(){
-  await botSay("👋 Welcome / नमस्ते / नमस्कार", 400);
+  const heroRow = document.createElement('div');
+  heroRow.className = 'row bot';
+  heroRow.innerHTML = `
+    <div class="hero-banner">
+      <img src="${LOGO_HERO_URI}" alt="Aarambh">
+      <span class="tagline">सही जानकारी | सही दिशा | बेहतर भविष्य</span>
+      <div class="hero-strip">
+        <span>🔒 100% Secure</span>
+        <span>✅ Verified Business</span>
+        <span>⚡ Fast Processing</span>
+      </div>
+    </div>`;
+  chat.appendChild(heroRow);
+  scrollDown();
+  await botSay("👋 Welcome / नमस्ते / नमस्कार", 500);
   await botSay("Please choose your preferred language / कृपया अपनी भाषा चुनें / कृपया तुमची भाषा निवडा", 500);
   addQuickReplies([
     {label:"🇬🇧 English", value:"en"},
@@ -648,17 +894,69 @@ async function askPhone(){
   await botSay(T('thanksAskPhone', escapeHtml(lead.name)));
   showTextInput(T('phonePlaceholder'), v => /^[6-9]\d{9}$/.test(v) ? null : T('phoneError'), v => {
     lead.phone = v;
-    askCategory();
+    askCategoryOrService();
   });
 }
 
-async function askCategory(){
-  await botSay(T('askCategory'));
+async function askCategoryOrService(){
+  await botSay(T('askCategoryOrService'));
   const cats = getActiveCategories();
-  addQuickReplies(cats.map(c => ({label:c})), (cat) => {
+  let resolved = false;
+
+  const wrap = addQuickRepliesRaw(cats.map(c => ({label:c})), (cat) => {
+    if (resolved) return;
+    resolved = true;
+    hideTextInput();
     lead.category = cat;
     askService();
   });
+
+  showTextInput(T('directInputPlaceholder'), () => null, (val) => {
+    if (resolved) return;
+    resolved = true;
+    disableWrap(wrap);
+    const matched = matchService(val);
+    if (matched){
+      handleDirectMatch(matched);
+    } else {
+      botSay(T('noDirectMatch')).then(() => {
+        resolved = false;
+        askCategoryOrService();
+      });
+    }
+  });
+}
+
+// Like addQuickReplies but returns the wrap element and lets caller manage "resolved" state
+function addQuickRepliesRaw(options, onPick){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  wrap.style.maxWidth = '86%';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'qr-btn' + (opt.primary ? ' primary' : '');
+    btn.innerHTML = opt.label + (opt.sub ? `<span class="sub">${opt.sub}</span>` : '');
+    btn.onclick = () => {
+      disableWrap(wrap);
+      addBubble(opt.label.replace(/<[^>]*>/g,''), 'user');
+      onPick(opt.value !== undefined ? opt.value : opt.label);
+    };
+    wrap.appendChild(btn);
+  });
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+  return wrap;
+}
+function disableWrap(wrap){
+  Array.from(wrap.children).forEach(c => c.disabled = true);
+}
+
+async function handleDirectMatch(svc){
+  await botSay(T('directMatchAck', escapeHtml(svc.service)));
+  onServiceChosen(svc);
 }
 
 async function askService(){
@@ -670,14 +968,33 @@ async function askService(){
     value: s.service
   })), (serviceName) => {
     const svc = services.find(s => s.service === serviceName);
-    lead.service = svc.service;
-    lead.price = svc.price;
-    lead.turnaround = svc.turnaround || T('feeTBD');
-    lead._fieldsToAsk = svc.fields.filter(f => !fieldIsDuplicate(f));
-    lead._docsNote = svc.docs;
-    lead.extraFields = {};
-    askNextField(0);
+    onServiceChosen(svc);
   });
+}
+
+function onServiceChosen(svc){
+  lead.category = svc.category;
+  lead.service = svc.service;
+  lead.govtCharge = svc.govtCharge || 0;
+  lead.aarambhCharge = svc.aarambhCharge || 0;
+  lead.price = svc.price;
+  lead.turnaround = svc.turnaround || T('feeTBD');
+  lead._fieldsToAsk = svc.fields.filter(f => !fieldIsDuplicate(f));
+  lead._docsList = (svc.docs || []).slice();
+  lead._noteType = svc.noteType;
+  lead.years = null;
+  lead.extraFields = {};
+  lead.docsStatus = [];
+  proceedAfterServiceChosen();
+}
+
+async function proceedAfterServiceChosen(){
+  if (lead._noteType === 'info'){
+    await botSay(T('noteInfoText'));
+  } else if (lead._noteType === 'per_year'){
+    await botSay(T('notePerYearText'));
+  }
+  askNextField(0);
 }
 
 async function askNextField(idx){
@@ -688,9 +1005,19 @@ async function askNextField(idx){
   }
   const field = fields[idx];
   const label = translateField(field, LANG);
+  const isYears = isYearsField(field);
   await botSay(`${escapeHtml(label)}?`);
-  showTextInput(`${label}…`, v => v.length < 1 ? T('fieldError') : null, v => {
+  showTextInput(`${label}…`, v => {
+    if (v.length < 1) return T('fieldError');
+    if (isYears && (!/^\d+$/.test(v) || parseInt(v,10) < 1 || parseInt(v,10) > 10)) return T('yearsError');
+    return null;
+  }, v => {
     lead.extraFields[label] = v;
+    if (isYears && lead._noteType === 'per_year'){
+      const years = parseInt(v, 10);
+      lead.years = years;
+      lead.price = (lead.govtCharge * years) + lead.aarambhCharge;
+    }
     askNextField(idx + 1);
   });
 }
@@ -703,6 +1030,12 @@ async function showSummary(){
   let extraRows = Object.entries(lead.extraFields).map(([k,v]) =>
     `<div class="row-item"><span>${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></div>`
   ).join('');
+  let feeRows = '';
+  if (lead.years){
+    feeRows = `
+      <div class="row-item"><span>${T('labelGovtCharges', lead.years)}</span><span>₹${lead.govtCharge * lead.years}</span></div>
+      <div class="row-item"><span>${T('labelAarambhCharges')}</span><span>₹${lead.aarambhCharge}</span></div>`;
+  }
   row.innerHTML = `
     <div class="summary-card" style="max-width:88%">
       <h4>${T('summaryTitle')}</h4>
@@ -710,6 +1043,7 @@ async function showSummary(){
       <div class="row-item"><span>${T('labelPhone')}</span><span>${escapeHtml(lead.phone)}</span></div>
       <div class="row-item"><span>${T('labelService')}</span><span>${escapeHtml(lead.service)}</span></div>
       ${extraRows}
+      ${feeRows}
       <div class="row-item"><span>${T('labelFee')}</span><span>${lead.price ? '₹'+lead.price : T('feeTBD')}</span></div>
       <div class="row-item"><span>${T('labelTurnaround')}</span><span>${escapeHtml(lead.turnaround)}</span></div>
     </div>`;
@@ -727,85 +1061,221 @@ async function showSummary(){
 async function goToPayment(){
   setStepper('payment', ['info','confirm']);
   await botSay(T('paymentIntro'));
+
+  const hasPrice = !!lead.price;
+  const upiConfigured = UPI_ID && !UPI_ID.includes('PASTE_YOUR');
   const row = document.createElement('div');
   row.className = 'row bot';
-  row.innerHTML = `
-    <div class="pay-card" style="max-width:88%">
-      <h4>${T('payCardTitle')}</h4>
-      <div class="fee">${lead.price ? '₹'+lead.price : T('feeTBD')}</div>
-      <div>${T('payForService', escapeHtml(lead.service))}</div>
-      <span class="tag">${T('payTag')}</span>
-      <div style="margin-top:8px;color:#5F7168;">${T('payNote', !!lead.price)}</div>
-    </div>`;
+
+  if (hasPrice && upiConfigured){
+    const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_PAYEE_NAME)}&am=${lead.price}&cu=INR&tn=${encodeURIComponent('Aarambh - ' + lead.service)}`;
+    const qrImgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLink)}`;
+    row.innerHTML = `
+      <div class="pay-card" style="max-width:90%">
+        <h4>${T('payCardTitle')}</h4>
+        <div class="fee">₹${lead.price}</div>
+        <div>${T('payForService', escapeHtml(lead.service))}</div>
+        <span class="trust-badge">${T('payTrustBadge')}</span>
+        <div class="pay-tabs">
+          <button class="pay-tab active" data-tab="qr" type="button">${T('payScanTab')}</button>
+          <button class="pay-tab" data-tab="app" type="button">${T('payAppTab')}</button>
+        </div>
+        <div class="pay-tab-panel" id="payPanelQr">
+          <img src="${qrImgUrl}" alt="UPI QR" class="upi-qr">
+          <div class="pay-instruction">${T('payScanInstruction')}</div>
+          <div class="upi-id-row">${T('payUpiIdLabel')}: <b>${UPI_ID}</b></div>
+        </div>
+        <div class="pay-tab-panel hidden" id="payPanelApp">
+          <a href="${upiLink}" class="qr-btn primary upi-app-link" target="_blank" rel="noopener">${T('payAppBtn', '₹'+lead.price)}</a>
+          <div class="pay-instruction">${T('payAppInstruction')}</div>
+        </div>
+      </div>`;
+  } else {
+    row.innerHTML = `
+      <div class="pay-card" style="max-width:88%">
+        <h4>${T('payCardTitle')}</h4>
+        <div class="fee">${hasPrice ? '₹'+lead.price : T('feeTBD')}</div>
+        <div>${T('payForService', escapeHtml(lead.service))}</div>
+        <span class="trust-badge">${T('payTrustBadge')}</span>
+      </div>`;
+  }
   chat.appendChild(row);
   scrollDown();
+
+  if (hasPrice && upiConfigured){
+    const tabs = row.querySelectorAll('.pay-tab');
+    tabs.forEach(tab => {
+      tab.onclick = () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        row.querySelector('#payPanelQr').classList.toggle('hidden', tab.dataset.tab !== 'qr');
+        row.querySelector('#payPanelApp').classList.toggle('hidden', tab.dataset.tab !== 'app');
+      };
+    });
+  }
+
   addQuickReplies([
-    {label:T('continuePayLater'), primary:true, value:"pending"}
+    {label:T('paidBtn'), primary:true, value:'paid'}
   ], () => {
-    lead.paymentStatus = "Pending (Pay Later — online payment coming soon)";
-    askDocsChoice();
+    lead.appId = genAppId();
+    lead.txnId = genTxnId();
+    askPaymentProof();
   });
 }
 
-async function askDocsChoice(){
-  setStepper('docs', ['info','confirm','payment']);
-  await botSay(T('docsIntro', escapeHtml(lead._docsNote || '')));
-  await botSay(T('docsWhen'), 600);
-  addQuickReplies([
-    {label:T('docsNow'), value:"now"},
-    {label:T('docsLater'), sub:T('docsLaterSub'), value:"later"}
-  ], (choice) => {
-    lead.docsChoice = choice;
-    if (choice === 'now') showFileUpload();
-    else finalize();
-  });
+function genTxnId(){
+  return 'ARB' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2,6).toUpperCase();
 }
 
-function showFileUpload(){
+async function askPaymentProof(){
+  await botSay(T('paymentProofPrompt'));
   const row = document.createElement('div');
   row.className = 'row bot';
   const wrap = document.createElement('div');
   wrap.className = 'file-row';
   wrap.style.maxWidth = '88%';
   wrap.innerHTML = `
-    <div>${T('fileChooseLabel', MAX_FILES, MAX_FILE_MB)}</div>
-    <input type="file" id="fileInput" multiple accept="image/*,application/pdf">
-    <div class="file-list" id="fileList"></div>
-    <button class="qr-btn primary" id="uploadBtn">${T('uploadSubmitBtn')}</button>
-    <button class="qr-btn" id="skipUploadBtn">${T('skipUploadBtn')}</button>
+    <input type="file" id="proofFileInput" accept="image/*,application/pdf">
+    <div class="file-list" id="proofFileList"></div>
+    <button class="qr-btn primary" id="proofUploadBtn">${T('paymentProofUpload')}</button>
   `;
   row.appendChild(wrap);
   chat.appendChild(row);
   scrollDown();
 
-  const fileInput = wrap.querySelector('#fileInput');
-  const fileList = wrap.querySelector('#fileList');
+  const fileInput = wrap.querySelector('#proofFileInput');
+  const fileList = wrap.querySelector('#proofFileList');
   fileInput.addEventListener('change', () => {
-    const files = Array.from(fileInput.files).slice(0, MAX_FILES);
-    fileList.textContent = files.map(f => `${f.name} (${(f.size/1024/1024).toFixed(1)}MB)`).join(', ');
+    const f = fileInput.files[0];
+    fileList.textContent = f ? `${f.name} (${(f.size/1024/1024).toFixed(1)}MB)` : '';
   });
 
-  wrap.querySelector('#uploadBtn').onclick = async () => {
-    const files = Array.from(fileInput.files).slice(0, MAX_FILES);
-    const oversized = files.find(f => f.size > MAX_FILE_MB * 1024 * 1024);
-    if (oversized){ fileList.innerHTML = `<span style="color:#C0503A">${T('fileTooBig', oversized.name, MAX_FILE_MB)}</span>`; return; }
-    wrap.querySelectorAll('button').forEach(b => b.disabled = true);
-    addBubble(files.length ? T('filesAttached', files.length) : T('noFilesAttached'), 'user');
-    if (files.length){
+  wrap.querySelector('#proofUploadBtn').onclick = async () => {
+    const file = fileInput.files[0];
+    if (!file){
+      fileList.innerHTML = `<span style="color:#C0503A">${T('paymentProofRequired')}</span>`;
+      return;
+    }
+    if (file.size > MAX_FILE_MB * 1024 * 1024){
+      fileList.innerHTML = `<span style="color:#C0503A">${T('docTooBig', MAX_FILE_MB)}</span>`;
+      return;
+    }
+    wrap.querySelectorAll('button, input').forEach(el => el.disabled = true);
+    addBubble(T('docFileAttached'), 'user');
+    await botSay(T('uploading'), 400);
+    try{
+      lead.paymentProof = await fileToBase64(file);
+    }catch(err){
+      lead.paymentProof = null;
+    }
+    await botSay(T('verifyingPayment'), 700);
+    lead.paymentVerified = await verifyPaymentAmount();
+    lead.paymentStatus = lead.paymentVerified
+      ? "Paid — Amount Auto-Verified ✅"
+      : "Paid — Screenshot Uploaded (Manual Check Needed)";
+    showPaymentConfirmation();
+  };
+}
+
+// Ask the backend to OCR the screenshot and check whether the expected amount appears in it.
+// Best-effort: if the check can't be completed (no network / not yet configured), we don't
+// block the customer — the team can still verify manually from the screenshot in the sheet.
+async function verifyPaymentAmount(){
+  if (!lead.paymentProof || !SHEET_ENDPOINT || SHEET_ENDPOINT.includes("PASTE_YOUR")) return false;
+  try{
+    const res = await fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        action: 'verifyPayment',
+        amount: lead.price,
+        file: lead.paymentProof
+      })
+    });
+    const json = await res.json();
+    return !!json.verified;
+  }catch(err){
+    return false;
+  }
+}
+
+async function showPaymentConfirmation(){
+  setStepper('docs', ['info','confirm','payment']);
+  await botSay(T('paymentReceivedMsg', escapeHtml(lead.name), escapeHtml(lead.service), lead.price || '', lead.txnId), 800);
+  askDocsSequential(0);
+}
+
+/* ---- One document at a time ---- */
+async function askDocsSequential(idx){
+  const docs = lead._docsList || [];
+  if (docs.length === 0){
+    await botSay(T('noDocsNeededMsg'));
+    return finalizeSubmission();
+  }
+  if (idx >= docs.length){
+    return finalizeSubmission();
+  }
+  const docName = docs[idx];
+  await botSay(T('docUploadPrompt', escapeHtml(docName)));
+  addQuickReplies([
+    {label:T('docChoiceNow'), value:"now"},
+    {label:T('docChoiceLater'), value:"later"}
+  ], (choice) => {
+    if (choice === 'now'){
+      showSingleFileUpload(docName, (fileObj) => {
+        lead.docsStatus.push({ name: docName, status: fileObj ? 'uploaded' : 'later', file: fileObj });
+        askDocsSequential(idx + 1);
+      });
+    } else {
+      lead.docsStatus.push({ name: docName, status: 'later', file: null });
+      askDocsSequential(idx + 1);
+    }
+  });
+}
+
+function showSingleFileUpload(docName, onDone){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'file-row';
+  wrap.style.maxWidth = '88%';
+  wrap.innerHTML = `
+    <div>${T('docSingleFileLabel', MAX_FILE_MB)}</div>
+    <input type="file" id="singleFileInput" accept="image/*,application/pdf">
+    <div class="file-list" id="singleFileList"></div>
+    <button class="qr-btn primary" id="singleUploadBtn">${T('docUploadSubmitBtn')}</button>
+  `;
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+
+  const fileInput = wrap.querySelector('#singleFileInput');
+  const fileList = wrap.querySelector('#singleFileList');
+  fileInput.addEventListener('change', () => {
+    const f = fileInput.files[0];
+    fileList.textContent = f ? `${f.name} (${(f.size/1024/1024).toFixed(1)}MB)` : '';
+  });
+
+  wrap.querySelector('#singleUploadBtn').onclick = async () => {
+    const file = fileInput.files[0];
+    if (file && file.size > MAX_FILE_MB * 1024 * 1024){
+      fileList.innerHTML = `<span style="color:#C0503A">${T('docTooBig', MAX_FILE_MB)}</span>`;
+      return;
+    }
+    wrap.querySelectorAll('button, input').forEach(el => el.disabled = true);
+    if (file){
+      addBubble(T('docFileAttached'), 'user');
       await botSay(T('uploading'), 400);
       try{
-        lead.files = await Promise.all(files.map(fileToBase64));
+        const encoded = await fileToBase64(file);
+        onDone(encoded);
       }catch(err){
-        lead.files = [];
+        onDone(null);
       }
+    } else {
+      addBubble(T('docFileNone'), 'user');
+      onDone(null);
     }
-    finalize();
-  };
-  wrap.querySelector('#skipUploadBtn').onclick = () => {
-    wrap.querySelectorAll('button').forEach(b => b.disabled = true);
-    addBubble(T('docsLater'), 'user');
-    lead.docsChoice = 'later';
-    finalize();
   };
 }
 
@@ -821,12 +1291,20 @@ function fileToBase64(file){
   });
 }
 
-async function finalize(){
+async function finalizeSubmission(){
   await botTyping(700);
-  const appId = genAppId();
   const fieldsProvided = Object.entries(lead.extraFields).map(([k,v]) => `${k}: ${v}`).join('; ');
+  const documents = lead.docsStatus.map(d => ({
+    name: d.name,
+    status: d.status,
+    file: d.status === 'uploaded' ? d.file : null
+  }));
+  if (lead.paymentProof){
+    documents.push({ name: 'Payment Screenshot', status: 'uploaded', file: lead.paymentProof });
+  }
   const payload = {
-    leadId: appId,
+    leadId: lead.appId,
+    txnId: lead.txnId,
     name: lead.name,
     phone: lead.phone,
     category: lead.category,
@@ -835,7 +1313,7 @@ async function finalize(){
     fieldsProvided: fieldsProvided,
     paymentStatus: lead.paymentStatus,
     language: LANG,
-    files: lead.docsChoice === 'now' ? lead.files : []
+    documents: documents
   };
   try{
     if (SHEET_ENDPOINT && !SHEET_ENDPOINT.includes("PASTE_YOUR")){
@@ -846,7 +1324,7 @@ async function finalize(){
         body: JSON.stringify(payload)
       });
     }
-    addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody', appId)}`, 'bot');
+    addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody')}`, 'bot');
   }catch(err){
     addBubble(T('submitError'), 'bot');
   }
@@ -859,13 +1337,42 @@ async function finalize(){
 }
 
 function resetForNextService(){
-  lead.category = ""; lead.service = ""; lead.price = null; lead.turnaround = "";
-  lead.extraFields = {}; lead.paymentStatus = ""; lead.docsChoice = ""; lead.files = [];
+  lead.category = ""; lead.service = ""; lead.govtCharge = 0; lead.aarambhCharge = 0;
+  lead.price = null; lead.turnaround = ""; lead.years = null;
+  lead.extraFields = {}; lead.paymentStatus = ""; lead.paymentProof = null; lead.paymentVerified = false;
+  lead.docsStatus = []; lead.appId = ""; lead.txnId = "";
   setStepper('info', []);
-  askCategory();
+  askCategoryOrService();
 }
 
-start();
+/* ====================== LAUNCHER TOGGLE ====================== */
+const widgetAnchor = document.querySelector('.widget-anchor');
+const launcherBtn = document.getElementById('launcherBtn');
+const launcherTip = document.getElementById('launcherTip');
+const phonePanel = document.getElementById('phonePanel');
+const closeBtn = document.getElementById('closeBtn');
+let chatStarted = false;
+
+function openWidget(){
+  widgetAnchor.classList.add('open');
+  phonePanel.classList.remove('hidden');
+  if (!chatStarted){
+    chatStarted = true;
+    start();
+  }
+}
+function closeWidget(){
+  widgetAnchor.classList.remove('open');
+  phonePanel.classList.add('hidden');
+}
+launcherBtn.addEventListener('click', openWidget);
+launcherTip.addEventListener('click', openWidget);
+closeBtn.addEventListener('click', closeWidget);
+
+setTimeout(() => {
+  if (launcherTip) launcherTip.style.opacity = '0.85';
+}, 8000);
+
 </script>
 </body>
 </html>
