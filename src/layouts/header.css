@@ -52,6 +52,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 16px 32px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .brand {
@@ -234,4 +236,58 @@ nav.links a.partner {
   nav.links {
     display: none;
   }
+}
+
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .brand-text {
+    min-width: 0;
+  }
+
+  .brand-text .name {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .brand-text .tagline {
+    font-size: 8px;
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .language-switch {
+    gap: 3px;
+    margin-right: 0;
+  }
+
+  .language-switch button {
+    font-size: 12px;
+    padding: 3px 1px;
+  }
+
+  nav.links {
+    display: none;
+  }
+
 }
