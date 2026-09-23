@@ -3651,7 +3651,7 @@ const SERVICES = [
     apply_form: "/aarambh-aadhaar-form.html",
 
     name: {
-      en: "2-Wheeler HSRP",
+      en: "2-Wheeler HSRP Number Plate",
       hi: "2-व्हीलर HSRP नंबर प्लेट"
     },
 
@@ -3773,7 +3773,7 @@ const SERVICES = [
     apply_form: "/aarambh-aadhaar-form.html",
 
     name: {
-      en: "4-Wheeler HSRP",
+      en: "4-Wheeler HSRP Number Plate",
       hi: "4-व्हीलर HSRP नंबर प्लेट"
     },
 

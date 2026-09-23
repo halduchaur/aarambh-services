@@ -61,7 +61,7 @@ export default function Footer() {
                 {translations.footer.disclaimer}
             </div>
             <a
-                href="/aarambh-chatbot.html"
+                href="/aarambh-chatbot-embed-snippet.html"
                 className="floating-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"

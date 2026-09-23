@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aarambh Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- ============================================== -->
+<!-- AARAMBH CHATBOT WIDGET — paste this block just  -->
+<!-- before the closing </body> tag on every page     -->
+<!-- where you want the floating chat icon to appear. -->
+<!-- ============================================== -->
 <style>
   :root{
     --ink:#1F2A24;
@@ -320,8 +317,6 @@
     body{padding:0;}
   }
 </style>
-</head>
-<body>
 
 <div class="widget-anchor">
 
@@ -368,7 +363,7 @@
 </div>
 
 <script>
-const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyA1WpjH9rMHkFwNooNcftIM1dREatyu4auLZnvM0faf_WTjKC34ucczvd3Lv5SdgXaQQ/exec";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby76Jtdk5lR13AD5NLBZYC0fOqSvBacI3RDT8Af31QSV6H0Y2yscsw8dq47Kv8dZIZzog/exec";
 const MAX_FILES = 5;
 const MAX_FILE_MB = 3;
 const UPI_ID = "sudhirhiraskar46@oksbi";
@@ -1022,6 +1017,22 @@ async function askNextField(idx){
   });
 }
 
+// Fires a save/update to the sheet. Uses a readable (non-no-cors) request so failures can be
+// diagnosed, but never blocks or breaks the chat if it fails.
+async function submitToSheet(payload){
+  if (!SHEET_ENDPOINT || SHEET_ENDPOINT.includes("PASTE_YOUR")) return false;
+  try{
+    const res = await fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+    return res.ok;
+  }catch(err){
+    return false;
+  }
+}
+
 async function showSummary(){
   setStepper('confirm', ['info']);
   await botSay(T('summaryIntro'));
@@ -1053,8 +1064,24 @@ async function showSummary(){
     {label:T('confirmBtn'), primary:true, value:"confirm"},
     {label:T('startOverBtn')}
   ], (choice) => {
-    if (choice === 'confirm') goToPayment();
-    else location.reload();
+    if (choice === 'confirm'){
+      lead.appId = genAppId();
+      const fieldsProvided = Object.entries(lead.extraFields).map(([k,v]) => `${k}: ${v}`).join('; ');
+      submitToSheet({
+        leadId: lead.appId,
+        name: lead.name,
+        phone: lead.phone,
+        category: lead.category,
+        service: lead.service,
+        price: lead.price,
+        fieldsProvided: fieldsProvided,
+        fieldsObject: lead.extraFields,
+        language: LANG
+      });
+      goToPayment();
+    } else {
+      location.reload();
+    }
   });
 }
 
@@ -1117,7 +1144,6 @@ async function goToPayment(){
   addQuickReplies([
     {label:T('paidBtn'), primary:true, value:'paid'}
   ], () => {
-    lead.appId = genAppId();
     lead.txnId = genTxnId();
     askPaymentProof();
   });
@@ -1173,6 +1199,13 @@ async function askPaymentProof(){
     lead.paymentStatus = lead.paymentVerified
       ? "Paid — Amount Auto-Verified ✅"
       : "Paid — Screenshot Uploaded (Manual Check Needed)";
+    submitToSheet({
+      leadId: lead.appId,
+      phone: lead.phone,
+      paymentStatus: lead.paymentStatus,
+      txnId: lead.txnId,
+      documents: lead.paymentProof ? [{ name: 'Payment Screenshot', status: 'uploaded', file: lead.paymentProof }] : []
+    });
     showPaymentConfirmation();
   };
 }
@@ -1293,41 +1326,17 @@ function fileToBase64(file){
 
 async function finalizeSubmission(){
   await botTyping(700);
-  const fieldsProvided = Object.entries(lead.extraFields).map(([k,v]) => `${k}: ${v}`).join('; ');
   const documents = lead.docsStatus.map(d => ({
     name: d.name,
     status: d.status,
     file: d.status === 'uploaded' ? d.file : null
   }));
-  if (lead.paymentProof){
-    documents.push({ name: 'Payment Screenshot', status: 'uploaded', file: lead.paymentProof });
-  }
-  const payload = {
+  await submitToSheet({
     leadId: lead.appId,
-    txnId: lead.txnId,
-    name: lead.name,
     phone: lead.phone,
-    category: lead.category,
-    service: lead.service,
-    price: lead.price,
-    fieldsProvided: fieldsProvided,
-    paymentStatus: lead.paymentStatus,
-    language: LANG,
     documents: documents
-  };
-  try{
-    if (SHEET_ENDPOINT && !SHEET_ENDPOINT.includes("PASTE_YOUR")){
-      await fetch(SHEET_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload)
-      });
-    }
-    addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody')}`, 'bot');
-  }catch(err){
-    addBubble(T('submitError'), 'bot');
-  }
+  });
+  addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody')}`, 'bot');
   hideTextInput();
   addQuickReplies([
     {label:T('exploreBtn'), primary:true, value:"explore"}
@@ -1374,5 +1383,6 @@ setTimeout(() => {
 }, 8000);
 
 </script>
-</body>
-</html>
+<!-- ============================================== -->
+<!-- END AARAMBH CHATBOT WIDGET                       -->
+<!-- ============================================== -->
