@@ -229,13 +229,18 @@ export default function Home() {
                         </div>
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>{translations.home.t2_text}</p>
-                            <div className="tperson"><div className="avatar">R</div><div><div className="who">{translations.home.t2_name}</div><div className="role">{translations.home.t2_role}</div></div></div>
+                            <p>{translations.home.t3_text}</p>
+                            <div className="tperson"><div className="avatar">A</div><div><div className="who">{translations.home.t3_name}</div><div className="role">{translations.home.t3_role}</div></div></div>
                         </div>
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>{translations.home.t3_text}</p>
-                            <div className="tperson"><div className="avatar">A</div><div><div className="who">{translations.home.t3_name}</div><div className="role">{translations.home.t3_role}</div></div></div>
+                            <p>{translations.home.t4_text}</p>
+                            <div className="tperson"><div className="avatar">A</div><div><div className="who">{translations.home.t4_name}</div><div className="role">{translations.home.t4_role}</div></div></div>
+                        </div>
+                        <div className="tcard">
+                            <div className="stars">★★★★★</div>
+                            <p>{translations.home.t2_text}</p>
+                            <div className="tperson"><div className="avatar">R</div><div><div className="who">{translations.home.t2_name}</div><div className="role">{translations.home.t2_role}</div></div></div>
                         </div>
                     </div>
                 </div>
