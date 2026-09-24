@@ -222,6 +222,53 @@ nav.links a.partner {
     color: #999;
 }
 
+/* ---------- Hamburger button (mobile/tablet) ---------- */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 60;
+}
+
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+.menu-btn.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile dropdown nav & backdrop ---------- */
+.mobile-nav-actions {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -233,9 +280,82 @@ nav.links a.partner {
 }
 
 @media(max-width:980px) {
-  nav.links {
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .nav-actions {
     display: none;
   }
+
+  nav.links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(78vw, 320px);
+    background: var(--white);
+    padding: 90px 26px 28px;
+    box-shadow: -12px 0 32px rgba(10, 42, 94, .16);
+
+    transform: translateX(100%);
+    transition: transform .3s ease;
+    z-index: 55;
+    overflow-y: auto;
+  }
+
+  nav.links.open {
+    transform: translateX(0);
+  }
+
+  nav.links a {
+    padding: 12px 4px;
+    font-size: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav.links a.active::after {
+    display: none;
+  }
+
+  .mobile-nav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-nav-actions .language-switch {
+    margin-right: 0;
+  }
+
+  .mobile-nav-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 40, .45);
+    z-index: 54;
+    animation: fadeIn .2s ease;
+  }
+
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 
@@ -286,8 +406,9 @@ nav.links a.partner {
     padding: 3px 1px;
   }
 
-  nav.links {
-    display: none;
+  .menu-btn {
+    width: 34px;
+    height: 34px;
   }
 
 }

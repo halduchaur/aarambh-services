@@ -205,11 +205,9 @@
   }
 
   @media (max-width: 560px){
-    .hero .word{ font-size: 1.9rem; }
-    .hero h1{ font-size: 1.5rem; }
-    .clause .body-text{ margin-left: 0; margin-top: 8px; }
-    .clause-head{ flex-direction: column; gap: 2px; }
-    .hero img.logo{ width: 116px; height: 116px; }
+    .privacy-clause .privacy-body-text{ margin-left: 0; margin-top: 8px; }
+    .privacy-clause-head{ align-items: flex-start; gap: 10px; }
+    .privacy-clause h2{ font-size: 1.15rem; }
   }
 
   @media (prefers-reduced-motion: reduce){
