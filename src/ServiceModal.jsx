@@ -5,6 +5,24 @@ import { LanguageContext } from "./LanguageContext";
 const ServiceModal = ({ selectedService, language, setSelectedService }) => {
     const { translations } = useContext(LanguageContext);
 
+    const handleWhatsappClick = (e) => {
+        // 1. WhatsApp के डिफ़ॉल्ट लिंक ओपन होने के बिहेवियर को रोकें (अगर आप सिर्फ चैटबॉट खोलना चाहते हैं)
+        e.preventDefault(); 
+
+        // 2. index.html से launcher-ring क्लास वाले एलिमेंट को ढूंढें
+        const chatbotButton = document.querySelector('.launcher-ring');
+        
+        // 3. अगर बटन मिल जाता है, तो उसपर ऑटोमैटिक क्लिक ट्रिगर करें
+        if (chatbotButton) {
+            chatbotButton.click();
+            
+            // (ऑप्शनल) चैटबॉट खुलने के बाद आप इस सर्विस मोडल को बंद भी कर सकते हैं
+            setSelectedService(null); 
+        } else {
+            console.error("Chatbot launcher button not found!");
+        }
+    };
+
     return (
         <div
             className="services_modal-overlay"
@@ -55,24 +73,10 @@ const ServiceModal = ({ selectedService, language, setSelectedService }) => {
                 </div>
 
                 <div className="services_action-buttons">
-
-                    {
-                        // selectedService.apply_form ?
-                        //     <a
-                        //         className="services_apply_form-btn"
-                        //         onClick={() =>
-                        //             window.location.href =
-                        //             selectedService.apply_form
-                        //         }
-                        //     >
-                        //         {translations.modal.apply_form}
-                        //     </a>
-                        //     : null
-                    }
-
                     <a
                         className="services_view-btn"
-                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name?.[language]}`}
+                        href={`https://wa.me{import.meta.env.VITE_WHATSAPP_NUMBER}?text=I want to apply for ${selectedService.name?.[language]}`}
+                        onClick={handleWhatsappClick}
                         target="_blank"
                         rel="noreferrer"
                     >

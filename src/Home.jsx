@@ -1,5 +1,6 @@
 import logo from "./assets/logo.png";
 import "./home.css";
+import "./hero-image.css";
 import { useContext } from "react";
 import { Route, Link } from "react-router-dom";
 import { LanguageContext } from "./LanguageContext";
@@ -22,7 +23,7 @@ export default function Home() {
                         <p className="sub">{translations.home.hero_sub}</p>
                         <div className="hero-ctas">
                             <Link to="/services" className="btn btn-gold">{translations.home.cta_explore}</Link>
-                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">{translations.home.cta_talk_expert}</a>
+                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream">{translations.home.cta_talk_expert}</a>
                         </div>
                         <div className="stat-row">
                             <div className="stat"><b>85K+</b><span>{translations.home.stat_1_label}</span></div>
@@ -211,16 +212,6 @@ export default function Home() {
                             {translations.home.why_3_desc}
                         </p>
                     </div>
-
-                    <div className="trust-card">
-                        <div className="icon purple">
-                            <i className="fa-solid fa-rotate"></i>
-                        </div>
-                        <h3>{translations.home.why_4_title}</h3>
-                        <p>
-                            {translations.home.why_4_desc}
-                        </p>
-                    </div>
                 </div>
             </section>
 
@@ -254,7 +245,7 @@ export default function Home() {
                 <h2>{translations.home.cta_band_title}</h2>
                 <p>{translations.home.cta_band_sub}</p>
                 <div className="hero-ctas" style={{ justifyContent: "center" }}>
-                    <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream" className="btn btn-outline-cream">{translations.home.cta_band_whatsapp}</a>
+                    <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream">{translations.home.cta_band_whatsapp}</a>
                     <Link to="/services" className="btn btn-outline-cream">{translations.home.cta_band_browse}</Link>
                 </div>
             </div>

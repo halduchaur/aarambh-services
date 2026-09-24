@@ -1,5 +1,5 @@
 import "./about_us.css";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, NavLink } from "react-router-dom";
 import { memo, useContext } from "react";
 import logo from "./assets/images/aarambh_logo.jpeg";
 import { LanguageContext } from "./LanguageContext";
@@ -142,7 +142,7 @@ const AboutUs = () => {
                         <h2>{translations.about.cta_title}</h2>
                         <p>{translations.about.cta_sub}</p>
                     </div>
-                    <a href="#" className="about_us-btn-primary">{translations.about.cta_btn}</a>
+                    <NavLink to="/services" className="about_us-btn-primary">{translations.about.cta_btn}</NavLink>
                 </div>
             </section>
         </>
