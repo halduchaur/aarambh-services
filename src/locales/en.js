@@ -78,6 +78,8 @@ const en = {
       cta_band_sub: "Talk to a counsellor today — accurate information, the right direction, and a better future, one step closer.",
       cta_band_whatsapp: "Chat on WhatsApp",
       cta_band_browse: "Browse All Services →",
+      show_less: "Show Less",
+      show_more: "Show More",
     },
     about: {
       chip: "सही जानकारी · सही दिशा · बेहतर भविष्य",

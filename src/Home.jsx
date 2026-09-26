@@ -1,7 +1,7 @@
 import logo from "./assets/logo.png";
 import "./home.css";
 import "./hero-image.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import { LanguageContext } from "./LanguageContext";
 import whatsappPreview from "./assets/images/whatsapp-preview.jpeg";
@@ -12,6 +12,7 @@ import how_it_works3 from "./assets/images/how_it_works3.png";
 
 export default function Home() {
     const { language, setLanguage, translations } = useContext(LanguageContext);
+    const [expandedTestimonial, setExpandedTestimonial] = useState(null);
 
     return (
         <>
@@ -239,8 +240,35 @@ export default function Home() {
                         </div>
                         <div className="tcard">
                             <div className="stars">★★★★★</div>
-                            <p>{translations.home.t2_text}</p>
-                            <div className="tperson"><div className="avatar">R</div><div><div className="who">{translations.home.t2_name}</div><div className="role">{translations.home.t2_role}</div></div></div>
+
+                            <p className={expandedTestimonial === "t2" ? "expanded" : "collapsed"}>
+                                {translations.home.t2_text}
+                            </p>
+
+                            <button
+                                className="read-more-btn"
+                                onClick={() =>
+                                    setExpandedTestimonial(
+                                        expandedTestimonial === "t2" ? null : "t2"
+                                    )
+                                }
+                            >
+                                {expandedTestimonial === "t2" ? translations.home.show_less : translations.home.show_more}
+                            </button>
+
+                            <div className="tperson">
+                                <div className="avatar">R</div>
+
+                                <div>
+                                    <div className="who">
+                                        {translations.home.t2_name}
+                                    </div>
+
+                                    <div className="role">
+                                        {translations.home.t2_role}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

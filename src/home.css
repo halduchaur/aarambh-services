@@ -52,6 +52,32 @@ img {
 
 
 
+.tcard p.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tcard p.expanded {
+    display: block;
+}
+
+.read-more-btn {
+    border: none;
+    background: transparent;
+    color: var(--gold);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}
+
 ul {
   list-style: none;
 }
@@ -369,15 +395,6 @@ section {
   position: relative;
 }
 
-.journey-steps::before {
-  content: "";
-  position: absolute;
-  top: 23px;
-  left: 16.6%;
-  right: 16.6%;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 20px);
-}
 
 .jstep {
   padding: 0 26px;
@@ -717,8 +734,10 @@ section {
 
 .step{
     flex:1;
+    /* position: unset !important; */
     text-align:left;
 }
+
 
 .step-image{
     display:flex;
@@ -860,6 +879,7 @@ section {
 }
 
 
+
 @media(max-width:980px) {
   .hero .wrap {
     grid-template-columns: 1fr;
@@ -878,6 +898,7 @@ section {
   .trust-item:nth-child(2) {
     border-right: none;
   }
+
 
   .pillars {
     grid-template-columns: repeat(2, 1fr);
