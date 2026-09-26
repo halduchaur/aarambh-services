@@ -49,19 +49,19 @@ export default function Home() {
             <div className="trustbar">
                 <div className="wrap">
                     <div className="trust-item">
-                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z" stroke="#0A2A5E" strokeWidth="1.6" /></svg></div>
+                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z" stroke="#076140" strokeWidth="1.6" /></svg></div>
                         <div><h4>{translations.home.trust_1_title}</h4><p>{translations.home.trust_1_desc}</p></div>
                     </div>
                     <div className="trust-item">
-                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="#0A2A5E" strokeWidth="1.6" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="#0A2A5E" strokeWidth="1.6" /></svg></div>
+                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="#076140" strokeWidth="1.6" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="#076140" strokeWidth="1.6" /></svg></div>
                         <div><h4>{translations.home.trust_2_title}</h4><p>{translations.home.trust_2_desc}</p></div>
                     </div>
                     <div className="trust-item">
-                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#0A2A5E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
+                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#076140" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
                         <div><h4>{translations.home.trust_3_title}</h4><p>{translations.home.trust_3_desc}</p></div>
                     </div>
                     <div className="trust-item">
-                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9-9.5C1 7 3.5 3.5 7 4c2 .3 3.7 1.9 5 4 1.3-2.1 3-3.7 5-4 3.5-.5 6 3 4 7.5-2 5-9 9.5-9 9.5Z" stroke="#0A2A5E" strokeWidth="1.5" /></svg></div>
+                        <div className="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9-9.5C1 7 3.5 3.5 7 4c2 .3 3.7 1.9 5 4 1.3-2.1 3-3.7 5-4 3.5-.5 6 3 4 7.5-2 5-9 9.5-9 9.5Z" stroke="#076140" strokeWidth="1.5" /></svg></div>
                         <div><h4>{translations.home.trust_4_title}</h4><p>{translations.home.trust_4_desc}</p></div>
                     </div>
                 </div>

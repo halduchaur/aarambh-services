@@ -7,7 +7,7 @@ header {
 }
 
 .topstrip {
-  background: #0a2a5e;
+  background: #076140;
   color: #fff;
   height: 40px;
   overflow: hidden;
@@ -23,7 +23,7 @@ header {
 
 .topstrip {
   background: var(--navy-deep);
-  color: #C9D3E6;
+  color: #C8E7DC;
   font-size: 12.5px;
   letter-spacing: .02em;
   padding: 8px 0;
@@ -85,7 +85,7 @@ header {
 }
 
 .brand-text .name {
-  font-family: 'Fraunces', serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 21px;
   color: var(--navy);
@@ -102,7 +102,7 @@ header {
 
 
 .foot-brand .name {
-  font-family: 'Fraunces', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 22px;
   color: var(--white);
   font-weight: 700;
@@ -176,7 +176,7 @@ nav.links a.partner {
 }
 
 .brand-text .name {
-  font-family: 'Fraunces', serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 30px;
   color: var(--navy);
@@ -206,15 +206,15 @@ nav.links a.partner {
     font-size: 14px;
     font-weight: 600;
     padding: 4px 2px;
-    color: #10233F;
+    color: #0E412E;
 }
 
 .language-switch button:hover {
-    color: #C79A44;
+    color: #C29249;
 }
 
 .language-switch .language-active {
-    color: #C79A44;
+    color: #C29249;
     font-weight: 700;
 }
 
@@ -302,7 +302,7 @@ nav.links a.partner {
     width: min(78vw, 320px);
     background: var(--white);
     padding: 90px 26px 28px;
-    box-shadow: -12px 0 32px rgba(10, 42, 94, .16);
+    box-shadow: -12px 0 32px rgba(7, 97, 64, .16);
 
     transform: translateX(100%);
     transition: transform .3s ease;
@@ -346,7 +346,7 @@ nav.links a.partner {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(10, 20, 40, .45);
+    background: rgba(9, 41, 29, .45);
     z-index: 54;
     animation: fadeIn .2s ease;
   }

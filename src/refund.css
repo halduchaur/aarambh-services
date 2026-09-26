@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair Display:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600&display=swap');
 
   :root{
-    --navy: #12294a;
-    --navy-deep: #0c1d38;
-    --gold: #c1852c;
-    --gold-soft: #e8b467;
+    --navy: #104C36;
+    --navy-deep: #0A3A28;
+    --gold: #BB8432;
+    --gold-soft: #E3B36C;
     --cream: #faf7f1;
     --cream-2: #f2ecdf;
-    --ink: #22314a;
-    --ink-soft: #56637a;
+    --ink: #204C3C;
+    --ink-soft: #557B6D;
     --rule: #dcd3bd;
     --green: #3f7256;
     --green-bg: #eaf1ec;
@@ -62,7 +62,7 @@
   }
 
   .refund-hero .refund-word{
-    font-family: 'Fraunces', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -74,13 +74,13 @@
   .refund-hero .refund-tagline{
     font-family: 'Noto Sans Devanagari', sans-serif;
     font-size: 0.95rem;
-    color: #cbb98a;
+    color: #C8B08D;
     margin: 0 0 22px;
     letter-spacing: 0.02em;
   }
 
   .refund-hero h1{
-    font-family: 'Fraunces', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-size: 1.9rem;
     margin: 0 0 10px;
@@ -89,7 +89,7 @@
 
   .refund-hero p.refund-lede{
     max-width: 480px;
-    color: #c7d0de;
+    color: #C6DFD6;
     font-size: 1rem;
     margin: 0;
   }
@@ -115,7 +115,7 @@
   }
   .refund-assurance .detail{
     font-size: 0.88rem;
-    color: #3a2a0f;
+    color: #382811;
     opacity: 0.85;
   }
 
@@ -140,7 +140,7 @@
   }
 
   .refund-clause-num{
-    font-family: 'Fraunces', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
     color: var(--gold);
     font-weight: 600;
@@ -149,7 +149,7 @@
   }
 
   .refund-clause h2{
-    font-family: 'Fraunces', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-size: 1.32rem;
     margin: 0;
@@ -208,7 +208,7 @@
   }
   .refund-timeline .refund-step:last-child{ border-right: none; }
   .refund-timeline .refund-step .k{
-    font-family: 'Fraunces', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.02rem;
     color: var(--navy);
     display: block;
@@ -260,7 +260,7 @@
   /* ---------- Footer ---------- */
   footer{
     background: var(--navy-deep);
-    color: #cbd3e0;
+    color: #CAE1D9;
     padding: 34px 0;
   }
   footer .refund-wrap{
@@ -270,8 +270,8 @@
     text-align: center;
     gap: 6px;
   }
-  footer .refund-brand{ font-family: 'Fraunces', serif; font-size: 1.05rem; color: #f4ede0; }
-  footer .refund-contact{ font-size: 0.85rem; color: #90a0b8; }
+  footer .refund-brand{ font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #f4ede0; }
+  footer .refund-contact{ font-size: 0.85rem; color: #8EBAAA; }
   footer .refund-contact a{ color: var(--gold-soft); text-decoration: none; }
 
   @media (max-width: 560px){

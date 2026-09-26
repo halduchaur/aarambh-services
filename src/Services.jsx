@@ -51,8 +51,8 @@ export default function Services() {
                     <p>{translations.services.sub}.</p>
 
                     <svg className="services_hero-signature" viewBox="0 0 220 26" fill="none">
-                        <path d="M2 20 C 40 20, 55 4, 90 4 C 125 4, 140 20, 178 20 C 195 20, 205 12, 218 12" stroke="#C79A44" strokeWidth="2" strokeLinecap="round" />
-                        <circle cx="90" cy="4" r="4" fill="#C79A44" />
+                        <path d="M2 20 C 40 20, 55 4, 90 4 C 125 4, 140 20, 178 20 C 195 20, 205 12, 218 12" stroke="#C29249" strokeWidth="2" strokeLinecap="round" />
+                        <circle cx="90" cy="4" r="4" fill="#C29249" />
                     </svg>
 
                     <div className="services_finder">
