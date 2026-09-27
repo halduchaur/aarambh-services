@@ -1,10 +1,8 @@
 import logo from "./assets/logo.png";
 import "./home.css";
-import "./hero-image.css";
 import { useContext, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import { LanguageContext } from "./LanguageContext";
-import whatsappPreview from "./assets/images/whatsapp-preview.jpeg";
 import how_it_works1 from "./assets/images/how_it_works1.png";
 import how_it_works2 from "./assets/images/how_it_works2.png";
 import how_it_works3 from "./assets/images/how_it_works3.png";
@@ -20,31 +18,156 @@ export default function Home() {
                 <div className="wrap">
                     <div className="hero-copy">
                         <span className="eyebrow">{translations.home.eyebrow}</span>
-                        <h1>{translations.home.hero_title_pre} <span className="accent">{translations.header.aarambh}</span> — <br />{translations.home.hero_title_post}</h1>
+                        <h1>{translations.home.hero_title_pre} <span className="accent">{translations.header.aarambh}</span> —{translations.home.hero_title_post}</h1>
                         <p className="sub">{translations.home.hero_sub}</p>
-                        <div className="hero-ctas">
-                            <Link to="/services" className="btn btn-gold">{translations.home.cta_explore}</Link>
-                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream">{translations.home.cta_talk_expert}</a>
+
+                        <div className="hero-features">
+                            <div className="hf-item">
+                                <div className="hf-ic hf-ic-chat">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M4 12a8 8 0 1 1 3.2 6.4L4 20l1.3-3.5A7.96 7.96 0 0 1 4 12Z" stroke="#DFB16B" strokeWidth="1.7" strokeLinejoin="round" />
+                                        <path d="M8.5 11.3l2 2 4.5-4.6" stroke="#DFB16B" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>{translations.home.feature_wa_title}</h4>
+                                    <ul>
+                                        <li>{translations.home.feature_wa_b1}</li>
+                                        <li>{translations.home.feature_wa_b2}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="hf-item">
+                                <div className="hf-ic hf-ic-forms">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <rect x="5" y="3" width="14" height="18" rx="2" stroke="#DFB16B" strokeWidth="1.7" />
+                                        <path d="M8.5 8h7M8.5 12h7M8.5 16h4" stroke="#DFB16B" strokeWidth="1.6" strokeLinecap="round" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>{translations.home.feature_forms_title}</h4>
+                                    <ul>
+                                        <li>{translations.home.feature_forms_b1}</li>
+                                        <li>{translations.home.feature_forms_b2}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="hf-item">
+                                <div className="hf-ic hf-ic-call">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M5 4h3.2l1.4 4.2-2 1.6a12 12 0 0 0 5.6 5.6l1.6-2L19 15v3.2c0 1-.9 1.8-1.9 1.6C10.6 18.9 5.1 13.4 4.2 6.9 4 5.9 4.8 5 5.8 5Z" stroke="#DFB16B" strokeWidth="1.6" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>{translations.home.feature_call_title}</h4>
+                                    <ul>
+                                        <li>{translations.home.feature_call_b1}</li>
+                                        <li>{translations.home.feature_call_b2}</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div className="stat-row">
-                            <div className="stat"><b>85K+</b><span>{translations.home.stat_1_label}</span></div>
-                            <div className="stat"><b>40+</b><span>{translations.home.stat_2_label}</span></div>
-                            <div className="stat"><b>22</b><span>{translations.home.stat_3_label}</span></div>
-                            <div className="stat"><b>4.8★</b><span>{translations.home.stat_4_label}</span></div>
+
+                        <div className="hero-ctas">
+                            <Link to="/services" className="btn btn-gold btn-lg">
+                                {translations.home.cta_explore}
+                            </Link>
+                            <a href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(import.meta.env.VITE_WHATSAPP_AUTO_MESSAGE)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline-cream">{translations.home.cta_talk_expert}</a>
                         </div>
                     </div>
 
                     <div className="path-graphic">
-                        <div className="hero-image">
-                            <img
-                                src={whatsappPreview}
-                                alt="Aarambh WhatsApp Service"
-                                className="whatsapp-preview"
-                            />
+                        <div className="hero-showcase">
+                            <div className="hs-decor hs-decor-1"></div>
+                            <div className="hs-decor hs-decor-2"></div>
+
+                            <div className="hs-window">
+                                <div className="hs-window-bar">
+                                    <span className="hs-dot hs-dot-r"></span>
+                                    <span className="hs-dot hs-dot-y"></span>
+                                    <span className="hs-dot hs-dot-g"></span>
+                                    <span className="hs-window-title">{translations.home.showcase_window_title}</span>
+                                </div>
+                                <div className="hs-window-body">
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-a">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3c3.5 0 6 2 6 5.2 0 4.4-3 8.4-6 12.3-3-3.9-6-7.9-6-12.3C6 5 8.5 3 12 3Z" stroke="#076140" strokeWidth="1.5" /><circle cx="12" cy="8.4" r="2.1" stroke="#076140" strokeWidth="1.4" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_aadhaar}</span>
+                                    </div>
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-b">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#C3872D" strokeWidth="1.5" /><circle cx="8" cy="12" r="1.8" stroke="#C3872D" strokeWidth="1.3" /><path d="M13 10h5M13 14h5" stroke="#C3872D" strokeWidth="1.3" strokeLinecap="round" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_pan}</span>
+                                    </div>
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-c">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7.5" stroke="#076140" strokeWidth="1.5" /><path d="M12 8v4l3 2" stroke="#076140" strokeWidth="1.4" strokeLinecap="round" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_pension}</span>
+                                    </div>
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-d">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="3.5" width="16" height="17" rx="2" stroke="#C3872D" strokeWidth="1.5" /><path d="M7.5 8h9M7.5 11.5h9M7.5 15h5.5" stroke="#C3872D" strokeWidth="1.3" strokeLinecap="round" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_certificate}</span>
+                                    </div>
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-e">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="14" rx="2" stroke="#076140" strokeWidth="1.5" /><path d="M7 15l2.5-3 2 2L15 10l2.5 3" stroke="#076140" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_voter}</span>
+                                    </div>
+                                    <div className="hs-tile">
+                                        <div className="hs-tile-ic hs-tile-ic-f">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 9h14l-1.3 9.2a2 2 0 0 1-2 1.8H8.3a2 2 0 0 1-2-1.8L5 9Z" stroke="#C3872D" strokeWidth="1.5" strokeLinejoin="round" /><path d="M9 9V7a3 3 0 0 1 6 0v2" stroke="#C3872D" strokeWidth="1.4" /></svg>
+                                        </div>
+                                        <span>{translations.home.showcase_tile_ration}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="hs-flow">
+                                <div className="hs-flow-node">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="3.5" width="16" height="17" rx="2" stroke="#076140" strokeWidth="1.6" /><path d="M7.5 8h9M7.5 11.5h9M7.5 15h5.5" stroke="#076140" strokeWidth="1.4" strokeLinecap="round" /></svg>
+                                </div>
+                                <span className="hs-flow-txt">{translations.home.showcase_flow_1}</span>
+                                <span className="hs-flow-line"></span>
+                                <div className="hs-flow-node hs-flow-node-active">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                </div>
+                                <span className="hs-flow-txt">{translations.home.showcase_flow_2}</span>
+                                <span className="hs-flow-line"></span>
+                                <div className="hs-flow-node">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 3.2 6.4L4 20l1.3-3.5A7.96 7.96 0 0 1 4 12Z" stroke="#076140" strokeWidth="1.6" strokeLinejoin="round" /></svg>
+                                </div>
+                                <span className="hs-flow-txt">{translations.home.showcase_flow_3}</span>
+                            </div>
+
+                            <div className="hs-seal">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 12l5 5L20 6" stroke="#05412B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>{translations.home.stat_4_num}</span>
+                            </div>
+
+                            <div className="hs-endorse">
+                                <div className="hs-endorse-label">{translations.home.showcase_endorse_label}</div>
+                                <div className="hs-endorse-stats">
+                                    <div className="hs-stat"><b>{translations.home.stat_1_num}</b><span>{translations.home.stat_1_label}</span></div>
+                                    <div className="hs-stat"><b>{translations.home.stat_2_num}</b><span>{translations.home.stat_2_label}</span></div>
+                                    <div className="hs-stat"><b>{translations.home.stat_3_num}</b><span>{translations.home.stat_3_label}</span></div>
+                                    <div className="hs-stat"><b>{translations.home.stat_4_num}</b><span>{translations.home.stat_4_label}</span></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
 
             <div className="trustbar">
                 <div className="wrap">
