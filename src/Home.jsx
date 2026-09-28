@@ -1,8 +1,10 @@
 import logo from "./assets/logo.png";
 import "./home.css";
 import { useContext, useState } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
+import { orgSchemas } from "./seoSchemas";
 import how_it_works1 from "./assets/images/how_it_works1.png";
 import how_it_works2 from "./assets/images/how_it_works2.png";
 import how_it_works3 from "./assets/images/how_it_works3.png";
@@ -12,8 +14,16 @@ export default function Home() {
     const { language, setLanguage, translations } = useContext(LanguageContext);
     const [expandedTestimonial, setExpandedTestimonial] = useState(null);
 
+    const orgJsonLd = orgSchemas(translations.home.hero_sub);
+
     return (
         <>
+            <SEO
+                title={null}
+                description={translations.home.hero_sub}
+                path="/"
+                jsonLd={orgJsonLd}
+            />
             <section className="hero">
                 <div className="wrap">
                     <div className="hero-copy">

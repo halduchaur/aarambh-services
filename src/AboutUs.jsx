@@ -1,14 +1,20 @@
 import "./about_us.css";
-import { Route, Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "./i18nRouting";
 import { memo, useContext } from "react";
 import logo from "./assets/images/aarambh_logo.jpeg";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const AboutUs = () => {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
     return (
         <>
+            <SEO
+                title={translations.about?.seo_title || "About Us"}
+                description={translations.about?.hero_lead}
+                path="/about-us"
+            />
             <section className="about_us-hero about_us_heading">
                 <div className="about_us-hero-inner">
                     <div>

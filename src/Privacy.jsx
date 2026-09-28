@@ -1,14 +1,20 @@
 import "./privacy.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { memo, useContext } from "react";
 import logo from "./assets/images/aarambh_logo.jpeg";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const Privacy = function () {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
     return (
         <>
+            <SEO
+                title={language === "hi" ? "गोपनीयता नीति" : "Privacy Policy"}
+                description={language === "hi" ? "आरंभ आपकी व्यक्तिगत जानकारी और दस्तावेज़ों को कैसे एकत्र, उपयोग और सुरक्षित करता है, जानें।" : "Read how Aarambh collects, uses and protects your personal information and documents when you use our government service guidance."}
+                path="/privacy"
+            />
             <div className="privacy-assurance privacy_heading">
                 <div className="privacy-assurance-inner">
                     <span className="privacy-label">{translations.privacy.badge}</span>

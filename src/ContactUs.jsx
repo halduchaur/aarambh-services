@@ -1,8 +1,9 @@
 import "./contact_us.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { memo, useContext, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const ContactUs = function () {
     const { language, setLanguage, translations } = useContext(LanguageContext);
@@ -37,6 +38,11 @@ const ContactUs = function () {
 
     return (
         <>
+            <SEO
+                title={translations.contact?.seo_title || "Contact Us"}
+                description={translations.contact?.hero_lead}
+                path="/contact-us"
+            />
             <section className="contact_us-hero contact_us_heading">
                 <div className="contact_us-hero-inner">
                     <div className="contact_us-tag-chip"><span className="contact_us-dot"></span>{translations.contact.chip}</div>

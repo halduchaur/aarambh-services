@@ -1,13 +1,19 @@
 import "./terms_of_service.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const TermsOfService = () => {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
     return (
         <>
+            <SEO
+                title={language === "hi" ? "सेवा की शर्तें" : "Terms of Service"}
+                description={language === "hi" ? "आरंभ की मार्गदर्शन, दस्तावेज़ीकरण और सरकारी सेवा सहायता के उपयोग की नियम व शर्तें।" : "Terms and conditions for using Aarambh's guidance, documentation and government service assistance."}
+                path="/terms"
+            />
             <div className="terms-assurance terms_heading">
                 <div className="terms-assurance-inner">
                     <span className="terms-label">{translations.terms.badge}</span>

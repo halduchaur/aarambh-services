@@ -1,4 +1,5 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { NavLink } from "../i18nRouting";
 import "./header.css";
 import logo from "../assets/images/aarambh_logo.jpeg";
 import { LanguageContext } from "../LanguageContext";

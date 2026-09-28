@@ -1,13 +1,19 @@
 import "./refund.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const RefundPolicy = function () {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
     return (
         <>
+            <SEO
+                title={language === "hi" ? "रिफंड नीति" : "Refund Policy"}
+                description={language === "hi" ? "आरंभ की सेवा सुविधा शुल्क के लिए रिफंड और रद्दीकरण नीति।" : "Aarambh's refund and cancellation policy for service facilitation charges."}
+                path="/refund"
+            />
             <div className="refund-assurance">
                 <div className="refund-assurance-inner">
                     <span className="refund-label">{translations.refund.badge}</span>

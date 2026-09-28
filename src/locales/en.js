@@ -102,6 +102,7 @@ const en = {
       show_more: "Show More",
     },
     about: {
+        seo_title: "About Us",
       chip: "सही जानकारी · सही दिशा · बेहतर भविष्य",
       hero_title_pre: "Every beginning deserves the",
       hero_title_em: "right",
@@ -140,6 +141,7 @@ const en = {
       cta_btn: "Start with Aarambh",
     },
     contact: {
+        seo_title: "Contact Us",
       chip: "हम आपकी मदद के लिए हैं",
       hero_title_pre: "Stuck somewhere?",
       hero_title_em: "Talk to us.",
@@ -175,6 +177,8 @@ const en = {
       badge3_title: "Hindi & English", badge3_sub: "Ask in whichever you're comfortable with",
     },
     services: {
+        seo_title: "All Government Services",
+        seo_description: "Browse 54+ government services — Aadhaar, PAN, certificates, pension, passport, vehicle and more — with guided WhatsApp help from Aarambh.",
       eyebrow: "Complete Directory",
       title_pre: "All", title_em: "Services",
       sub: "Browse Aarambh's complete range of 55+ government documentation aur scheme services. Har cheez ek jagah — sahi jankari, sahi disha ke saath.",

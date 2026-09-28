@@ -1,5 +1,5 @@
 import "./footer.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "../i18nRouting";
 import { LanguageContext } from "../LanguageContext";
 import { useContext } from "react";
 

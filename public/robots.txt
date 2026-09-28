@@ -1,0 +1,10 @@
+# Aarambh — robots.txt
+# https://www.aarambhindia.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Don't index internal policy utility pages' duplicate query variations (none currently), keep all real pages crawlable.
+Disallow: /*?*
+
+Sitemap: https://www.aarambhindia.com/sitemap.xml

@@ -1,10 +1,11 @@
 import "./services.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { useState,useEffect, useMemo, useContext } from "react";
 import servicesData from "./servicesData";
 import ServiceIcon from './ServiceIcon';
 import ServiceCard from './ServiceCard';
 import ServiceModal from "./ServiceModal";
+import SEO from "./components/SEO";
 import { LanguageContext } from "./LanguageContext";
 
 export default function Services() {
@@ -44,6 +45,11 @@ export default function Services() {
 
     return (
         <>
+            <SEO
+                title={translations.services?.seo_title || "All Government Services"}
+                description={translations.services?.seo_description || `Browse ${servicesData.length}+ government services — Aadhaar, PAN, certificates, pension, passport, vehicle and more — with guided help from Aarambh.`}
+                path="/services"
+            />
             <section className="services_hero service-body">
                 <div className="services_container">
                     <div className="services_hero-eyebrow"><span className="services_dot"></span> {translations.services.eyebrow}</div>

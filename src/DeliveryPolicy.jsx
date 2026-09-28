@@ -1,13 +1,19 @@
 import "./delivery.css";
-import { Route, Link } from "react-router-dom";
+import { Link } from "./i18nRouting";
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
+import SEO from "./components/SEO";
 
 const DeliveryPolicy = function DeliveryPolicy() {
     const { language, setLanguage, translations } = useContext(LanguageContext);
 
     return (
         <>
+            <SEO
+                title={language === "hi" ? "डिलीवरी नीति" : "Delivery Policy"}
+                description={language === "hi" ? "आरंभ आपको सेवा अपडेट, दस्तावेज़ और आवेदन स्थिति कैसे और कब भेजता है।" : "How Aarambh delivers service updates, documents and application status to you, and expected timelines."}
+                path="/delivery"
+            />
             <div className="delivery-assurance">
                 <div className="delivery-assurance-inner">
                     <span className="delivery-label">{translations.delivery.badge}</span>
