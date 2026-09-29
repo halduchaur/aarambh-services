@@ -145,12 +145,9 @@ export default function ServiceDetail() {
                             </div>
 
                             <div className="sp-cta-row" ref={ctaRef}>
-                                <button type="button" className="sp-btn sp-btn-primary" onClick={apply}>
+                                <button type="button" className="sp-btn sp-btn-primary" onClick={handleWhatsappClick}>
                                     {t.apply_now} <Arrow />
                                 </button>
-                                <a className="sp-btn sp-btn-ghost" href={whatsappHref} target="_blank" rel="noreferrer">
-                                    {t.ask_whatsapp}
-                                </a>
                             </div>
                         </div>
 
