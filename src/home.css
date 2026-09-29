@@ -10,15 +10,6 @@
   --white: #FFFFFF;
 }
 
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1289,6 +1280,26 @@ section {
     font-size:10px;
     padding:4px 8px;
 }
+}
+
+@media (max-width:640px){
+  .hero-features {
+    flex-direction: column;
+    border: none;
+    padding: 18px 0;
+    gap: 16px;
+  }
+
+  .hf-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
+    padding: 0 0 16px;
+  }
+
+  .hf-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 }
 
 @media (max-width:420px){
