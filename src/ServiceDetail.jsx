@@ -39,6 +39,22 @@ export default function ServiceDetail() {
         return () => io.disconnect();
     }, [slug]);
 
+
+    const handleWhatsappClick = (e) => {
+        // 1. WhatsApp के डिफ़ॉल्ट लिंक ओपन होने के बिहेवियर को रोकें (अगर आप सिर्फ चैटबॉट खोलना चाहते हैं)
+        e.preventDefault(); 
+
+        // 2. index.html से launcher-ring क्लास वाले एलिमेंट को ढूंढें
+        const chatbotButton = document.querySelector('.launcher-ring');
+        
+        // 3. अगर बटन मिल जाता है, तो उसपर ऑटोमैटिक क्लिक ट्रिगर करें
+        if (chatbotButton) {
+            chatbotButton.click();
+        } else {
+            console.error("Chatbot launcher button not found!");
+        }
+    };
+
     useEffect(() => {
         document.body.classList.toggle("has-sticky-cta", showBar);
         return () => document.body.classList.remove("has-sticky-cta");
@@ -202,7 +218,7 @@ export default function ServiceDetail() {
                             ))}
                         </ol>
                         <div className="sp-how-cta">
-                            <button type="button" className="sp-btn sp-btn-primary" onClick={apply}>
+                            <button type="button" className="sp-btn sp-btn-primary" onClick={handleWhatsappClick}>
                                 {t.apply_now} <Arrow />
                             </button>
                         </div>
@@ -272,12 +288,9 @@ export default function ServiceDetail() {
                                     <span>{t.starting_at}</span>
                                     <strong>{price}</strong>
                                 </div>
-                                <button type="button" className="sp-btn sp-btn-primary sp-btn-block" onClick={apply}>
+                                <button onClick={handleWhatsappClick} type="button" className="sp-btn sp-btn-primary sp-btn-block">
                                     {t.apply_now} <Arrow />
                                 </button>
-                                <a className="sp-btn sp-btn-ghost sp-btn-block" href={whatsappHref} target="_blank" rel="noreferrer">
-                                    {t.ask_whatsapp}
-                                </a>
                                 <p className="sp-side-note">{t.side_note}</p>
                             </div>
                         </aside>
@@ -292,7 +305,7 @@ export default function ServiceDetail() {
                         <strong>{t.sticky_title} <span>{name}</span></strong>
                         <small>{t.sticky_sub}</small>
                     </div>
-                    <button type="button" className="sp-btn sp-btn-light" onClick={apply} tabIndex={showBar ? 0 : -1}>
+                    <button type="button" className="sp-btn sp-btn-light" onClick={handleWhatsappClick} tabIndex={showBar ? 0 : -1}>
                         {t.apply_now} <Arrow />
                     </button>
                 </div>
