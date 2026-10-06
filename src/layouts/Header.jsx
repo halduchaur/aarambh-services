@@ -80,7 +80,7 @@ const Header = function () {
                             className={language === "en" ? "language-active" : ""}
                             onClick={() => setLanguage("en")}
                         >
-                            Englishkkkkkk
+                            English111
                         </button>
 
                         <span>|</span>
