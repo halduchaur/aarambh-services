@@ -20,6 +20,11 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
+###############################################################################################################################################
+
+
+
+
 docker pull image_name (pull docker image from locally or docker hub)
 docker images (to check all local docker images)
 docker run image_name (to create an docker container from specific image)
@@ -57,6 +62,7 @@ docker run -p 5173:5173 e3dfsdfs/aarambh-services:latest (run docker container)
 
 inside Dockerfile all commands rest (CMD) will execute during creating image, CMD command will execute during run container.
 
+jab hum github par code push karenge, then github automation actions(docker.yml) -> Dockerfile use karke image build karegi, then docker hub ya EC2 -> ECR me push karegi. so github actions ki docker.yml file & Dockerfile both important & required hai.
 
 
 
@@ -185,3 +191,54 @@ Lets say, mere pass 3 partitions hai ek topic ke, but mere pass ab 3 scenario ba
 
 Lets say, mere pass 3 partition hai jinko process karna hai, aur 2 consumer group hai, ek group me 2 consumer instance(c1,c2) and next group me 1 consumer instance(c3) hai.
 Now, same message c1 run karega & same message ko c3 bhi run kar sakta hai. as it is same message c2 run karega & same message ko c3 bhi run kar sakta hai. but same message jisko c1 run karega, usko c2 run nahi kar sakta i.e vice-versa(bcz all 3 partitions ko Kafka c1,c2 consumer me distribute karta hai)
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+What is RabbitMQ?
+RabbitMQ is a message broker.
+A message broker is software that sits between applications and handles messages between them.
+
+RabbitMQ receives messages from producers, stores/routes them through queues, and delivers them to consumers.
+
+The most important architecture to remember is:
+                RabbitMQ
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+     Exchange              Exchange
+        │                     │
+        ▼                     ▼
+      Queue                 Queue
+        │                     │
+        ▼                     ▼
+    Consumer              Consumer
+
+
+A Producer is the application that sends a message to RabbitMQ.
+A message is the actual data being sent.
+A connection is the network connection between your application and RabbitMQ.(port 5672)
+
+This is one of the most important RabbitMQ concepts.
+A producer normally publishes a message to an exchange, rather than directly choosing a queue.
+
+A queue stores messages until consumers process them.
+A consumer reads messages from a queue.
+
+ACK tells RabbitMQ: "I successfully processed this message."
+Success : $message->ack();
+Failure + requeue : $message->nack(false, true);
+
+
+ECR = Elastic Container Registry
+ECS = Elastic Container Service
+EKS = Elastic Kubernetes Service
+
+ECR → "Docker Image rakho"
+ECS → "Container chalao"
+EKS → "Kubernetes ke through containers chalao"
