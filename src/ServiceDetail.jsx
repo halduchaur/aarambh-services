@@ -39,7 +39,6 @@ export default function ServiceDetail() {
         return () => io.disconnect();
     }, [slug]);
 
-
     const handleWhatsappClick = (e) => {
         // 1. WhatsApp के डिफ़ॉल्ट लिंक ओपन होने के बिहेवियर को रोकें (अगर आप सिर्फ चैटबॉट खोलना चाहते हैं)
         e.preventDefault(); 
@@ -285,7 +284,7 @@ export default function ServiceDetail() {
                                     <span>{t.starting_at}</span>
                                     <strong>{price}</strong>
                                 </div>
-                                <button onClick={handleWhatsappClick} type="button" className="sp-btn sp-btn-primary sp-btn-block">
+                                <button type="button" className="sp-btn sp-btn-primary sp-btn-block" onClick={handleWhatsappClick}>
                                     {t.apply_now} <Arrow />
                                 </button>
                                 <p className="sp-side-note">{t.side_note}</p>

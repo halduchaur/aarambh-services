@@ -200,7 +200,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <section className="how-it-works">
+            {/* <section className="how-it-works">
                 <div className="section-top">
                     <span className="badge">{translations.home.hiw_badge}</span>
                     <h2>{translations.home.hiw_title}</h2>
@@ -308,9 +308,9 @@ export default function Home() {
                     </div>
 
                 </div>
-            </section>
+            </section> */}
 
-            <section className="trust-section">
+            {/* <section className="trust-section">
                 <div className="section-title">
                     <span></span>
                     <h4>{translations.home.why_title}</h4>
@@ -347,7 +347,7 @@ export default function Home() {
                         </p>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <section style={{ background: "var(--cream)" }}>
                 <div className="wrap">

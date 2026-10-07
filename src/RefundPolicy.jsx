@@ -40,9 +40,23 @@ const RefundPolicy = function () {
                         </div>
                     </div>
 
-                    <div className="refund-clause" id="full-refund">
+                    <div className="refund-clause" id="platform-fee">
                         <div className="refund-clause-head">
                             <span className="refund-clause-num">2</span>
+                            <h2>{translations.refund.cfee_title || "Platform Fee on Refunds"}</h2>
+                        </div>
+                        <div className="refund-body-text">
+                            <p>
+                                {translations.refund.cfee_text ||
+                                    "Wherever an amount qualifies for a refund under this policy — whether in full or in part — a platform fee of 3% of the refundable amount is deducted to cover payment-gateway and processing costs. The remaining amount, after this deduction, is transferred back to you using your original payment method."}
+                            </p>
+                            <span className="refund-fee-note">{translations.refund.cfee_chip || "3% platform fee applies to the refundable amount"}</span>
+                        </div>
+                    </div>
+
+                    <div className="refund-clause" id="full-refund">
+                        <div className="refund-clause-head">
+                            <span className="refund-clause-num">3</span>
                             <h2>{translations.refund.c2_title}</h2>
                         </div>
                         <div className="refund-body-text">
@@ -64,7 +78,7 @@ const RefundPolicy = function () {
 
                     <div className="refund-clause" id="partial-refund">
                         <div className="refund-clause-head">
-                            <span className="refund-clause-num">3</span>
+                            <span className="refund-clause-num">4</span>
                             <h2>{translations.refund.c3_title}</h2>
                         </div>
                         <div className="refund-body-text">
@@ -82,7 +96,7 @@ const RefundPolicy = function () {
 
                     <div className="refund-clause" id="non-refundable">
                         <div className="refund-clause-head">
-                            <span className="refund-clause-num">4</span>
+                            <span className="refund-clause-num">5</span>
                             <h2>{translations.refund.c4_title}</h2>
                         </div>
                         <div className="refund-body-text">
@@ -108,7 +122,7 @@ const RefundPolicy = function () {
 
                     <div className="refund-clause" id="timeline">
                         <div className="refund-clause-head">
-                            <span className="refund-clause-num">5</span>
+                            <span className="refund-clause-num">6</span>
                             <h2>{translations.refund.c5_title}</h2>
                         </div>
                         <div className="refund-timeline">
@@ -129,7 +143,7 @@ const RefundPolicy = function () {
 
                     <div className="refund-clause" id="how-to-file">
                         <div className="refund-clause-head">
-                            <span className="refund-clause-num">6</span>
+                            <span className="refund-clause-num">7</span>
                             <h2>{translations.refund.c6_title}</h2>
                         </div>
                         <div className="refund-body-text">
