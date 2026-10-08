@@ -6,6 +6,7 @@ import servicesData from "./servicesData";
 import SEO from "./components/SEO";
 import { serviceSchemas } from "./seoSchemas";
 import { applyForService } from "./chatbot";
+import InlineApplyForm from "./InlineApplyForm";
 import "./services.css";
 import "./service_page.css";
 
@@ -38,21 +39,6 @@ export default function ServiceDetail() {
         io.observe(el);
         return () => io.disconnect();
     }, [slug]);
-
-    const handleWhatsappClick = (e) => {
-        // 1. WhatsApp के डिफ़ॉल्ट लिंक ओपन होने के बिहेवियर को रोकें (अगर आप सिर्फ चैटबॉट खोलना चाहते हैं)
-        e.preventDefault(); 
-
-        // 2. index.html से launcher-ring क्लास वाले एलिमेंट को ढूंढें
-        const chatbotButton = document.querySelector('.launcher-ring');
-        
-        // 3. अगर बटन मिल जाता है, तो उसपर ऑटोमैटिक क्लिक ट्रिगर करें
-        if (chatbotButton) {
-            chatbotButton.click();
-        } else {
-            console.error("Chatbot launcher button not found!");
-        }
-    };
 
     useEffect(() => {
         document.body.classList.toggle("has-sticky-cta", showBar);
@@ -88,7 +74,12 @@ export default function ServiceDetail() {
 
     const waMessage = `Namaste Aarambh! Mujhe "${name}" service ke baare mein jaankari chahiye.`;
     const whatsappHref = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
-    const apply = () => applyForService(service, language);
+    /* Apply buttons scroll to the form on this page; services without a form keep the chatbot / WhatsApp flow. */
+    const apply = () => {
+        const form = document.getElementById("apply-form");
+        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+        else applyForService(service, language);
+    };
     const jsonLd = serviceSchemas(service, language, translations);
 
     const features = [
@@ -144,9 +135,12 @@ export default function ServiceDetail() {
                             </div>
 
                             <div className="sp-cta-row" ref={ctaRef}>
-                                <button type="button" className="sp-btn sp-btn-primary" onClick={handleWhatsappClick}>
+                                <button type="button" className="sp-btn sp-btn-primary" onClick={apply}>
                                     {t.apply_now} <Arrow />
                                 </button>
+                                <a className="sp-btn sp-btn-ghost" href={whatsappHref} target="_blank" rel="noreferrer">
+                                    {t.ask_whatsapp}
+                                </a>
                             </div>
                         </div>
 
@@ -214,7 +208,7 @@ export default function ServiceDetail() {
                             ))}
                         </ol>
                         <div className="sp-how-cta">
-                            <button type="button" className="sp-btn sp-btn-primary" onClick={handleWhatsappClick}>
+                            <button type="button" className="sp-btn sp-btn-primary" onClick={apply}>
                                 {t.apply_now} <Arrow />
                             </button>
                         </div>
@@ -236,6 +230,8 @@ export default function ServiceDetail() {
                                     </ul>
                                 </>
                             )}
+
+                            <InlineApplyForm service={service} language={language} />
 
                             {faqs.length > 0 && (
                                 <>
@@ -284,9 +280,12 @@ export default function ServiceDetail() {
                                     <span>{t.starting_at}</span>
                                     <strong>{price}</strong>
                                 </div>
-                                <button type="button" className="sp-btn sp-btn-primary sp-btn-block" onClick={handleWhatsappClick}>
+                                <button type="button" className="sp-btn sp-btn-primary sp-btn-block" onClick={apply}>
                                     {t.apply_now} <Arrow />
                                 </button>
+                                <a className="sp-btn sp-btn-ghost sp-btn-block" href={whatsappHref} target="_blank" rel="noreferrer">
+                                    {t.ask_whatsapp}
+                                </a>
                                 <p className="sp-side-note">{t.side_note}</p>
                             </div>
                         </aside>
@@ -301,7 +300,7 @@ export default function ServiceDetail() {
                         <strong>{t.sticky_title} <span>{name}</span></strong>
                         <small>{t.sticky_sub}</small>
                     </div>
-                    <button type="button" className="sp-btn sp-btn-light" onClick={handleWhatsappClick} tabIndex={showBar ? 0 : -1}>
+                    <button type="button" className="sp-btn sp-btn-light" onClick={apply} tabIndex={showBar ? 0 : -1}>
                         {t.apply_now} <Arrow />
                     </button>
                 </div>

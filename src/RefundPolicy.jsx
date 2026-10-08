@@ -1,165 +1,38 @@
-import "./refund.css";
-import { Link } from "./i18nRouting";
+import "./refund.css";   // kept so site-wide rules that other pages may rely on stay unchanged
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
-import SEO from "./components/SEO";
+import PolicyPage from "./PolicyPage";
+
+const COPY = {
+  en: { kicker: "Refund policy", title: "Our Refund Policy", ovKicker: "Refund policy overview", ovTitle: "Key points of our refund policy", cKicker: "Our commitment", cTitle: "Your satisfaction matters", cText: "We aim for a fair and transparent refund process that keeps your trust.",
+    q: ["When can I expect my refund?", "Will I get the full amount back?", "How will I receive the refund?", "What if my refund is not credited?"] },
+  hi: { kicker: "रिफंड नीति", title: "हमारी रिफंड नीति", ovKicker: "रिफंड नीति का सार", ovTitle: "हमारी रिफंड नीति के मुख्य बिंदु", cKicker: "हमारा वादा", cTitle: "आपकी संतुष्टि हमारे लिए ज़रूरी है", cText: "हम निष्पक्ष और पारदर्शी रिफंड प्रक्रिया रखते हैं ताकि आपका भरोसा बना रहे।",
+    q: ["रिफंड कब तक मिलेगा?", "क्या पूरा पैसा वापस मिलेगा?", "रिफंड कैसे मिलेगा?", "अगर रिफंड क्रेडिट न हो तो?"] },
+};
 
 const RefundPolicy = function () {
-    const { language, setLanguage, translations } = useContext(LanguageContext);
-
-    return (
-        <>
-            <SEO
-                title={language === "hi" ? "रिफंड नीति" : "Refund Policy"}
-                description={language === "hi" ? "आरंभ की सेवा सुविधा शुल्क के लिए रिफंड और रद्दीकरण नीति।" : "Aarambh's refund and cancellation policy for service facilitation charges."}
-                path="/refund"
-            />
-            <div className="refund-assurance">
-                <div className="refund-assurance-inner">
-                    <span className="refund-label">{translations.refund.badge}</span>
-                    <span className="refund-detail">{translations.refund.badge_detail}</span>
-                </div>
-            </div>
-
-            <main>
-                <div className="refund-wrap">
-
-                    <p className="refund-effective-note">{translations.refund.intro}</p>
-
-                    <div className="refund-clause" id="overview">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">1</span>
-                            <h2>{translations.refund.c1_title}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>{translations.refund.c1_intro}</p>
-                            <ul>
-                                <li><strong>{translations.refund.c1_i1_b}</strong> {translations.refund.c1_i1} <span className="refund-tag refund-non-refundable">{translations.refund.c1_i1_tag}</span></li>
-                                <li><strong>{translations.refund.c1_i2_b}</strong> {translations.refund.c1_i2}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="platform-fee">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">2</span>
-                            <h2>{translations.refund.cfee_title || "Platform Fee on Refunds"}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>
-                                {translations.refund.cfee_text ||
-                                    "Wherever an amount qualifies for a refund under this policy — whether in full or in part — a platform fee of 3% of the refundable amount is deducted to cover payment-gateway and processing costs. The remaining amount, after this deduction, is transferred back to you using your original payment method."}
-                            </p>
-                            <span className="refund-fee-note">{translations.refund.cfee_chip || "3% platform fee applies to the refundable amount"}</span>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="full-refund">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">3</span>
-                            <h2>{translations.refund.c2_title}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>{translations.refund.c2_intro}</p>
-                            <div className="refund-scenario refund-full">
-                                <span className="refund-title">{translations.refund.c2_s1_title}</span>
-                                <p>{translations.refund.c2_s1_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-full">
-                                <span className="refund-title">{translations.refund.c2_s2_title}</span>
-                                <p>{translations.refund.c2_s2_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-full">
-                                <span className="refund-title">{translations.refund.c2_s3_title}</span>
-                                <p>{translations.refund.c2_s3_desc}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="partial-refund">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">4</span>
-                            <h2>{translations.refund.c3_title}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>{translations.refund.c3_intro}</p>
-                            <div className="refund-scenario refund-partial">
-                                <span className="refund-title">{translations.refund.c3_s1_title}</span>
-                                <p>{translations.refund.c3_s1_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-partial">
-                                <span className="refund-title">{translations.refund.c3_s2_title}</span>
-                                <p>{translations.refund.c3_s2_desc}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="non-refundable">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">5</span>
-                            <h2>{translations.refund.c4_title}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>{translations.refund.c4_intro}</p>
-                            <div className="refund-scenario refund-none">
-                                <span className="refund-title">{translations.refund.c4_s1_title}</span>
-                                <p>{translations.refund.c4_s1_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-none">
-                                <span className="refund-title">{translations.refund.c4_s2_title}</span>
-                                <p>{translations.refund.c4_s2_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-none">
-                                <span className="refund-title">{translations.refund.c4_s3_title}</span>
-                                <p>{translations.refund.c4_s3_desc}</p>
-                            </div>
-                            <div className="refund-scenario refund-none">
-                                <span className="refund-title">{translations.refund.c4_s4_title}</span>
-                                <p>{translations.refund.c4_s4_desc}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="timeline">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">6</span>
-                            <h2>{translations.refund.c5_title}</h2>
-                        </div>
-                        <div className="refund-timeline">
-                            <div className="refund-step">
-                                <span className="refund-k">{translations.refund.c5_i1_label}</span>
-                                <p className="refund-v">{translations.refund.c5_i1_value}</p>
-                            </div>
-                            <div className="refund-step">
-                                <span className="refund-k">{translations.refund.c5_i2_label}</span>
-                                <p className="refund-v">{translations.refund.c5_i2_value}</p>
-                            </div>
-                            <div className="refund-step">
-                                <span className="refund-k">{translations.refund.c5_i3_label}</span>
-                                <p className="refund-v">{translations.refund.c5_i3_value}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="refund-clause" id="how-to-file">
-                        <div className="refund-clause-head">
-                            <span className="refund-clause-num">7</span>
-                            <h2>{translations.refund.c6_title}</h2>
-                        </div>
-                        <div className="refund-body-text">
-                            <p>{translations.refund.c6_intro}</p>
-                            <ol className="refund-filing-steps">
-                                <li>{translations.refund.c6_s1}</li>
-                                <li>{translations.refund.c6_s2}</li>
-                                <li>{translations.refund.c6_s3}</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-        </>
-    );
-}
-
+  const { language, translations } = useContext(LanguageContext);
+  const r = translations.refund, c = COPY[language] || COPY.en;
+  const row = (k, tone) => ({ k: r[k + "_title"], v: r[k + "_desc"], tone });
+  const sections = [
+    { icon: "shield", id: "overview", title: r.c1_title, intro: r.c1_intro, bullets: [{ b: r.c1_i1_b, t: r.c1_i1, tag: r.c1_i1_tag }, { b: r.c1_i2_b, t: r.c1_i2 }] },
+    { icon: "card", id: "platform-fee", title: r.cfee_title || "Platform Fee on Refunds", chip: r.cfee_chip || "3% platform fee applies to the refundable amount",
+      intro: r.cfee_text || "Wherever an amount qualifies for a refund under this policy — whether in full or in part — a platform fee of 3% of the refundable amount is deducted to cover payment-gateway and processing costs. The remaining amount, after this deduction, is transferred back to you using your original payment method." },
+    { icon: "check", id: "full-refund", title: r.c2_title, intro: r.c2_intro, rows: [row("c2_s1", "g"), row("c2_s2", "g"), row("c2_s3", "g")] },
+    { icon: "refresh", id: "partial-refund", title: r.c3_title, intro: r.c3_intro, rows: [row("c3_s1", "y"), row("c3_s2", "y")] },
+    { icon: "cross", id: "non-refundable", title: r.c4_title, intro: r.c4_intro, rows: [row("c4_s1", "r"), row("c4_s2", "r"), row("c4_s3", "r"), row("c4_s4", "r")] },
+    { icon: "clock", id: "timeline", title: r.c5_title, rows: [1, 2, 3].map((i) => ({ k: r[`c5_i${i}_label`], v: r[`c5_i${i}_value`], tone: "n" })) },
+    { icon: "list", id: "how-to-file", title: r.c6_title, intro: r.c6_intro, steps: [r.c6_s1, r.c6_s2, r.c6_s3], wide: true },
+  ];
+  const faqs = [
+    { q: c.q[0], a: `${r.c5_i1_value} ${r.c5_i3_value}` },
+    { q: c.q[1], a: `${r.c2_intro} ${r.c2_s1_title}, ${r.c2_s2_title}, ${r.c2_s3_title}.` },
+    { q: c.q[2], a: r.c5_i2_value },
+    { q: c.q[3], a: `${r.c6_s2} ${r.c6_s3}` },
+  ];
+  return (
+    <PolicyPage kind="refund" copy={c} lede={r.intro} badge={r.badge} badgeDetail={r.badge_detail} sections={sections} faqs={faqs}
+      seo={{ path: "/refund", title: language === "hi" ? "रिफंड नीति" : "Refund Policy", description: language === "hi" ? "आरंभ की सेवा सुविधा शुल्क के लिए रिफंड और रद्दीकरण नीति।" : "Aarambh's refund and cancellation policy for service facilitation charges." }} />
+  );
+};
 export default memo(RefundPolicy);

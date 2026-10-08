@@ -1,114 +1,28 @@
-import "./privacy.css";
-import { Link } from "./i18nRouting";
+import "./privacy.css";   // kept so site-wide rules that other pages may rely on stay unchanged
 import { memo, useContext } from "react";
-import logo from "./assets/images/aarambh_logo.jpeg";
 import { LanguageContext } from "./LanguageContext";
-import SEO from "./components/SEO";
+import PolicyPage from "./PolicyPage";
+
+const COPY = {
+  en: { kicker: "Privacy policy", title: "Your Privacy Matters", ovKicker: "Privacy policy overview", ovTitle: "Key points of our privacy policy", cKicker: "Our commitment", cTitle: "Your information, handled with care", cText: "Questions about how your data is used? Our team is happy to explain." },
+  hi: { kicker: "गोपनीयता नीति", title: "आपकी गोपनीयता ज़रूरी है", ovKicker: "गोपनीयता नीति का सार", ovTitle: "हमारी गोपनीयता नीति के मुख्य बिंदु", cKicker: "हमारा वादा", cTitle: "आपकी जानकारी, पूरी सावधानी से", cText: "आपका डेटा कैसे इस्तेमाल होता है, इस बारे में सवाल हैं? हमारी टीम बताने को तैयार है।" },
+};
 
 const Privacy = function () {
-    const { language, setLanguage, translations } = useContext(LanguageContext);
-
-    return (
-        <>
-            <SEO
-                title={language === "hi" ? "गोपनीयता नीति" : "Privacy Policy"}
-                description={language === "hi" ? "आरंभ आपकी व्यक्तिगत जानकारी और दस्तावेज़ों को कैसे एकत्र, उपयोग और सुरक्षित करता है, जानें।" : "Read how Aarambh collects, uses and protects your personal information and documents when you use our government service guidance."}
-                path="/privacy"
-            />
-            <div className="privacy-assurance privacy_heading">
-                <div className="privacy-assurance-inner">
-                    <span className="privacy-label">{translations.privacy.badge}</span>
-                    <span className="privacy-detail">{translations.privacy.badge_detail}</span>
-                </div>
-            </div>
-
-            <main>
-                <div className="privacy-wrap privacy_heading">
-
-                    <p className="privacy-consent-note">{translations.privacy.consent}</p>
-
-                    <div className="privacy-clause" id="introduction">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">1</span>
-                            <h2>{translations.privacy.c1_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c1_body}</p>
-                        </div>
-                    </div>
-
-                    <div className="privacy-clause" id="information-we-collect">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">2</span>
-                            <h2>{translations.privacy.c2_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c2_intro}</p>
-                            <ul>
-                                <li><strong>{translations.privacy.c2_i1_b}</strong> {translations.privacy.c2_i1}</li>
-                                <li><strong>{translations.privacy.c2_i2_b}</strong> {translations.privacy.c2_i2}</li>
-                                <li><strong>{translations.privacy.c2_i3_b}</strong> {translations.privacy.c2_i3}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="privacy-clause" id="how-we-use">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">3</span>
-                            <h2>{translations.privacy.c3_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c3_intro}</p>
-                            <ul>
-                                <li>{translations.privacy.c3_i1}</li>
-                                <li>{translations.privacy.c3_i2}</li>
-                                <li>{translations.privacy.c3_i3}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="privacy-clause" id="retention">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">4</span>
-                            <h2>{translations.privacy.c4_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c4_intro}</p>
-                            <ul>
-                                <li>{translations.privacy.c4_i1}</li>
-                                <li>{translations.privacy.c4_i2}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="privacy-clause" id="third-party">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">5</span>
-                            <h2>{translations.privacy.c5_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c5_intro_pre} <span className="privacy-no-sell">{translations.privacy.c5_intro_em}</span> {translations.privacy.c5_intro_post}</p>
-                            <ul>
-                                <li><strong>{translations.privacy.c5_i1_b}</strong> {translations.privacy.c5_i1}</li>
-                                <li><strong>{translations.privacy.c5_i2_b}</strong> {translations.privacy.c5_i2}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="privacy-clause" id="updates">
-                        <div className="privacy-clause-head">
-                            <span className="privacy-clause-num">6</span>
-                            <h2>{translations.privacy.c6_title}</h2>
-                        </div>
-                        <div className="privacy-body-text">
-                            <p>{translations.privacy.c6_body}</p>
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-        </>
-    );
-}
-
+  const { language, translations } = useContext(LanguageContext);
+  const p = translations.privacy, c = COPY[language] || COPY.en;
+  const sections = [
+    { icon: "doc", id: "introduction", title: p.c1_title, intro: p.c1_body },
+    { icon: "eye", id: "information-we-collect", title: p.c2_title, intro: p.c2_intro, bullets: [1, 2, 3].map((i) => ({ b: p[`c2_i${i}_b`], t: p[`c2_i${i}`] })) },
+    { icon: "list", id: "how-we-use", title: p.c3_title, intro: p.c3_intro, bullets: [1, 2, 3].map((i) => ({ t: p[`c3_i${i}`] })) },
+    { icon: "clock", id: "retention", title: p.c4_title, intro: p.c4_intro, bullets: [1, 2].map((i) => ({ t: p[`c4_i${i}`] })) },
+    { icon: "lock", id: "third-party", title: p.c5_title, bullets: [1, 2].map((i) => ({ b: p[`c5_i${i}_b`], t: p[`c5_i${i}`] })),
+      intro: <>{p.c5_intro_pre} <strong className="pl_hl">{p.c5_intro_em}</strong> {p.c5_intro_post}</> },
+    { icon: "refresh", id: "updates", title: p.c6_title, intro: p.c6_body },
+  ];
+  return (
+    <PolicyPage kind="privacy" copy={c} lede={p.consent} badge={p.badge} badgeDetail={p.badge_detail} sections={sections}
+      seo={{ path: "/privacy", title: language === "hi" ? "गोपनीयता नीति" : "Privacy Policy", description: language === "hi" ? "आरंभ आपकी व्यक्तिगत जानकारी और दस्तावेज़ों को कैसे एकत्र, उपयोग और सुरक्षित करता है, जानें।" : "Read how Aarambh collects, uses and protects your personal information and documents when you use our government service guidance." }} />
+  );
+};
 export default memo(Privacy);

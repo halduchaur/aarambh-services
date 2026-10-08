@@ -1,88 +1,25 @@
-import "./delivery.css";
-import { Link } from "./i18nRouting";
+import "./delivery.css";   // kept so site-wide rules that other pages may rely on stay unchanged
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
-import SEO from "./components/SEO";
+import PolicyPage from "./PolicyPage";
 
-const DeliveryPolicy = function DeliveryPolicy() {
-    const { language, setLanguage, translations } = useContext(LanguageContext);
+const COPY = {
+  en: { kicker: "Delivery policy", title: "Our Delivery Policy", ovKicker: "Delivery policy overview", ovTitle: "Key points of our delivery policy", cKicker: "Our commitment", cTitle: "Delivered digitally, kept simple", cText: "Your documents and status updates reach you on WhatsApp and Email." },
+  hi: { kicker: "डिलीवरी नीति", title: "हमारी डिलीवरी नीति", ovKicker: "डिलीवरी नीति का सार", ovTitle: "हमारी डिलीवरी नीति के मुख्य बिंदु", cKicker: "हमारा वादा", cTitle: "डिजिटल डिलीवरी, सीधी और आसान", cText: "आपके दस्तावेज़ और स्टेटस अपडेट WhatsApp और ईमेल पर पहुंचते हैं।" },
+};
 
-    return (
-        <>
-            <SEO
-                title={language === "hi" ? "डिलीवरी नीति" : "Delivery Policy"}
-                description={language === "hi" ? "आरंभ आपको सेवा अपडेट, दस्तावेज़ और आवेदन स्थिति कैसे और कब भेजता है।" : "How Aarambh delivers service updates, documents and application status to you, and expected timelines."}
-                path="/delivery"
-            />
-            <div className="delivery-assurance">
-                <div className="delivery-assurance-inner">
-                    <span className="delivery-label">{translations.delivery.badge}</span>
-                    <span className="delivery-detail">{translations.delivery.badge_detail}</span>
-                </div>
-            </div>
-
-            <main>
-                <div className="delivery-wrap">
-
-                    <p className="delivery-effective-note">{translations.delivery.intro}</p>
-
-                    <div className="delivery-clause" id="how-we-deliver">
-                        <div className="delivery-clause-head">
-                            <span className="delivery-clause-num">1</span>
-                            <h2>{translations.delivery.c1_title}</h2>
-                        </div>
-                        <div className="delivery-body-text">
-                            <p>{translations.delivery.c1_intro}</p>
-                        </div>
-                        <div className="delivery-channels">
-                            <div className="delivery-channel-row">
-                                <span className="delivery-via">{translations.delivery.c1_wa_title}</span>
-                                <p>{translations.delivery.c1_wa_desc}</p>
-                            </div>
-                            <div className="delivery-channel-row">
-                                <span className="delivery-via">{translations.delivery.c1_email_title}</span>
-                                <p>{translations.delivery.c1_email_desc}</p>
-                            </div>
-                        </div>
-                        <div className="delivery-body-text">
-                            <span className="delivery-turnaround">{translations.delivery.c1_turnaround}</span>
-                        </div>
-                    </div>
-
-                    <div className="delivery-clause" id="no-physical-shipping">
-                        <div className="delivery-clause-head">
-                            <span className="delivery-clause-num">2</span>
-                            <h2>{translations.delivery.c2_title}</h2>
-                        </div>
-                        <div className="delivery-body-text">
-                            <p>{translations.delivery.c2_body}</p>
-                            <ul>
-                                <li>{translations.delivery.c2_i1}</li>
-                            </ul>
-                            <div className="delivery-callout">{translations.delivery.c2_callout}</div>
-                        </div>
-                    </div>
-
-                    <div className="delivery-clause" id="service-scope">
-                        <div className="delivery-clause-head">
-                            <span className="delivery-clause-num">3</span>
-                            <h2>{translations.delivery.c3_title}</h2>
-                        </div>
-                        <div className="delivery-body-text">
-                            <p>{translations.delivery.c3_intro}</p>
-                            <ul>
-                                <li>{translations.delivery.c3_i1}</li>
-                                <li>{translations.delivery.c3_i2}</li>
-                                <li>{translations.delivery.c3_i3}</li>
-                                <li>{translations.delivery.c3_i4}</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-        </>
-    );
-}
-
+const DeliveryPolicy = function () {
+  const { language, translations } = useContext(LanguageContext);
+  const d = translations.delivery, c = COPY[language] || COPY.en;
+  const sections = [
+    { icon: "send", id: "how-we-deliver", title: d.c1_title, intro: d.c1_intro, chip: d.c1_turnaround,
+      rows: [{ k: d.c1_wa_title, v: d.c1_wa_desc, tone: "g" }, { k: d.c1_email_title, v: d.c1_email_desc, tone: "g" }] },
+    { icon: "box", id: "no-physical-shipping", title: d.c2_title, intro: d.c2_body, bullets: [{ t: d.c2_i1 }], callout: d.c2_callout },
+    { icon: "check", id: "service-scope", title: d.c3_title, intro: d.c3_intro, bullets: [1, 2, 3, 4].map((i) => ({ t: d[`c3_i${i}`] })), wide: true },
+  ];
+  return (
+    <PolicyPage kind="delivery" copy={c} lede={d.intro} badge={d.badge} badgeDetail={d.badge_detail} sections={sections}
+      seo={{ path: "/delivery", title: language === "hi" ? "डिलीवरी नीति" : "Delivery Policy", description: language === "hi" ? "आरंभ आपको सेवा अपडेट, दस्तावेज़ और आवेदन स्थिति कैसे और कब भेजता है।" : "How Aarambh delivers service updates, documents and application status to you, and expected timelines." }} />
+  );
+};
 export default memo(DeliveryPolicy);
