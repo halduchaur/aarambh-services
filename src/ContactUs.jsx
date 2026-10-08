@@ -103,7 +103,7 @@ const ContactUs = function () {
                     <div className="contact_us-hero-right">
                         <div className="contact_us-handwritten">{translations.contact?.hero_handwritten || "Your Queries Matter to Us!"}</div>
                         {/* Illustration lives in public/images/contact-hero.svg (swap for a real photo anytime) */}
-                        <img className="contact_us-hero-img" src="/images/contact-hero.svg" width="640" height="480" alt="Aarambh support team workspace" />
+                        <img className="contact_us-hero-img" src="/contact-hero.svg" width="640" height="480" alt="Aarambh support team workspace" />
                         <div className="contact_us-sticky-note">
                             <span>{translations.contact?.sticky1 || "Ask"}</span>
                             <span>{translations.contact?.sticky2 || "Connect"}</span>
