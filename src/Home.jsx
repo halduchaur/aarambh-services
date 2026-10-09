@@ -11,7 +11,7 @@ import servicesData from "./servicesData";
 import ServiceIcon from "./ServiceIcon";
 
 /* Popular cards are read from servicesData, so names, prices and images stay in one place. */
-const POPULAR = ["aadhaar-address-update", "new-pan-card", "hsrp", "new-passport"];
+const POPULAR = ["gst-registration", "hsrp-4-wheeler", "hsrp", "new-passport"];
 const TABS = [
   { en: "Identity", hi: "पहचान", icon: "identity" },
   { en: "Certificates", hi: "प्रमाणपत्र", icon: "certificates" },

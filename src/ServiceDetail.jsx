@@ -138,9 +138,6 @@ export default function ServiceDetail() {
                                 <button type="button" className="sp-btn sp-btn-primary" onClick={apply}>
                                     {t.apply_now} <Arrow />
                                 </button>
-                                <a className="sp-btn sp-btn-ghost" href={whatsappHref} target="_blank" rel="noreferrer">
-                                    {t.ask_whatsapp}
-                                </a>
                             </div>
                         </div>
 

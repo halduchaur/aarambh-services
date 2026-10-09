@@ -307,10 +307,6 @@ const ContactUs = function () {
                             <div className="contact_us-cta-sub">{translations.contact?.cta_sub || "Check our detailed FAQ section for instant answers to common questions."}</div>
                         </div>
                     </div>
-                    <Link className="contact_us-cta-btn" to="/faq">
-                        {translations.contact?.cta_btn || "View FAQs"}
-                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                    </Link>
                     <div className="contact_us-cta-right">
                         {translations.contact?.cta_handwritten || "We're just a message away!"}
                         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>

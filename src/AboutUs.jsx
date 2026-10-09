@@ -116,9 +116,6 @@ const AboutUs = () => {
                         <h2>{t("story_title", "How Aarambh Started")}</h2>
                         <p>{t("story_p1", "Aarambh was founded with a simple vision – to make government services easy, reliable and accessible to every citizen. We noticed that many people struggle with documentation, official processes and complex online forms.")}</p>
                         <p>{t("story_p2", "That's when we decided to create Aarambh – a one-stop solution where people can get the right information, expert help and complete support for all essential services under one roof.")}</p>
-                        <NavLink to="/how-it-works" className="about_us-btn-soft">
-                            {t("btn_learn", "Learn More About Us")} <IconArrow />
-                        </NavLink>
                     </div>
 
                     <div className="about_us-vision-card">
@@ -173,7 +170,7 @@ const AboutUs = () => {
                         <h2>{t("cta_title", "Let's Make Government Services Easier Together!")}</h2>
                         <p>{t("cta_sub", "Get in touch with us for any query or assistance. We are just a click away!")}</p>
                     </div>
-                    <NavLink to="/contact-us" className="about_us-cta-btn">
+                    <NavLink to="/services" className="about_us-cta-btn">
                         {t("cta_btn", "Contact Us")} <IconArrow />
                     </NavLink>
                     <div className="about_us-cta-handwritten">{t("cta_handwritten", "We are here to help!")}</div>

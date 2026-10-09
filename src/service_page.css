@@ -263,3 +263,11 @@
 @media (prefers-reduced-motion: reduce) {
   .sp-page *, .sp-sticky { transition: none !important; }
 }
+
+/* 3. Pure apply container flow hierarchy fix */
+#apply-form,
+.sp-page main,
+div[ref="box"] {
+  position: relative !important;
+  z-index: 10 !important;
+}
