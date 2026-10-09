@@ -96,7 +96,7 @@ const AboutUs = () => {
                         <div className="about_us-handwritten">{t("hero_handwritten", "Your Growth, Our Support!")}</div>
                         <div className="about_us-hero-circle"></div>
                         {/* Replace with a real photo (transparent PNG works best) */}
-                        <img className="about_us-hero-img" src="/images/about-hero.png" alt="Aarambh support executive" />
+                        <img className="about_us-hero-img" src="/about-hero-executive.svg" alt="Aarambh support executive" />
                         <div className="about_us-sticky-note">
                             {stickyItems.map((item, i) => (
                                 <div className="about_us-sticky-row" key={i}><IconCheckCircle /> <span>{item}</span></div>
@@ -109,7 +109,7 @@ const AboutUs = () => {
             <div className="about_us-wrap">
                 {/* ---------- Story + Vision ---------- */}
                 <section className="about_us-story-row" id="story">
-                    <img className="about_us-story-img" src="/images/about-story.jpg" alt="Better services, better tomorrow" />
+                    <img className="about_us-story-img" src="/about-story-better-tomorrow.svg" alt="Better services, better tomorrow" />
 
                     <div className="about_us-story-text">
                         <div className="about_us-label">{t("story_label", "OUR STORY")}</div>
