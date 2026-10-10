@@ -1,4 +1,3 @@
-import "./delivery.css";   // kept so site-wide rules that other pages may rely on stay unchanged
 import { memo, useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
 import PolicyPage from "./PolicyPage";

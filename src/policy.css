@@ -1,4 +1,21 @@
 /* AARAMBH — policy pages (Refund / Privacy / Delivery / Terms). Everything is scoped with pl_ */
+
+/* ---- defensive, SCOPED resets (fix: these used to be bare *, html, body
+   rules in terms_of_service.css / privacy.css / delivery.css / refund.css,
+   which are global and bled across every route once bundled together —
+   that was the cause of the overlap bug. Scoping to .pl_page keeps the
+   same safety net without touching anything outside these 4 pages.) ---- */
+.pl_page,
+.pl_page *,
+.pl_page *::before,
+.pl_page *::after{box-sizing:border-box}
+.pl_page{margin:0;overflow-x:hidden;isolation:isolate;position:relative}
+.pl_page img,.pl_page svg{max-width:100%;display:block}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+
 .pl_page{background:#fff;color:#13392B;font-family:'Inter','Noto Sans Devanagari',sans-serif}
 .pl_wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .pl_kicker{display:block;font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#076140;margin-bottom:8px}
@@ -23,7 +40,7 @@
 /* cards */
 .pl_body{padding-top:44px;padding-bottom:54px}
 .pl_grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:34px}
-.pl_card{background:linear-gradient(160deg,#F1F9F4,#FBF8EC);border:1px solid #D5E8DC;border-radius:18px;padding:22px 24px 24px;box-shadow:0 6px 18px rgba(7,97,64,.06)}
+.pl_card{background:linear-gradient(160deg,#F1F9F4,#FBF8EC);border:1px solid #D5E8DC;border-radius:18px;padding:22px 24px 24px;box-shadow:0 6px 18px rgba(7,97,64,.06);scroll-margin-top:96px}
 .pl_wide{grid-column:1/-1}
 .pl_card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .pl_num{width:46px;height:46px;border-radius:50%;background:#D7EEDF;color:#05412B;font:700 17px/46px 'Inter',sans-serif;text-align:center}
