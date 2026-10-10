@@ -260,6 +260,7 @@
       inclNote: "This is the all-inclusive price for this service.", payUsing: "Pay using", pay: "Pay",
       saving: "Saving your details…", saveErr: "Could not save your details. Please check your internet and try again.", subErr: "Could not submit. Please try again.",
       secure: "Secured checkout · Card details are never stored by Aarambh", paying: "Processing your payment…", submitting: "Submitting your application…", wait: "Please do not close this window.",
+      payErr: "Payment could not be completed. Please try again, or message us on WhatsApp if any amount was deducted.", payCancel: "Payment was not completed. You can try again when you’re ready.", payVerifyErr: "Your payment may have gone through, but we could not confirm it here due to a network issue. Please do not pay again — we will verify and update your application shortly. Message us on WhatsApp if you don’t hear back within a few hours.",
       h4: "Upload documents", p4: "Payment received. Upload clear photos or scans, or skip and send them later.", p4none: "Payment received. No documents are required for this service.",
       choose: "Choose file", remove: "Remove", optional: "optional", formats: "JPG, PNG or PDF · Max 5 MB per file", big: "File is over 5 MB. Please choose a smaller file.",
       docErr: "Upload all required documents, or choose “Skip for now”.", skip: "Skip for now", submit: "Submit application",
@@ -283,6 +284,7 @@
       inclNote: "यह इस सेवा का सभी शुल्क सहित मूल्य है।", payUsing: "भुगतान का तरीका", pay: "भुगतान करें",
       saving: "आपका विवरण सेव हो रहा है…", saveErr: "विवरण सेव नहीं हो सका। कृपया इंटरनेट जांचकर दोबारा कोशिश करें।", subErr: "जमा नहीं हो सका। कृपया दोबारा कोशिश करें।",
       secure: "सुरक्षित चेकआउट · कार्ड की जानकारी Aarambh कभी सेव नहीं करता", paying: "आपका भुगतान प्रोसेस हो रहा है…", submitting: "आपका आवेदन जमा हो रहा है…", wait: "कृपया यह विंडो बंद न करें।",
+      payErr: "भुगतान पूरा नहीं हो सका। कृपया दोबारा कोशिश करें, या अगर राशि कट गई हो तो WhatsApp पर हमें संदेश भेजें।", payCancel: "भुगतान पूरा नहीं हुआ। आप तैयार होने पर दोबारा कोशिश कर सकते हैं।", payVerifyErr: "आपका भुगतान हो चुका हो सकता है, लेकिन नेटवर्क समस्या के कारण हम इसे यहां पुष्टि नहीं कर सके। कृपया दोबारा भुगतान न करें — हम जल्द ही पुष्टि करके आपका आवेदन अपडेट करेंगे। कुछ घंटों में जवाब न मिले तो WhatsApp पर संपर्क करें।",
       h4: "दस्तावेज़ अपलोड करें", p4: "भुगतान प्राप्त हुआ। साफ फोटो या स्कैन अपलोड करें, या छोड़कर बाद में भेजें।", p4none: "भुगतान प्राप्त हुआ। इस सेवा के लिए किसी दस्तावेज़ की आवश्यकता नहीं है।",
       choose: "फाइल चुनें", remove: "हटाएं", optional: "वैकल्पिक", formats: "JPG, PNG या PDF · प्रति फाइल अधिकतम 5 MB", big: "फाइल 5 MB से बड़ी है। कृपया छोटी फाइल चुनें।",
       docErr: "सभी जरूरी दस्तावेज़ अपलोड करें, या “अभी छोड़ें” चुनें।", skip: "अभी छोड़ें", submit: "आवेदन जमा करें",
@@ -313,7 +315,7 @@
   /* ---------- open / close ---------- */
   function newState(opts, cfg, lang) {
     return { id: opts.id, cfg: cfg, lang: lang, t: T[lang], step: 1, vals: {}, errs: {}, agree: [false, false], agreeErr: false,
-      paid: false, payId: "", files: {}, fileErr: {}, docErr: false, busy: "", done: null,
+      paid: false, payId: "", payErr: "", files: {}, fileErr: {}, docErr: false, busy: "", done: null,
       appId: "AAR-" + new Date().getFullYear() + "-" + Math.floor(10000 + Math.random() * 89999) };
   }
 
@@ -432,7 +434,8 @@
           '<div class="sa_sr"><span>' + t.svcCharge + "</span><span>" + rs(p.aarambh) + "</span></div>" : "") +
         '<div class="sa_sr sa_tot"><span>' + t.total + "</span><span>" + rs(p.total) + "</span></div>" +
         '<p class="sa_fine">' + (c.flag === "s" ? t.stateNote : p.govt == null ? t.inclNote : "") + "</p></div>" +
-        '<div class="sa_paylbl">' + t.payUsing + '</div><div class="sa_chips"><span>UPI</span><span>Debit Card</span><span>Credit Card</span><span>Net Banking</span></div><p class="sa_secure">' + t.secure + "</p>";
+        '<div class="sa_paylbl">' + t.payUsing + '</div><div class="sa_chips"><span>UPI</span><span>Debit Card</span><span>Credit Card</span><span>Net Banking</span></div><p class="sa_secure">' + t.secure + "</p>" +
+        (S.payErr ? '<div class="sa_err">' + esc(S.payErr) + "</div>" : "");
     } else {
       h += '<h3 class="sa_h">' + t.h4 + '</h3><p class="sa_sub">' + (c.docs.length ? t.p4 : t.p4none) + "</p>" + invoiceBar();
       c.docs.forEach(function (k, i) {
@@ -539,15 +542,70 @@
       if (r.ok) go(3); else { S.saveErr = r.error || "error"; render(); }
     });
   }
-  /* Payment is a UI simulation. In production, create an order on your backend (Razorpay / Cashfree),
-     open the gateway checkout here, and verify the payment server-side before marking it Paid. */
+  /* Real payment via Razorpay. The order is created server-side (amount is never trusted from the
+     browser), Checkout collects the card/UPI/etc details, and the signature is verified server-side
+     before the backend marks the row Paid. See handleCreateOrder / handleVerifyRazorpay in the
+     Apps Script backend. */
+  function rzpPayload() {
+    var v = S.vals, c = S.cfg;
+    var p = { action: "createOrder", appId: S.appId, service: S.id, serviceName: META[S.id][0], category: META[S.id][2],
+      fullName: v.name || "", mobile: v.mob || v.amob || "", email: v.email || "" };
+    if (c.flag === "y") p.years = Number(v.yrs) || 1;
+    return p;
+  }
+  function loadRzp(cb) {
+    if (window.Razorpay) { cb(); return; }
+    var s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.onload = cb;
+    s.onerror = function () { if (!S) return; S.busy = ""; S.payErr = S.t.payErr; render(); };
+    document.head.appendChild(s);
+  }
   function pay() {
-    S.busy = S.t.paying; render();
-    setTimeout(function () {
-      if (!S) return;
-      S.payId = "ARBM" + Array.apply(null, Array(11)).map(function () { return "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".charAt(Math.floor(Math.random() * 36)); }).join(""); S.paid = true;
-      post("Payment Received", []).then(function () { if (!S) return; S.busy = ""; go(4); });
-    }, 1800);
+    if (!CFG.sheetUrl) { S.payErr = S.t.payErr; render(); return; }
+    S.payErr = ""; S.busy = S.t.paying; render();
+    fetch(CFG.sheetUrl, { method: "POST", body: JSON.stringify(rzpPayload()) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!S) return;
+        if (!j || !j.ok) { S.busy = ""; S.payErr = (j && j.error) || S.t.payErr; render(); return; }
+        loadRzp(function () { openRzp(j); });
+      })
+      .catch(function () { if (!S) return; S.busy = ""; S.payErr = S.t.payErr; render(); });
+  }
+  function openRzp(order) {
+    if (!S) return;
+    S.busy = ""; render();
+    var v = S.vals;
+    var rzp = new window.Razorpay({
+      key: order.key_id, order_id: order.order_id, amount: order.amount, currency: order.currency || "INR",
+      name: "Aarambh India Services", description: svcName(),
+      prefill: { name: v.name || "", contact: v.mob || v.amob || "", email: v.email || "" },
+      theme: { color: "#0E412E" },
+      modal: { ondismiss: function () { if (!S) return; S.payErr = S.t.payCancel; render(); } },
+      handler: function (resp) { verifyRzp(resp); }
+    });
+    rzp.on("payment.failed", function () { if (!S) return; S.payErr = S.t.payErr; render(); });
+    rzp.open();
+  }
+  function verifyRzp(resp) {
+    if (!S) return;
+    S.payErr = ""; S.busy = S.t.paying; render();
+    var payload = { action: "verifyRazorpay", appId: S.appId,
+      razorpay_order_id: resp.razorpay_order_id, razorpay_payment_id: resp.razorpay_payment_id, razorpay_signature: resp.razorpay_signature };
+    fetch(CFG.sheetUrl, { method: "POST", body: JSON.stringify(payload) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!S) return;
+        if (!j || !j.success) { S.busy = ""; S.payErr = (j && j.error) || S.t.payErr; render(); return; }
+        S.payId = resp.razorpay_payment_id; S.paid = true;
+        post("Payment Received", []).then(function () { if (!S) return; S.busy = ""; go(4); });
+      })
+      .catch(function () {
+        /* Razorpay itself confirmed the charge (we are inside its success handler); only our
+           confirmation call failed over the network. Do not tell the customer to pay again. */
+        if (!S) return; S.busy = ""; S.payErr = S.t.payVerifyErr; render();
+      });
   }
   function readB64(f) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(",")[1]); }; r.onerror = rej; r.readAsDataURL(f); }); }
   function finish(skip) {
