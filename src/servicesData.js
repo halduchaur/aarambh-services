@@ -4510,8 +4510,8 @@ const SERVICES = [
     },
 
     price: {
-      en: "₹2699 onwards service charge",
-      hi: "₹2699 से शुरू सेवा शुल्क"
+      en: "₹249 onwards service charge",
+      hi: "₹249 से शुरू सेवा शुल्क"
     },
 
     summary: {
@@ -4627,8 +4627,8 @@ const SERVICES = [
     },
 
     price: {
-      en: "₹2699 onwards service charge",
-      hi: "₹2699 से शुरू सेवा शुल्क"
+      en: "₹249 onwards service charge",
+      hi: "₹249 से शुरू सेवा शुल्क"
     },
 
     summary: {
