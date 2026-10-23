@@ -6,7 +6,7 @@ import servicesData from "./servicesData";
 import SEO from "./components/SEO";
 import { serviceSchemas } from "./seoSchemas";
 import { applyForService } from "./chatbot";
-import InlineApplyForm from "./InlineApplyForm";
+import "./aarambh-apply"; // defines window.openAarambhApply (apply popup)
 import "./services.css";
 import "./service_page.css";
 
@@ -74,11 +74,11 @@ export default function ServiceDetail() {
 
     const waMessage = `Namaste Aarambh! Mujhe "${name}" service ke baare mein jaankari chahiye.`;
     const whatsappHref = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
-    /* Apply buttons scroll to the form on this page; services without a form keep the chatbot / WhatsApp flow. */
+    /* Every "Apply now" button opens the application form in a popup.
+       Services without a form keep the chatbot / WhatsApp flow. */
     const apply = () => {
-        const form = document.getElementById("apply-form");
-        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-        else applyForService(service, language);
+        const opened = window.openAarambhApply?.({ id: service.id, lang: language });
+        if (!opened) applyForService(service, language);
     };
     const jsonLd = serviceSchemas(service, language, translations);
 
@@ -227,8 +227,6 @@ export default function ServiceDetail() {
                                     </ul>
                                 </>
                             )}
-
-                            <InlineApplyForm service={service} language={language} />
 
                             {faqs.length > 0 && (
                                 <>

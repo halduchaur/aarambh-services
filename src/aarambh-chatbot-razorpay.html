@@ -1,0 +1,1660 @@
+<!-- ============================================== -->
+<!-- AARAMBH CHATBOT WIDGET — paste this block just  -->
+<!-- before the closing </body> tag on every page     -->
+<!-- where you want the floating chat icon to appear. -->
+<!-- ============================================== -->
+<style>
+  :root{
+    --ink:#1F2A24;
+    --paper:#F2F4F3;
+    --teal-900:#123832;
+    --teal-700:#1B4B43;
+    --teal-500:#2C6E62;
+    --gold:#E8A33D;
+    --gold-soft:#FBEBCF;
+    --line:#E4DDC9;
+    --white:#FFFFFF;
+    --danger:#C0503A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Manrope','Noto Sans Devanagari',system-ui,sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, #ffffff 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, #e9dfc6 0%, transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    min-height:100vh;
+    position:relative;
+  }
+
+  .widget-anchor{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:14px;
+    z-index:999;
+  }
+
+  /* ---- Floating launcher button ---- */
+  .launcher{
+    width:66px;height:66px;border-radius:50%;
+    border:none; cursor:pointer; position:relative;
+    background:linear-gradient(145deg,var(--teal-700),var(--teal-900));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 28px -6px rgba(18,56,50,0.55), 0 0 0 4px #fff, 0 0 0 6px var(--gold);
+    transition:transform .2s ease;
+  }
+  .launcher:hover{transform:scale(1.06);}
+  .launcher-logo{width:40px;height:40px;object-fit:contain;border-radius:50%;background:#fff;padding:4px;}
+  .launcher-ring{
+    position:absolute; inset:-8px; border-radius:50%;
+    border:2px solid var(--gold);
+    animation:ringPulse 2.4s ease-out infinite;
+  }
+  @keyframes ringPulse{
+    0%{transform:scale(0.9);opacity:.9;}
+    70%{transform:scale(1.35);opacity:0;}
+    100%{opacity:0;}
+  }
+  .launcher-badge{
+    position:absolute; top:-2px; right:-2px;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--gold); color:var(--teal-900);
+    font-size:11px; font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid #fff;
+    animation:badgeBounce 1.8s ease-in-out infinite;
+  }
+  @keyframes badgeBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+  .launcher-tip{
+    max-width:200px; background:#fff; color:var(--ink);
+    border:1px solid var(--line); border-radius:14px; border-bottom-right-radius:4px;
+    padding:10px 13px; font-size:12.5px; font-weight:600; line-height:1.4;
+    box-shadow:0 10px 24px -8px rgba(18,56,50,0.25);
+    animation:tipFloat 3s ease-in-out infinite, tipShow .3s ease 1.2s both;
+  }
+  @keyframes tipShow{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes tipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+  .widget-anchor.open .launcher, .widget-anchor.open .launcher-tip, .widget-anchor.open .launcher-ring, .widget-anchor.open .launcher-badge{display:none;}
+
+  .phone{
+    width:440px;
+    max-width:calc(100vw - 24px);
+    height:780px;
+    max-height:88vh;
+    background:var(--white);
+    border-radius:24px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 30px 60px -20px rgba(18,56,50,0.4), 0 0 0 1px var(--line);
+    position:relative;
+    animation:panelIn .28s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .phone.hidden{display:none;}
+  @keyframes panelIn{from{opacity:0;transform:translateY(18px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+
+  .header{
+    background:var(--teal-900);
+    border-bottom:3px solid var(--gold);
+    color:#fff;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+    position:relative;
+  }
+  .mark-logo{
+    width:38px;height:38px;border-radius:50%;
+    background:#fff; padding:4px; object-fit:contain;
+    box-shadow:0 0 0 2px var(--gold);
+    flex-shrink:0;
+  }
+  .header .brand{flex:1;min-width:0;}
+  .header .brand-name{
+    font-family:'Poppins',sans-serif;
+    font-weight:700; font-size:15.5px; line-height:1.2;
+    letter-spacing:.2px;
+  }
+  .header .status{font-size:11px;color:var(--gold); margin-top:2px; font-weight:600; letter-spacing:.3px;}
+  .closeBtn{
+    background:rgba(255,255,255,0.15); border:none; color:#fff;
+    width:30px;height:30px;border-radius:50%; cursor:pointer;
+    font-size:14px; display:flex;align-items:center;justify-content:center;
+    flex-shrink:0; transition:.15s ease;
+  }
+  .closeBtn:hover{background:rgba(255,255,255,0.3);}
+
+  .hero-banner{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    background:linear-gradient(180deg,#fff,#FCFAF3);
+    border:1px solid var(--line); border-radius:16px;
+    padding:18px 16px; margin:0 auto 4px; max-width:92%;
+    box-shadow:0 8px 20px -10px rgba(18,56,50,0.15);
+  }
+  .hero-banner img{width:110px;height:auto;margin-bottom:2px;}
+  .hero-banner .tagline{
+    font-size:10.5px; font-weight:700; color:var(--teal-700); letter-spacing:.3px;
+    background:var(--gold-soft); padding:4px 10px; border-radius:20px; margin-top:8px;
+  }
+  .hero-strip{
+    display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; justify-content:center;
+  }
+  .hero-strip span{
+    font-size:9.5px; font-weight:700; color:var(--teal-700);
+    background:#EAF5F0; padding:4px 9px; border-radius:20px;
+    display:inline-flex; align-items:center; gap:3px;
+  }
+
+  .stepper{
+    display:flex; align-items:flex-start; gap:5px;
+    padding:9px 14px 7px;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .stepper.hidden{display:none;}
+  .step{display:flex;flex-direction:column;gap:4px;flex:1;}
+  .step .dot{
+    width:100%; height:4px; border-radius:3px;
+    background:#E3E7E5;
+    font-size:0; color:transparent; border:none;
+    transition:background .25s ease;
+  }
+  .step .label{font-size:8px;color:#9C9482;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+  .step.done .dot{background:var(--teal-500);}
+  .step.done .label{color:var(--teal-700);}
+  .step.active .dot{background:var(--gold);}
+  .step.active .label{color:var(--teal-900);}
+
+  .chat{
+    flex:1;
+    overflow-y:auto;
+    padding:16px 14px 10px;
+    background:var(--paper);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .chat::-webkit-scrollbar{width:6px;}
+  .chat::-webkit-scrollbar-thumb{background:#D3D8D5;border-radius:10px;}
+
+  .row{display:flex;}
+  .row.bot{justify-content:flex-start;}
+  .row.user{justify-content:flex-end;}
+
+  .bubble{
+    max-width:82%;
+    padding:11px 14px;
+    border-radius:10px;
+    font-size:13.5px;
+    line-height:1.6;
+    animation:pop .22s ease;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .bubble.bot{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);box-shadow:0 1px 3px rgba(18,56,50,0.05);}
+  .bubble.user{background:var(--teal-700);color:#fff;font-weight:600;box-shadow:0 1px 3px rgba(18,56,50,0.1);}
+  .bubble b{color:var(--teal-900);}
+  .bubble.user b{color:var(--gold);}
+  .bubble .time{display:block;font-size:10px;color:#A69B7E;margin-top:4px;text-align:right;}
+  .bubble.user .time{color:#CFE3DE;}
+
+  .typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:14px;border-top-left-radius:4px;width:fit-content;}
+  .typing span{width:6px;height:6px;background:#B9AF90;border-radius:50%;animation:blink 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:.2s;}
+  .typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes blink{0%,80%,100%{opacity:.25;}40%{opacity:1;}}
+
+  .quick-replies{display:flex;flex-direction:column;gap:8px;margin-top:2px;max-height:340px;overflow-y:auto;padding-right:2px;}
+  .quick-replies::-webkit-scrollbar{width:5px;}
+  .quick-replies::-webkit-scrollbar-thumb{background:#D8CFB4;border-radius:10px;}
+  .qr-btn{
+    background:#fff; border:1px solid var(--teal-500); color:var(--teal-700);
+    font-family:inherit; font-weight:700; font-size:13px;
+    padding:10px 14px; border-radius:12px; cursor:pointer; text-align:left;
+    transition:.15s ease;
+  }
+  .qr-btn .sub{display:block;font-weight:500;font-size:11px;color:#8A8265;margin-top:2px;}
+  .qr-btn:hover{background:var(--teal-700);color:#fff;}
+  .qr-btn:hover .sub{color:#CFE3DE;}
+  .qr-btn:disabled{opacity:.45;cursor:default;background:#fff;color:var(--teal-700);}
+  .qr-btn:disabled .sub{color:#8A8265;}
+  .qr-btn.primary{background:var(--teal-700);color:#fff;border-color:var(--teal-700);}
+  .qr-btn.primary:hover{background:var(--teal-900);}
+  .qr-btn.menu-option{border-style:dashed; color:#83795F; font-weight:600;}
+  .qr-btn.menu-option:hover{background:#83795F; color:#fff; border-color:#83795F;}
+
+  .summary-card, .pay-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;font-size:13px;line-height:1.7;
+  }
+  .summary-card h4, .pay-card h4{margin:0 0 8px;font-family:'Poppins',sans-serif;font-size:13.5px;color:var(--teal-900);}
+  .summary-card .row-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0;}
+  .summary-card .row-item span:first-child{color:#83795F;flex-shrink:0;}
+  .summary-card .row-item span:last-child{font-weight:700;color:var(--ink);text-align:right;}
+
+  .pay-card .fee{font-family:'Poppins',sans-serif;font-size:22px;color:var(--teal-900);font-weight:700;}
+  .pay-card .tag{
+    display:inline-block;background:var(--gold-soft);color:#8A5E12;font-size:10.5px;font-weight:700;
+    padding:3px 8px;border-radius:20px;margin-top:6px;
+  }
+  .trust-badge{
+    display:inline-flex; align-items:center; gap:4px;
+    background:#EAF5F0; color:var(--teal-700); font-size:10.5px; font-weight:700;
+    padding:4px 10px; border-radius:20px; margin-top:8px;
+  }
+  .rzp-block{margin-top:12px;display:flex;flex-direction:column;gap:6px;}
+  .rzp-block .qr-btn{width:100%;text-align:center;}
+  .pay-govt{font-size:12px;font-style:italic;color:#5F7168;margin:4px 0 2px;line-height:1.45;}
+  .pay-trust{margin:10px 0 8px;padding:10px 12px;border:1px solid #D5E6DB;border-radius:10px;background:#F5FAF7;font-size:12px;color:#16392C;text-align:left;}
+  .pay-trust .pt-h{font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 4px;}
+  .pay-trust ul,.pay-trust ol{margin:0 0 8px;padding-left:18px;}
+  .pay-trust ul{list-style:none;padding-left:0;}
+  .pay-trust ul li:before{content:"\2713";color:#1F9D63;font-weight:700;margin-right:6px;}
+  .pay-trust li{margin:2px 0;line-height:1.4;}
+  .pay-trust .pt-d{margin:0;font-size:11px;color:#5F7168;line-height:1.45;}
+  .rzp-hint{font-size:11px;color:#5F7168;text-align:center;line-height:1.5;}
+
+  .inputbar{
+    flex-shrink:0;
+    padding:10px 12px;
+    background:#fff;
+    border-top:1px solid var(--line);
+    display:flex; gap:8px; align-items:center;
+  }
+  .inputbar input{
+    flex:1; border:1px solid var(--line); background:var(--paper);
+    border-radius:22px; padding:11px 16px; font-size:13.5px; font-family:inherit;
+    outline:none; color:var(--ink);
+  }
+  .inputbar input:focus{border-color:var(--teal-500);}
+  .inputbar button{
+    width:40px;height:40px;border-radius:50%;border:none;
+    background:var(--teal-700); color:#fff; display:flex;align-items:center;justify-content:center;
+    cursor:pointer; flex-shrink:0;
+  }
+  .inputbar button:disabled{background:#C9C2AC;cursor:not-allowed;}
+  .inputbar.hidden{display:none;}
+  .err{color:var(--danger);font-size:11.5px;padding:0 4px;min-height:14px;}
+
+  .file-row{
+    display:flex; flex-direction:column; gap:8px; background:#fff; border:1px solid var(--line);
+    border-radius:14px; padding:12px 14px; max-width:86%;
+  }
+  .file-row input[type=file]{font-size:12px;}
+  .file-list{font-size:11.5px;color:#5F7168;}
+  .file-row .qr-btn{margin-top:2px;}
+
+  .footer-credit{
+    text-align:center;font-size:10px;color:#B7AE94;padding:6px 0 10px;
+    flex-shrink:0; background:#fff;
+  }
+
+  @media (max-width:420px){
+    .phone{height:100vh;max-height:100vh;border-radius:0;}
+    body{padding:0;}
+  }
+</style>
+
+<div class="widget-anchor">
+
+  <button class="launcher" id="launcherBtn" aria-label="Open Aarambh chat">
+    <span class="launcher-ring"></span>
+    <img src="data:image/png;base64,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" alt="Aarambh" class="launcher-logo">
+    <span class="launcher-badge">1</span>
+  </button>
+  <div class="launcher-tip" id="launcherTip">👋 <b>Namaste!</b> Sarkari services me madad chahiye?</div>
+
+  <div class="phone hidden" id="phonePanel">
+  <div class="header">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAADAFBMVEX9/PsKKEwUMlkaO2XRhzMCGDgeQW4nRW/alDrkpkvHeivamEcBG0Tq6ekACivHx8zV1dj15tMsOFTv1rRweIuSmKdOWHDqxZQIIT3Kdhjku4ymqbS3usPmtXPpyqjaqG6Gipnv3MbgnUOxtLy7ZxHb3OEjK0k4Qlt7hJbMikfrs1XcoldXYnoAAhm9wcpjZ3nGbBLcto2boa/iq2ZkbINDR1lDTWhYaIexWQPhmzgrPGO5cirTgRw6UXSRlJv61pPUnWP85bXe4OXzxXaGjaElJja0ayXkojr/9s/WybbVrIFYRjammYlUV1tlSDFyWTliU0Zwcn14hqGDdnGukWuwpZDetHwBLGIuGhc5NDU2WIFJKhNNOzJZcZt9Sh9xaFyIVRm9cRm0gjyyh0/pix7g3+QfGBxfNRaJWyaGYTKFb1euTgCqXyCmjnCsr8DBvr/Bv8Lmjij/1X8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABJWspNAAABAHRSTlP/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK9R5ewAAFmdJREFUeNrtnWd33DbahgmKEHtv04tG0ySNumTJlnuJnbJJdpNs77tv7///wwuAZVjAESmRtvYc48Ql9gzJi/fT8ACkGebz+Dw+j88jP8aDzslwKMtLDo2lLO8P+52Bbf4DEZh258VSknbR+LNEGPDgOKmNBycP/X8AHBMxtBGBxMknA3tsJq9YNcf2oDOUOYzzwjcfMMQQyyC96Aw2X6Q5OJGRPFzffoge0VnuXu1yLwZm6S8gabjhw2JREcWutDwZV/yaPcQsD8bGBi+QQckd9U5ftofSsTx4CI5xIl3tLk/uc1cHcpvzPzXG8MnV7nB8bwcbtrnOJ8XYvXpycvvn3KPbP/MT98lUwRjLUtZtwWmJT3VuuE8SwhAGV85JXag4pT540pY/egTzn1xJZWONBQCYlrw7H9lVxsurdydlP+xCwILzsvYqCB9RlC93r4blswYLAMsCo7TWH83pkRzLCgHXVVg0lIPy39iXP44cV7snFT6uWgCDAKhXcMCP4PMmkqPSWd4oW2xVSRjzrOmixZYqyYEEAUQQTKJX+Z7frKOc7HIVy5ER8RAkyhbwqt2yJuPw8qqqG6qYgd1Cg92qJgljNqjJ1bDqNxZgKx4VJUHm1ZyHVP3CNMGBSA6bPl8VW6n0aUdJgVxWjpHNgcydbq87vZMgiKT3cEgsDUKlrCxOFsRjHsywINRaJRUxMhx3kaQ5kImxGJUsAB/FINvb2+RXln84IKWrWEYHEUTEsbUNug8FZFY+qz0CPLr0ECRCeTCSuGo1QQgDH5PwD0MS1fU8b1HS1T1A1OD54EfAsv0wJAEKRMFXWZT57CE2rK0IhMe/IAwkyelDAAmGViYdeFs8weADjFCUO0pi2o2AsNro1o/2AB/YFR+xhH7CA/cORZ5fPwiZt1q3ujwf+EdyRB5/B0nqnmZp4YCr22JPF6RItpPGdQdJ+v2aYy8aXTTcZ69uFQSBxP6xvZ2S5HHlBYi+WC/ImzdvRsFwHGd0qyAJq+Lv5yV1gzzm+ccWGfzl48uNgpDIu81vZ33kbpKI1/WC9HT98PCw1ztEv2w0wYwgsS6ht1eQxMaB1xRJH9WvrUcENU3RVsjX0S+b3P0xKU4oHHxUcpWXpC8MGFsQbMYX6uurWL0DbX5owcVE2RSAXVScUBQJKxUiyc8rhN4b8exa7MvtGkOwx4xWDvNI0xkw31CRPQ6rxZSnk1/WdXAFL7EFWRQFeVyjj1wwi9URcwB7DLA2xLa4yop9PDSsdQQuLYlp2r64vyPL+/5gbNYIoiFFEAgsBnnFRuV7bE9htRLW8+W9xPbPZI4TRLKX5aZ9Iw874xpBDrSNIIsgqceXzkczkkTcQul9UVYSpIggy4Jc58aiOQHxtMkGEJVdz2/XyWM7XW5h4yrtJT7XF3f6N3WWWw5zOnvGOJbO8AfFLSA+QbK9nSDZTuTELeCU9XXOZkSBsds1lvIOHufkB/q5V9yTW8/UKWMr7KiUk2S8jyxqX0C/qXH1x7Jm8bBm7q2CkKvOQYUgJSUhFkUW49T6EmKU2ubzOfr58sIt6sklLzsnzlYkybT0iffP6m2gompx/jgsGx/zlpUvgM9DQdIoWzmRKnkJqlM69YKUb5IGJMluaU4QRPKq7HEHoVV9NJJ1k3QrccEZW4ucpIIk40GU5z8Oh57uWkfNReDmQkBIUrr/GgF8pF03Xq79Hng1M42gtlOt4NIbOxrrCxW1gCh6YEE65u/TRhYCVtjYEY3OJxRke8z1Y6PbTgUB8OhTd7hoY6JQMYDb5wTzEdimgGxVl0RWGwfhCwURBCTJGiS5hHVQ9SxnZ01zdOkcwBUlQcCS0P9ar3iacbtxQegRiz9pc4Is9PUCkMrro1y/WY5TUOAh8hM8ybt++QhQUNnquwj6XLMgFlsoCAIRhL3IS7IgVSUZ3DQauFylwEN2JI6TkCSC+XuaZmzlJWuTa3KDnbpJkPYLBCLSvQSBPK14LqHJ7cGjIkE4CQ00XRXFa5sWuNjqkuw36O4qoAoCfjNsS9LuGHuoKO7RJWGrStLnmnN3pyC2PkPusUvKI1kokAQb16TSyXyuMduaFnA8HbaRgwR5rFiSLVBtMW7ANWZbxYIgF4nuI/J326F7iVJpF4HNNRW30AQX77/MOfHTocQdx2saZ1+Iex+oIGw1SVDtxjUzU0Smn+Ugl/c1xx2vd0Gaoig+d+j+XkkSlEikRpxEV8KNpCkMFvxGlKRkfLGvkZew9MBlVQLhmnmmwQMUOYggUjtlAq8LJdlS3Gogw0YEoXN4O1w7c+PEvb0PW3QvqbA+ikHkZgShcLDgB07Kns4U957/nP7xCpLY+CHmRjoOwZbxnCBS/my+2P+wxbI07sJFSX8PRQkxUfEOUBnaQNjiAdk0zmYu7Jc/cG3KanJffL7ImCIbPs0woh7+pXiNOWROiAOVj0HGdXN0w6cq2CQFEaRNc0hz7/WHrXi/fIIDfYUmifmFSIYsC/G1dzCIXb8gSY41yA8FZmwHkuRMEUlCW4wLMMQdWUCahH82xD5S9/MlbiRIWhHwzbU0LjJ5+3H4jUAZli2WxI8EQVNMIVpolxGHVDeIBWKO5EWBv7YLU1b//1ywlfxWNCgPK4pCDBLHXBx9awcJHgTLDfDN35bFaWDPjuwx861ct84U1h4Sx1wStGoGUVnqFbHssr0hPD5/vTbI1MhJYgqyLO/syIEgIciwAZBFgSB//NvGWuj1c7okuZ42AZFjDi62LK7eqvHvgG4iLJdpa2bkMV936SBKdplhXyBuHnBIxFz9Nvl9rXnEKRDku//NXnnm/226JCAnic/JEQeaMw+imFVzZp8WOAj752wHLbdi9vxrhQqSe1hR4EKrkqT2Mi60OIn7CIL88tvcBsTcLhKTKgmy1OyTcfYNF0ggHUv4IGpoZXVWv0aBw7L5k9g513z5Y4EkHq3URXK0g+dRh1z9IAcFHvLtyxIgzMsCL8k/rNiRkSWF7+nocCFIjYskOvWWIn+ltGooIMyPBYJSetqqGRYvndDOqIX13edTdI5/o3Wi7A3lZkYSSBqo1DRxFnFwUn1Bq6fQOABo0QI8dWt7l+4lQWvIFHPvSLLlmKPO6Eu5n/gJAEidHtH36BcFrqCBunMj9tfRzkSeIoQVV62+3oW5MgvbFaDvi+v4JUUlT3XwUa/6WtgRz/p47OPaNypUEMiwcUFcamnS71BrlSJJwm5dH9W+QjjkOMPXW8Qj+87XWSDXZ4tcdhhGsswGDLok66P0hZ2w+k1UXASkzvkUDUQ5pWf0/dAU7PEtkY9YJ6udxishiGAnxEhw1OYibsGt5LMW5KdB+iVyEfaSWFhZCMv4FEi7roapSlGDeMgkWyR20iDD7N/nJSEjdjVTiChSLlJXDT/KhSzCoawXB6Io5QenDLckRhtiVH+DJCAliS/kQSShPkFARpPgPq4XNc1OKoHs7wf/F/p6x0ysSFCcBCQaqPs5PTiprvUqJxuygrOnCtd+IMVYTIKcBQDjfqqETh0LhMYVN1BtLquHdPOypvmUklMk8BA91a4OvTX4WU79WTJpnufuCkhXCDKX9g9Jqut5q3PIpkGCU2cmd/0gZ+0P1iB+4CmdfnpWkzoYiPw9LhH6XIaDe13TfCoUBGRODDPT7cAjgwcIBQIi9oMuCMVQc/cFQGdtWxyX4JCuayoYz8MTg/VJyYkjQcwwNvbJ/TflNUjQeN7vp5OlGt6LNEfi1WJckgMlw5osS1dASpF4GNlZVHDdpOCWsTzmTXCDs1OUUJKABcRHjCWRuSTKUvyypvlUdFo2/JE57TrKBvuqiACktdYhxhYuYw78TDSPHwNeH9KggfSf1PP+i0MYnzQFktod3glISCVxdhNVvxyOwT8FG/kGyTp8ARPHyRvrGgQb1t539QhyqYDYtJIndVJNn6BV0MEN4HVLC//ODMqkTlz1jcfBq8SoJEYWRJKe/6me5/p7ENAHCZZ+VMypwToMeZmc6b9+jedGPk5jnZuAMNZuENagGyRJ2FXb3/91TfMphYoBF9G0OnRhM2xzmL74hSiS1cwvrq9RaYKB/eNQpUH4cdWi350gxa7lOJZf/tapheN0oyD4wqPgOiDLS68Rxh4ZZJlDuMZ/2zkOaeU4xbv040Jc9NhSlECecPZftHq2LxdgJCe4nXB1D+VvO8bYC5cCRQFpIAfvfvOTi6UbJBlKhAJxtAf91UE9lkU3rNYseZvs6DWePllXTnHsyEL4EkZTPh5kp8654wLNQe4mheO48/IrzWAaVERLdxxUgYQmP1w2iynIUqAsE5JOe5m2EYt6j7QJstGQpC2/fLKq621QdBAyCxonLuynYxll8B0xO3bwJIlrI+s6Pkk2RLEkGs2y0JHlyLI4c6lpepMgkHRv1IG/fq03qj8E/MhzZkRraIlesNkJIjDzmCZIdy2IZPb/Savt9VxUkPiBcLsv9811/0PeyQkStApjLzc78nCgxq2h3B26RLE38PMnbdv/lQaNJkFgYvObiUIMeRe8ifs4WZKdqFfYxgWyPeSk5DuoPVpmH+4Sjndt3/5nbeUwDYLAeXbVr33jM0MyG0qTRKvMyOhfMCe7u1K6qaPDfAwZ7waC7Prv/6DBltokiJYrRseo0uICEFmmcJCt2Z1lbuHAS5Ngh1g+CQPv+3/RwKrGF1oVJN98970thCQ7O1nDwle2S+vdpiWBPMO8aAeB13//TgNanS/iKyqHep4z6vb0+Nnbs2Mu7EfFJLGD4Eu7Wm/wmOq9rns+zUqCI++XJGK9QxXNEw3C+jydBhIKAqCC3ygEeG/Rw4ZsDva5EGUnHPGiALKUd8G7zdWe480BfmdXcLcTkmiWypwcE45d+/07hLF6xjQKQgRxomymKFCD81GPhNbg+Rfcg95J7MKQjrkvMetkwZPXjsUpPCkJ4SCOfiyZ7/8DgpZ2wTQJoh3ljbuFWGaOTurHm+zihnRMxOg9mkGoZHJ4eKBW4OdB4D1eMu//hO2qZTYHgg+PbVudrbBdpa4MwssuTitc3LoNEggOueqIV6KWEhEFjxW5JUfIytB/KF8MiZ8fD5mXf8CH1mp+BV/qxh+5Ogns08VosXCcI+/SggERsTJodYMFzAQHSulTByhkwg8JusV7B46zWIxG5Fhq12nhiw5q990O8/xnhOOPTGMgkJJmVUPvOpdWKxAHanOdUfe59a4YlDqcFu6/I0yE4HR1I5/j9ENmzJEtWdyYOfstRMTat18dNgfi6SQequrfpyoZ617k6YLHNoIuYYSNJNo+ojI9S8MRAfDOaVzH4q9Op4YRHIBMhSX8fBmW7y9QQXcF/u47zWsMBMDV94F/4vuPTL01sy6PRm4vAFJdj6B4arjtAi/ELpBQGrwcBfnGmLijRzzWD6JoB4NegxHtkJMGzPt/1QjH259BsOo1BIJiE56oqzMNXa8SuKymrVYrnE1GPdzlMkYWRJ5ioFlU4B5H6IMWeaHrtOdY+P1WxKMwCP6ytpqQqSPxJiRf53co7OKI8hU+dkPhF8K5g6+odzR65nYnvUNdN9DQDyddd+R4b1ueg616gmQBBg5BMqNeaoo3Id+5gNA6cND3DoNvoeTedV0H/62P45yE5/1//ZVCAgL8Nf6ppfUaAbn1jabG6dHRCF2Y7mHlOE5lLM1D6D3n4pvzbtFLK8wznHPwMxU2ilYtwtEKA/S8CRDaQVVya3sTpA+6zxjU0LFL92YW7idezFAI6x453Q23wL+W9wUOv0jrP98qICIIhzZpAEQB88Rh1ckIF03EzmH0JkfLw5GJhCIPReoF+jFxN6a1Md7OL+Am94evSIpPcbRqlST0D431gvzFGN2RZymEIJP1Ax5rgV8E3lVVxKRvNkcfl8jXfZUxf4HTUKuVYMA/gFbvfARqLS+wcVS88kDTMn0cTIWy3QWOAu6zZ6PRaanOhy3un4nXeMr/9VsNpPVotVrreqymBh2EXuDnxshDtTvMQqB0gKcmJBilkuTmYeL9MzsiyvwfLgJtW0mMVtxUqWtYJOYyujsHSrajhs5peYvufwcQlQ7rC4IoCD4SObSqpFlFGPVKgi3q9BLku2mIApdOKJ2EMuj4tZT6tAQRqpFRYYnX4J/NYHRPMmZFbWneb8UKF695CnDUNQhFYjm+5zpHPJjx52/c3oZp6gC3UfH6QteCUdXQomGg88zqwujyCsytLqFcNSq0p+nEAzgezPioCssMIoePM+d6PgM1K+TY3GW++6AsYyjQw2IYG1+kGU5QDvKtI/zviQ5NRnUgXGO0FqqnIVVauZNZar0JMaEGwtB1o9yCHVQu058kj32huqo7S2I4SN9e4Oi5ufWoGRA4L4GRWJBildRSylAisw7D0xJG5eCQoRvnqK5v5W9cq4kVKwWMymBMj2B+8ZwsvUl41sE4cTpC3vYMmSku1lS1RV2Oq0mSTE8L3bvbMNTuwdr62eR1mGgSKKMCbKZFFOz5xCBqqKkeU8FyZV0gCnDRSTcf1Zh4s2T2h4mX36N5uXTCMN8HiRxNW3hXH+uJCK4WLCs69YLAS93obZQDFzGJQoxFru6sucdSezlGJX6AAWfOBN2WSSr2PSvYEDGtEwQ6m+WYLCwIE1qwSEEnMZ0ypWNkVg5OHbg8c5GRTrJmWrD6rjk1gsARsoJCt9CPLJgt6630nFK6esGoFxq2qZnTw44xpQU7uiRqbSDQNSZFZqU7VnZygvJYJiMvr4bMBIUllCRHeqa0YW5bfYfntYF0Czm685RFhS6eLSyGVx1mhHuj89NiCqZ4Q4RRDwjsmvSoq44sDVK2xmQvdPDvHeb7Fcp9rn5LGrLgpv1P9wRBdkU/u/t2lT8vq7zJ8e6eMN5Ks0a3hm/66juo9E8rFk91HaNHO46Bp3atfJmXjzHLIXOxao30WzGYog0R0Ls/CLwwqPFqAnEIyoPkE/FgyVgrTy83i5wUBC79/or0qDdyQtppRds70oKoFjwtPRnmqZvr7i0JSYQUBzEgbm+2aDcvmx86g4u3eumuBG1DBMmK+n0V0amGhepwKgXIPVao+o43rZLRPLqXXN4PBB4ZhxRB1LdFO+vwA5Kpy7Z/UXF1Vqcf+p49bdilCmJQ3SPc4qyk/r2nHyv3pjx6LrnfMgN2dVomnEGaGNFzFMrT9e2rXicZTUhiFWTiy2IQ/KoNgCYbr+580nNqVrxfTxv8Dx3kEBZjkJeGAIV99F93nUjMi7YJ3n1orkGvjdLzUsq7ObaQhbGeeyeW6SxP0mrdq4EKLaMggB9oBWqkLEwB/KJ7BzfJ+yCqIe7T0wYo/hZcxzm8DSSEAY95p1exEEdzsFaW4149bRz29MJ+IqRiBO/i2Ur8L94uwD9aHFaRZgQ1hbJ3886mhfcBnBcEvqlXlBYpQ8GD9RanZXFUJ+gHK+H2FfTz6u4NVH5uzeeWdVSwqNvjKeMpHvzT/B/zvGXNLN47ctxylqa7B5dzHl2Dha4C/Ty3Hs6/Cft5fB6fx+fxeXwen8c9x2mpxH5qOQ+awlhYyu3riVPXUqD3cCnUrodL7dverKs/wluMwcFDxXg1soKuDdwI4vLhTuoHqojBx/uSNoCo3vpTD1QRw/VACRD3PJ75PFjTih+23mxa+sMHYXhQAgS/n/Shg7wJLvEWkKjZRgH5f9s+3WNak4MWAAAAAElFTkSuQmCC" alt="Aarambh" class="mark-logo">
+    <div class="brand">
+      <div class="brand-name">Aarambh Services</div>
+      <div class="status" id="headerStatus">VIRTUAL ASSISTANT</div>
+    </div>
+    <button class="closeBtn" id="closeBtn" aria-label="Close chat">✕</button>
+  </div>
+
+  <div class="stepper hidden" id="stepper">
+    <div class="step active" data-step="info"><div class="dot">1</div><div class="label" id="lbl-info">Info</div></div>
+    <div class="step" data-step="confirm"><div class="dot">2</div><div class="label" id="lbl-confirm">Confirm</div></div>
+    <div class="step" data-step="payment"><div class="dot">3</div><div class="label" id="lbl-payment">Payment</div></div>
+    <div class="step" data-step="docs"><div class="dot">4</div><div class="label" id="lbl-docs">Documents</div></div>
+  </div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="err" id="err"></div>
+  <div class="inputbar hidden" id="inputbar">
+    <input type="text" id="textInput" placeholder="Type here…" autocomplete="off">
+    <button id="sendBtn" aria-label="Send">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M3 12L21 3L14 21L11 13L3 12Z" fill="#fff"/></svg>
+    </button>
+  </div>
+
+  <div class="footer-credit">Aarambh India · your information is never shared without consent</div>
+  </div>
+
+</div>
+
+<script>
+/* AARAMBH — Invoice generator (no dependencies).
+   AarambhInvoice.download({ orderId, name, mobile, email, address, category, service, mode, payId, govt, aarambh, total, years, lang })
+   Draws the invoice on a canvas and saves it as a one-page A4 PDF.
+   Invoice shows ONLY the Aarambh service charge (govt fee is paid separately at application processing). */
+(function () {
+  if (window.AarambhInvoice) return;
+  var LOGO = "data:image/jpeg;base64,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";
+  var W = 1240, H = 1754;
+  var K = { g: "#0E5A3F", gd: "#083222", gold: "#C29249", lg: "#EAF5EE", lg2: "#F5FAF7", ink: "#16392C", soft: "#5B7F70", line: "#D5E6DB", ok: "#1F9D63" };
+  var SANS = 'Inter, "Segoe UI", "Noto Sans Devanagari", "Nirmala UI", Mangal, Arial, sans-serif';
+  var SERIF = '"Playfair Display", Georgia, "Noto Serif Devanagari", "Nirmala UI", serif';
+  var PHONE = "+91 9096759855", MAIL = "aarambhindia89@gmail.com", SITE = "aarambhindiaservices.com";
+
+  var TXT = {
+    en: ["Your request has been received by Aarambh India. Our operator will contact you within 24-48 hours to verify your details and process your service.",
+         "You will have to pay govt charges at the time of application. In case the government fee turns out to be higher, you may have to pay additional charges."],
+    hi: ["आपका अनुरोध Aarambh India को प्राप्त हो गया है। हमारा ऑपरेटर 24-48 घंटों के भीतर आपसे संपर्क करके आपकी सेवा पूरी करेगा।",
+         "आपको सरकारी शुल्क आवेदन के समय देना होगा। यदि सरकारी शुल्क अधिक लगता है, तो अतिरिक्त शुल्क भी देना पड़ सकता है।"],
+    mr: ["तुमची विनंती Aarambh India ला मिळाली आहे. आमचा ऑपरेटर 24-48 तासांच्या आत तुमच्याशी संपर्क साधून तुमची सेवा पूर्ण करेल.",
+         "तुम्हाला शासकीय शुल्क अर्जाच्या वेळी भरावे लागेल. शुल्क जास्त लागल्यास अतिरिक्त शुल्क भरावे लागू शकते."]
+  };
+
+  function money(n) { return Number(n).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function rr(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+  function box(c, x, y, w, h, r, fill, stroke) { rr(c, x, y, w, h, r); if (fill) { c.fillStyle = fill; c.fill(); } if (stroke) { c.strokeStyle = stroke; c.lineWidth = 2; c.stroke(); } }
+  function tx(c, s, x, y, font, color, align, maxW) { c.font = font; c.fillStyle = color; c.textAlign = align || "left"; c.textBaseline = "alphabetic"; if (maxW) c.fillText(String(s), x, y, maxW); else c.fillText(String(s), x, y); }
+  function wrap(c, s, x, y, w, lh, font, color, maxLines) {
+    c.font = font; c.fillStyle = color; c.textAlign = "left"; c.textBaseline = "alphabetic";
+    var words = String(s).split(" "), line = "", yy = y, n = 0;
+    for (var i = 0; i < words.length; i++) {
+      var t = line ? line + " " + words[i] : words[i];
+      if (c.measureText(t).width > w && line) { c.fillText(line, x, yy); line = words[i]; yy += lh; n++; if (maxLines && n >= maxLines) return yy; }
+      else line = t;
+    }
+    if (line) { c.fillText(line, x, yy); yy += lh; }
+    return yy;
+  }
+  function check(c, cx, cy, s, col, lw) { c.strokeStyle = col; c.lineWidth = lw || 5; c.lineCap = "round"; c.lineJoin = "round"; c.beginPath(); c.moveTo(cx - s * .5, cy); c.lineTo(cx - s * .12, cy + s * .38); c.lineTo(cx + s * .55, cy - s * .38); c.stroke(); }
+  function shield(c, cx, cy, s, fill) { c.beginPath(); c.moveTo(cx, cy - s); c.lineTo(cx + s * .85, cy - s * .65); c.lineTo(cx + s * .85, cy + s * .05); c.quadraticCurveTo(cx + s * .8, cy + s * .7, cx, cy + s); c.quadraticCurveTo(cx - s * .8, cy + s * .7, cx - s * .85, cy + s * .05); c.lineTo(cx - s * .85, cy - s * .65); c.closePath(); c.fillStyle = fill; c.fill(); }
+  function leaf(c, x, y, s, rot, col) { c.save(); c.translate(x, y); c.rotate(rot); c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(s * .7, -s * .5, 0, -s); c.quadraticCurveTo(-s * .7, -s * .5, 0, 0); c.fillStyle = col; c.fill(); c.restore(); }
+  function loadImg(src) { return new Promise(function (res) { var i = new Image(); i.onload = function () { res(i); }; i.onerror = function () { res(null); }; i.src = src; }); }
+
+  function fmtDate(d) { return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }); }
+  function invNo(d, date) {
+    var tail = String(d.orderId || "").split("-").pop().replace(/\D/g, "") || String(date.getTime()).slice(-5);
+    return "ABH-" + date.getFullYear() + "-" + ("000000" + tail).slice(-6);
+  }
+
+  function draw(d, logo) {
+    var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    var c = cv.getContext("2d"), date = d.date ? new Date(d.date) : new Date(), lang = TXT[d.lang] ? d.lang : "en";
+    var rows = [{ t: "Aarambh Service Charges", s: d.service + (d.years ? " (" + d.years + (d.years > 1 ? " years)" : " year)") : "") + " — document verification, form filling and expert support", amt: Number(d.aarambh) || Number(d.total) || 0 }];
+    var total = Number(d.total);
+
+    /* background */
+    c.fillStyle = "#fff"; c.fillRect(0, 0, W, H);
+    var g1 = c.createRadialGradient(0, 0, 10, 0, 0, 380); g1.addColorStop(0, "rgba(14,90,63,.18)"); g1.addColorStop(1, "rgba(14,90,63,0)"); c.fillStyle = g1; c.fillRect(0, 0, 420, 420);
+    var g2 = c.createRadialGradient(W, H, 10, W, H, 420); g2.addColorStop(0, "rgba(14,90,63,.16)"); g2.addColorStop(1, "rgba(14,90,63,0)"); c.fillStyle = g2; c.fillRect(W - 440, H - 440, 440, 440);
+    box(c, 18, 18, W - 36, H - 36, 36, null, "#E3EFE7");
+
+    /* header */
+    if (logo) c.drawImage(logo, 52, 34, 168, 168);
+    tx(c, "Your Service.", 270, 108, "italic 600 34px " + SERIF, K.g);
+    tx(c, "Our Commitment!", 270, 150, "italic 600 34px " + SERIF, K.g);
+    c.strokeStyle = K.gold; c.lineWidth = 4; c.beginPath(); c.moveTo(270, 168); c.quadraticCurveTo(380, 150, 500, 162); c.stroke();
+    c.strokeStyle = K.line; c.lineWidth = 2; c.beginPath(); c.moveTo(740, 60); c.lineTo(740, 180); c.stroke();
+    [[PHONE, 92], [MAIL, 132], [SITE, 172]].forEach(function (r) {
+      c.beginPath(); c.arc(782, r[1] - 8, 11, 0, 7); c.fillStyle = K.g; c.fill();
+      tx(c, r[0], 806, r[1], "500 23px " + SANS, K.ink);
+    });
+
+    /* title + invoice card */
+    tx(c, "INVOICE", 52, 292, "700 66px " + SERIF, K.gd);
+    tx(c, "Service Receipt for a Better Tomorrow", 52, 336, "400 24px " + SANS, K.ink, "left", 412);
+    c.fillStyle = K.gold; c.fillRect(52, 358, 130, 4);
+    wrap(c, "Thank you for choosing Aarambh. Here is your invoice for the service you availed with us.", 52, 404, 400, 30, "400 21px " + SANS, K.ink, 3);
+    box(c, 478, 222, 432, 250, 30, K.lg);
+    tx(c, "Invoice No.", 510, 270, "400 22px " + SANS, K.ink);
+    tx(c, invNo(d, date), 510, 312, "700 32px " + SANS, K.gd);
+    tx(c, "Invoice Date", 510, 360, "400 22px " + SANS, K.ink);
+    tx(c, fmtDate(date), 510, 398, "500 26px " + SANS, K.ink);
+    box(c, 510, 418, 168, 40, 20, K.ok); tx(c, "Paid", 538, 447, "700 24px " + SANS, "#fff"); check(c, 646, 438, 18, "#fff", 4);
+
+    /* right column: status, payment, help */
+    var rx = 944, rw = 246;
+    box(c, rx, 222, rw, 296, 28, K.g);
+    c.beginPath(); c.arc(rx + rw / 2, 292, 42, 0, 7); c.fillStyle = "#F7E7C4"; c.fill(); check(c, rx + rw / 2, 292, 36, K.g, 7);
+    tx(c, "Request", rx + rw / 2, 376, "600 33px " + SERIF, "#fff", "center"); tx(c, "Received", rx + rw / 2, 414, "600 33px " + SERIF, "#fff", "center");
+    wrap(c, "We will contact you in 24-48 hours.", rx + 24, 452, rw - 48, 25, "400 18px " + SANS, "#D7EBDF", 2);
+    [0, 1, 2].forEach(function (i) { c.beginPath(); c.arc(rx + 70 + i * 54, 496, 9, 0, 7); c.fillStyle = i < 2 ? K.gold : "#7FB197"; c.fill(); });
+    box(c, rx, 540, rw, 250, 26, K.lg2, K.line);
+    tx(c, "Payment Details", rx + 22, 586, "700 24px " + SANS, K.gd);
+    var pd = [["Payment ID", d.payId || "—"], ["Mode", d.mode || "Online (Website)"], ["Status", "Paid"]];
+    pd.forEach(function (r, i) { var y = 630 + i * 52; tx(c, r[0], rx + 22, y, "400 18px " + SANS, K.soft); tx(c, r[1], rx + 22, y + 26, "600 20px " + SANS, K.ink, "left", rw - 44); });
+    box(c, rx, 810, rw, 250, 26, K.lg2, K.line);
+    tx(c, "Need Help?", rx + 22, 856, "700 24px " + SANS, K.gd);
+    [["WhatsApp", PHONE], ["Email", MAIL], ["Website", SITE]].forEach(function (r, i) { var y = 896 + i * 52; tx(c, r[0], rx + 22, y, "400 17px " + SANS, K.soft); tx(c, r[1], rx + 22, y + 24, "600 17px " + SANS, K.ink, "left", rw - 44); });
+
+    /* customer + service details */
+    function card(x, y, w, h, title, items) {
+      box(c, x, y, w, h, 24, "#fff", K.line); rr(c, x, y, w, 62, 24); c.fillStyle = K.lg; c.fill(); c.fillStyle = K.lg; c.fillRect(x, y + 36, w, 26);
+      tx(c, title, x + 26, y + 42, "700 25px " + SANS, K.gd);
+      var yy = y + 100;
+      items.forEach(function (it) {
+        tx(c, it[0], x + 26, yy, "600 20px " + SANS, K.ink); tx(c, ":", x + 152, yy, "600 20px " + SANS, K.ink);
+        yy = wrap(c, it[1] || "—", x + 172, yy, w - 198, 26, "400 20px " + SANS, K.ink, it[2] || 2) + 14;
+        c.strokeStyle = "#E6EFE9"; c.lineWidth = 1.5; c.beginPath(); c.moveTo(x + 26, yy - 22); c.lineTo(x + w - 26, yy - 22); c.stroke();
+      });
+    }
+    card(52, 500, 420, 292, "Customer Details", [["Name", d.name || "—"], ["Mobile", d.mobile ? "+91 " + d.mobile : "—"], ["Email", d.email || "—"], ["Address", d.address || "—", 3]]);
+    card(490, 500, 420, 292, "Service Details", [["Service Type", d.category || "—"], ["Service", d.service, 3], ["Order ID", d.orderId], ["Mode", d.mode || "Online (Website)"]]);
+
+    /* table */
+    var ty = 812, rh = 100, tw = 858;
+    box(c, 52, ty, tw, 58, 18, K.g);
+    tx(c, "#", 78, ty + 38, "600 22px " + SANS, "#fff"); tx(c, "Service Description", 140, ty + 38, "600 22px " + SANS, "#fff");
+    tx(c, "Qty", 626, ty + 38, "600 22px " + SANS, "#fff", "center"); tx(c, "Rate (₹)", 724, ty + 38, "600 22px " + SANS, "#fff", "center"); tx(c, "Amount (₹)", 836, ty + 38, "600 22px " + SANS, "#fff", "center");
+    var yy = ty + 58;
+    box(c, 52, yy - 4, tw, rows.length * rh + 8, 18, "#fff", K.line);
+    rows.forEach(function (r, i) {
+      var y0 = yy + i * rh;
+      if (i) { c.strokeStyle = K.line; c.lineWidth = 1.5; c.beginPath(); c.moveTo(60, y0); c.lineTo(52 + tw - 8, y0); c.stroke(); }
+      tx(c, String(i + 1), 78, y0 + 60, "400 22px " + SANS, K.ink);
+      box(c, 112, y0 + 10, 80, 80, 16, "#FBF3DF"); shield(c, 152, y0 + 50, 26, K.g); check(c, 152, y0 + 50, 20, "#fff", 4);
+      tx(c, r.t, 212, y0 + 40, "700 23px " + SANS, K.gd, "left", 370);
+      wrap(c, r.s, 212, y0 + 68, 370, 23, "400 17px " + SANS, K.soft, 2);
+      tx(c, "1", 626, y0 + 60, "400 22px " + SANS, K.ink, "center");
+      tx(c, money(r.amt), 724, y0 + 60, "400 22px " + SANS, K.ink, "center");
+      tx(c, money(r.amt), 836, y0 + 60, "700 24px " + SANS, K.gd, "center");
+    });
+
+    /* totals + thank you */
+    var by = ty + 58 + rows.length * rh + 26;
+    tx(c, "Thank You!", 70, by + 80, "italic 700 58px " + SERIF, K.gd);
+    c.strokeStyle = K.gold; c.lineWidth = 4; c.beginPath(); c.moveTo(70, by + 98); c.quadraticCurveTo(200, by + 82, 330, by + 94); c.stroke();
+    tx(c, "Your trust matters to us!", 100, by + 140, "italic 400 26px " + SERIF, K.ink);
+    box(c, 520, by, 390, 164, 24, K.lg2, K.line);
+    tx(c, "Subtotal", 548, by + 44, "400 24px " + SANS, K.ink); tx(c, "₹ " + money(total), 884, by + 44, "500 24px " + SANS, K.ink, "right");
+    tx(c, "GST (0%)", 548, by + 88, "400 24px " + SANS, K.ink); tx(c, "₹ 0.00", 884, by + 88, "500 24px " + SANS, K.ink, "right");
+    box(c, 520, by + 108, 390, 56, 20, "#D7EEDF"); tx(c, "Total Paid", 548, by + 146, "700 28px " + SANS, K.gd); tx(c, "₹ " + money(total), 884, by + 146, "700 30px " + SANS, K.gd, "right");
+
+    /* terms */
+    var ky = by + 178, items = TXT.en.slice();
+    var local = lang === "en" ? [] : TXT[lang];
+    var kh = 74 + 2 * 66 + (local.length ? 2 * 62 + 10 : 0);
+    box(c, 52, ky, W - 104, kh, 24, "#FFFDF6", "#EBDDB8");
+    tx(c, "Terms & Conditions", 82, ky + 46, "700 26px " + SANS, K.gd);
+    var y1 = ky + 90;
+    items.forEach(function (t, i) { tx(c, (i + 1) + ".", 84, y1, "700 21px " + SANS, K.gold); y1 = wrap(c, t, 116, y1, W - 240, 30, "400 21px " + SANS, K.ink, 2) + 6; });
+    local.forEach(function (t, i) { tx(c, (i + 1) + ".", 84, y1, "700 21px " + SANS, K.gold); y1 = wrap(c, t, 116, y1, W - 240, 30, "400 21px " + SANS, K.soft, 2) + 2; });
+
+    /* signature (right column), tagline band, footer */
+    var sx = 1067, sb = Math.max(by, 1086);
+    tx(c, "Aarambh Team", sx, sb + 50, "italic 700 40px " + SERIF, K.gd, "center", 240);
+    c.strokeStyle = K.ink; c.lineWidth = 1.5; c.beginPath(); c.moveTo(sx - 120, sb + 68); c.lineTo(sx + 120, sb + 68); c.stroke();
+    tx(c, "Authorised Signatory", sx, sb + 102, "400 20px " + SANS, K.ink, "center"); tx(c, "Aarambh India", sx, sb + 130, "500 20px " + SANS, K.ink, "center");
+    var sy = ky + kh + 16, fy = H - 134;
+    if (fy - sy >= 70) {
+      var bg = c.createLinearGradient(52, 0, 1190, 0); bg.addColorStop(0, "#DDEFE3"); bg.addColorStop(1, "#F2F8F3");
+      var bh = fy - sy - 14; box(c, 52, sy, W - 104, bh, 26, bg);
+      leaf(c, 100, sy + bh - 16, 62, -0.5, "#7FB197"); leaf(c, 138, sy + bh - 16, 48, 0.4, "#2F8F5E");
+      tx(c, "Small steps towards a simpler and smarter India!", 640, sy + bh / 2 + 9, "italic 600 28px " + SERIF, K.gd, "center");
+    }
+    box(c, 40, fy, W - 80, 100, 30, "#fff", K.line);
+    var badges = ["100% Secure Transactions", "Fast & Reliable Service", "Expert Support at Every Step", "Government Compliant & Trusted"];
+    badges.forEach(function (b2, i) {
+      var x = 84 + i * 280; shield(c, x + 20, fy + 50, 20, i % 2 ? K.gold : K.g); check(c, x + 20, fy + 50, 14, "#fff", 3);
+      wrap(c, b2, x + 54, fy + 44, 190, 25, "600 18px " + SANS, K.ink, 2);
+    });
+    return cv;
+  }
+
+  /* one-page A4 PDF holding the invoice image */
+  function pdfFromCanvas(cv) {
+    var b64 = cv.toDataURL("image/jpeg", 0.93).split(",")[1], bin = atob(b64), jpg = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) jpg[i] = bin.charCodeAt(i);
+    var enc = new TextEncoder(), parts = [], offs = [], len = 0;
+    function add(p) { var u = typeof p === "string" ? enc.encode(p) : p; parts.push(u); len += u.length; }
+    function obj(n, body) { offs[n] = len; add(n + " 0 obj\n" + body + "\nendobj\n"); }
+    add("%PDF-1.4\n");
+    obj(1, "<< /Type /Catalog /Pages 2 0 R >>");
+    obj(2, "<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+    obj(3, "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
+    offs[4] = len; add("4 0 obj\n<< /Type /XObject /Subtype /Image /Width " + cv.width + " /Height " + cv.height + " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " + jpg.length + " >>\nstream\n"); add(jpg); add("\nendstream\nendobj\n");
+    var content = "q 595.28 0 0 841.89 0 0 cm /Im0 Do Q";
+    obj(5, "<< /Length " + content.length + " >>\nstream\n" + content + "\nendstream");
+    var xref = len; add("xref\n0 6\n0000000000 65535 f \n");
+    for (var n = 1; n <= 5; n++) add(("0000000000" + offs[n]).slice(-10) + " 00000 n \n");
+    add("trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n" + xref + "\n%%EOF");
+    var out = new Uint8Array(len), p = 0; parts.forEach(function (u) { out.set(u, p); p += u.length; });
+    return new Blob([out], { type: "application/pdf" });
+  }
+
+  function ready() {
+    var f = []; try { if (document.fonts && document.fonts.load) { f.push(document.fonts.load('700 40px "Playfair Display"')); f.push(document.fonts.load('400 20px "Inter"')); f.push(document.fonts.load('600 20px "Inter"')); } } catch (e) {}
+    return Promise.all(f).catch(function () {});
+  }
+  function render(d) { return Promise.all([ready(), loadImg(LOGO)]).then(function (r) { return draw(d, r[1]); }); }
+  function download(d) {
+    return render(d).then(function (cv) {
+      var blob = pdfFromCanvas(cv), a = document.createElement("a"), date = d.date ? new Date(d.date) : new Date();
+      a.href = URL.createObjectURL(blob); a.download = "Aarambh-Invoice-" + invNo(d, date) + ".pdf";
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+    });
+  }
+  window.AarambhInvoice = { download: download, render: render };
+})();
+
+</script>
+<script>
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby76Jtdk5lR13AD5NLBZYC0fOqSvBacI3RDT8Af31QSV6H0Y2yscsw8dq47Kv8dZIZzog/exec";
+const MAX_FILES = 5;
+const MAX_FILE_MB = 3;
+const BUSINESS_NAME = "Aarambh India";
+/* ---- Razorpay (Standard Checkout) ----
+   RZP_KEY_ID public hoti hai (rzp_test_... / rzp_live_...), yahan daalna safe hai.
+   KEY SECRET kabhi yahan mat daalna - wo sirf Apps Script ke Script Properties me rahega.
+   Order banana aur signature verify karna SHEET_ENDPOINT (Apps Script) ke through hota hai. */
+const RZP_KEY_ID = "rzp_test_TmBR2tHq3mg0Ju";
+const AUTHORISED_PHONE = "+91 9096759855";
+const LOGO_HERO_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcwAAAFYCAMAAADp8jzhAAADAFBMVEX9/PoJKEoDGDMUMlkaO2XRhzMACSkAAhQeQW7o6OknRG4IITzYmEjkpkvHeivalDovOFHGx80CG0TV1tlPVm2VmKalp7L15tOGiJVxd4q3usPLdhaRkpju1bTHh0Xb3eJmaHaztLtHSVdZYnbu3MhGS2W5ZhLqxpXoyqjbpFbaqG7juoslK0c5Qlrd4eXEaw/mtXJ8gpK5ekTgnUOcoq+yWQe9wckkJjTqslXjmjfctoxmbIK8cyu2ayVwc3vRnGdXZ4TirGkxMzspPGT41pHVgxv85bOgnqhRUlrjojvzxHMPEh2FjaP+9tXUrYXdsXsmGyfg3uK6gEbXxq89UnKOWinljCgFLGBTQTpHXIVoRyluVkmaajSKaUiIfHGbqMO+chy6gTPFfEXNvrDAvsQ1WoVMOS1APUhcdpd1UjCQdlG1bUTnhhv90nwAD0EgDyA9JB0/aJRAHQJHJhBFLCRWMhljORFhOyBkRBhgXmF+gnp9jayMTxiUUBubez+Bf4KZgXKqTA6pjWWokHClnoywp5Wqr8DCbybZ0b784J0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABI68ulAAABAHRSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbyeDWAAANIZJREFUeNrtfQdjo0i2LpQMGIEQGYEsS7IVbEu25XVqtzunmenpmdnZdO/dvTnHl3O6L4d//SqQKRCS3d3eVp3dcTsIhOqr76Q6dYrjmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhwoQJEyZMmDBhkhXZ80a9g+ls9vjo6IfZbDY96HmeJ7OB+a0Sr3cwO1J3Ba07mUxOQ+l2u+iLIKhHs2lvxEbpt4CNB0fPd7UJlj/WhF316GiGSAkFEVRVBaGLBGE69dh4PVgcRwdHAsLxFIL4/PFBmUL1Rgc/HKoYU+HogAH6ADXr7EhAbNR2j2b1AOpBTax1T7vq7IAN30NC8vHuk8nl5Mnu495qRPN6MxUTtMcG8UHI6PEu8nN2n69LMKicIZ4z5hJ9dpmpTy4nE/Xx3aDozYTTU/UxG87PScrnyN/ZfXwPTow8OoL69oi5Q59JDnYRkkf3px6naveUWc/PIY+Fy8vJ83t2RHuQniqD81O7r9rk8kl9pRjYtW/9g9ZVmS/0KVn5ZDIRVnFXmqK1gk8lnDLb+anke+1ysruSfg1McLuKMzSFrhAb50/h9miXl09WNJVj0DCt1bj/VmCm82NLb/fyUls1HhyKDd58sWKo8kP3kC2WfVR5Prl8unpor/M83zCNVZ2sdnfKRvxjatjJ89Xp4poNvtHg7ZUvnAoqG/SPRsvJ7jqGrAmhhGIGq196xCznR6LlRFsreeqaWxhMYK9xcU9YsKG/f1peXqrrBX86ISbfEK/WubzVYoN/vzKC1nLNNY0L0CDC8821bjBVWQbhnlXs7roptpCY2Gq6a93BO2SG8/7k6LS79lKjY2IckdncWpOaHLdgMco9iaddamtTQ27y2P3ZwmiuSU2oahma9yK9yeXu+ldfmNsESyh3oCbXY2jeg8wml8/vcDm/lRJIzeHa+oGheXdzOZncZf35zNzKSENfX9szL+jO0eWTu8QFMt/IgrnFO3cw3gyPu8ju5S4eQcs21lrB8HPEhGA2ZYbmZ8IyTHQbIgC6PrdWvL7P57Hc2l7boUXyHcNkfSyj5X6L53lF9FcmJr9dQHNLZwP7WbCMMwWWaQIg6v3VbnCSEHP7fqwmk7tjCcE05Av/YkVz9yICc3sb/z+iJisg+PRYpkISi++vfgeDj6Dcxv+F0uTP2Oh+WlHTWHIGWAPMF3wTK9jtWEI4XzNqflL5IYPlWmBaBMusEGoyq/kpZZrFkpPXqPjY50Mdu91sNjPU3OYZNT+deBksZac51/XmivHhVYQlRLK5HcOJAN3mfTbGnwzLySz1k8ubPA/g//WV6GkTLQtBbBJyRngiM9ros1H+RKKltwZ0RL7BI2nw4gq2LkD5gpiWoURoNu9KzR5L7NWU5+klr0DkExGNlYgZMRLBmAITWU7+btScsRWUmgOVWYrmM6LXJqbZJLzcToMZ4Xlnq9liYNYzmFr6pwtUio6VLCmwq2s2m5Hzk8IRfx/5tHejZoutVNfLFmSq8MYSEBMB0qDeTRzk/WTAzLpAkJov7vKQbQbmGtbI7WSlXtWH3NxCYKa1a8YFQnA2jDtoj5sFQ2q5jFJBiWEYV9bJyUkf/dc/keGXvgV/uRwF1yRYNvMeUAJmk//rO4D5zSMGVY3UT+p7KRSsYVPfg6V3eU3yBdhEloAJFa219lP2btiWhRpTPsMvd4gkiCX6drnF3I7SeHnZDnNByAV6sfbzTW/a4c8sL1jGSjXXtEU+88/OoKF0oHSc8JsaWb3XiStbAJM4tGSVenWr6b3ET7i4aaN/vUPmB5Xprm5b0DLUdCSoXUUTSBIA6Dv4HxDBUjJ8wK7sFpWYzQTM5loObbs99bgWArPXesu6YZbGJIKgnh5knVJw7N6afGcIA83hPjA7Lm8ujfblra1SZpJELbGZ0Gqu49C2ujeL8/PW4uXbt6xbUKm87ArCaXZ8fMnnAlHnOF3c5wLAn3C2uFTNfjCjjME2TcnGaYM1qYl0bKvVUtuHLD9bEZVMTk9zzXd88ZZzxbnMNaR9bmhCJtlLk+0yHzIz68FGXzNLm+Y61PRarcPW+SFrylYl88Eor7d80YdgXkMwRQymxY2lZWCG5ZUxmKGZjFlJdC2p7lq1Z4XXW7yErDw8V7Ecvpyx5RM6CGLRs0Fq1pVWAtOKiLmdXZeOgUwr2i1+hY3x3nTRarWhnLcwlAIUVX3Jeg4XpQ8oKPnSbchM8KImmD7JysYlBtuRWo1WNsMiknWtptfrtW4QnG12mkap2DoNGekZBFOXudfQiXUBBNMWL5YQczvNzHS5SMajjTcrrG41R221da4eCSwJVCaGRFN4+5LNXUgwsuRFG6IKDE5fwswXkcVMpJl8k8Qm2/E+opWp+Vb1Dm7a3LTL0CzzfqiuSHBhcH13KHOuE8jWhduXXaeSSlHd81aKkXSJ6tv5Vev+2guO67XbKMnB8j9UccTiWvEeEMEcAFPnAeDn6Ic5+Y1Y7oOSKq5M4TMp4aKgGYK5okN7iNIannCOvrIew3RiUrrBPtPHzaZNpNkc2/YYCvpmvLOUmBkK5qANqw2216Jmr0dU7Uv804whVxS3EJYEezYlG3cMBf4zPt7rl1jMZmpzSYLmdhHNaGPYNr9OEzYhhJFRsyjgrKh3oYI1QUqiH0z8a6rlNMyoZH2LplELhA0d2jWq5YUwh+yxnEEBOXBSjDtPTmQsJ6H0IzlBf6Hep5lCbSsueE7ApDlAW1uNNdrJxLk8Rs28XO/fy22C9Kb3RJEm+21pxERWc/WN8YsITJmhmbOY0v1sFrAzm94z+2sbv3i9lfZr8Z+31o41uYMYQ5Zuz8Ug4/uZE2Yzx8QYr6YZ/G+zuZ1XttErV+9ZkZhKjy1QZzJwknEv92k2tsoEco9UXxKIY4W7PjUTYafjpsXfu5fbXORa/qRVLv9HU8/5nWaKsmkfqLFlXqz/vh4LNtNxyf3sY9bLibnV5ISX8ut8hJL0YLtDEzaOY4cTpeOSeylXdMxyKPlgKrS9/8iXgXm3djIjdsJCwqjOfdxF1vkyLLe3/sIT1PaC47eonWRIrHmHGcUOWEBkwllXgHOuY5R7vcM2uw/mdgUxF1q7/dZzEnc3y0vk7t6BmguBYbkjAROYJh/n60zRXpuYfLnB5P+i1xXa7fYiZTUpr1qfmt4poyYPApmk6UiqTrZ0sO69/CowL9Q/Ftpqq+19qHiVeYdOTyqjJjgupHDWBbNf4ck2mgcTQRDarW9aXOnLGluNO1Bz0d14avJFMM11iWmWatBtPhA0BCak5juHb5aieYcmbAfC4caD2YSUcohcuI61Pph9s0LJ/vNpFxVFttvqN4+41xXUbJysbTTbwqbn2/kx3hoUbXA/Q5ny9e70ospiBjeImBpEE1rNPzJLqImOyVifmqowY2BynBEEwdWVYRho56v/i7VuZJlbpcaQfzE9hVh20a6kVquFTjkpAbNxB4f2UBAYmDkJ1kuR2lXEHAoaEq7XhWDeQKu5VUrN9dvJLIRNTxxgbzYsI5BlZLD6a21MD8yK5ZIXswlEE52msRAgM1sVVrPRWHtjfE/Y9FNTEZg7cVMY1IBdlu+fmIiW5Hw/tQ2p+eaixGriw6XWpaYntDdczwIdmsywIwx0aI01wQwqLKb51y1NgwaTjPjb9jfIajYqFO26JQ8QzOnGg3kP0iwnZmPrf/1Kg1o2XKOavW21vnnzRyVZXOwCrVuM1FaFI2YzU+Kena2R7XbL3FNsMRfQlU221regon3kVTm05ppFD+qmG03Q5LgOyrDPr6Gt2rk2ATDnzhrExIdjFpGBDs2foZ31KcrctB613lxURSdrpvoPhQ3PGwAYmgxt295/cStzvgRwD9JVD6LBh4NTjCbxZ86hwUx7Jj2EptescmjXo+aRoG52fhak4kyHdJUF9lxc7UxEdAbxVhFMfJTt1vfQkz3NFHXMbh61poFZmqFtmC/WDDTV7mzTwZRxiTon64SXNkR1JUXnmFvxUac5Hdsw/ZYm5E8dh0bzkfeLiswBMNYEc7ONJsoAnaF+eApnALxErXP9Ob9K5C7rFChDNPmt77tRVJKKCCE137h8hZ611wNT2OyMHgLTcodD1+AC0Ty7AuBHyNAGWAHMjll0fUJeNnj/BoYlhch1+s0COrSNUjAb/Br7iKDNFCjvtUlgJqXHAeAHXOBwNjokoT6YxaNOEywbv/MYEpNSbr5oPXof8KVYrkfNQ5TMH204M0OxoL308UEJfLH+oFzOwuRPowgmdGV/JXRpgbzXWrTe/R5fEs0gW7uEmr3pdHrQK8SZgrbJGxV4cBXu2JO5gciLZ0NRAbzYWYGYEXIUJbutChrdivVai/cBTT+H11ZvVpi2bm5u2u22mknfIZOpbbI7SxamUUNgyZDnIupcwPPSCkruNgQzw8wIzGc3Wpnem7YW736vmNHFuQckoGIfUeubFpbDdqZ1DAJzsxN6rh+Jw1l7KGsApP36XoTFR4qxkSr+iMh6JHQfl/qeizdDPk/qRqxnKw7caEWCOnQlnrKnbTqYVjaiG9q6PlglyHthbuWxjIX/DzdaedznPXoErWYjT+v46tKK6EUKy7b6NtarIwzm800m5t12fxlFLBNubamVkcKbR++jy7cSDyqZCiUHbPa+ScBETfS6UXZphtXsJmcNdp7d6XI7rWUxwVLE/NubbqVv+f7R//PN5ILs1dBq0qnZuslgKQgvU87sZoN5dqcTnAKzkcKikcGC19vdagPmLd4nJpek6tPX89QyQQ8tocVgCqmkj7DpYHr//X/c5fIm3ygV/g9+pS25vPfonW9mr0qp2Qa17LIXYnmOiZkCs7fpYPba39zM7oeYBdFvlm/lmb7/v1XToSHTHhn6PefnqHNwiGUI5qy74WAuBPUuRVCVxPzZ39eIEhZv/IoJATolYGKJiKmlTab2fJPBFLS1r3ZBBZbHN7t11PyjUdWEoFREewTGdgylRj5Ar4vR1DY3zvQE4Q7LuXoVDn/798XUD6Uv2vQfPphbpWoWUKzmYVvNYDkh8B0RlbvJ6Tz5N+uvMjgVCpLX31IoQmty9/7nW3wpMWnUPBDUGErEy1M5nJZYuhucaJf1O1xaRczfv6FcMqLMHK/cavLQoaVETqoQIomwFCbf41++jMDc4CUw+Xh9YoKtCov5K9qg9mju7Zs35cxs0EoeIAnVmJcTNR2XQDBlxsw1ruSriPkn1NJyKpjcmx2zPDgBFGqOhNDZEbTT5+mEQeLabqScDNa9siqk4Pfox5T2qAbtuzevK7hJrXmYCV1kLU93D9JhibDpNUDcmmrppJqY39HBpG8F+a5TQU2TvrbaO1LVWeRPHUV6d5MjE44zfL1j3SsxIci/85fv6BcdlOzr6ZX7Ujy/vOwywVLY4LrZK5sHvMjbVytfafHl0UTDLKNHGZhch6+wmoSaB2XN8TwVpbEiMDe0ol12XwMT+osQALPprqhtX5gVWH5ddtW0lDd8RYIWkNquRYt6ftsU+bYxmJu518TydbIZgccBgKj7q2hbAzT4MjB58GelYC7K/rIDKmLN0GpO394scn1lvRmkZZxwF8qqx75wU2lD7drgE2lAfWvXLxcZm3QwsftZXg02W6yagcDPFlnNnvC23Wotpr2Rh6S3QOo1zrdjLatunn4dY/2aEThuQKyrbQPQoDmz5J4FhyW55yIxpl7N3CB+uKi212uft87Pb9q4oxCWVGYPM3OxYVgOdNHkSwRq2zq3sCuIaRaOLfJiNI9i4hSztHq5S9WI27d76nmrpSaCoUzA1LRN83/mIigDE7q28xrcvAJ4iEsScIWOBF48wocxmEVf5sIsJWbDbCau6w0qyVPP1WQlLA3m5vk+A14ERSQbQIwcxyWC1qT5Ijf5kvQbDUxKoNGssJrJgeUewe+cAiUEcxPLDPoOcmUbGbMJQNM16vAScYinYon9Ykrvu9gFjbuI0vrju1VWU08SDEI7UbE5MDd1/csY87ET1GgAAGwYmsi1wNR5qsUkCjFZTU7M16yXB3N0RHlZszx25VNH6S4EXPzcpjFzQ7vuW9zJ2WtRIQiAZgc7nf06YDoiDcuI4MnrRjFMBxFh1HYhFZRa4qRSM7pvQk2u1U5omfVlN7WYS9eHMMQ4FtFe6X0YTJxdQ7MkXy8HU8bOD0+NShpium55Ft8s2t1zGDHzMKbQbKnVDA16cmcvA2Zay25qS6emCXjnhOvbKBixXoimBMHsK8ubYzlUVzbiT3oy9GKgVDmnZmMKzdJWzjCJG1WcJVlqzgQqmNrbd5sKJjJEYIC8V8eGzi12GGswU47MbN6PxU5UdkNBK1KhrWkWzF4rjjTyGd/cvfnYrqdIL7cpWlYTtI09S/yY+BVA35+TOAWBeSYtbefkm40CmDT2ZKCanmfBfBnpQzUb5Ad8+b3T5nghUEJMTXi/qWDqIA5JwuQPBFMXlx3VZ0UuMEXHFvfHRoz0hCyY7ZCyPbWQWircOwYzFcF6b8N8XhpL7WZjT5BK1kxCQTbzeGn/H18sxZIv7lz3hFBth1192+TnXjf8u5ZfsDJAyHuedv/EoLcpWAobq2U5qwkpmcx6UdlBYSbQq42mDOJFMzLeqcwDLX30MjzQQCW+kCB4xIEJ/1oMJfbNwmSJ759qAjcTUlU/oZK92eT2pMatHi6DAXGvQ3gBlpzvNjDjNZYkHomwTFj9LlJ4XrjyP22nwVRfhn8cFRJ+fbPRyLtYSZLqx9hR7qo5LLXWzWaf09d3oeU0gWiHnfJkWx9U42/GC2bhGlg6H5gi5jRC56UQ4ualwAyzbuohJbkXOlgpPFPvcJvk9LLMFLTdR6rMbbgEx/P9+iUG+/FIh5nY1Ehnq+gWEem6C2I8Fzjax7azR+g6jfave+mSISu3yJpZd43LLj0hJ9pU2OGYrKKYQSM9zCUDHVIyRHNBIMO5H+8thvEQ81OOtlXnTr68BXypgP0SMLvq+7+xGECdFQ7ObJoZDZjhkIhUYNpqqaNQwWKsXmJMSSJWwAb0MGxb6gmpq+C3sslXoGlQwEQW842wx7DkduoPQpCJZhqUYfZS9VajUIsuihlTGevaw4yLhL/Hq5wfQKMUzCh0yoHZffwP/+KKYckNX9UPTc0yJGMF6C0S5HrEWQ2p6b2Zvn+/WCzevyeAH5K/jk4T52dKzo1GtV3laBJq9rQMmOq7ic6ghHZQqXvwxAWo0n/RXWaJUzkjpENf3jyKOqS1vrm5+WYa/hpiGTs/shp926mymnY4UdI6Vuu9lFwGJeKbsToxi2OcxPMHydkiR1GUiZB8RAThedNuE3qOTpPlk9SW53nVrAnIPEmgfNKdvvl3vMyQRMnww3qZE0dsVIyxnL6jGpeJvPXQEsk3EZKP4q53EE6EZVxGspsuEnCWWs1dLeQkwrL17k8knyGJspytllCrcqYCyYaYbT3wAwkukQnluPe4oVYOy1ZLRY21jsL45eg0G57opW+lYGp6kwhK7cmTttf6KThhSEJLJahqNPTVIUyVIcuXV/a6cWlV2Bwth+U57kfpRemc01x9l1tKTdIK97GWSHf05tfiLUOSZNiESQ1mylV2TCz0BPGEUwJV3OguK6hSUo0ytafF3T7HoBxMaOOFFJazd0+B2GdAEgs3eVyHmJUWE9/Iy6laRPi4z10BTLS1QNuF/lKX1mCv3HMWYVx8oMVodo++E4A0YDhGBqpGHkwGVRYTl0F6velBVtVOuanQUsuIiVYjIY4H2VrXg+lIrrSaaA1dTcBUOWgwgcFQDGWvxslffgWYZhSve73Fy56cSs2NhDbaG0InZlS1nCJ0T92NKt2DEk2ATgI4OA2xfKIJ3OJfMmKmZLw8odevzBekJoN3JAhxpwGuJaCWhRQw4y2VyX5K70DV0hVBttkoS87GfqwmjN78G3HZGuxm5YCWn/s1qEPMOPo/bS9I6gdVRKoUbiItm+lBMPpB7XZnGaMbmGWu1tEkBPOp0Hv3n0QgsbWvhHUydyLLlcfZGlXEFAuJtBFEBvW9V3GhThHN84SYGurb81ibnBaPI7EpaALk/YRYak+7ve8moiKyrGySbZGIVDkRdlWMSWvxJS8EgfO64X7YnKpNOsWiyp3TA047fT6qNYMAWjONXJ//A7F8IppAGjIQIxF1B4tUbjkNsYqY9E2A8gh3s8N7m3Nonqup7qIaDE9GXs0phA6CfH4agvm2x2miqYg2wzAWKVycnpdXzB5XEDMaS4qaFpLN6mmn9vw8g+WTJ7XnEKpp/z70ZFGiQfgWAKAwCENzedKXRf/EQqKPT+CPtFe5la4sWRM29KZt+x3HTWJWT+vGWLYTbia8JKg8vUyl8vqB65zd2jp5jn0xk5RFWM66Ap4AE83jBBhgAumCwYhkOOfR/3gYnysIL52fz+fGasSMyivhawA6hgrw+vj2gmAxOkCn5oVbfM5jUdNYdidPvif2Ug78MXwSE8BQI6S7AVLvrCAVchDq2IkmQyxNiCVTsmHmB+3mA2j8yL8o8SkVK4LcSotJmOgkrzFNeD/edvGskGdqBCdye8JGBPG68qlGCoWswNfxU5hhpVh4SrKdemuMZejITna577Sfmgq8YsRwLGUc5XQ+vQrLZ2GyL3srBYgSGOMuUfKsHWtbFdMyJuap8D3yfPodu9BiAZBww4rBNFEANAuxPD3ivnvyTwFUJ6y+oACmApTYLhXAdCqICcLySuh3KmksFfiTIor8GLUV8maJ7UywhKxESQI5sPnMTAiL/sLnuIU6F9kAgBYxH4c69nTGvZtIyPcR/5ChGMq1FA9+7GRI+cUsWS+xmNC26fpOGKpie0lsZrxURRjmIDgPhXaunUS3eyTjPhnp4k1kMPFNoJDCLcs+BpKoSGgt4Aj7PtBc9rh3vySv+SuWx4uNoQ3I6IsSOmgRwiMpA6smMSFMwUmcDwyGrnvhOGe+rYMQjUgRzxHHDmJHKMRytwfnCTSUfLjzCEED+GN7AD3iC5ccgR3e3BnjEyBVUigyETzuzS9FfNL5tz9nIEaCApIPcPAl17J8CSjjC/iLXHAiz8uIWZJ3kftW4Ni6gr0ZDJM4/3O0avoW78ILzSVaQXWg+txCSELXR9FtJ+iXpBTlr1Ajb40o5yOOe/Svyan11/9FZ8yM1SywnaEsXyAnxhgYnOV2mtI/1rSYYInrYXT2myYkG1CgN4SKOg67yW7KHgpMSSMi0Xxt+8EyUKZdjGVXOOC+gyEJj+YK+P251GEoRg4QCg2VvTNMRsPf46HLkhue8jVpRCb8ivF4b288tpHs3/o7rpEAcwUVuYQUrojKOY/CXXgaKhbpmGYD0avpJEDKVxdnt/A2Yyh7x3vjPTxf0P2guSTN9WXu3e+LOCQB4G9eAbb4lYozwyACfh9IxMzlwKxakybtDzrYfGHPhSTsRdQmwTEsMsyyA/W42TARkX/okl49Mifb4hZqp3BGLLRsXUHNTLwfcgccc4KwftMjk6CLCmvf/BpgWirgd38X2dkBgzGdNIBq0HccHJ6DfNKgX1rwCICE9yME6PhxGNk0dCjHx+grniCSOB90iFk1cJdiFGsQgsmcBaeR2PBJhj5AYSZatQG8ftwMbwEfBQGLoZoKqPRL6Koe9516bYZYvvpdDLnCtn6lwYSDGIUDBTBvy1xZoPsEKafjDg3DsPonZEUUfj2xLMO4cjt7cMT3HMRQ2dVFIH6AHmlX00YQS9HUHYTCiaO/gg7SvkPukbmDETjoPWBYg6oyNVTbCyMSEzu+MDB+RWYiK37OgUkUV4hrGkyrDMtOPVMlW+7+3sBBsF9AbXvBedppj+vPRR1paGNn/Erfd6uLJKdoOVQlJxEf/StRCZ8U/hs9M6NmFsxEsmDadDDN5hIMM3ULsuM4yJNxeMnCDfevcc3QcGA/u1g2J7xF+xBVmBxC9/fdHwAznnXx7GNWMxQUQpLkD5ro5EsaTEMscX8avusWALTcncFY1+dQ0A3nc2j7xrcOckZl2UAdM+1r7EPvQQco2N8JlrN7enPeOoS0RHthnl8DYqsLwqiJZCBRZLiUmCgPIO6nvKTAPbP52OyaZrgME0nDdgIy4Gfwqg6kpXFRp0UxOSj8po3yfj//jRg5XnldAtgiGMnnfeV+9dVXjvMVEteF6vCrFJb0Ki6UdrPdaJfyiTMYN0yEI8XfjTUhdFX3cJM+6A31UZKozsMtcPV0uwU17Hd/+FNQgBKbT6hYFFYBXUPGgJ5dd0L9aAUvdJKEbVAQh/jOj+3BjjscDgOcunVX0Yc9XGdyg6Dkvr8OaalksMRrM2ihh1GzIL6e/Zk0MFAyq5dgfBayKvhgg5IzGABa+xqcOUMLRRgoAVxdx0nTsC/buMoEGcuf/0YC0RTJQJmUkzBqFnzQnLoKF6eUBCP+LDR1xm2TpyOJiwxQ6AlxvIqyQCsLjEfQbtwFWrr+Q4DdNCVNS+SqKck0A2OGXl46mQLYCzFdS4Vyb2EgYThzUDziJuy/B+NGFO+jFEAUpaz8HGj181DFxpJzw0UbJef5pLEsrfbcbGqmxiSzJg0t5SD0jBzbLMskiMe+i1M3VmIcjcDp+IOB/+EisOrTUlUFtEmeG+6JfEHDAiUHJdnlxyQr//OpEFc9upKS9KMFPtHA1q1umo0G1cflb4eWbF0ZViELBL0fvwnng/n6F/tn7jLVeyioh20Badi+nfjIScIHB8S04mgmGdnVtNOoVwUZNjxQvE/Gf/gLpF3pUOodwsnymxu+Dv4Jqgsxm05QGpv0BAHSEnUDlzvZcEea62KoYWtukdhoGWlafMhdR1RI1CGCzkloUctSCKZou/LIWO7uBOF+AyA2bPqW0IWGzvVCW4icpLexgi8ZWEMRpMpRau2R2GDRTrVwL5askMIMEfiYRHIH/liy+dW0h4iVP9bKOYHoPEBzXoTTUzVV0FDCx2omfY0VZLLtP7eM0R4yl0ChVyQx+PKDufsHYcwpIgdSlPaw3ux3+NKD4IA99IyhUctnlTP11IVYv4c0g4ALvTKV7CjjhHX4EK+DK3RqfsXwy4uO8+x9XOcu6SSb7vOAainR+am6Cx0co66jamQ6lojZXSKzU0HD9Zduqnu8AsMdf2gZAYp25FuRL21Cwmq7CmIBfCCYiNQZromVHR6UtSU0eej21IfS8rN3ynZ0P0K7u6CSt8ap8yBhdNtB+QcEppXbe7J0yy+TZx3O+imEUrLxTHf18np2cRyMjLrho+zs55AQMzUC6il0vmTkeYFUymkAiY8zEKFzNaiormdWk2bYUIEOKaQ0msAs6/6DaFnbWF6M9RyUpunko6LHHCooUeLg9njHIFAmgUxVnwzgMPAKsiPyhJbQDylvYwmaRk1aGm6zkP4TzX05hyXyfOLQUhT1Z0i9DvNJiIpqQTBnVrNoNQGZ4+68igaDESTN8tHDuR8z7zaBQaZrswyt5XP4zlHyDrrIOxDJYFgMXeWqHWmsIjovNolH5IFY1V12RzaWOj5yYM8Ly2SIoH7uyt0J2nTgmCBMDPqBZQ2H9CRERdc3wFrO5qlEymGHfBUtAYr7qrHsu/uAUn+ATpvPD/nzCWre90wk7uveDlavZekkuWK3qMisZlauO8RrLMeyYc6HMCCpZMFwwIu0WwDeKVz3+PLpz5HnQ/QrWnepdKsqO6UyambybS6e/RURQIPXDeuqarjlDtGuZtEBLkLJHVxqPW4IwxBI5H0DpQeWqG++Vm9xJpyFlroCpaq7CD+3Kl2fwAcltBZtylXeZDLidiQUDQ2gf1zDqarYyQ0U1nY272LwlQLZU15zY3wNVtsDuHs54ny08XoQjIxhrToTvSINxKiZkdtqLLHvUzbk8gCUGluTOgNmlwecDR2lvcAyrmomkyqbLDBqpiOTaizFTgWWLiqJLFujovJSniAsxWMXelT1Yag4kgPsMwhj2VvCS7siJoHaki+pBOABfXvK7nMY1wJUpbCKH1rVmIhVRMdEWYIlP0ep0lIsUcW5witVjbxynuyfQizHxmpQcuQg+yWt/BiWOqjGEjjlSrYj8aB06Zg3qaWtmmdLHWv16tqg4gwbRs16WJrH5UoWdaBEFXSlF1OKdGYHvuSuVShtly7mMGrWw5IXvyqPSgbVCrrB6wUHR57u6Ia8VtImqMgbs80KUI6X2Eve1CuKKXWRV8qhbDS2+Hmem95/3V87/VbRmpptVsB+bDUzG2AAA4gyWs9BJZaoI56ZS7E/Plv/afvismP8Njy+rICDMLMzKgWzNC3TiAR+l8vN3qlXWoVa33ir6Yu8sgRLnr+wypPgpcmGBE2+sWW+9u8pRWMBZjXLM2QgvxmTCmapkaOf3dXIytYW/J0d3MtCVUUKGWz0PiIDFDZW0RvGVET3xX3WWLUW4IS287V/cQ94DsqCTaBs8uEYslK6hyNri0YVYFrFaKSIJQEUGk/ddu6M57hsw4SyyfuIbFz2vxRMHgwtoyotk1ewJWAiOFGtZdVusFpzcEzVtEjHgI2tiN5BWCp19KxemUW9MtN5mXIgE4KaWy/O7mBBZZrXhT/GxlIT97NELdeU5dTUh1VDb70GS7FMwAwNKM+jrfNrIuoU1k/DD7Gpjfiva6nYcHPdkq55frzxrwTFra3870h5O7//wb1aA9H+fq6yISqIn28klvsSKBF0QIlpgmzfLZF/URXFGXbNiZF3llBjKL5pnw1XJanR0VFNJ0g6H+B/pE0suxxe6ysJagdb6Ym6zXVF1+c86rdn++5KjpFsubfj42PSqTaSOVs8YcKECRMmTJgw+W2WM1Y98cWILN2yQfhS5BaIrFL/CxELsEr9L4iYDZ5nVvOLEAOd3WwONthl+Kgv/7TyAq8sbm6lvqOv0nnEaTYfssUUN3l/Gzowt365pXymmyb/48P9ONE6lLh5h/HIgQ2xaZg157Hhm/ik5IerZ69A5Ua6L9mJ93VSelBLKcmdcVSoID9gYsa1OBtlNQ07bnFcA8yT23lSYvFgwbyKm1g1NslqXqACkkbd7fBWtj3OgwWzaW5kpf7QeWHW721gOX7q2KsHazOvwNLt51+qJNs266gkOdlN/2DBbJqbuyv8Q1S5W8u+9OM634cKZrawfMO2nsZ7JMxaGineTf9QwbTNTd562gzhqRdnxv1OHyiYQb4f62ZZzWgzUT0wnQcOpr7Zh/HYXxKYLsl/DFyQaviygcysF2C7sRp7kGCS1gLQhdXTO/E2iJkm/8WASbrKoU8yTGznJu1vi/zTep7CwwYzJKaVDTc3aOtpzMzffjAJMcVB8v2mUfMLAlMn+9qMFEs37JysaCXX/K23mY6Ztv0OWOOcLNm6GrruMFhll2T/4oN/23HKIqC+EbiuG6zahrR/FZRcIxtBacN/GpjlTfypYPaN+mfVfTyRSYfkuLO1XnlOllccPsce65jaaG/6nl3tBA/Dw2ktmwciEr5YdyNf7I91fEt0x7FdrSAMP+7I79pNdDARvCZ/CkrfH+NzG/XxrVEDTLljk2HQaWfpFsF07WPUNRe+/DMrs9Bixj3nh2L5wa/eUQ5MtAEZQFQktIO5gTchi/Oy3ceWa8M/4zdKnVsKQKbXoYXOACM4k6MW0Ybmsl30J4aP/i4TAPBGbbI/3gRpOA07OqkYbePeM5aAaezHBxvjO/1YDSZ8Y/gyUyFnlfOfde91eIJFUsjeBPFG/9xhPAfCKPupbICOzBT1fd/3B/G6rTim6BujY5vwxeQQkbDfhxIdJ5QQd8CL6Dhq3vY7Z7fN6BQpMKdoY9nxG7h+A4M5nGe7FIjzCDN5kDlpDj6vUwYmdoD8/CGPilsFppt9Y0X6jGsUpP9Y+pyWOA2E2m2nX3rUzfAyIOchiuPQEslBCGcDKLnJb/k6H44oeqdMJx6Fl3YiwJsmWvYHerihXTZC1BuFOEl2mjp8MR5V8CPq4gdwO6j0aVXkIQxdbGR+TznLLQWm8dokTQ5SMZp4Ww5m7qhWxAD9s1nMOUAEyZwFETm0qGFD8rF72mlWx16LhZO07PjAvPT9zkQJxB8ZDsy+2IB61AQSCNucRYfv7aVipMxcyxc/WOG18fFP8I1Rrwp42/xhii4kr4j/VHGebQymHwATmT4b+gHRIaCKkn2kOHxTIJgoq4uMTFTiBZWtIn2uRYodERIwd0pLTE3UPF2OrOWplrOX6JT1/LAcA0q/z2An1UZJPAtEXjzuuIHbaeKm3mJ87vMtKKbUfJFyziXUsKk2t4p8K0Jd7zsXF5mDcNGnGqJDifY7F67TyZTvyHQwj6GW75BpI7vpp/YpYMK7wJfAN+44TscmVEaG83MtUshzEz9A9rPFJ4AokUaakdOAs/NAKk5CA4TzM1dFlKx9gzNdBNEZ4EPU4yuZ9uhw6PzhpHKJ/ZaP41s2dkRRj6KO/n6CJuAM6PF0Qi0hB8kEyCnauHONKe2fpGc1oHE5BlMfwDeO+hBZCHvSsewzLe0jLQaNVq65cuLQAukYsnImCN2jwrU/SnAW5F0dPJQFrqfP+2mAeXKRBbV8yhxeQ57mvRNypVIYIRmkzklNv1tyIB/wj0XdSkdhgH4KfAwm6OTmJqAcgPtV/FlEqZNVIspnLCOXcRtnMD/J/b5JIAFi07W8RVsQtCk1pSsWMibJSOZcoJRatDLDZV6np0KxR1ZcbpWfOL5YEg+/EGMPThpnQIt6B0OVYpR6s2m5it8jBVsKzKyRsSM0P8vhYs9ErBV8SuwJTfr12Yn83UKAonp0WheLS4KyQynHJZPfSWvqQCw+S0ynfP1nvEacv+YElBAw8qeQk+JQwSxMzmjGKLH3kFKzuY8CZ6ZCAi7wGRzaE4XExhTSSXv+FedNW0JbFYQp/fKA4oRbCiCzM1/fF4OZp146ZdTnKRu3I+OYz0fFmrtwmGmsNcULjmbTITJZ/7QcTHkeYpliYcoB4vI+ITGb4PozWExk9ajH9KIOsT0IY1ttC0elp+spRW0SswJcFMGkq4G0DChTOj4gvMwMgx+5sr8UPloT9ciDYGYtcDmYEZeVVGthDKaCPk1+ZGDQie6di88/kcUkCSjaYaPekSBgVqq9ihtw5WDmA3MMJp8P2epIDOZ+XWYa5WDi4x6Q03xcE0yLQKmk9CwBU6Ew0wU8Sep9+jMcfTGXF4jSAwtV0NqqqsJ4BELZedVfaYKEsQkFzGL8XRtMZRUw5fC9KGAO8GcugCmGr6csge1FbBOHKTAVKphXMZjWJycmzotfZ5/o4BBiCAmpttvtwxEMU3RReraSGSbZBiqYazHTxgoarAZmGPCVgQmyLgpyQ3FfbwqYtyC8Ig7g3OjVfFElhFh+cmYOCsTszdSuhrxXAUYjhz9AFzbYk0QAah2X3r8aup39Y3R6Iu4wu1Pkl7IaM2UD3nHQjNLEZWAqZWAq5WAqWTDHCB7kPuzTVpUIQEo8p110SmRG8SZggs8DpkXeNTbVvaPdyYRAKXS7C2Qq3a9F/EmkJQDI7jN7TwcSkqgZLwVMpKyUmmC6PrqjiO5IclSgENQ6hCBKBZhiTWaORXIeKw1MKwRIiUfBlcirq8D8xGp2gF3ZsCu5972mnWpQBEGDSnaG4krnFYSSX/ZssnWmowVNyOBr3fadcOSpYIJ6YFqd9B3d41DPUcAko0wFEw82DUylFExABTN0E0GSb3bDMz+LYF59JjAt0pcbR9UH6uXkiYal290NF6Dl67hzt1JKTaOjYz0sKQPSdU/G/KOCqdQCs985FvEdwdd+kB7plcAMNePKYNLWO8rABA+HmXtS1JP8QLi8fAIFQjmZPE8iETfVhl2iPpy8D8cckldUdqw49gyvKAFzmcr2yeKWCM6CHKdBfqSd2NsoAxPUB1OhvkUazGRR4cGBeUWwfMWNoKV88uTp0ydPJl3tcebp9PjR6J/yAoRwp6o6KsAEy8EMFIlEAekjMqNpUGCmVAqmuCKYe1VgKkWbqTwsMG0C5sXR5UTTEJiTiXrAlU19+DGLhTPPCJTitZFNGpSAKS0H05FoGETTYAUwI51CAVOqAlOqABOkvNmHBSZ5V/HV7uVTKBqE8vmItiyS6Fm7OCw05+guYEZY5s6juGcwARVMUA5mPASdpWBeSZ8DTJs8/VOM5ZPJ0+fUSHIY4UWh5k7EIpe7JzCNklfcAUzpXsEMVgDzE8aZ4bj9UkNYXl7SWLnEakbjJelcCZidVcGM3kyS64IZvtW3HxXMKM4Ur7nlavZzMPMYPaD4lwjLyeWTUXnonnZo/zzjdUo53RNFFgWlVBfMANCnR3JlGZjrMDO7ehe/hV0+BuIe9yDV7JC8J9Kwl5Pvq16pp9DUqTQy7gvMyM/M17AsB/Pb+wNzQEuuhH8bPkww8bOLv+5CFfuno+qsWpqaKevYV0oC0PXB/DoCc+dhMTP6m8I9SDDJaYnipfb08vmy16Yd2r2iTiwwU14bzJjr+SW52KB9fGZSyj0sIOYf60GBiXWn9M9OJ5ePlye809RMCjyGYonzb60LphxpdGmvDOWPB+bXpSSPvHZJ6RfHpABm8MnBJM8i/dvTy4O6yIdD8ypx2+LfHdNptHposlcyoB2pJNSNwZTuD0zJL8wxUFD+bin0wScPTcKZ/p//20F96PNjI1+LFEuKvJg4NPHrWb5i0JCF243vmHdzd0rBtOK/7JS+yzUVTPGnMp2Ye7Q3LhQfJYP1idrVRTP98s9Wwj6nPWIepcstg3RcmtWWfYVKiUzykBKiWsnsABLgSihr0b11imec4j9dzeaUfJifS+mkVFhWfOPkkT7NPs1o1kova16QGs4UEsOEsOI+/kyyu/etJHWOYz3rUsdXBGVvdJ3Adoxr/mXDBpK0Hz9ATgfqpcr0WZlmTkx6ljsYTEmS8noh9H6ka/oChDSkZrzTedyPKifhSodUu7Kzk2amGFeIp22pBPSwzsDnnsVgSv7QvY7GOTnWWOosSc2Gdzx+9S26415a0Q6Gw6+fFexToQr+WixzthMNmcloITAl0HmF0dyL+TYkgyVlS6lTb3xcEpetMLx34WW04ix9W9dE76XBhArHiqxm+tRpEe3ak751UvYKT/W9fn4Q4VwfVq7kxHcU0R0QT4CYumPEBgOkVPqg7ImlVxkc3PQn6WSUr4Q2pSCLyotg4J7g7f2EqjmXzQASKJmYKStT8MnvXeSddNRYr/WDI2bPB5e+DVcv5VcSSJbIFPih/6qfcTGSYbDs1GIalEHJRPr3UurNFMhtsqcoTdlwHxDa855+83gvFtryC/jU4yo78eeUB9+m/yTa/YSZ0tcEqVcIQLQ14xrg+idJuh6WDSEexZj68lBPf0pRDz5qL5KBlJVny9/NvZYoEo7CAEhSioRuPDIi+c0rJ3TxilLi7Tm6FOEpwusjG3lG3keSwhJ6GJMWpUP9jPhxyYx6RXmMYcTM2MY5e+gRpG9DK7qX4Z68R7n9sPSNzz4iL591Op2zM//ZMx990znzl4O586yDXg8vOPOxwB/OzgahqrV2bAU/tWLvpLYQuXto3AdueHujswMFfyHiODudsqDaHeDpI4Ljjps83nAAvaPr/a+inZapm8VC5pJD+Qvhppx7CvgcO+G+Wm4nDVmwY2MPAOiDfGMbyhs7YcUM+i4nnd+2PkqyLFvwv+Jv5Ydzx7We4ZO+HxMmTJgwYcKECZMvWeQeG4MvRtSuxwbhC5FpV1PZKHwhsqsJkxEbhi9Eyz4RJkzPfgkCUTz448kRrQk1k4ctB+r30Te4W19P0NQD7geB89SuhouWHke71R7vzjZ3mH6Sld0KUWvLYalQXpx5j9zj/ORnP/nZ38neZEJqBr3T7mSK+hVru7vCDMYmgiY8vYToPYZ/wCnw0eXkcsT93U8K9yl+DsrTtQ5bRKqel/LUafnT3M8/+xn8DNmHqZ+s///pLaTodIYgZQAAAABJRU5ErkJggg==";
+const LOGO_ICON_URI = "data:image/png;base64,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";
+
+const SERVICES_DATA = [{"category": "Aadhaar Services", "service": "Aadhaar Address Update", "govtCharge": 75, "aarambhCharge": 74, "price": 74, "turnaround": "24-48 Hours", "fields": ["Full Name", "Email ID", "Aadhaar Number", "New Address", "Aadhar linked Mobile Number"], "docs": ["Address proof (Any One from the Following - electricity bill/rent agreement/bank passbook)"], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar NPCI Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Email ID", "Aadhaar Number", "Banke Name", "Bank Account Number", "IFSC Code"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar-PAN Link", "govtCharge": 1000, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Aadhaar Number", "PAN Number", "Full Name", "Email ID", "Date of Birth", "Aadhar Linked Mobile Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Aadhaar Services", "service": "Aadhaar PVC Card", "govtCharge": 75, "aarambhCharge": 74, "price": 74, "turnaround": "24-48 Hours", "fields": ["Aadhaar Number", "Full Name", "Email ID", "Mobile Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "New PAN Card", "govtCharge": 106, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Signature", "Date of Birth Proof - School Leaving Certificate/Voter iD/ Birth Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "PAN Card Correction", "govtCharge": 106, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["PAN Number", "Field to correct", "Correct details Full Name", "DOB", "Father's Name", "Address", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Signature", "Date of Birth Proof - School Leaving Certificate/Voter iD/ Birth Certificate", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "PAN Card Services", "service": "Reprint PAN Card", "govtCharge": 50, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Aadhar Number", "PAN Number", "Full Name", "Mobile Number", "Email ID"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Voter Card Services", "service": "New Voter Card", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Husband's Name", "Mobile", "Email"], "docs": ["Aadhaar copy", "Passport size photo", "Address proof", "Parents Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Voter Card Services", "service": "Voter Card Correction", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Voter ID Number", "Field to correct", "Correct details"], "docs": ["Voter ID copy", "Aadhaar copy", "Supporting proof"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Learners License", "govtCharge": 350, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Blood Group", "Vehicle Class", "Education Qualification", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Passport size photo", "Address proof", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "Permanent DL", "govtCharge": 300, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Learner's License Number", "Full Name", "DOB", "Address", "Mobile Number", "Email ID"], "docs": ["Learner's License copy", "Aadhaar copy", "Photo", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "Duplicate Driving License", "govtCharge": 300, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["DL Number", "Full Name", "Reason for duplicate", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Old DL copy (if any)", "Photo"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "DL Aadhaar Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["DL Number", "Aadhaar Number", "Full Name", "Mobile Number", "Email ID"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "DL Address Change", "govtCharge": 300, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["DL Number", "New Address", "Full Name", "Mobile Number", "Email id"], "docs": ["DL copy", "New address proof - Aadhar card/Electricity Bill/Rent Agreement/Bank Passbook"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "International Driving License Permit (IDP)", "govtCharge": 300, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["DL Number", "Passport Number", "Travel Country", "Full Name", "Mobile Number", "Email id"], "docs": ["DL copy", "Passport copy", "Aadhar card", "Photo", "Signature"], "active": true, "noteType": "info", "noteText": "Notes mai add karna State wise govt charges alag rahte hai so aapko additional charges bhi pay karne pad sakte hai"}, {"category": "Driving License & Vehicle", "service": "RC Aadhaar Link", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Vehicle RC Number", "Aadhaar Number", "Full Name", "Mobile Number", "Email ID"], "docs": ["RC copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "2 Wheeler HSRP Number Plate", "govtCharge": 531, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "4 Wheeler HSRP Number Plate", "govtCharge": 880, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "HSRP Colour Coded Fuel Sticker", "govtCharge": 290, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", "Last 5 digit of Chassis Number", "Last 5 digit of Engine Number", "Current City Pincode"], "docs": ["Vehicle RC Copy", "Front Number photo", "Rear Number plate photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Vehicle Challan Payment", "govtCharge": 0, "aarambhCharge": 49, "price": 49, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Vehicle Tax", "govtCharge": 0, "aarambhCharge": 49, "price": 49, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "Fastag KYV", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", ""], "docs": ["RC copy", "Aadhaar copy", "Vehicle photo from Front", "Vehicle photo from Side"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "FASTag One Year Pass", "govtCharge": 400, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Vehicle Registration Number", "Full Name", "Mobile Number", "Email id", ""], "docs": ["RC copy", "Aadhaar copy", "Vehicle photo from Front", "Vehicle photo from Side"], "active": true, "noteType": null, "noteText": null}, {"category": "Driving License & Vehicle", "service": "FTI-TTP Registration", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Passport Number", "Date of Birth", "Address", "Mobile Number", "Email id"], "docs": ["Passport copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Passport Services", "service": "New Passport", "govtCharge": 2500, "aarambhCharge": 249, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile Number", "Email ID", "Emergency Contact Name and Number"], "docs": ["Aadhaar copy", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "Passport Services", "service": "Passport Renewal", "govtCharge": 2500, "aarambhCharge": 249, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Father's/Mother's Name", "Mobile Number", "Email ID", "Emergency Contact Name and Number"], "docs": ["Aadhaar copy", "Pan card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Caste Certificate - Haryana", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Father's Name", "Family ID Number Caste", "Address", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Domicile/residence proof", "Old caste certificate (if any)", "School Leaving Certificate", "Family ID card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Caste Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Father's Name", "Caste", "Address", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Domicile/residence proof", "Old caste certificate (if any)", "School Leaving Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Domicile Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Address", "DOB", "Mobile Number", "Email id", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Residence proof", "School leaving certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Income Certificate - Haryana", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Emaild ID", "Family ID", "Family Annual Income", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Income proof/salary slip", "Address proof", "Photo", "Signature", "Family ID Card"], "active": true, "noteType": null, "noteText": null}, {"category": "State Certificates", "service": "Income Certificate - Maharashtra", "govtCharge": 0, "aarambhCharge": 199, "price": 199, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Emaild ID", "Family Annual Income", "Purpose of Certificate"], "docs": ["Aadhaar copy", "Income proof/salary slip", "Address proof", "Photo", "Signature"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Andhra Pradesh", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Assam", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate", "Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Karnataka", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Senior Citizen Cards", "service": "Senior Citizen Card - Maharashtra", "govtCharge": 0, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Address", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo", "Age proof - Pan card/School Leaving Certificate/Birth Certificate", "Voter ID"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "GST Registration", "govtCharge": 0, "aarambhCharge": 249, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email id", "Business Name", "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP", "Business Address", "Business Starting Date", "Nature of Business"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Electricity Bill/Rent Agreement/Consent Letter", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "GSTIN Verification", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["GSTIN Number"], "docs": [], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "Udyam Registration", "govtCharge": 0, "aarambhCharge": 249, "price": 249, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email id", "Business Name", "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP", "Business Address", "Business Starting Date", "Nature of Business"], "docs": ["Aadhaar copy", "PAN copy", "Bank Passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Business & Tax", "service": "FSSAI New Food License", "govtCharge": 100, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email ID", "Business Name", "Address", "Turnover", "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop", "Number of Year want to apply"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Rent Agreement/Electricity Bill", "Photo"], "active": true, "noteType": "per_year", "noteText": "Isme jitne mene per year ka price mention kiya hai so customer jitne saal ka bole uska multiple hoga govt charges but Aarambh services charges same rahenge"}, {"category": "Business & Tax", "service": "FSSAI Food License Renewal", "govtCharge": 100, "aarambhCharge": 149, "price": 149, "turnaround": "24-48 Hours", "fields": ["Full Name", "Mobile Number", "Email ID", "Old FSSAI License Number", "Business Name", "Address", "Turnover", "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop", "Number of Year want to apply"], "docs": ["PAN copy", "Aadhaar copy", "Business address proof - Rent Agreement/Electricity Bill", "Photo", "Old FSSAI License Number"], "active": true, "noteType": "per_year", "noteText": "Isme jitne mene per year ka price mention kiya hai so customer jitne saal ka bole uska multiple hoga govt charges but Aarambh services charges same rahenge"}, {"category": "Business & Tax", "service": "ITR (Income Tax Return)", "govtCharge": 0, "aarambhCharge": 999, "price": 999, "turnaround": "24-48 Hours", "fields": ["PAN Number", "Aadhaar Number", "Income Source", "Financial Year"], "docs": ["PAN copy", "Aadhaar copy", "Form 16/Income proof", "Bank statement"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Atal Pension Yojana", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PMJJBY", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PMSBY", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Bank Account", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Ayushman Service", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Aadhaar Number", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Ration card"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "e-Shram Card", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "Aadhaar Number", "Occupation", "Mobile Number", "Email id"], "docs": ["Aadhaar copy", "Bank passbook"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "PM Internship Registration", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Qualification", "Aadhaar Number", "Mobile number", "Email id"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "ABHA Service", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Aadhaar Number", "Mobile number", "Email ID"], "docs": ["Aadhaar copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "Apaar ID", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "School/College Name", "Aadhaar Number", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy"], "active": true, "noteType": null, "noteText": null}, {"category": "Govt Schemes & Social Security", "service": "UDID Service (Disability ID)", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name", "DOB", "Disability Type/Percentage", "Address", "Mobile Number", "Email ID"], "docs": ["Aadhaar copy", "Photo"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Kashi Vishwanath Darshan Booking", "govtCharge": 300, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Mahakaleshwar Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Sai Baba Darshan Booking", "govtCharge": 200, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Srisailam Devasthanam Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}, {"category": "Darshan Booking", "service": "Vitthal Rukmini Darshan Booking", "govtCharge": 0, "aarambhCharge": 99, "price": 99, "turnaround": "24-48 Hours", "fields": ["Full Name(s)", "ID Proof Number", "Visit Date", "No. of Persons"], "docs": ["Aadhaar/ID copy of all visitors"], "active": true, "noteType": null, "noteText": null}];
+
+const FIELD_TRANSLATIONS = {
+  "Aadhaar Number": {hi:"आधार नंबर", mr:"आधार क्रमांक"},
+  "Aadhar Number": {hi:"आधार नंबर", mr:"आधार क्रमांक"},
+  "Aadhar Linked Mobile Number": {hi:"आधार से लिंक्ड मोबाइल नंबर", mr:"आधार लिंक केलेला मोबाइल क्रमांक"},
+  "Aadhar linked Mobile Number": {hi:"आधार से लिंक्ड मोबाइल नंबर", mr:"आधार लिंक केलेला मोबाइल क्रमांक"},
+  "Address": {hi:"पता", mr:"पत्ता"},
+  "Bank Account": {hi:"बैंक खाता", mr:"बँक खाते"},
+  "Bank Account Number": {hi:"बैंक खाता संख्या", mr:"बँक खाते क्रमांक"},
+  "Banke Name": {hi:"बैंक का नाम", mr:"बँकेचे नाव"},
+  "Blood Group": {hi:"रक्त समूह", mr:"रक्तगट"},
+  "Business Address": {hi:"व्यवसाय का पता", mr:"व्यवसायाचा पत्ता"},
+  "Business Name": {hi:"व्यवसाय का नाम", mr:"व्यवसायाचे नाव"},
+  "Business Starting Date": {hi:"व्यवसाय शुरू होने की तिथि", mr:"व्यवसाय सुरू झाल्याची तारीख"},
+  "Business Type": {hi:"व्यवसाय का प्रकार", mr:"व्यवसायाचा प्रकार"},
+  "Caste": {hi:"जाति", mr:"जात"},
+  "Correct details": {hi:"सही विवरण", mr:"योग्य तपशील"},
+  "Correct details Full Name": {hi:"सही विवरण (पूरा नाम)", mr:"योग्य तपशील (पूर्ण नाव)"},
+  "Current City Pincode": {hi:"वर्तमान शहर का पिन कोड", mr:"सध्याच्या शहराचा पिन कोड"},
+  "DL Number": {hi:"ड्राइविंग लाइसेंस नंबर", mr:"ड्रायव्हिंग लायसन्स क्रमांक"},
+  "DOB": {hi:"जन्म तिथि (DD-MM-YYYY)", mr:"जन्मतारीख (DD-MM-YYYY)"},
+  "Date of Birth": {hi:"जन्म तिथि (DD-MM-YYYY)", mr:"जन्मतारीख (DD-MM-YYYY)"},
+  "Disability Type/Percentage": {hi:"दिव्यांगता का प्रकार/प्रतिशत", mr:"अपंगत्वाचा प्रकार/टक्केवारी"},
+  "Education Qualification": {hi:"शैक्षणिक योग्यता", mr:"शैक्षणिक पात्रता"},
+  "Email": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Email ID": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Email id": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Emaild ID": {hi:"ईमेल आईडी", mr:"ईमेल आयडी"},
+  "Emergency Contact Name and Number": {hi:"आपातकालीन संपर्क नाम एवं नंबर", mr:"आपत्कालीन संपर्क नाव व क्रमांक"},
+  "Family Annual Income": {hi:"पारिवारिक वार्षिक आय", mr:"कौटुंबिक वार्षिक उत्पन्न"},
+  "Family ID": {hi:"फैमिली आईडी", mr:"फॅमिली आयडी"},
+  "Family ID Number Caste": {hi:"फैमिली आईडी नंबर / जाति", mr:"फॅमिली आयडी क्रमांक / जात"},
+  "Father's Name": {hi:"पिता का नाम", mr:"वडिलांचे नाव"},
+  "Father's/Husband's Name": {hi:"पिता/पति का नाम", mr:"वडील/पतीचे नाव"},
+  "Father's/Mother's Name": {hi:"माता-पिता का नाम", mr:"आई-वडिलांचे नाव"},
+  "Field to correct": {hi:"सुधारी जाने वाली जानकारी", mr:"दुरुस्त करायची माहिती"},
+  "Financial Year": {hi:"वित्तीय वर्ष", mr:"आर्थिक वर्ष"},
+  "Full Name": {hi:"पूरा नाम", mr:"पूर्ण नाव"},
+  "Full Name(s)": {hi:"पूरा नाम (सभी व्यक्तियों का)", mr:"पूर्ण नाव (सर्व व्यक्तींचे)"},
+  "GSTIN Number": {hi:"जीएसटीआईएन नंबर", mr:"जीएसटीआयएन क्रमांक"},
+  "ID Proof Number": {hi:"पहचान पत्र संख्या", mr:"ओळखपत्र क्रमांक"},
+  "IFSC": {hi:"आईएफएससी कोड", mr:"आयएफएससी कोड"},
+  "IFSC Code": {hi:"आईएफएससी कोड", mr:"आयएफएससी कोड"},
+  "Income Source": {hi:"आय का स्रोत", mr:"उत्पन्नाचा स्रोत"},
+  "Last 5 digit of Chassis Number": {hi:"चेसिस नंबर के अंतिम 5 अंक", mr:"चेसिस क्रमांकाचे शेवटचे 5 अंक"},
+  "Last 5 digit of Engine Number": {hi:"इंजन नंबर के अंतिम 5 अंक", mr:"इंजिन क्रमांकाचे शेवटचे 5 अंक"},
+  "Learner's License Number": {hi:"लर्निंग लाइसेंस नंबर", mr:"लर्निंग लायसन्स क्रमांक"},
+  "Mobile": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile Number": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile number": {hi:"मोबाइल नंबर", mr:"मोबाइल क्रमांक"},
+  "Mobile linked": {hi:"लिंक्ड मोबाइल नंबर", mr:"लिंक केलेला मोबाइल क्रमांक"},
+  "Nature of Business": {hi:"व्यवसाय की प्रकृति", mr:"व्यवसायाचे स्वरूप"},
+  "New Address": {hi:"नया पता", mr:"नवीन पत्ता"},
+  "No. of Persons": {hi:"व्यक्तियों की संख्या", mr:"व्यक्तींची संख्या"},
+  "Number of Year want to apply": {hi:"आप कितने वर्षों के लिए आवेदन करना चाहते हैं", mr:"तुम्हाला किती वर्षांसाठी अर्ज करायचा आहे"},
+  "Occupation": {hi:"व्यवसाय/पेशा", mr:"व्यवसाय"},
+  "Old FSSAI License Number": {hi:"पुराना एफएसएसएआई लाइसेंस नंबर", mr:"जुना एफएसएसएआय परवाना क्रमांक"},
+  "PAN Number": {hi:"पैन नंबर", mr:"पॅन क्रमांक"},
+  "Passport Number": {hi:"पासपोर्ट नंबर", mr:"पासपोर्ट क्रमांक"},
+  "Purpose of Certificate": {hi:"प्रमाणपत्र का उद्देश्य", mr:"प्रमाणपत्राचा उद्देश"},
+  "Qualification": {hi:"शैक्षणिक योग्यता", mr:"शैक्षणिक पात्रता"},
+  "Reason for duplicate": {hi:"डुप्लीकेट का कारण", mr:"डुप्लिकेटचे कारण"},
+  "School/College Name": {hi:"स्कूल/कॉलेज का नाम", mr:"शाळा/महाविद्यालयाचे नाव"},
+  "Travel Country": {hi:"यात्रा देश", mr:"प्रवास देश"},
+  "Turnover": {hi:"वार्षिक टर्नओवर", mr:"वार्षिक उलाढाल"},
+  "Type of Business - Hotel/Cloud Kitchen/Restaurant/Trader/Retailer/Hawker/Tea and Snack Shop": {hi:"व्यवसाय का प्रकार - होटल/क्लाउड किचन/रेस्टोरेंट/ट्रेडर/रिटेलर/हॉकर/टी एंड स्नैक शॉप", mr:"व्यवसायाचा प्रकार - हॉटेल/क्लाउड किचन/रेस्टॉरंट/ट्रेडर/रिटेलर/हॉकर/टी अँड स्नॅक शॉप"},
+  "Type of Orgainisation - Properitorship/Partnership/ Pvt Ltd/Public Ltd/LLP": {hi:"संस्था का प्रकार - प्रोप्राइटरशिप/पार्टनरशिप/प्राइवेट लिमिटेड/पब्लिक लिमिटेड/एलएलपी", mr:"संस्थेचा प्रकार - प्रोप्रायटरशिप/पार्टनरशिप/प्रायव्हेट लिमिटेड/पब्लिक लिमिटेड/एलएलपी"},
+  "Vehicle Class": {hi:"वाहन श्रेणी", mr:"वाहन प्रकार"},
+  "Vehicle RC Number": {hi:"वाहन आरसी नंबर", mr:"वाहन आरसी क्रमांक"},
+  "Vehicle Registration Number": {hi:"वाहन पंजीकरण क्रमांक", mr:"वाहन नोंदणी क्रमांक"},
+  "Visit Date": {hi:"यात्रा तिथि", mr:"भेटीची तारीख"},
+  "Voter ID Number": {hi:"वोटर आईडी नंबर", mr:"वोटर आयडी क्रमांक"}
+};
+
+function translateField(field, lang){
+  if (lang === 'en') return field;
+  const t = FIELD_TRANSLATIONS[field];
+  return t && t[lang] ? t[lang] : field;
+}
+
+
+const STRINGS = {
+  en: {
+    stepInfo:"Info", stepConfirm:"Confirm", stepPayment:"Payment", stepDocs:"Documents",
+    welcome:"👋 <b>Welcome to Aarambh!</b><br>We assist with government documents and services — Aadhaar, PAN, Passport, Driving Licence, GST and many more — in a simple and reliable manner.",
+    askName:"Let's get started. May I have your <b>full name</b>, please?",
+    namePlaceholder:"Enter your full name…",
+    nameError:"Please enter your name",
+    thanksAskPhone:(n)=>`Thank you, <b>${n}</b>. Could you share your <b>10-digit mobile number</b>?`,
+    phonePlaceholder:"Enter 10-digit number…",
+    phoneError:"Please enter a valid 10-digit mobile number",
+    askCategoryOrService:"Which <b>category</b> would you like assistance with? Or simply type what you need — for example, <i>\"Aadhaar PVC Card\"</i>.",
+    directInputPlaceholder:"Type a category or a service name…",
+    noDirectMatch:"I couldn't quite find that. Please choose a category below, or try typing the service name again.",
+    directMatchAck:(s)=>`Got it! Let's proceed with <b>${s}</b>.`,
+    askService:(c)=>`Please select a <b>service</b> under <b>${c}</b>:`,
+    priceLabel:(p)=>p?`₹${p}`:"Price: to be confirmed",
+    turnaroundLabel:(t)=>t||"Turnaround: to be confirmed",
+    fieldError:"Please provide this information",
+    yearsError:"Please enter a valid number of years (1–10)",
+    noteInfoText:"ℹ️ Please note: Only Aarambh's service charge is payable now. Pay rest Govt fee at the time of Application processing.",
+    notePerYearText:"ℹ️ Only our service charge is payable now. The government fee (per year) is to be paid at the time of Application processing.",
+    summaryIntro:"✅ We have all the required details. Please review your application:",
+    summaryTitle:"📋 Application Summary",
+    labelName:"Name", labelPhone:"Phone", labelService:"Service",
+    labelFee:"Aarambh Service Charge (payable now)", labelTurnaround:"Turnaround Time",
+    labelGovtCharges:(y)=>y?`Government Charges (${y} yr${y>1?'s':''})`:"Government Charges",
+    labelAarambhCharges:"Aarambh Service Charges",
+    feeTBD:"To be confirmed",
+    confirmBtn:"✅ Confirm — Looks Good",
+    startOverBtn:"✏️ Start Over",
+    invoiceBtn:"📄 Download Invoice (PDF)", invoiceMaking:"Preparing your invoice…",
+    paymentIntro:"💳 Let's proceed to the payment step.",
+    payCardTitle:"Amount Payable",
+    payForService:(s)=>`for <b>${s}</b>`,
+    payTrustBadge:"Registered Service · Safe Payment",
+    govtNote:"Pay rest Govt fee at the time of Application processing",
+    payInclTitle:"What's included", payIncl:["Application & document checklist","Form filling and application assistance","Application review before submission","Status updates and support on WhatsApp"],
+    payAfterTitle:"What happens after payment", payAfter:["Upload your documents (or send them later)","Our team verifies your details and assists with the application","We keep you updated on WhatsApp"],
+    payDisclaimer:"Aarambh is a private assistance platform. Government authorities independently process and decide applications.",
+    payRzpBtn:(amt)=>`💳 Pay ${amt} Securely (UPI / Card / NetBanking)`,
+    payRzpHint:"Instant confirmation — no screenshot needed. Powered by Razorpay.",
+    rzpLoading:"Opening secure payment…",
+    rzpCancelled:"Payment was cancelled. You can try again whenever you are ready.",
+    rzpFailed:(m)=>`⚠️ Payment failed${m ? ': ' + m : ''}. Please try again.`,
+    rzpVerifyFail:"⚠️ We could not verify your payment. If money was deducted, please contact us on WhatsApp with your payment ID.",
+    rzpNotReady:"⚠️ Online payment is not available right now. Please try again in a moment, or contact us on WhatsApp.",
+    payTBDNote:"Our team will confirm the exact fee with you shortly. You can continue with your documents for now.",
+    rzpPaidStatus:"Paid — Razorpay Verified ✅",
+    verifyingPayment:"Verifying your payment…",
+    continuePayLater:"➡️ Continue",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`<b>Payment Received - Your ${service} is Confirmed</b><br><br>Hi <b>${name}</b>, your <b>₹${amount}</b> has been received, and your <b>${service}</b> request is now registered with <b>Aarambh India</b>.<br><br><b>Transaction ID:</b> ${txnId}<br><b>Status:</b> Payment Received. Verification and application processing pending.<br><br><b>What happens next?</b><br>Our representative will contact you within 24-48 hours to verify your details, confirm the required documents and begin processing your application.<br><b>Authorised Number:</b> ${AUTHORISED_PHONE}<br><br>Please upload your documents below to proceed.<br>No additional payment is required now beyond <b>₹${amount}</b>. Pay rest Govt fee (if applicable) at the time of Application processing.<br><br>Your request is safely registered with <b>Aarambh India</b>. We'll keep you updated.<br><br>Thank you,<br><b>Team Aarambh India</b>`,
+    docUploadPrompt:(d)=>`📎 Please provide: <b>${d}</b>`,
+    docChoiceNow:"📤 Upload Now",
+    docChoiceLater:"🕐 At the time of processing",
+    docSingleFileLabel:(mb)=>`Select this document (photo/PDF, up to ${mb}MB):`,
+    docUploadSubmitBtn:"Upload & Continue",
+    docTooBig:(mb)=>`File too large (max ${mb}MB). Please choose a smaller file.`,
+    docFileAttached:"📎 Document attached",
+    docFileNone:"No file selected — will submit later",
+    uploading:"Uploading…",
+    noDocsNeededMsg:"✅ No documents are required for this service.",
+    finalTitle:(n)=>`🎉 <b>Thank you, ${n}!</b>`,
+    finalBody:"Your application has been received. Our team will contact you within <b>24–48 hours</b> to complete the process.",
+    exploreBtn:"🔎 Explore Other Services",
+    submitError:"⚠️ There was an issue submitting your application. Please try again in a moment.",
+    langPrompt:"👋 Welcome! Please choose your preferred language to continue.",
+    mainMenuBtn:"Main Menu",
+  },
+  hi: {
+    stepInfo:"जानकारी", stepConfirm:"पुष्टि", stepPayment:"भुगतान", stepDocs:"दस्तावेज़",
+    welcome:"👋 <b>आरंभ में आपका स्वागत है!</b><br>हम सरकारी दस्तावेज़ों और सेवाओं — आधार, पैन, पासपोर्ट, ड्राइविंग लाइसेंस, जीएसटी और अन्य कई सेवाओं — में सरल एवं भरोसेमंद तरीके से आपकी सहायता करते हैं।",
+    askName:"चलिए शुरुआत करते हैं। कृपया अपना <b>पूरा नाम</b> बताइए।",
+    namePlaceholder:"अपना पूरा नाम लिखें…",
+    nameError:"कृपया अपना नाम दर्ज करें",
+    thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>। कृपया अपना <b>10 अंकों का मोबाइल नंबर</b> साझा करें।`,
+    phonePlaceholder:"10 अंकों का नंबर लिखें…",
+    phoneError:"कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें",
+    askCategoryOrService:"आपको किस <b>श्रेणी</b> में सहायता चाहिए? या सीधे अपनी आवश्यकता लिखें — जैसे, <i>\"Aadhaar PVC Card\"</i>।",
+    directInputPlaceholder:"श्रेणी चुनें या सेवा का नाम लिखें…",
+    noDirectMatch:"माफ़ कीजिए, हमें यह समझ नहीं आया। कृपया नीचे दी गई श्रेणी में से चुनें, या सेवा का नाम दोबारा लिखने की कोशिश करें।",
+    directMatchAck:(s)=>`बिल्कुल! चलिए <b>${s}</b> के लिए आगे बढ़ते हैं।`,
+    askService:(c)=>`<b>${c}</b> में से कृपया अपनी <b>सेवा</b> चुनें:`,
+    priceLabel:(p)=>p?`₹${p}`:"शुल्क: शीघ्र सूचित किया जाएगा",
+    turnaroundLabel:(t)=>t||"समयावधि: शीघ्र सूचित की जाएगी",
+    fieldError:"कृपया यह जानकारी दर्ज करें",
+    yearsError:"कृपया सही वर्षों की संख्या दर्ज करें (1–10)",
+    noteInfoText:"ℹ️ कृपया ध्यान दें: अभी केवल आरंभ का सेवा शुल्क देय है। बाकी सरकारी शुल्क आवेदन प्रोसेसिंग के समय दें।",
+    notePerYearText:"ℹ️ अभी केवल हमारा सेवा शुल्क देय है। सरकारी शुल्क (प्रति वर्ष) आवेदन प्रोसेसिंग के समय देना होगा।",
+    summaryIntro:"✅ सभी आवश्यक जानकारी प्राप्त हो गई है। कृपया अपना आवेदन जाँच लें:",
+    summaryTitle:"📋 आवेदन सारांश",
+    labelName:"नाम", labelPhone:"फ़ोन नंबर", labelService:"सेवा",
+    labelFee:"आरंभ सेवा शुल्क (अभी देय)", labelTurnaround:"समयावधि",
+    labelGovtCharges:(y)=>y?`सरकारी शुल्क (${y} वर्ष)`:"सरकारी शुल्क",
+    labelAarambhCharges:"आरंभ सेवा शुल्क",
+    feeTBD:"शीघ्र पुष्टि की जाएगी",
+    confirmBtn:"✅ पुष्टि करें — सही है",
+    startOverBtn:"✏️ पुनः आरंभ करें",
+    invoiceBtn:"📄 इनवॉइस डाउनलोड करें (PDF)", invoiceMaking:"इनवॉइस तैयार हो रहा है…",
+    paymentIntro:"💳 अब हम भुगतान चरण की ओर बढ़ते हैं।",
+    payCardTitle:"देय राशि",
+    payForService:(s)=>`<b>${s}</b> हेतु`,
+    payTrustBadge:"पंजीकृत सेवा · सुरक्षित भुगतान",
+    govtNote:"बाकी सरकारी शुल्क आवेदन प्रोसेसिंग के समय दें",
+    payInclTitle:"इसमें क्या शामिल है", payIncl:["आवेदन और दस्तावेज़ चेकलिस्ट","फॉर्म भरने और आवेदन में सहायता","जमा करने से पहले आवेदन की जांच","WhatsApp पर स्टेटस अपडेट और सहायता"],
+    payAfterTitle:"भुगतान के बाद क्या होगा", payAfter:["अपने दस्तावेज़ अपलोड करें (या बाद में भेजें)","हमारी टीम आपका विवरण जांचकर आवेदन में सहायता करेगी","हम आपको WhatsApp पर अपडेट देते रहेंगे"],
+    payDisclaimer:"Aarambh एक निजी सहायता मंच है। आवेदन की प्रक्रिया और निर्णय सरकारी विभाग स्वतंत्र रूप से करते हैं।",
+    payRzpBtn:(amt)=>`💳 ${amt} सुरक्षित भुगतान करें (UPI / कार्ड / नेटबैंकिंग)`,
+    payRzpHint:"तुरंत पुष्टि — स्क्रीनशॉट की ज़रूरत नहीं। Razorpay द्वारा संचालित।",
+    rzpLoading:"सुरक्षित भुगतान खुल रहा है…",
+    rzpCancelled:"भुगतान रद्द किया गया। आप जब चाहें दोबारा कोशिश कर सकते हैं।",
+    rzpFailed:(m)=>`⚠️ भुगतान विफल रहा${m ? ': ' + m : ''}। कृपया दोबारा प्रयास करें।`,
+    rzpVerifyFail:"⚠️ हम आपका भुगतान सत्यापित नहीं कर सके। यदि पैसे कट गए हैं तो कृपया अपनी पेमेंट ID के साथ WhatsApp पर संपर्क करें।",
+    rzpNotReady:"⚠️ ऑनलाइन भुगतान अभी उपलब्ध नहीं है। कृपया थोड़ी देर बाद दोबारा प्रयास करें या WhatsApp पर संपर्क करें।",
+    payTBDNote:"हमारी टीम जल्द ही आपको सटीक शुल्क की पुष्टि करेगी। फ़िलहाल आप अपने दस्तावेज़ों के साथ आगे बढ़ सकते हैं।",
+    rzpPaidStatus:"Paid — Razorpay Verified ✅",
+    verifyingPayment:"आपका भुगतान सत्यापित किया जा रहा है…",
+    continuePayLater:"➡️ आगे बढ़ें",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`<b>भुगतान प्राप्त हुआ - आपकी ${service} की पुष्टि हो गई है</b><br><br>नमस्ते <b>${name}</b>, आपका <b>₹${amount}</b> प्राप्त हो गया है, और आपकी <b>${service}</b> संबंधी अर्ज़ी अब <b>Aarambh India</b> के पास पंजीकृत हो गई है।<br><br><b>ट्रांज़ैक्शन आईडी:</b> ${txnId}<br><b>स्थिति:</b> भुगतान प्राप्त हो गया है। सत्यापन एवं आवेदन प्रक्रिया लंबित है।<br><br><b>आगे क्या होगा?</b><br>हमारा प्रतिनिधि 24-48 घंटों के भीतर आपसे संपर्क कर आपकी जानकारी सत्यापित करेगा, आवश्यक दस्तावेज़ों की पुष्टि करेगा और आपके आवेदन की प्रक्रिया शुरू करेगा।<br><b>अधिकृत नंबर:</b> ${AUTHORISED_PHONE}<br><br>कृपया आगे बढ़ने हेतु अपने दस्तावेज़ नीचे अपलोड करें।<br>अभी <b>₹${amount}</b> के अतिरिक्त कोई भुगतान आवश्यक नहीं है। बाकी सरकारी शुल्क (यदि लागू हो) आवेदन प्रोसेसिंग के समय दें।<br><br>आपकी अर्ज़ी <b>Aarambh India</b> के पास सुरक्षित रूप से पंजीकृत है। हम आपको अपडेट करते रहेंगे।<br><br>धन्यवाद,<br><b>टीम आरंभ इंडिया</b>`,
+    docUploadPrompt:(d)=>`📎 कृपया प्रदान करें: <b>${d}</b>`,
+    docChoiceNow:"📤 अभी अपलोड करें",
+    docChoiceLater:"🕐 प्रोसेसिंग के समय",
+    docSingleFileLabel:(mb)=>`यह दस्तावेज़ चुनें (फ़ोटो/PDF, अधिकतम ${mb}MB):`,
+    docUploadSubmitBtn:"अपलोड करें और आगे बढ़ें",
+    docTooBig:(mb)=>`फ़ाइल बहुत बड़ी है (अधिकतम ${mb}MB)। कृपया छोटी फ़ाइल चुनें।`,
+    docFileAttached:"📎 दस्तावेज़ संलग्न",
+    docFileNone:"कोई फ़ाइल नहीं चुनी गई — बाद में जमा करेंगे",
+    uploading:"अपलोड हो रहा है…",
+    noDocsNeededMsg:"✅ इस सेवा के लिए फ़िलहाल कोई दस्तावेज़ आवश्यक नहीं है।",
+    finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
+    finalBody:"आपका आवेदन प्राप्त हो गया है। हमारी टीम <b>24–48 घंटों</b> के भीतर आपसे संपर्क कर प्रक्रिया पूर्ण करेगी।",
+    exploreBtn:"🔎 अन्य सेवाएं देखें",
+    submitError:"⚠️ आवेदन सबमिट करते समय एक समस्या उत्पन्न हुई। कृपया कुछ समय बाद पुनः प्रयास करें।",
+    langPrompt:"👋 स्वागत है! जारी रखने हेतु कृपया अपनी पसंदीदा भाषा चुनें।",
+    mainMenuBtn:"मुख्य मेनू",
+  },
+  mr: {
+    stepInfo:"माहिती", stepConfirm:"पुष्टी", stepPayment:"पेमेंट", stepDocs:"कागदपत्रे",
+    welcome:"👋 <b>आरंभ मध्ये आपले स्वागत आहे!</b><br>आम्ही सरकारी कागदपत्रे आणि सेवा — आधार, पॅन, पासपोर्ट, ड्रायव्हिंग लायसन्स, जीएसटी आणि इतर अनेक सेवा — यामध्ये सोप्या आणि विश्वासार्ह पद्धतीने मदत करतो.",
+    askName:"चला सुरुवात करूया. कृपया तुमचे <b>पूर्ण नाव</b> सांगा.",
+    namePlaceholder:"तुमचे पूर्ण नाव लिहा…",
+    nameError:"कृपया तुमचे नाव नोंदवा",
+    thanksAskPhone:(n)=>`धन्यवाद, <b>${n}</b>. कृपया तुमचा <b>10 अंकी मोबाइल क्रमांक</b> सांगा.`,
+    phonePlaceholder:"10 अंकी क्रमांक लिहा…",
+    phoneError:"कृपया योग्य 10 अंकी मोबाइल क्रमांक टाका",
+    askCategoryOrService:"तुम्हाला कोणत्या <b>श्रेणी</b>मध्ये मदत हवी आहे? किंवा थेट तुमची गरज लिहा — उदा., <i>\"Aadhaar PVC Card\"</i>.",
+    directInputPlaceholder:"श्रेणी निवडा किंवा सेवेचे नाव लिहा…",
+    noDirectMatch:"माफ करा, आम्हाला हे समजले नाही. कृपया खालील श्रेणीतून निवडा, किंवा सेवेचे नाव पुन्हा लिहून पहा.",
+    directMatchAck:(s)=>`नक्कीच! चला <b>${s}</b> साठी पुढे जाऊया.`,
+    askService:(c)=>`<b>${c}</b> मधून कृपया तुमची <b>सेवा</b> निवडा:`,
+    priceLabel:(p)=>p?`₹${p}`:"शुल्क: लवकरच कळवले जाईल",
+    turnaroundLabel:(t)=>t||"कालावधी: लवकरच कळवला जाईल",
+    fieldError:"कृपया ही माहिती नोंदवा",
+    yearsError:"कृपया योग्य वर्षांची संख्या टाका (1–10)",
+    noteInfoText:"ℹ️ कृपया लक्षात घ्या: आता फक्त आरंभचे सेवा शुल्क देय आहे. उर्वरित सरकारी शुल्क अर्ज प्रक्रियेच्या वेळी भरा.",
+    notePerYearText:"ℹ️ आता फक्त आमचे सेवा शुल्क देय आहे. सरकारी शुल्क (दरवर्षी) अर्ज प्रक्रियेच्या वेळी भरावे लागेल.",
+    summaryIntro:"✅ सर्व आवश्यक माहिती मिळाली आहे. कृपया तुमचा अर्ज तपासा:",
+    summaryTitle:"📋 अर्ज सारांश",
+    labelName:"नाव", labelPhone:"फोन नंबर", labelService:"सेवा",
+    labelFee:"आरंभ सेवा शुल्क (आता देय)", labelTurnaround:"कालावधी",
+    labelGovtCharges:(y)=>y?`सरकारी शुल्क (${y} वर्षे)`:"सरकारी शुल्क",
+    labelAarambhCharges:"आरंभ सेवा शुल्क",
+    feeTBD:"लवकरच निश्चित केले जाईल",
+    confirmBtn:"✅ पुष्टी करा — बरोबर आहे",
+    startOverBtn:"✏️ पुन्हा सुरू करा",
+    invoiceBtn:"📄 इनव्हॉइस डाउनलोड करा (PDF)", invoiceMaking:"इनव्हॉइस तयार होत आहे…",
+    paymentIntro:"💳 आता आपण पेमेंट टप्प्याकडे जाऊया.",
+    payCardTitle:"देय रक्कम",
+    payForService:(s)=>`<b>${s}</b> साठी`,
+    payTrustBadge:"नोंदणीकृत सेवा · सुरक्षित पेमेंट",
+    govtNote:"उर्वरित सरकारी शुल्क अर्ज प्रक्रियेच्या वेळी भरा",
+    payInclTitle:"यात काय समाविष्ट आहे", payIncl:["अर्ज व कागदपत्र चेकलिस्ट","फॉर्म भरणे व अर्जासाठी मदत","सादर करण्यापूर्वी अर्जाची तपासणी","WhatsApp वर स्टेटस अपडेट व सहाय्य"],
+    payAfterTitle:"पेमेंटनंतर काय होईल", payAfter:["तुमची कागदपत्रे अपलोड करा (किंवा नंतर पाठवा)","आमची टीम तुमची माहिती तपासून अर्जात मदत करेल","आम्ही तुम्हाला WhatsApp वर अपडेट देत राहू"],
+    payDisclaimer:"Aarambh हे खाजगी सहाय्य मंच आहे. अर्जाची प्रक्रिया व निर्णय सरकारी विभाग स्वतंत्रपणे करतात.",
+    payRzpBtn:(amt)=>`💳 ${amt} सुरक्षित पेमेंट करा (UPI / कार्ड / नेटबँकिंग)`,
+    payRzpHint:"तात्काळ पुष्टी — स्क्रीनशॉटची गरज नाही. Razorpay द्वारे संचालित.",
+    rzpLoading:"सुरक्षित पेमेंट उघडत आहे…",
+    rzpCancelled:"पेमेंट रद्द केले. तुम्ही तयार असाल तेव्हा पुन्हा प्रयत्न करू शकता.",
+    rzpFailed:(m)=>`⚠️ पेमेंट अयशस्वी${m ? ': ' + m : ''}. कृपया पुन्हा प्रयत्न करा.`,
+    rzpVerifyFail:"⚠️ आम्ही तुमचे पेमेंट पडताळू शकलो नाही. पैसे कट झाले असल्यास कृपया पेमेंट ID सह WhatsApp वर संपर्क करा.",
+    rzpNotReady:"⚠️ ऑनलाइन पेमेंट सध्या उपलब्ध नाही. कृपया थोड्या वेळाने पुन्हा प्रयत्न करा किंवा WhatsApp वर संपर्क करा.",
+    payTBDNote:"आमची टीम लवकरच तुम्हाला अचूक शुल्काची पुष्टी करेल. सध्या तुम्ही कागदपत्रांसह पुढे जाऊ शकता.",
+    rzpPaidStatus:"Paid — Razorpay Verified ✅",
+    verifyingPayment:"तुमचे पेमेंट पडताळले जात आहे…",
+    continuePayLater:"➡️ पुढे जा",
+    paymentReceivedMsg:(name,service,amount,txnId)=>`<b>पेमेंट मिळाले - तुमची ${service} निश्चित झाली आहे</b><br><br>नमस्कार <b>${name}</b>, तुमचे <b>₹${amount}</b> मिळाले आहे, आणि तुमची <b>${service}</b> विनंती आता <b>Aarambh India</b> कडे नोंदवली गेली आहे.<br><br><b>ट्रान्झॅक्शन आयडी:</b> ${txnId}<br><b>स्थिती:</b> पेमेंट मिळाले आहे. पडताळणी व अर्ज प्रक्रिया प्रलंबित आहे.<br><br><b>पुढे काय होईल?</b><br>आमचा प्रतिनिधी 24-48 तासांत तुमच्याशी संपर्क करून तुमची माहिती पडताळेल, आवश्यक कागदपत्रांची पुष्टी करेल आणि तुमचा अर्ज प्रक्रिया सुरू करेल.<br><b>अधिकृत क्रमांक:</b> ${AUTHORISED_PHONE}<br><br>पुढे जाण्यासाठी कृपया खाली तुमची कागदपत्रे अपलोड करा.<br>आता <b>₹${amount}</b> व्यतिरिक्त कोणतेही अतिरिक्त पेमेंट आवश्यक नाही. उर्वरित सरकारी शुल्क (लागू असल्यास) अर्ज प्रक्रियेच्या वेळी भरा.<br><br>तुमची विनंती <b>Aarambh India</b> कडे सुरक्षितपणे नोंदवली आहे. आम्ही तुम्हाला अद्ययावत ठेवू.<br><br>धन्यवाद,<br><b>टीम आरंभ इंडिया</b>`,
+    docUploadPrompt:(d)=>`📎 कृपया द्या: <b>${d}</b>`,
+    docChoiceNow:"📤 आत्ता अपलोड करा",
+    docChoiceLater:"🕐 प्रक्रिया करतेवेळी",
+    docSingleFileLabel:(mb)=>`हे कागदपत्र निवडा (फोटो/PDF, जास्तीत जास्त ${mb}MB):`,
+    docUploadSubmitBtn:"अपलोड करा आणि पुढे जा",
+    docTooBig:(mb)=>`फाइल खूप मोठी आहे (जास्तीत जास्त ${mb}MB). कृपया लहान फाइल निवडा.`,
+    docFileAttached:"📎 कागदपत्र जोडले",
+    docFileNone:"कोणतीही फाइल निवडली नाही — नंतर सादर करू",
+    uploading:"अपलोड होत आहे…",
+    noDocsNeededMsg:"✅ या सेवेसाठी सध्या कोणतेही कागदपत्र आवश्यक नाही.",
+    finalTitle:(n)=>`🎉 <b>धन्यवाद, ${n}!</b>`,
+    finalBody:"तुमचा अर्ज प्राप्त झाला आहे. आमची टीम <b>24–48 तासांत</b> तुमच्याशी संपर्क साधून प्रक्रिया पूर्ण करेल.",
+    exploreBtn:"🔎 इतर सेवा पहा",
+    submitError:"⚠️ अर्ज सबमिट करताना अडचण आली. कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.",
+    langPrompt:"👋 स्वागत आहे! सुरू ठेवण्यासाठी कृपया तुमची आवडती भाषा निवडा.",
+    mainMenuBtn:"मुख्य मेनू",
+  }
+};
+let LANG = 'en';
+function T(key, ...args){
+  const entry = STRINGS[LANG][key];
+  return typeof entry === 'function' ? entry(...args) : entry;
+}
+
+
+/* ====================== STATE ====================== */
+const lead = {
+  name:"", phone:"", appId:"", txnId:"",
+  category:"", service:"", govtCharge:0, aarambhCharge:0, price:null, turnaround:"",
+  years:null, extraFields:{}, paymentStatus:"", paymentVerified:false, docsStatus:[]
+};
+
+const chat = document.getElementById('chat');
+const inputbar = document.getElementById('inputbar');
+const textInput = document.getElementById('textInput');
+const sendBtn = document.getElementById('sendBtn');
+const errBox = document.getElementById('err');
+const stepperEl = document.getElementById('stepper');
+
+function nowTime(){
+  const d = new Date();
+  let h = d.getHours(), m = d.getMinutes();
+  const ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${h}:${m.toString().padStart(2,'0')} ${ap}`;
+}
+function scrollDown(){ chat.scrollTop = chat.scrollHeight; }
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function addBubble(text, who){
+  const row = document.createElement('div');
+  row.className = 'row ' + (who === 'bot' ? 'bot' : 'user');
+  const b = document.createElement('div');
+  b.className = 'bubble ' + (who === 'bot' ? 'bot' : 'user');
+  b.innerHTML = text + `<span class="time">${nowTime()}</span>`;
+  row.appendChild(b);
+  chat.appendChild(row);
+  scrollDown();
+  return row;
+}
+
+function addQuickReplies(options, onPick, opts={}){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  wrap.style.maxWidth = '86%';
+  const allOptions = opts.hideMenu ? options : [...options, {label: '🏠 ' + T('mainMenuBtn'), value:'__MENU__', isMenu:true}];
+  allOptions.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'qr-btn' + (opt.primary ? ' primary' : '') + (opt.isMenu ? ' menu-option' : '');
+    btn.innerHTML = opt.label + (opt.sub ? `<span class="sub">${opt.sub}</span>` : '');
+    btn.onclick = () => {
+      Array.from(wrap.children).forEach(c => c.disabled = true);
+      addBubble(opt.label.replace(/<[^>]*>/g,''), 'user');
+      if (opt.isMenu){
+        goToMainMenu();
+        return;
+      }
+      onPick(opt.value !== undefined ? opt.value : opt.label);
+    };
+    wrap.appendChild(btn);
+  });
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+  return wrap;
+}
+
+function botTyping(delay=550){
+  return new Promise(resolve => {
+    const row = document.createElement('div');
+    row.className = 'row bot';
+    row.id = 'typingRow';
+    row.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+    chat.appendChild(row);
+    scrollDown();
+    setTimeout(() => {
+      const el = document.getElementById('typingRow');
+      if (el) el.remove();
+      resolve();
+    }, delay);
+  });
+}
+async function botSay(text, delay=550){
+  await botTyping(delay);
+  addBubble(text, 'bot');
+}
+
+function refreshStepperLabels(){
+  document.getElementById('lbl-info').textContent = T('stepInfo');
+  document.getElementById('lbl-confirm').textContent = T('stepConfirm');
+  document.getElementById('lbl-payment').textContent = T('stepPayment');
+  document.getElementById('lbl-docs').textContent = T('stepDocs');
+}
+function setStepper(activeKey, doneKeys){
+  document.querySelectorAll('.step').forEach(el => {
+    const key = el.dataset.step;
+    el.classList.remove('active','done');
+    if (doneKeys.includes(key)) el.classList.add('done');
+    else if (key === activeKey) el.classList.add('active');
+  });
+}
+
+function showTextInput(placeholder, validator, onSubmit){
+  errBox.textContent = '';
+  inputbar.classList.remove('hidden');
+  textInput.value = '';
+  textInput.placeholder = placeholder;
+  textInput.disabled = false;
+  sendBtn.disabled = false;
+  textInput.focus();
+
+  const handler = () => {
+    const val = textInput.value.trim();
+    const error = validator(val);
+    if (error){ errBox.textContent = error; return; }
+    errBox.textContent = '';
+    textInput.disabled = true; sendBtn.disabled = true;
+    inputbar.classList.add('hidden');
+    addBubble(escapeHtml(val), 'user');
+    sendBtn.removeEventListener('click', handler);
+    textInput.removeEventListener('keydown', keyHandler);
+    onSubmit(val);
+  };
+  const keyHandler = (e) => { if (e.key === 'Enter') handler(); };
+  sendBtn.addEventListener('click', handler);
+  textInput.addEventListener('keydown', keyHandler);
+}
+function hideTextInput(){
+  inputbar.classList.add('hidden');
+  errBox.textContent = '';
+}
+
+/* ====================== HELPERS ====================== */
+function fieldIsDuplicate(fieldName){
+  const f = fieldName.toLowerCase();
+  return f.startsWith('full name') || f.includes('mobile');
+}
+function isYearsField(fieldName){
+  return /number of year/i.test(fieldName);
+}
+function getActiveCategories(){
+  const seen = [];
+  SERVICES_DATA.forEach(s => {
+    if (s.active && !seen.includes(s.category)) seen.push(s.category);
+  });
+  return seen;
+}
+function getServicesInCategory(cat){
+  return SERVICES_DATA.filter(s => s.active && s.category === cat);
+}
+function genAppId(){
+  const d = new Date();
+  const pad = n => n.toString().padStart(2,'0');
+  return 'AAR' + d.getFullYear().toString().slice(-2) + pad(d.getMonth()+1) + pad(d.getDate())
+    + pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds());
+}
+
+/* ====================== DIRECT SERVICE MATCHING ====================== */
+const FILLER_WORDS = new Set(['mujhe','muje','mujhy','chahiye','chaiye','please','i','want','need',
+  'karna','karwana','banwana','banana','hai','ka','ke','ki','the','a','an','for','apply',
+  'application','get','my','me','to','karo','kardo','kar','do','is','it']);
+
+function normalizeText(s){
+  return s.toLowerCase()
+    .replace(/aadhar/g,'aadhaar')
+    .replace(/licence/g,'license')
+    .replace(/[^a-z0-9\u0900-\u097F\s]/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+function extractKeywords(s){
+  return normalizeText(s).split(' ').filter(w => w.length>1 && !FILLER_WORDS.has(w));
+}
+function matchService(query){
+  const qWords = extractKeywords(query);
+  if (qWords.length === 0) return null;
+  const active = SERVICES_DATA.filter(s => s.active);
+  let scored = active.map(s => {
+    const sWords = extractKeywords(s.service + ' ' + s.category);
+    let score = 0;
+    qWords.forEach(qw => {
+      if (sWords.some(sw => sw === qw || sw.includes(qw) || qw.includes(sw))) score++;
+    });
+    const ratio = sWords.length ? score / sWords.length : 0;
+    return { s, score, ratio };
+  }).filter(x => x.score > 0);
+
+  if (scored.length === 0) return null;
+  const maxScore = Math.max(...scored.map(x => x.score));
+  const top = scored.filter(x => x.score === maxScore);
+
+  const qualifies = maxScore >= 2 || (maxScore === 1 && qWords.length <= 2);
+  if (!qualifies) return null;
+
+  if (top.length === 1) return top[0].s;
+  // tie-break by ratio (more specific / shorter service name wins)
+  top.sort((a,b) => b.ratio - a.ratio);
+  if (top[0].ratio > top[1].ratio) return top[0].s;
+  return null; // genuinely ambiguous
+}
+
+/* ====================== FLOW ====================== */
+async function start(){
+  const heroRow = document.createElement('div');
+  heroRow.className = 'row bot';
+  heroRow.innerHTML = `
+    <div class="hero-banner">
+      <img src="${LOGO_HERO_URI}" alt="Aarambh">
+      <span class="tagline">सही जानकारी | सही दिशा | बेहतर भविष्य</span>
+      <div class="hero-strip">
+        <span>Data Handled Safely</span>
+        <span>Registered Service</span>
+        <span>Quick Turnaround</span>
+      </div>
+    </div>`;
+  chat.appendChild(heroRow);
+  scrollDown();
+  await botSay("👋 Welcome / नमस्ते / नमस्कार", 500);
+  await botSay("Please choose your preferred language / कृपया अपनी भाषा चुनें / कृपया तुमची भाषा निवडा", 500);
+  addQuickReplies([
+    {label:"🇬🇧 English", value:"en"},
+    {label:"🇮🇳 हिंदी", value:"hi"},
+    {label:"🇮🇳 मराठी", value:"mr"},
+  ], (langCode) => {
+    LANG = langCode;
+    stepperEl.classList.remove('hidden');
+    refreshStepperLabels();
+    setStepper('info', []);
+    askName();
+  }, {hideMenu:true});
+}
+
+async function askName(){
+  await botSay(T('welcome'));
+  await botSay(T('askName'), 700);
+  showTextInput(T('namePlaceholder'), v => v.length < 2 ? T('nameError') : null, v => {
+    lead.name = v;
+    askPhone();
+  });
+}
+
+async function askPhone(){
+  await botSay(T('thanksAskPhone', escapeHtml(lead.name)));
+  showTextInput(T('phonePlaceholder'), v => /^[6-9]\d{9}$/.test(v) ? null : T('phoneError'), v => {
+    lead.phone = v;
+    askCategoryOrService();
+  });
+}
+
+async function askCategoryOrService(){
+  await botSay(T('askCategoryOrService'));
+  const cats = getActiveCategories();
+  let resolved = false;
+
+  const wrap = addQuickRepliesRaw(cats.map(c => ({label:c})), (cat) => {
+    if (resolved) return;
+    resolved = true;
+    hideTextInput();
+    lead.category = cat;
+    askService();
+  });
+
+  showTextInput(T('directInputPlaceholder'), () => null, (val) => {
+    if (resolved) return;
+    resolved = true;
+    disableWrap(wrap);
+    const matched = matchService(val);
+    if (matched){
+      handleDirectMatch(matched);
+    } else {
+      botSay(T('noDirectMatch')).then(() => {
+        resolved = false;
+        askCategoryOrService();
+      });
+    }
+  });
+}
+
+// Like addQuickReplies but returns the wrap element and lets caller manage "resolved" state
+function addQuickRepliesRaw(options, onPick){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  wrap.style.maxWidth = '86%';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'qr-btn' + (opt.primary ? ' primary' : '');
+    btn.innerHTML = opt.label + (opt.sub ? `<span class="sub">${opt.sub}</span>` : '');
+    btn.onclick = () => {
+      disableWrap(wrap);
+      addBubble(opt.label.replace(/<[^>]*>/g,''), 'user');
+      onPick(opt.value !== undefined ? opt.value : opt.label);
+    };
+    wrap.appendChild(btn);
+  });
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+  return wrap;
+}
+function disableWrap(wrap){
+  Array.from(wrap.children).forEach(c => c.disabled = true);
+}
+
+async function handleDirectMatch(svc){
+  await botSay(T('directMatchAck', escapeHtml(svc.service)));
+  onServiceChosen(svc);
+}
+
+async function askService(){
+  await botSay(T('askService', escapeHtml(lead.category)));
+  const services = getServicesInCategory(lead.category);
+  addQuickReplies(services.map(s => ({
+    label: s.service,
+    sub: T('priceLabel', s.price) + ' · ' + T('turnaroundLabel', s.turnaround),
+    value: s.service
+  })), (serviceName) => {
+    const svc = services.find(s => s.service === serviceName);
+    onServiceChosen(svc);
+  });
+}
+
+function onServiceChosen(svc){
+  lead.category = svc.category;
+  lead.service = svc.service;
+  lead.govtCharge = svc.govtCharge || 0;
+  lead.aarambhCharge = svc.aarambhCharge || 0;
+  lead.price = svc.price;
+  lead.turnaround = svc.turnaround || T('feeTBD');
+  lead._fieldsToAsk = svc.fields.filter(f => !fieldIsDuplicate(f));
+  lead._docsList = (svc.docs || []).slice();
+  lead._noteType = svc.noteType;
+  lead.years = null;
+  lead.extraFields = {};
+  lead.docsStatus = [];
+  proceedAfterServiceChosen();
+}
+
+async function proceedAfterServiceChosen(){
+  if (lead._noteType === 'info'){
+    await botSay(T('noteInfoText'));
+  } else if (lead._noteType === 'per_year'){
+    await botSay(T('notePerYearText'));
+  }
+  askNextField(0);
+}
+
+async function askNextField(idx){
+  const fields = lead._fieldsToAsk || [];
+  if (idx >= fields.length){
+    showSummary();
+    return;
+  }
+  const field = fields[idx];
+  const label = translateField(field, LANG);
+  const isYears = isYearsField(field);
+  await botSay(`${escapeHtml(label)}?`);
+  showTextInput(`${label}…`, v => {
+    if (v.length < 1) return T('fieldError');
+    if (isYears && (!/^\d+$/.test(v) || parseInt(v,10) < 1 || parseInt(v,10) > 10)) return T('yearsError');
+    return null;
+  }, v => {
+    lead.extraFields[label] = v;
+    if (isYears && lead._noteType === 'per_year'){
+      const years = parseInt(v, 10);
+      lead.years = years;
+      lead.price = lead.aarambhCharge;   /* sirf Aarambh service charge; govt fee application processing par */
+    }
+    askNextField(idx + 1);
+  });
+}
+
+// Fires a save/update to the sheet. Uses a readable (non-no-cors) request so failures can be
+// diagnosed, but never blocks or breaks the chat if it fails.
+async function submitToSheet(payload){
+  if (!SHEET_ENDPOINT || SHEET_ENDPOINT.includes("PASTE_YOUR")) return false;
+  try{
+    const res = await fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+    return res.ok;
+  }catch(err){
+    return false;
+  }
+}
+
+async function showSummary(){
+  setStepper('confirm', ['info']);
+  await botSay(T('summaryIntro'));
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  let extraRows = Object.entries(lead.extraFields).map(([k,v]) =>
+    `<div class="row-item"><span>${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></div>`
+  ).join('');
+  let feeRows = '';
+  if (lead.govtCharge > 0){
+    feeRows = `
+      <div class="row-item"><span>${T('labelGovtCharges', lead.years)}</span><span>${T('govtNote')}</span></div>`;
+  }
+  row.innerHTML = `
+    <div class="summary-card" style="max-width:88%">
+      <h4>${T('summaryTitle')}</h4>
+      <div class="row-item"><span>${T('labelName')}</span><span>${escapeHtml(lead.name)}</span></div>
+      <div class="row-item"><span>${T('labelPhone')}</span><span>${escapeHtml(lead.phone)}</span></div>
+      <div class="row-item"><span>${T('labelService')}</span><span>${escapeHtml(lead.service)}</span></div>
+      ${extraRows}
+      ${feeRows}
+      <div class="row-item"><span>${T('labelFee')}</span><span>${lead.price ? '₹'+lead.price : T('feeTBD')}</span></div>
+      <div class="row-item"><span>${T('labelTurnaround')}</span><span>${escapeHtml(lead.turnaround)}</span></div>
+    </div>`;
+  chat.appendChild(row);
+  scrollDown();
+  addQuickReplies([
+    {label:T('confirmBtn'), primary:true, value:"confirm"},
+    {label:T('startOverBtn')}
+  ], (choice) => {
+    if (choice === 'confirm'){
+      lead.appId = genAppId();
+      const fieldsProvided = Object.entries(lead.extraFields).map(([k,v]) => `${k}: ${v}`).join('; ');
+      submitToSheet({
+        leadId: lead.appId,
+        name: lead.name,
+        phone: lead.phone,
+        category: lead.category,
+        service: lead.service,
+        price: lead.price,
+        fieldsProvided: fieldsProvided,
+        fieldsObject: lead.extraFields,
+        language: LANG
+      });
+      goToPayment();
+    } else {
+      location.reload();
+    }
+  });
+}
+
+async function goToPayment(){
+  setStepper('payment', ['info','confirm']);
+  await botSay(T('paymentIntro'));
+
+  const hasPrice = !!lead.price;
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  row.innerHTML = `
+    <div class="pay-card" style="max-width:90%">
+      <h4>${T('payCardTitle')}</h4>
+      <div class="fee">${hasPrice ? '₹'+lead.price : T('feeTBD')}</div>
+      <div>${T('payForService', escapeHtml(lead.service))}</div>
+      ${lead.govtCharge > 0 ? '<div class="pay-govt">' + T('govtNote') + '</div>' : ''}
+      <span class="trust-badge">${T('payTrustBadge')}</span>
+      <div class="pay-trust">
+        <div class="pt-h">${T('payInclTitle')}</div>
+        <ul>${T('payIncl').map(x => '<li>' + x + '</li>').join('')}</ul>
+        <div class="pt-h">${T('payAfterTitle')}</div>
+        <ol>${T('payAfter').map(x => '<li>' + x + '</li>').join('')}</ol>
+        <p class="pt-d">${T('payDisclaimer')}</p>
+      </div>
+      <div class="rzp-block">
+        ${hasPrice
+          ? `<button class="qr-btn primary" id="rzpPayBtn" type="button">${T('payRzpBtn', '₹'+lead.price)}</button>
+             <div class="rzp-hint">${T('payRzpHint')}</div>`
+          : `<div class="rzp-hint">${T('payTBDNote')}</div>`}
+      </div>
+    </div>`;
+  chat.appendChild(row);
+  scrollDown();
+
+  if (hasPrice){
+    const btn = row.querySelector('#rzpPayBtn');
+    btn.onclick = () => startRazorpay(btn, row);
+  } else {
+    // Price abhi tay nahi hai: payment baad me, documents ka step chalu rakho
+    addQuickReplies([{label:T('continuePayLater'), primary:true, value:'continue'}], () => {
+      lead.paymentStatus = 'Pending — Fee to be confirmed';
+      submitToSheet({ leadId: lead.appId, name: lead.name, phone: lead.phone, service: lead.service, price: lead.price, paymentStatus: lead.paymentStatus });
+      setStepper('docs', ['info','confirm','payment']);
+      askDocsSequential(0);
+    });
+  }
+}
+
+/* ====================== RAZORPAY ====================== */
+function razorpayConfigured(){
+  return RZP_KEY_ID && !RZP_KEY_ID.includes('PASTE_YOUR') && SHEET_ENDPOINT && !SHEET_ENDPOINT.includes('PASTE_YOUR');
+}
+
+function loadRazorpayScript(){
+  return new Promise(resolve => {
+    if (window.Razorpay) return resolve(true);
+    const sc = document.createElement('script');
+    sc.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    sc.onload = () => resolve(true);
+    sc.onerror = () => resolve(false);
+    document.body.appendChild(sc);
+  });
+}
+
+async function startRazorpay(btn, payRow){
+  if (btn.disabled) return;
+  btn.disabled = true;
+  const originalLabel = btn.innerHTML;
+  btn.textContent = T('rzpLoading');
+  const reset = () => { btn.disabled = false; btn.innerHTML = originalLabel; };
+
+  if (!razorpayConfigured()){ addBubble(T('rzpNotReady'), 'bot'); return reset(); }
+  const ok = await loadRazorpayScript();
+  if (!ok){ addBubble(T('rzpNotReady'), 'bot'); return reset(); }
+
+  // 1) Backend se order banao. Amount frontend se NAHI jaata - backend khud price nikalta hai.
+  let order;
+  try{
+    const res = await fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({
+        action: 'createOrder',
+        category: lead.category,
+        service: lead.service,
+        years: lead.years || null,
+        receipt: lead.appId,
+        name: lead.name,
+        phone: lead.phone
+      })
+    });
+    order = await res.json();
+    if (!order || !order.ok || !order.order_id) throw new Error(order && order.error || 'order failed');
+  }catch(err){
+    addBubble(T('rzpNotReady'), 'bot');
+    return reset();
+  }
+
+  // Safety: jo amount customer ko dikha, wahi charge hona chahiye
+  if (lead.price && Math.round(order.amount) !== Math.round(lead.price * 100)){
+    addBubble(T('rzpNotReady'), 'bot');
+    return reset();
+  }
+
+  // 2) Razorpay modal kholo
+  let finished = false;
+  const rzp = new window.Razorpay({
+    key: RZP_KEY_ID,
+    amount: order.amount,
+    currency: order.currency || 'INR',
+    order_id: order.order_id,
+    name: BUSINESS_NAME,
+    description: lead.service,
+    prefill: {
+      name: lead.name,
+      contact: String(lead.phone || '').replace(/\D/g,'').slice(-10)
+    },
+    notes: { leadId: lead.appId, service: lead.service },
+    theme: { color: '#123830' },
+    modal: {
+      ondismiss: () => {
+        if (finished) return;
+        addBubble(T('rzpCancelled'), 'bot');
+        reset();
+      }
+    },
+    handler: async (response) => {
+      finished = true;
+      btn.textContent = T('verifyingPayment');
+      // 3) Backend se signature verify karao
+      let verified = false;
+      try{
+        const v = await fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'verifyRazorpay',
+            leadId: lead.appId,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature
+          })
+        });
+        const data = await v.json();
+        verified = data && data.success === true;
+      }catch(e){ verified = false; }
+
+      if (!verified){
+        addBubble(T('rzpVerifyFail'), 'bot');
+        btn.textContent = originalLabel.replace(/<[^>]*>/g,'');
+        return;
+      }
+
+      // Sirf verify success ke baad hi "Paid" maanna hai
+      lead.txnId = response.razorpay_payment_id;
+      lead.paymentVerified = true;
+      lead.paymentStatus = T('rzpPaidStatus');
+      payRow.querySelectorAll('.rzp-block button').forEach(el => el.disabled = true);
+      // "Paid" ka record Sheet me server (Apps Script) khud likhta hai - browser se nahi.
+      showPaymentConfirmation();
+    }
+  });
+
+  rzp.on('payment.failed', (r) => {
+    const msg = r && r.error && r.error.description ? r.error.description : '';
+    addBubble(T('rzpFailed', escapeHtml(msg)), 'bot');
+    reset();
+  });
+
+  rzp.open();
+}
+
+/* ---- Invoice download (after payment) ---- */
+function buildInvoiceData(){
+  const ex = lead.extraFields || {}, keys = Object.keys(ex);
+  const emailKey = keys.find(k => /e-?mail/i.test(k)), addrKey = keys.find(k => /address/i.test(k));
+  return { orderId: lead.appId, name: lead.name, mobile: String(lead.phone || '').replace(/\D/g,'').slice(-10),
+    email: emailKey ? ex[emailKey] : '', address: addrKey ? ex[addrKey] : '', category: lead.category, service: lead.service,
+    mode: 'Online (Chatbot)', payId: lead.txnId, govt: 0, aarambh: lead.price,
+    total: lead.price, years: lead.years || 0, lang: LANG };
+}
+function addInvoiceButton(){
+  const row = document.createElement('div'); row.className = 'row bot';
+  const wrap = document.createElement('div'); wrap.className = 'quick-replies'; wrap.style.maxWidth = '86%';
+  const btn = document.createElement('button'); btn.className = 'qr-btn primary'; btn.textContent = T('invoiceBtn');
+  btn.onclick = async () => {
+    btn.disabled = true; btn.textContent = T('invoiceMaking');
+    try { await window.AarambhInvoice.download(buildInvoiceData()); } catch(err){ console.error(err); }
+    btn.disabled = false; btn.textContent = T('invoiceBtn');
+  };
+  wrap.appendChild(btn); row.appendChild(wrap); chat.appendChild(row); scrollDown();
+}
+
+async function showPaymentConfirmation(){
+  setStepper('docs', ['info','confirm','payment']);
+  await botSay(T('paymentReceivedMsg', escapeHtml(lead.name), escapeHtml(lead.service), lead.price || '', lead.txnId), 800);
+  addInvoiceButton();
+  askDocsSequential(0);
+}
+
+/* ---- One document at a time ---- */
+async function askDocsSequential(idx){
+  const docs = lead._docsList || [];
+  if (docs.length === 0){
+    await botSay(T('noDocsNeededMsg'));
+    return finalizeSubmission();
+  }
+  if (idx >= docs.length){
+    return finalizeSubmission();
+  }
+  const docName = docs[idx];
+  await botSay(T('docUploadPrompt', escapeHtml(docName)));
+  addQuickReplies([
+    {label:T('docChoiceNow'), value:"now"},
+    {label:T('docChoiceLater'), value:"later"}
+  ], (choice) => {
+    if (choice === 'now'){
+      showSingleFileUpload(docName, (fileObj) => {
+        lead.docsStatus.push({ name: docName, status: fileObj ? 'uploaded' : 'later', file: fileObj });
+        askDocsSequential(idx + 1);
+      });
+    } else {
+      lead.docsStatus.push({ name: docName, status: 'later', file: null });
+      askDocsSequential(idx + 1);
+    }
+  });
+}
+
+function showSingleFileUpload(docName, onDone){
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const wrap = document.createElement('div');
+  wrap.className = 'file-row';
+  wrap.style.maxWidth = '88%';
+  wrap.innerHTML = `
+    <div>${T('docSingleFileLabel', MAX_FILE_MB)}</div>
+    <input type="file" id="singleFileInput" accept="image/*,application/pdf">
+    <div class="file-list" id="singleFileList"></div>
+    <button class="qr-btn primary" id="singleUploadBtn">${T('docUploadSubmitBtn')}</button>
+  `;
+  row.appendChild(wrap);
+  chat.appendChild(row);
+  scrollDown();
+
+  const fileInput = wrap.querySelector('#singleFileInput');
+  const fileList = wrap.querySelector('#singleFileList');
+  fileInput.addEventListener('change', () => {
+    const f = fileInput.files[0];
+    fileList.textContent = f ? `${f.name} (${(f.size/1024/1024).toFixed(1)}MB)` : '';
+  });
+
+  wrap.querySelector('#singleUploadBtn').onclick = async () => {
+    const file = fileInput.files[0];
+    if (file && file.size > MAX_FILE_MB * 1024 * 1024){
+      fileList.innerHTML = `<span style="color:#C0503A">${T('docTooBig', MAX_FILE_MB)}</span>`;
+      return;
+    }
+    wrap.querySelectorAll('button, input').forEach(el => el.disabled = true);
+    if (file){
+      addBubble(T('docFileAttached'), 'user');
+      await botSay(T('uploading'), 400);
+      try{
+        const encoded = await fileToBase64(file);
+        onDone(encoded);
+      }catch(err){
+        onDone(null);
+      }
+    } else {
+      addBubble(T('docFileNone'), 'user');
+      onDone(null);
+    }
+  };
+}
+
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result.split(',')[1];
+      resolve({ name: file.name, mimeType: file.type || 'application/octet-stream', data: base64 });
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function finalizeSubmission(){
+  await botTyping(700);
+  const documents = lead.docsStatus.map(d => ({
+    name: d.name,
+    status: d.status,
+    file: d.status === 'uploaded' ? d.file : null
+  }));
+  await submitToSheet({
+    leadId: lead.appId,
+    phone: lead.phone,
+    documents: documents
+  });
+  addBubble(`${T('finalTitle', escapeHtml(lead.name))}<br>${T('finalBody')}`, 'bot');
+  hideTextInput();
+  addQuickReplies([
+    {label:T('exploreBtn'), primary:true, value:"explore"}
+  ], () => {
+    resetForNextService();
+  });
+}
+
+function resetForNextService(){
+  lead.category = ""; lead.service = ""; lead.govtCharge = 0; lead.aarambhCharge = 0;
+  lead.price = null; lead.turnaround = ""; lead.years = null;
+  lead.extraFields = {}; lead.paymentStatus = ""; lead.paymentVerified = false;
+  lead.docsStatus = []; lead.appId = ""; lead.txnId = "";
+  setStepper('info', []);
+  askCategoryOrService();
+}
+
+// Disables any buttons/inputs left over from whatever step the person was on, so an old
+// screen can't be interacted with after jumping to the main menu.
+function disableAllPendingInputs(){
+  document.querySelectorAll('.qr-btn').forEach(b => b.disabled = true);
+  document.querySelectorAll('.file-row button, .file-row input').forEach(el => el.disabled = true);
+  hideTextInput();
+}
+
+// Jumps back to service selection from anywhere in the flow, keeping name/phone/language
+// but discarding any in-progress service, fields, payment or document data.
+function goToMainMenu(){
+  disableAllPendingInputs();
+  resetForNextService();
+}
+
+/* ====================== LAUNCHER TOGGLE ====================== */
+const widgetAnchor = document.querySelector('.widget-anchor');
+const launcherBtn = document.getElementById('launcherBtn');
+const launcherTip = document.getElementById('launcherTip');
+const phonePanel = document.getElementById('phonePanel');
+const closeBtn = document.getElementById('closeBtn');
+let chatStarted = false;
+
+function openWidget(){
+  widgetAnchor.classList.add('open');
+  phonePanel.classList.remove('hidden');
+  if (!chatStarted){
+    chatStarted = true;
+    start();
+  }
+}
+function closeWidget(){
+  widgetAnchor.classList.remove('open');
+  phonePanel.classList.add('hidden');
+}
+launcherBtn.addEventListener('click', openWidget);
+launcherTip.addEventListener('click', openWidget);
+closeBtn.addEventListener('click', closeWidget);
+
+setTimeout(() => {
+  if (launcherTip) launcherTip.style.opacity = '0.85';
+}, 8000);
+
+</script>
+<!-- ============================================== -->
+<!-- END AARAMBH CHATBOT WIDGET                       -->
+<!-- ============================================== -->

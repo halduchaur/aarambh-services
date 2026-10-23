@@ -95,9 +95,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 74, govt: 75 },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹74",
+      hi: "₹74"
     },
 
     summary: {
@@ -212,9 +214,11 @@ const SERVICES = [
       hi: "पहचान"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -334,9 +338,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 99, govt: 1000 },
+
     price: {
-      en: "₹1099 onwards",
-      hi: "₹1099 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -456,9 +462,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 74, govt: 75 },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹74",
+      hi: "₹74"
     },
 
     summary: {
@@ -578,9 +586,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 99, govt: 106 },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -695,9 +705,11 @@ const SERVICES = [
       hi: "पहचान"
     },
 
+    fees: { service: 99, govt: 106 },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -812,9 +824,11 @@ const SERVICES = [
       hi: "पहचान"
     },
 
+    fees: { service: 99, govt: 50 },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -929,9 +943,11 @@ const SERVICES = [
       hi: "पहचान"
     },
 
+    fees: { service: 149, govt: null },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -1046,9 +1062,11 @@ const SERVICES = [
       hi: "पहचान"
     },
 
+    fees: { service: 149, govt: null },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -1168,9 +1186,11 @@ const SERVICES = [
       hi: "नया"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -1285,9 +1305,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹299 onwards",
-      hi: "₹299 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -1402,9 +1424,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹499 onwards",
-      hi: "₹499 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -1519,9 +1543,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -1636,9 +1662,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -1753,9 +1781,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -1870,9 +1900,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 149, govt: null },
+
     price: {
-      en: "₹199 onwards",
-      hi: "₹199 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -1987,9 +2019,11 @@ const SERVICES = [
       hi: "प्रमाण पत्र"
     },
 
+    fees: { service: 149, govt: null },
+
     price: {
-      en: "₹199 onwards",
-      hi: "₹199 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -2109,9 +2143,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 149, govt: 100, govtPerYear: true },
+
     price: {
-      en: "₹299 onwards",
-      hi: "₹299 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -2226,9 +2262,11 @@ const SERVICES = [
       hi: "व्यवसाय"
     },
 
+    fees: { service: 149, govt: 100, govtPerYear: true },
+
     price: {
-      en: "₹249 onwards",
-      hi: "₹249 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -2343,9 +2381,11 @@ const SERVICES = [
       hi: "व्यवसाय"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹29 onwards",
-      hi: "₹29 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -2465,9 +2505,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 249, govt: null, afterNote: "Pay ₹250 after the GST registration" },
+
     price: {
-      en: "₹499 onwards",
-      hi: "₹499 से शुरू"
+      en: "₹249",
+      hi: "₹249"
     },
 
     summary: {
@@ -2587,9 +2629,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 249, govt: null },
+
     price: {
-      en: "₹299 onwards",
-      hi: "₹299 से शुरू"
+      en: "₹249",
+      hi: "₹249"
     },
 
     summary: {
@@ -2709,9 +2753,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 999, govt: null },
+
     price: {
-      en: "₹999 onwards",
-      hi: "₹999 से शुरू"
+      en: "₹999",
+      hi: "₹999"
     },
 
     summary: {
@@ -2826,9 +2872,11 @@ const SERVICES = [
       hi: "परिवहन"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -2943,9 +2991,11 @@ const SERVICES = [
       hi: "परिवहन"
     },
 
+    fees: { service: 199, govt: 300 },
+
     price: {
-      en: "₹399 onwards",
-      hi: "₹399 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -3065,9 +3115,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 199, govt: 300 },
+
     price: {
-      en: "₹399 onwards",
-      hi: "₹399 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -3187,9 +3239,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 149, govt: 350 },
+
     price: {
-      en: "₹499 onwards",
-      hi: "₹499 से शुरू"
+      en: "₹149",
+      hi: "₹149"
     },
 
     summary: {
@@ -3309,9 +3363,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 199, govt: 300 },
+
     price: {
-      en: "₹999 onwards",
-      hi: "₹999 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -3426,9 +3482,11 @@ const SERVICES = [
       hi: "यात्रा"
     },
 
+    fees: { service: 199, govt: 300 },
+
     price: {
-      en: "₹499 onwards",
-      hi: "₹499 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -3543,9 +3601,11 @@ const SERVICES = [
       hi: "परिवहन"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -3665,9 +3725,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 99, govt: 531 },
+
     price: {
-      en: "₹649 onwards",
-      hi: "₹649 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -3787,9 +3849,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 99, govt: 880 },
+
     price: {
-      en: "₹999 onwards",
-      hi: "₹999 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -3909,9 +3973,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 99, govt: 290 },
+
     price: {
-      en: "₹399 onwards",
-      hi: "₹399 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -4026,9 +4092,11 @@ const SERVICES = [
       hi: "परिवहन"
     },
 
+    fees: { service: 49, govt: null },
+
     price: {
-      en: "₹49 onwards service charge",
-      hi: "₹49 से शुरू सेवा शुल्क"
+      en: "₹49",
+      hi: "₹49"
     },
 
     summary: {
@@ -4143,9 +4211,11 @@ const SERVICES = [
       hi: "परिवहन"
     },
 
+    fees: { service: 49, govt: null },
+
     price: {
-      en: "₹99 onwards service charge",
-      hi: "₹99 से शुरू सेवा शुल्क"
+      en: "₹49",
+      hi: "₹49"
     },
 
     summary: {
@@ -4197,7 +4267,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges involved in Vehicle Tax?",
-          a: "The applicable vehicle or road tax is determined by the concerned state transport authority and is separate from the service facilitation charge. Aarambh India's service facilitation charge starts from ₹99. The current applicable tax amount is confirmed before proceeding."
+          a: "The applicable vehicle or road tax is determined by the concerned state transport authority and is separate from the service facilitation charge. Aarambh India's service facilitation charge starts from ₹49. The current applicable tax amount is confirmed before proceeding."
         },
         {
           q: "What happens if my Vehicle Tax payment or renewal is rejected or delayed?",
@@ -4232,7 +4302,7 @@ const SERVICES = [
         },
         {
           q: "वाहन टैक्स के लिए कितने शुल्क लगते हैं?",
-          a: "लागू वाहन या रोड टैक्स संबंधित राज्य परिवहन प्राधिकरण द्वारा निर्धारित किया जाता है और यह सेवा सुविधा शुल्क से अलग होता है। Aarambh India का सेवा सुविधा शुल्क ₹99 से शुरू होता है। प्रक्रिया शुरू करने से पहले वर्तमान लागू टैक्स राशि की जानकारी दी जाती है।"
+          a: "लागू वाहन या रोड टैक्स संबंधित राज्य परिवहन प्राधिकरण द्वारा निर्धारित किया जाता है और यह सेवा सुविधा शुल्क से अलग होता है। Aarambh India का सेवा सुविधा शुल्क ₹49 से शुरू होता है। प्रक्रिया शुरू करने से पहले वर्तमान लागू टैक्स राशि की जानकारी दी जाती है।"
         },
         {
           q: "यदि वाहन टैक्स का भुगतान या नवीनीकरण अस्वीकार या विलंबित हो जाए तो क्या होगा?",
@@ -4265,9 +4335,11 @@ const SERVICES = [
       hi: "त्वरित"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -4319,7 +4391,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges involved in FASTag KYV?",
-          a: "The applicable FASTag issuer or verification charges, if any, are separate from the service facilitation charge. Aarambh India's service facilitation charge starts from ₹149, and any applicable official charges are communicated before proceeding."
+          a: "The applicable FASTag issuer or verification charges, if any, are separate from the service facilitation charge. Aarambh India's service facilitation charge starts from ₹199, and any applicable official charges are communicated before proceeding."
         },
         {
           q: "What happens if my FASTag KYV is rejected or delayed?",
@@ -4354,7 +4426,7 @@ const SERVICES = [
         },
         {
           q: "FASTag KYV के लिए कितने शुल्क लगते हैं?",
-          a: "FASTag जारी करने वाले प्रदाता या सत्यापन के लिए कोई लागू शुल्क हो सकता है, जो सेवा सुविधा शुल्क से अलग होगा। Aarambh India का सेवा सुविधा शुल्क ₹149 से शुरू होता है और लागू आधिकारिक शुल्क की जानकारी प्रक्रिया शुरू करने से पहले दी जाती है।"
+          a: "FASTag जारी करने वाले प्रदाता या सत्यापन के लिए कोई लागू शुल्क हो सकता है, जो सेवा सुविधा शुल्क से अलग होगा। Aarambh India का सेवा सुविधा शुल्क ₹199 से शुरू होता है और लागू आधिकारिक शुल्क की जानकारी प्रक्रिया शुरू करने से पहले दी जाती है।"
         },
         {
           q: "यदि FASTag KYV अस्वीकार या विलंबित हो जाए तो क्या होगा?",
@@ -4387,9 +4459,11 @@ const SERVICES = [
       hi: "नया"
     },
 
+    fees: { service: 199, govt: 400 },
+
     price: {
-      en: "₹549 onwards service charge",
-      hi: "₹549 से शुरू सेवा शुल्क"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -4509,9 +4583,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 249, govt: 2500 },
+
     price: {
-      en: "₹249 onwards service charge",
-      hi: "₹249 से शुरू सेवा शुल्क"
+      en: "₹249",
+      hi: "₹249"
     },
 
     summary: {
@@ -4626,9 +4702,11 @@ const SERVICES = [
       hi: "यात्रा"
     },
 
+    fees: { service: 249, govt: 2500 },
+
     price: {
-      en: "₹249 onwards service charge",
-      hi: "₹249 से शुरू सेवा शुल्क"
+      en: "₹249",
+      hi: "₹249"
     },
 
     summary: {
@@ -4748,9 +4826,11 @@ const SERVICES = [
       hi: "नया"
     },
 
+    fees: { service: 199, govt: null },
+
     price: {
-      en: "₹199 onwards",
-      hi: "₹199 से शुरू"
+      en: "₹199",
+      hi: "₹199"
     },
 
     summary: {
@@ -4865,9 +4945,11 @@ const SERVICES = [
       hi: "बीमा"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards enrollment assistance",
-      hi: "₹99 से शुरू नामांकन सहायता शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -4982,9 +5064,11 @@ const SERVICES = [
       hi: "बीमा"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards enrollment assistance",
-      hi: "₹99 से शुरू नामांकन सहायता शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5099,9 +5183,11 @@ const SERVICES = [
       hi: "बीमा"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards enrollment assistance",
-      hi: "₹99 से शुरू नामांकन सहायता शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5221,9 +5307,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5275,7 +5363,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges involved in getting an e-Shram Card?",
-          a: "e-Shram registration through the official government system may not have a separate government registration fee. Aarambh India's ₹149 onwards charge is a service facilitation fee for assistance with the registration process. Any applicable third-party or other charges, if required, are communicated before proceeding."
+          a: "e-Shram registration through the official government system may not have a separate government registration fee. Aarambh India's ₹99 onwards charge is a service facilitation fee for assistance with the registration process. Any applicable third-party or other charges, if required, are communicated before proceeding."
         },
         {
           q: "What happens if my e-Shram Card registration is rejected or delayed?",
@@ -5310,7 +5398,7 @@ const SERVICES = [
         },
         {
           q: "ई-श्रम कार्ड बनवाने के लिए कितने शुल्क लगते हैं?",
-          a: "आधिकारिक सरकारी प्रणाली के माध्यम से e-Shram पंजीकरण के लिए सामान्यतः अलग सरकारी पंजीकरण शुल्क नहीं होता। Aarambh India का ₹149 से शुरू शुल्क पंजीकरण प्रक्रिया में सहायता के लिए सेवा सुविधा शुल्क है। यदि कोई अन्य लागू शुल्क हो, तो प्रक्रिया शुरू करने से पहले उसकी जानकारी दी जाती है।"
+          a: "आधिकारिक सरकारी प्रणाली के माध्यम से e-Shram पंजीकरण के लिए सामान्यतः अलग सरकारी पंजीकरण शुल्क नहीं होता। Aarambh India का ₹99 से शुरू शुल्क पंजीकरण प्रक्रिया में सहायता के लिए सेवा सुविधा शुल्क है। यदि कोई अन्य लागू शुल्क हो, तो प्रक्रिया शुरू करने से पहले उसकी जानकारी दी जाती है।"
         },
         {
           q: "यदि ई-श्रम कार्ड का पंजीकरण अस्वीकार या विलंबित हो जाए तो क्या होगा?",
@@ -5338,9 +5426,11 @@ const SERVICES = [
       hi: "रोज़गार"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5460,9 +5550,11 @@ const SERVICES = [
       hi: "नया"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5577,9 +5669,11 @@ const SERVICES = [
       hi: "दर्शन"
     },
 
+    fees: { service: 99, govt: 300 },
+
     price: {
-      en: "₹299 onwards service charge",
-      hi: "₹299 से शुरू सेवा शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5631,7 +5725,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges involved in Kashi Vishwanath Darshan Booking?",
-          a: "Aarambh India's service facilitation charge starts from ₹299. Any applicable temple or official booking fee is separate from the Aarambh service charge and may vary according to the selected darshan option and current temple rules."
+          a: "Aarambh India's service facilitation charge starts from ₹99. Any applicable temple or official booking fee is separate from the Aarambh service charge and may vary according to the selected darshan option and current temple rules."
         },
         {
           q: "What happens if my preferred darshan slot is unavailable?",
@@ -5666,7 +5760,7 @@ const SERVICES = [
         },
         {
           q: "काशी विश्वनाथ दर्शन बुकिंग के लिए कितने शुल्क लगते हैं?",
-          a: "Aarambh India का सेवा सुविधा शुल्क ₹299 से शुरू होता है। मंदिर या आधिकारिक बुकिंग शुल्क Aarambh India के सेवा शुल्क से अलग हो सकता है और चुने गए दर्शन विकल्प तथा वर्तमान मंदिर नियमों के अनुसार अलग-अलग हो सकता है।"
+          a: "Aarambh India का सेवा सुविधा शुल्क ₹99 से शुरू होता है। मंदिर या आधिकारिक बुकिंग शुल्क Aarambh India के सेवा शुल्क से अलग हो सकता है और चुने गए दर्शन विकल्प तथा वर्तमान मंदिर नियमों के अनुसार अलग-अलग हो सकता है।"
         },
         {
           q: "यदि मेरा पसंदीदा दर्शन स्लॉट उपलब्ध नहीं है तो क्या होगा?",
@@ -5694,9 +5788,11 @@ const SERVICES = [
       hi: "दर्शन"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards service charge",
-      hi: "₹99 से शुरू सेवा शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5811,9 +5907,11 @@ const SERVICES = [
       hi: "दर्शन"
     },
 
+    fees: { service: 99, govt: 200 },
+
     price: {
-      en: "₹99 onwards service charge",
-      hi: "₹99 से शुरू सेवा शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5928,9 +6026,11 @@ const SERVICES = [
       hi: "दर्शन"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹299 onwards service charge",
-      hi: "₹299 से शुरू सेवा शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -5982,7 +6082,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges involved in Srisaila Darshan Booking?",
-          a: "Aarambh India's service facilitation charge starts from ₹299. Any applicable temple or official booking fee is separate from the Aarambh service charge and may vary according to the selected Darshan option and current temple rules."
+          a: "Aarambh India's service facilitation charge starts from ₹99. Any applicable temple or official booking fee is separate from the Aarambh service charge and may vary according to the selected Darshan option and current temple rules."
         },
         {
           q: "What happens if my preferred Srisaila Darshan slot is unavailable?",
@@ -6017,7 +6117,7 @@ const SERVICES = [
         },
         {
           q: "श्रीशैलम दर्शन बुकिंग के लिए कितने शुल्क लगते हैं?",
-          a: "Aarambh India का सेवा सुविधा शुल्क ₹299 से शुरू होता है। मंदिर या आधिकारिक बुकिंग शुल्क Aarambh India के सेवा शुल्क से अलग हो सकता है और चुने गए दर्शन विकल्प तथा वर्तमान मंदिर नियमों के अनुसार अलग-अलग हो सकता है।"
+          a: "Aarambh India का सेवा सुविधा शुल्क ₹99 से शुरू होता है। मंदिर या आधिकारिक बुकिंग शुल्क Aarambh India के सेवा शुल्क से अलग हो सकता है और चुने गए दर्शन विकल्प तथा वर्तमान मंदिर नियमों के अनुसार अलग-अलग हो सकता है।"
         },
         {
           q: "यदि मेरा पसंदीदा श्रीशैलम दर्शन स्लॉट उपलब्ध नहीं है तो क्या होगा?",
@@ -6045,9 +6145,11 @@ const SERVICES = [
       hi: "दर्शन"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards service charge",
-      hi: "₹99 से शुरू सेवा शुल्क"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -6167,9 +6269,11 @@ const SERVICES = [
       hi: "नया"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -6289,9 +6393,11 @@ const SERVICES = [
       hi: "लोकप्रिय"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹99 onwards",
-      hi: "₹99 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -6406,9 +6512,11 @@ const SERVICES = [
       hi: "स्वास्थ्य"
     },
 
+    fees: { service: 99, govt: null },
+
     price: {
-      en: "₹149 onwards",
-      hi: "₹149 से शुरू"
+      en: "₹99",
+      hi: "₹99"
     },
 
     summary: {
@@ -6460,7 +6568,7 @@ const SERVICES = [
         },
         {
           q: "What are the charges for UDID Service?",
-          a: "Aarambh India's service facilitation charge starts from ₹149. Any official government, medical assessment, or other applicable charges, if applicable, are separate and depend on the current rules of the concerned authority."
+          a: "Aarambh India's service facilitation charge starts from ₹99. Any official government, medical assessment, or other applicable charges, if applicable, are separate and depend on the current rules of the concerned authority."
         },
         {
           q: "What happens if my UDID application is rejected or delayed?",
@@ -6495,7 +6603,7 @@ const SERVICES = [
         },
         {
           q: "UDID Service की क्या फीस है?",
-          a: "Aarambh India की सेवा सहायता फीस ₹149 से शुरू होती है। कोई भी लागू सरकारी शुल्क, मेडिकल असेसमेंट शुल्क या अन्य संबंधित शुल्क अलग हो सकते हैं और संबंधित प्राधिकारी के वर्तमान नियमों पर निर्भर करते हैं।"
+          a: "Aarambh India की सेवा सहायता फीस ₹99 से शुरू होती है। कोई भी लागू सरकारी शुल्क, मेडिकल असेसमेंट शुल्क या अन्य संबंधित शुल्क अलग हो सकते हैं और संबंधित प्राधिकारी के वर्तमान नियमों पर निर्भर करते हैं।"
         },
         {
           q: "अगर मेरा UDID आवेदन रिजेक्ट या डिले हो जाए तो क्या होगा?",
@@ -6510,5 +6618,12 @@ const SERVICES = [
   },
 ];
 
+
+/* Payment screens show ONLY the Aarambh service charge as payable.
+   Government fee (when it exists) is never charged online; it is paid by the
+   customer at the time of appointment booking / application. */
+export const GOVT_FEE_NOTE = "Pay rest Govt fee at the time of Application processing";
+export const GOVT_TERMS_NOTE = "You will have to pay govt charges at the time of application";
+export const getFees = (service) => service?.fees || { service: 0, govt: null };
 
 export default SERVICES;

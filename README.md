@@ -242,3 +242,99 @@ EKS = Elastic Kubernetes Service
 ECR → "Docker Image rakho"
 ECS → "Container chalao"
 EKS → "Kubernetes ke through containers chalao"
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+String characters का sequence होता है, जिसका उपयोग text store करने के लिए किया जाता है।
+JavaScript में strings immutable होती हैं, यानी original string को directly modify नहीं कर सकते।
+JavaScript strings are immutable. String methods return new strings rather than modifying the existing string. Variable ko reassign karne se naya result store ho sakta hai.
+
+charAt() और bracket notation में क्या अंतर है?
+let str = "Hello";
+
+console.log(str.charAt(1)); // e
+console.log(str[1]);       // e
+
+अगर index मौजूद नहीं है:
+console.log(str.charAt(10)); // ""
+console.log(str[10]);        // undefined
+
+split() और join() में क्या अंतर है?
+let str = "apple,banana,mango";
+
+let arr = str.split(",");
+console.log(arr);
+// ["apple", "banana", "mango"]
+
+console.log(arr.join("-"));
+// apple-banana-mango
+
+split() — String को array में बदलता है।
+join() — Array के elements को जोड़कर string बनाता है।
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+Original array ko change karne wale methods (Mutating)
+push(),pop(),unshift(),shift(),splice(),sort(),reverse()
+
+Original array ko change nahi karne wale methods (Non-mutating)
+map(),filter(),slice(),concat()
+
+find() vs filter()
+const arr = [5, 10, 15, 20];
+
+console.log(arr.find(n => n > 10));
+// 15
+
+console.log(arr.filter(n => n > 10));
+// [15, 20]
+
+find() pehla matching element return karta hai; filter() sabhi matching elements ka array return karta hai.
+
+splice() vs slice()
+let arr = [10, 20, 30, 40];
+
+console.log(arr.slice(1, 3));
+// [20, 30]
+
+console.log(arr);
+// [10, 20, 30, 40]
+
+console.log(arr.splice(1, 2));
+// [20, 30]
+
+console.log(arr);
+// [10, 40]
+
+slice() original ko nahi badalta; splice() original ko modify karta hai.
+
+
+
+/////////////////////////////////////////////////////////////////////////
+
+पहले value को number में convert करता है।
+Conversion के बाद NaN मिलने पर true देता है।
+
+console.log(isNaN("123"));    // false
+console.log(isNaN("hello"));  // true
+console.log(isNaN(NaN));      // true
+console.log(isNaN(""));       // false
+
+
+Conversion नहीं करता।
+केवल वास्तविक NaN value के लिए true देता है।
+
+console.log(Number.isNaN("123"));    // false
+console.log(Number.isNaN("hello"));  // false
+console.log(Number.isNaN(NaN));      // true
+console.log(Number.isNaN(""));       // false
+
+console.log(NaN === NaN); // false
+console.log(NaN == NaN); // false
+console.log(Number.isNaN(NaN)); // true
