@@ -24,9 +24,9 @@ const TABS = [
 
 const C = {
   en: {
-    eyebrow: "Your trusted service partner",
+    eyebrow: "Your trusted digital service partner",
     title1: "Government services,", title2: "made simple", title3: "for you.",
-    sub: "Apply for 50+ other services from one place — with expert guidance at every step.",
+    sub: "Apply for Aadhaar, PAN, passport, vehicle and 50+ other services from one place — with expert guidance at every step.",
     trust: [["100% secure", "Your data stays safe"], ["Fast processing", "Quick and reliable"], ["Expert support", "A dedicated team"], ["Verified process", "Checked before submission"]],
     placeholder: "Search a service, e.g. Aadhaar, PAN, HSRP…", search: "Search",
     checks: ["Aadhaar", "PAN Card", "Passport", "GST", "and more…"],
