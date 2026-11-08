@@ -2124,6 +2124,244 @@ const SERVICES = [
     }
   },
   {
+    id: "senior-citizen-card-maharashtra",
+    image: senior_citizen,
+    apply_form: "/aarambh-aadhaar-form.html",
+
+    name: {
+      en: "Senior Citizen Card – Maharashtra",
+      hi: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र"
+    },
+
+    category: {
+      en: "Certificates",
+      hi: "प्रमाण पत्र"
+    },
+
+    fees: { service: 199, govt: null },
+
+    price: {
+      en: "₹199",
+      hi: "₹199"
+    },
+
+    summary: {
+      en: "Get your Maharashtra Senior Citizen ID Card — an essential document for eligible benefits, concessions, and senior citizen welfare schemes.",
+      hi: "महाराष्ट्र का वरिष्ठ नागरिक पहचान कार्ड बनवाएं — पात्र लाभ, रियायतों और वरिष्ठ नागरिक कल्याण योजनाओं के लिए एक महत्वपूर्ण दस्तावेज।"
+    },
+
+    benefits: {
+      en: [
+        "Official Maharashtra senior citizen ID card providing access to applicable state benefits and concessions.",
+        "Guidance on eligibility criteria and required supporting documents.",
+        "Accurate, complete application submission to prevent avoidable delays.",
+        "Assistance navigating the relevant state department process.",
+        "Regular status tracking from submission to card issuance.",
+        "Support with reissue in case of loss or damage."
+      ],
+
+      hi: [
+        "महाराष्ट्र का आधिकारिक वरिष्ठ नागरिक पहचान कार्ड, जो लागू राज्य लाभों और रियायतों का लाभ लेने में उपयोगी हो सकता है।",
+        "पात्रता मानदंड और आवश्यक सहायक दस्तावेजों के बारे में मार्गदर्शन।",
+        "अनावश्यक देरी से बचने के लिए आवेदन को सही और पूर्ण तरीके से जमा करने में सहायता।",
+        "संबंधित राज्य विभाग की आवेदन प्रक्रिया को समझने और पूरा करने में सहायता।",
+        "आवेदन जमा करने से लेकर कार्ड जारी होने तक नियमित स्टेटस ट्रैकिंग।",
+        "कार्ड खो जाने या खराब होने की स्थिति में दोबारा कार्ड जारी करवाने में सहायता।"
+      ]
+    },
+
+    faqs: {
+      en: [
+        {
+          q: "What is Senior Citizen Card – Maharashtra?",
+          a: "A Senior Citizen Card is an identity document for eligible senior citizens in Maharashtra and may be used to access applicable government benefits, concessions, and senior citizen welfare schemes."
+        },
+        {
+          q: "Who needs Senior Citizen Card – Maharashtra?",
+          a: "Residents of Maharashtra who meet the applicable senior citizen eligibility criteria and need to establish their status for government benefits, concessions, welfare schemes, or other official purposes may apply for a senior citizen card."
+        },
+        {
+          q: "What documents are required for Senior Citizen Card – Maharashtra?",
+          a: "The key documents typically required are Aadhaar, age proof, address proof, and a recent photograph. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission."
+        },
+        {
+          q: "What is the process for Senior Citizen Card – Maharashtra?",
+          a: "The process involves verifying age and residency, submitting the required documents and application form through the applicable state department or portal, completing any required verification, and tracking the application until the card is approved and issued."
+        },
+        {
+          q: "How long does Senior Citizen Card – Maharashtra take to process?",
+          a: "The typical processing time is around 10–15 working days. This can vary depending on document verification and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee."
+        },
+        {
+          q: "What are the charges involved in Senior Citizen Card – Maharashtra?",
+          a: "There may be an applicable government or departmental fee, which is separate from the service facilitation charge. Since government charges may be revised periodically, the current applicable amount is shared with the client before proceeding."
+        },
+        {
+          q: "What happens if my Senior Citizen Card – Maharashtra application is rejected or delayed?",
+          a: "Applications may be rejected or delayed due to incorrect age or address details, insufficient supporting documents, incomplete information, or discrepancies between submitted records. The issue can usually be corrected and the application resubmitted where applicable."
+        },
+        {
+          q: "How does Aarambh India help with Senior Citizen Card – Maharashtra?",
+          a: "Aarambh India verifies that the required documents are complete and correctly formatted, assists with accurately filling and submitting the application, provides guidance during the applicable process, and gives regular status updates over WhatsApp until the card is issued."
+        }
+      ],
+
+      hi: [
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र क्या है?",
+          a: "वरिष्ठ नागरिक कार्ड महाराष्ट्र के पात्र वरिष्ठ नागरिकों के लिए एक पहचान दस्तावेज है, जिसका उपयोग लागू सरकारी लाभों, रियायतों और वरिष्ठ नागरिक कल्याण योजनाओं का लाभ लेने के लिए किया जा सकता है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र किसे बनवाना चाहिए?",
+          a: "महाराष्ट्र के वे निवासी जो लागू वरिष्ठ नागरिक पात्रता मानदंड को पूरा करते हैं और सरकारी लाभ, रियायत, कल्याण योजनाओं या अन्य आधिकारिक कार्यों के लिए अपनी वरिष्ठ नागरिक स्थिति प्रमाणित करना चाहते हैं, वे वरिष्ठ नागरिक कार्ड के लिए आवेदन कर सकते हैं।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र के लिए कौन-कौन से दस्तावेज आवश्यक हैं?",
+          a: "सामान्यतः आधार, आयु प्रमाण, पते का प्रमाण और हाल की फोटो की आवश्यकता होती है। मूल दस्तावेज आमतौर पर शुरुआत में आवश्यक नहीं होते; आवेदन के लिए स्पष्ट स्कैन कॉपी या फोटो पर्याप्त हो सकती है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र की प्रक्रिया क्या है?",
+          a: "प्रक्रिया में आयु और निवास का सत्यापन, संबंधित राज्य विभाग या पोर्टल के माध्यम से आवश्यक दस्तावेज और आवेदन फॉर्म जमा करना, आवश्यक सत्यापन पूरा करना और कार्ड स्वीकृत एवं जारी होने तक आवेदन का स्टेटस ट्रैक करना शामिल है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र बनने में कितना समय लगता है?",
+          a: "सामान्यतः प्रक्रिया में लगभग 10–15 कार्य दिवस लग सकते हैं। वास्तविक समय दस्तावेज सत्यापन और संबंधित विभाग के कार्यभार पर निर्भर करता है, इसलिए इसे अनुमानित समय माना जाना चाहिए।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – महाराष्ट्र के लिए कितने शुल्क लगते हैं?",
+          a: "जहां लागू हो, वहां सरकारी या विभागीय शुल्क अलग से हो सकता है, जो सेवा सुविधा शुल्क से अलग होगा। सरकारी शुल्क समय-समय पर संशोधित हो सकते हैं, इसलिए प्रक्रिया शुरू करने से पहले वर्तमान लागू राशि की जानकारी दी जाती है।"
+        },
+        {
+          q: "यदि वरिष्ठ नागरिक कार्ड – महाराष्ट्र का आवेदन अस्वीकार या विलंबित हो जाए तो क्या होगा?",
+          a: "आवेदन अस्वीकार या विलंबित होने के कारणों में गलत आयु या पते की जानकारी, अपर्याप्त सहायक दस्तावेज, अधूरी जानकारी या जमा किए गए रिकॉर्ड में अंतर शामिल हो सकता है। समस्या को ठीक करने के बाद जहां लागू हो वहां आवेदन दोबारा जमा किया जा सकता है।"
+        },
+        {
+          q: "Aarambh India वरिष्ठ नागरिक कार्ड – महाराष्ट्र में कैसे सहायता करता है?",
+          a: "Aarambh India आवश्यक दस्तावेजों की पूर्णता और सही फॉर्मेट की जांच करता है, आवेदन को सही तरीके से भरने और जमा करने में सहायता करता है, लागू प्रक्रिया में मार्गदर्शन देता है तथा कार्ड जारी होने तक WhatsApp के माध्यम से नियमित स्टेटस अपडेट देता है।"
+        }
+      ]
+    }
+  },
+  {
+    id: "senior-citizen-card-karnataka",
+    image: senior_citizen,
+    apply_form: "/aarambh-aadhaar-form.html",
+
+    name: {
+      en: "Senior Citizen Card – Karnataka",
+      hi: "वरिष्ठ नागरिक कार्ड – कर्नाटक"
+    },
+
+    category: {
+      en: "Certificates",
+      hi: "प्रमाण पत्र"
+    },
+
+    fees: { service: 149, govt: null },
+
+    price: {
+      en: "₹149",
+      hi: "₹149"
+    },
+
+    summary: {
+      en: "Get your Karnataka Senior Citizen ID Card — an essential document for eligible benefits, concessions, and senior citizen welfare schemes.",
+      hi: "कर्नाटक का वरिष्ठ नागरिक पहचान कार्ड बनवाएं — पात्र लाभ, रियायतों और वरिष्ठ नागरिक कल्याण योजनाओं के लिए एक महत्वपूर्ण दस्तावेज।"
+    },
+
+    benefits: {
+      en: [
+        "Official Karnataka senior citizen ID card providing access to applicable state benefits and concessions.",
+        "Guidance on eligibility criteria and required supporting documents.",
+        "Accurate, complete application submission to prevent avoidable delays.",
+        "Assistance navigating the relevant state department process.",
+        "Regular status tracking from submission to card issuance.",
+        "Support with reissue in case of loss or damage."
+      ],
+
+      hi: [
+        "कर्नाटक का आधिकारिक वरिष्ठ नागरिक पहचान कार्ड, जो लागू राज्य लाभों और रियायतों का लाभ लेने में उपयोगी हो सकता है।",
+        "पात्रता मानदंड और आवश्यक सहायक दस्तावेजों के बारे में मार्गदर्शन।",
+        "अनावश्यक देरी से बचने के लिए आवेदन को सही और पूर्ण तरीके से जमा करने में सहायता।",
+        "संबंधित राज्य विभाग की आवेदन प्रक्रिया को समझने और पूरा करने में सहायता।",
+        "आवेदन जमा करने से लेकर कार्ड जारी होने तक नियमित स्टेटस ट्रैकिंग।",
+        "कार्ड खो जाने या खराब होने की स्थिति में दोबारा कार्ड जारी करवाने में सहायता।"
+      ]
+    },
+
+    faqs: {
+      en: [
+        {
+          q: "What is Senior Citizen Card – Karnataka?",
+          a: "A Senior Citizen Card is an identity document for eligible senior citizens in Karnataka and may be used to access applicable government benefits, concessions, and senior citizen welfare schemes."
+        },
+        {
+          q: "Who needs Senior Citizen Card – Karnataka?",
+          a: "Residents of Karnataka who meet the applicable senior citizen eligibility criteria and need to establish their status for government benefits, concessions, welfare schemes, or other official purposes may apply for a senior citizen card."
+        },
+        {
+          q: "What documents are required for Senior Citizen Card – Karnataka?",
+          a: "The key documents typically required are Aadhaar, age proof, address proof, and a recent photograph. Original documents are usually not required upfront; clear scanned or photographed copies are generally sufficient for application submission."
+        },
+        {
+          q: "What is the process for Senior Citizen Card – Karnataka?",
+          a: "The process involves verifying age and residency, submitting the required documents and application form through the applicable state department or portal, completing any required verification, and tracking the application until the card is approved and issued."
+        },
+        {
+          q: "How long does Senior Citizen Card – Karnataka take to process?",
+          a: "The typical processing time is around 10–15 working days. This can vary depending on document verification and the workload of the concerned department, so it should be treated as an estimate rather than a guarantee."
+        },
+        {
+          q: "What are the charges involved in Senior Citizen Card – Karnataka?",
+          a: "There may be an applicable government or departmental fee, which is separate from the service facilitation charge. Since government charges may be revised periodically, the current applicable amount is shared with the client before proceeding."
+        },
+        {
+          q: "What happens if my Senior Citizen Card – Karnataka application is rejected or delayed?",
+          a: "Applications may be rejected or delayed due to incorrect age or address details, insufficient supporting documents, incomplete information, or discrepancies between submitted records. The issue can usually be corrected and the application resubmitted where applicable."
+        },
+        {
+          q: "How does Aarambh India help with Senior Citizen Card – Karnataka?",
+          a: "Aarambh India verifies that the required documents are complete and correctly formatted, assists with accurately filling and submitting the application, provides guidance during the applicable process, and gives regular status updates over WhatsApp until the card is issued."
+        }
+      ],
+
+      hi: [
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक क्या है?",
+          a: "वरिष्ठ नागरिक कार्ड कर्नाटक के पात्र वरिष्ठ नागरिकों के लिए एक पहचान दस्तावेज है, जिसका उपयोग लागू सरकारी लाभों, रियायतों और वरिष्ठ नागरिक कल्याण योजनाओं का लाभ लेने के लिए किया जा सकता है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक किसे बनवाना चाहिए?",
+          a: "कर्नाटक के वे निवासी जो लागू वरिष्ठ नागरिक पात्रता मानदंड को पूरा करते हैं और सरकारी लाभ, रियायत, कल्याण योजनाओं या अन्य आधिकारिक कार्यों के लिए अपनी वरिष्ठ नागरिक स्थिति प्रमाणित करना चाहते हैं, वे वरिष्ठ नागरिक कार्ड के लिए आवेदन कर सकते हैं।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक के लिए कौन-कौन से दस्तावेज आवश्यक हैं?",
+          a: "सामान्यतः आधार, आयु प्रमाण, पते का प्रमाण और हाल की फोटो की आवश्यकता होती है। मूल दस्तावेज आमतौर पर शुरुआत में आवश्यक नहीं होते; आवेदन के लिए स्पष्ट स्कैन कॉपी या फोटो पर्याप्त हो सकती है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक की प्रक्रिया क्या है?",
+          a: "प्रक्रिया में आयु और निवास का सत्यापन, संबंधित राज्य विभाग या पोर्टल के माध्यम से आवश्यक दस्तावेज और आवेदन फॉर्म जमा करना, आवश्यक सत्यापन पूरा करना और कार्ड स्वीकृत एवं जारी होने तक आवेदन का स्टेटस ट्रैक करना शामिल है।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक बनने में कितना समय लगता है?",
+          a: "सामान्यतः प्रक्रिया में लगभग 10–15 कार्य दिवस लग सकते हैं। वास्तविक समय दस्तावेज सत्यापन और संबंधित विभाग के कार्यभार पर निर्भर करता है, इसलिए इसे अनुमानित समय माना जाना चाहिए।"
+        },
+        {
+          q: "वरिष्ठ नागरिक कार्ड – कर्नाटक के लिए कितने शुल्क लगते हैं?",
+          a: "जहां लागू हो, वहां सरकारी या विभागीय शुल्क अलग से हो सकता है, जो सेवा सुविधा शुल्क से अलग होगा। सरकारी शुल्क समय-समय पर संशोधित हो सकते हैं, इसलिए प्रक्रिया शुरू करने से पहले वर्तमान लागू राशि की जानकारी दी जाती है।"
+        },
+        {
+          q: "यदि वरिष्ठ नागरिक कार्ड – कर्नाटक का आवेदन अस्वीकार या विलंबित हो जाए तो क्या होगा?",
+          a: "आवेदन अस्वीकार या विलंबित होने के कारणों में गलत आयु या पते की जानकारी, अपर्याप्त सहायक दस्तावेज, अधूरी जानकारी या जमा किए गए रिकॉर्ड में अंतर शामिल हो सकता है। समस्या को ठीक करने के बाद जहां लागू हो वहां आवेदन दोबारा जमा किया जा सकता है।"
+        },
+        {
+          q: "Aarambh India वरिष्ठ नागरिक कार्ड – कर्नाटक में कैसे सहायता करता है?",
+          a: "Aarambh India आवश्यक दस्तावेजों की पूर्णता और सही फॉर्मेट की जांच करता है, आवेदन को सही तरीके से भरने और जमा करने में सहायता करता है, लागू प्रक्रिया में मार्गदर्शन देता है तथा कार्ड जारी होने तक WhatsApp के माध्यम से नियमित स्टेटस अपडेट देता है।"
+        }
+      ]
+    }
+  },
+  {
     id: "fssai-new-license",
     image: fssai,
     apply_form: "/aarambh-aadhaar-form.html",
